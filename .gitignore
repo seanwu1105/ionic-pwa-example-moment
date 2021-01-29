@@ -22,10 +22,12 @@ npm-debug.log*
 /.sass-cache
 /.sourcemaps
 /.versions
-/.vscode
+/.vscode/*
+!.vscode/settings.json
 /coverage
 /dist
 /node_modules
 /platforms
 /plugins
 /www
+secret.*
