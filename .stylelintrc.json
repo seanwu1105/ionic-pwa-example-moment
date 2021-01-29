@@ -1,0 +1,22 @@
+{
+  "extends": "stylelint-config-standard",
+  "plugins": ["stylelint-scss"],
+  "rules": {
+    "selector-type-no-unknown": [
+      true,
+      {
+        "ignore": ["custom-elements"]
+      }
+    ],
+    "no-empty-source": null,
+    "at-rule-no-unknown": null,
+    "scss/at-rule-no-unknown": true,
+    "color-named": "always-where-possible",
+    "declaration-no-important": true,
+    "keyframe-declaration-no-important": true,
+    "value-no-vendor-prefix": true,
+    "shorthand-property-no-redundant-values": true,
+    "selector-no-vendor-prefix": true,
+    "at-rule-no-vendor-prefix": true
+  }
+}
