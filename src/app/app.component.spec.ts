@@ -1,27 +1,26 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TestBed, waitForAsync } from '@angular/core/testing';
-
 import { Platform } from '@ionic/angular';
-
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
+  let platformReadySpy: Promise<void>;
+  let platformSpy: Platform;
 
-  let platformReadySpy;
-  let platformSpy;
+  beforeEach(
+    waitForAsync(() => {
+      platformReadySpy = Promise.resolve();
+      platformSpy = jasmine.createSpyObj('Platform', {
+        ready: platformReadySpy,
+      });
 
-  beforeEach(waitForAsync(() => {
-    platformReadySpy = Promise.resolve();
-    platformSpy = jasmine.createSpyObj('Platform', { ready: platformReadySpy });
-
-    TestBed.configureTestingModule({
-      declarations: [AppComponent],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      providers: [
-        { provide: Platform, useValue: platformSpy },
-      ],
-    }).compileComponents();
-  }));
+      TestBed.configureTestingModule({
+        declarations: [AppComponent],
+        schemas: [CUSTOM_ELEMENTS_SCHEMA],
+        providers: [{ provide: Platform, useValue: platformSpy }],
+      }).compileComponents();
+    })
+  );
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
@@ -36,5 +35,4 @@ describe('AppComponent', () => {
   });
 
   // TODO: add more tests!
-
 });
