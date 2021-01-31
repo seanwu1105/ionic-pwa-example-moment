@@ -3,7 +3,7 @@ name: build
 on: [push, pull_request]
 
 jobs:
-  web:
+  pwa:
     runs-on: ubuntu-latest
     timeout-minutes: 120
 

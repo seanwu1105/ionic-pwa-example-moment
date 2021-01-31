@@ -1,9 +1,9 @@
 - [x] PWA
+- [x] CD PWA on GitHub pages
 - [ ] system optimize
   - AOT
   - Strict template check
   - production build
-- [ ] CD PWA on GitHub page
 - [ ] UI mock
 - [ ] App shell
 - [ ] Camera view

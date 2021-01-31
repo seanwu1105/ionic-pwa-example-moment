@@ -6,7 +6,7 @@
   "scripts": {
     "serve": "ionic serve",
     "serve.hmr": "ionic serve -- --hmr",
-    "build": "ionic build",
+    "build": "ionic build --prod",
     "build.watch.pwa": "ionic build --prod --watch",
     "test": "ng test",
     "test.ci": "ng test --no-watch --no-progress --browsers=ChromeHeadlessCI",
