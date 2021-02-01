@@ -101,6 +101,10 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "codeCoverage": true,
+            "codeCoverageExclude": [
+              "src/**/mock-*.ts",
+              "src/**/*-testing.*.ts"
+            ],
             "styles": [],
             "scripts": [],
             "assets": [
