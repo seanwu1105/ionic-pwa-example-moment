@@ -1,6 +1,6 @@
 - [x] PWA
 - [x] CD PWA on GitHub pages
-- [ ] system optimize
+- [x] language optimize
   - AOT
   - Strict template check
   - production build
