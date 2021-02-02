@@ -1,0 +1,23 @@
+:host {
+  display: block;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+ion-img {
+  width: 100%;
+  height: 100%;
+  object-fit: inherit;
+  object-position: inherit;
+  animation: loading 1s ease-in-out alternate infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-color: lightgray;
+  }
+
+  100% {
+    background-color: whitesmoke;
+  }
+}

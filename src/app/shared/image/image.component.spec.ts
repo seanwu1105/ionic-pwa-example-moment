@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { SharedTestingModule } from '../../shared/shared-testing.module';
-import { HomePage } from './home.page';
+import { SharedTestingModule } from '../shared-testing.module';
+import { ImageComponent } from './image.component';
 
-describe('HomePage', () => {
-  let component: HomePage;
-  let fixture: ComponentFixture<HomePage>;
+describe('ImageComponent', () => {
+  let component: ImageComponent;
+  let fixture: ComponentFixture<ImageComponent>;
 
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        declarations: [HomePage],
+        declarations: [ImageComponent],
         imports: [SharedTestingModule],
       }).compileComponents();
 
-      fixture = TestBed.createComponent(HomePage);
+      fixture = TestBed.createComponent(ImageComponent);
       component = fixture.componentInstance;
       fixture.detectChanges();
     })

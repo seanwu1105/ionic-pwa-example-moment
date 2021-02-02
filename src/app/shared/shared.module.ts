@@ -3,9 +3,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { ImageComponent } from './image/image.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [ImageComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -13,6 +14,12 @@ import { IonicModule } from '@ionic/angular';
     IonicModule,
     HttpClientModule,
   ],
-  exports: [CommonModule, FormsModule, ReactiveFormsModule, IonicModule],
+  exports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    IonicModule,
+    ImageComponent,
+  ],
 })
 export class SharedModule {}

@@ -1,8 +1,8 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { SharedModule } from './shared.module';
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule],
+  imports: [SharedModule],
 })
 export class SharedTestingModule {}
