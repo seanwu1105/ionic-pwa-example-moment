@@ -1,1 +1,30 @@
-home!
+<ion-content scrollEvents (ionScroll)="onScroll($event)">
+  <ion-grid>
+    <ion-row>
+      <ion-col
+        *ngFor="let i of [].constructor(40)"
+        size="6"
+        size-sm="4"
+        size-md="3"
+        size-lg="2"
+        size-xl="1"
+      >
+        <ion-img src="https://picsum.photos/400/300" class="photo"></ion-img>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed" edge>
+    <ion-fab-button>
+      <ion-icon name="camera-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+<ion-footer [class.ion-no-border]="noFooterBorder$ | async">
+  <ion-toolbar>
+    <ion-buttons slot="primary">
+      <ion-button slot="secondary">
+        <ion-icon slot="icon-only" name="settings-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
