@@ -5,10 +5,12 @@
   - Strict template check
   - production build
 - [ ] UI mock
-- [ ] App shell
 - [ ] Camera view
+- [ ] i18n
+- [ ] date i18n
 - [ ] RxDB
 - [ ] NgRx/data
+- [ ] App shell
 
 ### Live-reload PWA
 
