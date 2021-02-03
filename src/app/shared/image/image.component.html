@@ -7,6 +7,6 @@
 <ion-img
   *ngIf="!isImageError"
   (ionError)="onImageError()"
-  src="https://picsum.photos/300/200"
+  [attr.src]="src$ | async"
 ></ion-img>
 <ng-content *ngIf="!isImageError"></ng-content>

@@ -2,14 +2,17 @@
   <ion-grid>
     <ion-row>
       <ion-col
-        *ngFor="let i of [].constructor(40)"
+        *ngFor="let item of [].constructor(40); let i = index"
         size="6"
         size-sm="4"
         size-md="3"
         size-lg="2"
         size-xl="1"
       >
-        <app-image class="ion-activatable">
+        <app-image
+          [src]="'https://picsum.photos/id/' + i * 2 + '/600/700'"
+          class="ion-activatable"
+        >
           <ion-ripple-effect></ion-ripple-effect>
         </app-image>
       </ion-col>
