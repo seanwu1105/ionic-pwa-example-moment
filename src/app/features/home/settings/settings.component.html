@@ -1,0 +1,9 @@
+<ion-list lines="none">
+  <ion-item>
+    <ion-label>Dark Theme</ion-label>
+    <ion-toggle
+      [checked]="prefersDark$ | async"
+      (ionChange)="onToggleDarkTheme($event)"
+    ></ion-toggle>
+  </ion-item>
+</ion-list>

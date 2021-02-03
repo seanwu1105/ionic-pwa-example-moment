@@ -1,2 +1,12 @@
-<ion-img src="https://picsum.photos/1200/1300"></ion-img>
-<ng-content></ng-content>
+<ion-icon
+  *ngIf="isImageError"
+  src="/assets/icons/broken-image.svg"
+  color="danger"
+  size="large"
+></ion-icon>
+<ion-img
+  *ngIf="!isImageError"
+  (ionError)="onImageError()"
+  src="https://picsum.photos/300/200"
+></ion-img>
+<ng-content *ngIf="!isImageError"></ng-content>

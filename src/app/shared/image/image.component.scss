@@ -2,6 +2,7 @@
   display: block;
   overflow: hidden;
   object-fit: cover;
+  position: relative;
 }
 
 ion-img {
@@ -9,12 +10,12 @@ ion-img {
   height: 100%;
   object-fit: inherit;
   object-position: inherit;
-  animation: loading 1s ease-in-out alternate infinite;
+  animation: loading 2.5s ease-in-out alternate infinite;
 }
 
 @keyframes loading {
   0% {
-    background-color: lightgray;
+    background-color: var(--ion-color-light-shade);
   }
 
   100% {
@@ -32,4 +33,12 @@ ion-img {
       background-color: var(--ion-color-step-100);
     }
   }
+}
+
+ion-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
 }

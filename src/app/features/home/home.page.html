@@ -24,7 +24,7 @@
 <ion-footer [class.ion-no-border]="noFooterBorder$ | async">
   <ion-toolbar>
     <ion-buttons slot="primary">
-      <ion-button slot="secondary">
+      <ion-button (click)="presentSettings($event)" slot="secondary">
         <ion-icon slot="icon-only" name="settings-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
