@@ -18,4 +18,24 @@ ion-button.dismiss {
   --border-radius: 50%;
   --padding-end: 0;
   --padding-start: 0;
+  --background: #0006;
+}
+
+ion-button.capture {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%);
+  z-index: 1;
+  height: 72px;
+  width: 72px;
+
+  --border-radius: 50%;
+  --padding-end: 0;
+  --padding-start: 0;
+  --background: #0006;
+
+  ion-icon {
+    font-size: 64px;
+  }
 }

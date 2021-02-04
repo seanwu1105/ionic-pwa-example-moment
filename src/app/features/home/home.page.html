@@ -2,12 +2,12 @@
   <ion-grid>
     <ion-row>
       <ion-col
+        #col
         *ngFor="let item of [].constructor(40); let i = index"
         size="6"
         size-sm="4"
         size-md="3"
         size-lg="2"
-        size-xl="1"
       >
         <app-image
           [src]="'https://picsum.photos/id/' + i * 2 + '/600/700'"
