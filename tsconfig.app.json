@@ -2,7 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
-    "types": []
+    "types": ["w3c-image-capture"]
   },
   "files": ["src/main.ts", "src/polyfills.ts"],
   "include": ["src/**/*.ts", "src/**/*.d.ts"],

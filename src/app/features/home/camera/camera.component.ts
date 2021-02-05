@@ -5,7 +5,9 @@ import { BehaviorSubject, combineLatest, defer } from 'rxjs';
 import {
   catchError,
   distinctUntilChanged,
+  map,
   shareReplay,
+  switchMap,
   tap,
 } from 'rxjs/operators';
 import { isNonNullable } from '../../../utils/rx-operators';
@@ -44,6 +46,20 @@ export class CameraComponent implements OnDestroy {
     shareReplay({ bufferSize: 1, refCount: true })
   );
 
+  private readonly imageCapture$ = this.mediaStream$.pipe(
+    isNonNullable(),
+    map(mediaStream => new ImageCapture(mediaStream.getVideoTracks()[0])),
+    shareReplay({ bufferSize: 1, refCount: true })
+  );
+
+  private readonly _capturedImage$ = new BehaviorSubject<string | undefined>(
+    undefined
+  );
+  readonly capturedImage$ = this._capturedImage$.pipe(
+    isNonNullable(),
+    distinctUntilChanged()
+  );
+
   private readonly cameraPreview$ = combineLatest([
     this.videoElement$,
     this.mediaStream$.pipe(isNonNullable()),
@@ -58,6 +74,22 @@ export class CameraComponent implements OnDestroy {
     private readonly alertController: AlertController
   ) {
     this.cameraPreview$.pipe(untilDestroyed(this)).subscribe();
+  }
+
+  capture() {
+    this.imageCapture$
+      .pipe(
+        switchMap(imageCapture => imageCapture.takePhoto()),
+        tap(imageBlob =>
+          this._capturedImage$.next(URL.createObjectURL(imageBlob))
+        ),
+        catchError(async (err: unknown) => {
+          await this.presentErrorDialog(err);
+          return undefined;
+        }),
+        untilDestroyed(this)
+      )
+      .subscribe();
   }
 
   async dismiss() {
@@ -76,8 +108,9 @@ export class CameraComponent implements OnDestroy {
   ngOnDestroy() {
     this.mediaStream$
       .pipe(
+        isNonNullable(),
         tap(mediaStream =>
-          mediaStream?.getTracks().forEach(track => track.stop())
+          mediaStream.getTracks().forEach(track => track.stop())
         )
       )
       .subscribe();
