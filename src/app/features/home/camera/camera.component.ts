@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { BehaviorSubject, combineLatest, defer } from 'rxjs';
+import { BehaviorSubject, combineLatest, defer, iif } from 'rxjs';
 import {
   catchError,
   distinctUntilChanged,
@@ -79,7 +79,12 @@ export class CameraComponent implements OnDestroy {
   capture() {
     this.imageCapture$
       .pipe(
-        switchMap(imageCapture => imageCapture.takePhoto()),
+        switchMap(imageCapture =>
+          iif(
+            () => imageCapture.track.readyState === 'live',
+            imageCapture.takePhoto()
+          )
+        ),
         tap(imageBlob =>
           this._capturedImage$.next(URL.createObjectURL(imageBlob))
         ),

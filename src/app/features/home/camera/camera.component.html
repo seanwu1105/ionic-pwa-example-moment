@@ -12,6 +12,6 @@
   *ngIf="capturedImage$ | async as capturedImage"
   class="captured ion-margin"
 >
-  <ion-img [attr.src]="capturedImage"></ion-img>
+  <app-image [src]="capturedImage"></app-image>
 </div>
 <video #video playsinline autoplay></video>

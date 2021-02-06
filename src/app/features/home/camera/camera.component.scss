@@ -50,10 +50,8 @@ ion-button.capture {
   border-radius: 4px;
   border: 1px solid var(--ion-color-light-shade);
 
-  ion-img {
+  app-image {
     width: 60px;
     height: 60px;
-    object-fit: cover;
-    object-position: center;
   }
 }
