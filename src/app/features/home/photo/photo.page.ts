@@ -5,4 +5,8 @@ import { Component } from '@angular/core';
   templateUrl: './photo.page.html',
   styleUrls: ['./photo.page.scss'],
 })
-export class PhotoPage {}
+export class PhotoPage {
+  readonly photoSlidesOptions = {
+    resistanceRatio: 0,
+  };
+}

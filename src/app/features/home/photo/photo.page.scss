@@ -1,7 +1,23 @@
 ion-toolbar {
+  position: absolute;
+
   --background: transparent;
 }
 
-ion-content {
-  position: absolute;
+ion-slides {
+  overflow: hidden;
+  border-radius: 0 0 32px 32px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
+}
+
+ion-slide {
+  height: auto;
+
+  img {
+    height: 100%;
+    width: 100%;
+    max-height: 40vh;
+    object-fit: cover;
+    object-position: center;
+  }
 }
