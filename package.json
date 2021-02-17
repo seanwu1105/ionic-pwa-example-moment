@@ -25,6 +25,7 @@
     "@ionic-native/core": "^5.0.0",
     "@ionic/angular": "^5.0.0",
     "@ngneat/until-destroy": "^8.0.3",
+    "ngx-ionic-image-viewer": "^0.7.4",
     "rxjs": "^6.6.3",
     "tslib": "^2.0.0",
     "zone.js": "^0.11.3"

@@ -4,20 +4,20 @@ ion-toolbar {
   --background: transparent;
 }
 
-ion-slides {
+.photo-slides {
   overflow: hidden;
   border-radius: 0 0 32px 32px;
   box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
-}
 
-ion-slide {
-  height: auto;
+  ion-slide {
+    height: auto;
 
-  img {
-    height: 100%;
-    width: 100%;
-    max-height: 40vh;
-    object-fit: cover;
-    object-position: center;
+    img {
+      height: 100%;
+      width: 100%;
+      max-height: 40vh;
+      object-fit: cover;
+      object-position: center;
+    }
   }
 }
