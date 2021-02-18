@@ -7,7 +7,7 @@
 - [x] UI mock
   - [x] home page
   - [x] Camera view
-  - [ ] details view
+  - [x] details view
 - [ ] i18n
 - [ ] date i18n
 - [ ] RxDB

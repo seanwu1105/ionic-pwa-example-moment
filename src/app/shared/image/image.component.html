@@ -6,6 +6,7 @@
 ></ion-icon>
 <ion-img
   *ngIf="!isImageError"
+  (ionImgDidLoad)="onImageLoaded($event)"
   (ionError)="onImageError()"
   [attr.src]="src$ | async"
 ></ion-img>

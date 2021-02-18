@@ -3,6 +3,7 @@
   overflow: hidden;
   object-fit: cover;
   position: relative;
+  animation: loading 2.5s ease-in-out alternate infinite;
 }
 
 ion-img {
@@ -10,7 +11,7 @@ ion-img {
   height: 100%;
   object-fit: inherit;
   object-position: inherit;
-  animation: loading 2.5s ease-in-out alternate infinite;
+  opacity: 0;
 }
 
 @keyframes loading {

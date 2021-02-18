@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { createAnimation } from '@ionic/angular';
 import { BehaviorSubject } from 'rxjs';
 import { distinctUntilChanged, startWith, tap } from 'rxjs/operators';
 import { isNonNullable } from '../../utils/rx-operators';
@@ -21,6 +22,16 @@ export class ImageComponent {
     this._src$.next(value);
   }
   isImageError = false;
+
+  async onImageLoaded(event: Event) {
+    const imgElement = event.target as HTMLIonImgElement;
+    const fadeInAnimation = createAnimation()
+      .addElement(imgElement)
+      .duration(300)
+      .iterations(1)
+      .fromTo('opacity', '0', '1');
+    return fadeInAnimation.play();
+  }
 
   onImageError() {
     this.isImageError = true;
