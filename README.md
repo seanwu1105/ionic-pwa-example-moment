@@ -8,9 +8,10 @@
   - [x] home page
   - [x] Camera view
   - [x] details view
+- [ ] RxDB
 - [ ] i18n
 - [ ] date i18n
-- [ ] RxDB
+- [ ] GPS collection
 - [ ] NgRx/data
 - [ ] App shell
 
