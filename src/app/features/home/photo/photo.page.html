@@ -13,22 +13,11 @@
     </ion-buttons>
   </ion-toolbar>
   <ion-slides [options]="photoSlidesOptions" class="photo-slides">
-    <ion-slide>
+    <ion-slide *ngFor="let juncture of junctures$ | async">
       <app-image
+        *ngIf="juncture.photoUrl$ | async as photoUrl"
         ionImgViewer
-        src="https://picsum.photos/id/101/1920/1980"
-      ></app-image>
-    </ion-slide>
-    <ion-slide>
-      <app-image
-        ionImgViewer
-        src="https://picsum.photos/id/102/2200/2800"
-      ></app-image>
-    </ion-slide>
-    <ion-slide>
-      <app-image
-        ionImgViewer
-        src="https://picsum.photos/id/103/1920/1580"
+        [src]="photoUrl"
       ></app-image>
     </ion-slide>
   </ion-slides>
