@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonToggle } from '@ionic/angular';
 import { fromEvent } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { version } from '../../../../../package.json';
 
 @Component({
   selector: 'app-settings',
@@ -16,6 +17,7 @@ export class SettingsComponent {
     map(event => event.matches),
     startWith(matchMedia('(prefers-color-scheme: dark)').matches)
   );
+  readonly version = version;
 
   onToggleDarkTheme(event: Event) {
     document.body.classList.toggle(
