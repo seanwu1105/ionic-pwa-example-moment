@@ -12,3 +12,10 @@ export function concatTapTo<T>(observable$: Observable<any> | Promise<any>) {
   return (source$: Observable<T>) =>
     source$.pipe(concatMap(value => from(observable$).pipe(mapTo(value))));
 }
+
+export function concatTap<T>(
+  func: (value: T) => Observable<any> | Promise<any>
+) {
+  return (source$: Observable<T>) =>
+    source$.pipe(concatMap(value => from(func(value)).pipe(mapTo(value))));
+}

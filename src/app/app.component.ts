@@ -13,6 +13,5 @@ export class AppComponent {
 
   async initializeApp() {
     await this.platform.ready();
-    // hide splash screen
   }
 }

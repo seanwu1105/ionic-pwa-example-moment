@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonContent, ModalController, PopoverController } from '@ionic/angular';
 import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
 import { distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { JunctureRepository } from '../../shared/data/juncture/juncture-repository.service';
 import { isNonNullable } from '../../utils/rx-operators';
 import { CameraComponent } from './camera/camera.component';
 import { SettingsComponent } from './settings/settings.component';
@@ -11,21 +12,28 @@ import { SettingsComponent } from './settings/settings.component';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  readonly junctures$ = this.junctureRepository.all$;
+
   private readonly _ionContent$ = new BehaviorSubject<IonContent | undefined>(
     undefined
   );
+
   private readonly ionContent$ = this._ionContent$.pipe(
     isNonNullable(),
     distinctUntilChanged()
   );
+
   @ViewChild(IonContent)
   set ionContent(value: IonContent) {
     this._ionContent$.next(value);
   }
+
   private readonly _scrollEvent$ = new Subject<Event>();
+
   private readonly scrollEvent$ = this._scrollEvent$.pipe(
     distinctUntilChanged()
   );
+
   readonly noFooterBorder$ = combineLatest([
     this.ionContent$,
     this.scrollEvent$,
@@ -33,7 +41,8 @@ export class HomePage {
 
   constructor(
     private readonly popoverController: PopoverController,
-    private readonly modalController: ModalController
+    private readonly modalController: ModalController,
+    private readonly junctureRepository: JunctureRepository
   ) {}
 
   onScroll(event: Event) {

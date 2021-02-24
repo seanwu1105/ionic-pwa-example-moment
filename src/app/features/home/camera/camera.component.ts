@@ -10,7 +10,8 @@ import {
   switchMap,
   tap,
 } from 'rxjs/operators';
-import { isNonNullable } from '../../../utils/rx-operators';
+import { JunctureRepository } from '../../../shared/data/juncture/juncture-repository.service';
+import { concatTap, isNonNullable } from '../../../utils/rx-operators';
 
 @UntilDestroy()
 @Component({
@@ -55,7 +56,7 @@ export class CameraComponent implements OnDestroy {
   private readonly _capturedImage$ = new BehaviorSubject<string | undefined>(
     undefined
   );
-  readonly capturedImage$ = this._capturedImage$.pipe(
+  readonly capturedImageUrl$ = this._capturedImage$.pipe(
     isNonNullable(),
     distinctUntilChanged()
   );
@@ -71,7 +72,8 @@ export class CameraComponent implements OnDestroy {
 
   constructor(
     private readonly modalController: ModalController,
-    private readonly alertController: AlertController
+    private readonly alertController: AlertController,
+    private readonly junctureRepository: JunctureRepository
   ) {
     this.cameraPreview$.pipe(untilDestroyed(this)).subscribe();
   }
@@ -82,6 +84,9 @@ export class CameraComponent implements OnDestroy {
         switchMap(imageCapture => imageCapture.takePhoto()),
         tap(imageBlob =>
           this._capturedImage$.next(URL.createObjectURL(imageBlob))
+        ),
+        concatTap(imageBlob =>
+          this.junctureRepository.add$({ data: imageBlob })
         ),
         catchError(async (err: unknown) => {
           await this.presentErrorDialog(err);

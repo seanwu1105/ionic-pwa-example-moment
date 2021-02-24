@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable max-len */
 /**
  * This file includes polyfills needed by Angular and is loaded before the app.
@@ -62,3 +63,9 @@ import './zone-flags';
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+// RxDB
+(window as any).global = window;
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+global.Buffer = global.Buffer ?? require('buffer').Buffer;
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+global.process = global.process ?? require('process');
