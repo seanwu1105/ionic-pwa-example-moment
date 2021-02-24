@@ -12,6 +12,7 @@ video {
 
 ion-button.dismiss {
   position: absolute;
+  right: 0;
   z-index: 1;
   width: 48px;
   height: 48px;
@@ -19,7 +20,6 @@ ion-button.dismiss {
   --border-radius: 50%;
   --padding-end: 0;
   --padding-start: 0;
-  --background: #0006;
 }
 
 ion-button.capture {
@@ -51,6 +51,7 @@ ion-button.capture {
   border: 1px solid var(--ion-color-light-shade);
 
   app-image {
+    z-index: 1;
     width: 60px;
     height: 60px;
   }

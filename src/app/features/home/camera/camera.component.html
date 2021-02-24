@@ -1,4 +1,4 @@
-<ion-button (click)="dismiss()" class="dismiss ion-margin" fill="clear">
+<ion-button (click)="dismiss()" class="dismiss" fill="clear">
   <ion-icon slot="icon-only" name="close-outline" color="light"></ion-icon>
 </ion-button>
 <ion-button (click)="capture()" class="capture" fill="clear">
@@ -12,6 +12,6 @@
   *ngIf="capturedImageUrl$ | async as capturedImageUrl"
   class="captured ion-margin"
 >
-  <app-image [src]="capturedImageUrl"></app-image>
+  <app-image ionImgViewer [src]="capturedImageUrl"></app-image>
 </div>
 <video #video playsinline autoplay></video>
