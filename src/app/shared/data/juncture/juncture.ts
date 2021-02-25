@@ -22,13 +22,9 @@ export const schema: RxJsonSchema<JunctureIndex> = {
 };
 
 export class Juncture {
-  get id(): string {
-    return this.document.id;
-  }
+  readonly id = this.document.id;
 
-  get mimeType(): string {
-    return this.attachment.type;
-  }
+  readonly mimeType = this.attachment.type;
 
   private get attachment(): RxAttachment<JunctureIndex> {
     const attachment = this.document.getAttachment(this.id);

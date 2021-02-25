@@ -12,6 +12,7 @@
         <app-image
           *ngIf="juncture.photoUrl$ | async as photoUrl"
           routerLink="photo"
+          [queryParams]="{ id: juncture.id }"
           [src]="photoUrl"
           class="ion-activatable"
         >

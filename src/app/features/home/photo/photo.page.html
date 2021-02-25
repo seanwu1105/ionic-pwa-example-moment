@@ -12,7 +12,12 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-  <ion-slides [options]="photoSlidesOptions" class="photo-slides">
+  <ion-slides
+    *ngIf="photoSlidesOptions$ | async as options"
+    [options]="options"
+    (ionSlideDidChange)="onPhotoSlidesChanged($event)"
+    class="photo-slides"
+  >
     <ion-slide *ngFor="let juncture of junctures$ | async">
       <app-image
         *ngIf="juncture.photoUrl$ | async as photoUrl"
@@ -28,14 +33,14 @@
       <ion-icon name="code-outline" slot="start"></ion-icon>
       <ion-label>
         <h3>Hash</h3>
-        <p>1234567890abcdef</p>
+        <p>{{ (currentJuncture$ | async)?.id }}</p>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-icon name="document-outline" slot="start"></ion-icon>
       <ion-label>
         <h3>MIME Type</h3>
-        <p>1234567890abcdef</p>
+        <p>{{ (currentJuncture$ | async)?.mimeType }}</p>
       </ion-label>
     </ion-item>
     <ion-item>
