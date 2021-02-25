@@ -1,5 +1,6 @@
 import { RxAttachment, RxDocument, RxJsonSchema } from 'rxdb';
 import { defer } from 'rxjs';
+import { map, shareReplay } from 'rxjs/operators';
 import { DataNotFoundError } from '../../../utils/errors';
 
 export interface JunctureIndex {
@@ -35,8 +36,9 @@ export class Juncture {
     throw new DataNotFoundError(`Cannot get attachment with ID: ${this.id}`);
   }
 
-  readonly photoUrl$ = defer(async () =>
-    URL.createObjectURL(await this.attachment.getData())
+  readonly photoUrl$ = defer(() => this.attachment.getData()).pipe(
+    map(blob => URL.createObjectURL(blob)),
+    shareReplay({ bufferSize: 1, refCount: true })
   );
 
   constructor(private readonly document: RxDocument<JunctureIndex>) {}
