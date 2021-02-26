@@ -6,6 +6,7 @@ import {
   catchError,
   distinctUntilChanged,
   map,
+  pairwise,
   shareReplay,
   switchMap,
   tap,
@@ -53,10 +54,18 @@ export class CameraComponent implements OnDestroy {
     shareReplay({ bufferSize: 1, refCount: true })
   );
 
-  private readonly _capturedImage$ = new BehaviorSubject<string | undefined>(
+  private readonly _capturedImageUrl$ = new BehaviorSubject<string | undefined>(
     undefined
   );
-  readonly capturedImageUrl$ = this._capturedImage$.pipe(
+
+  private readonly revokePreviousImageUrl$ = this._capturedImageUrl$.pipe(
+    pairwise(),
+    tap(([previous]) => {
+      if (previous) URL.revokeObjectURL(previous);
+    })
+  );
+
+  readonly capturedImageUrl$ = this._capturedImageUrl$.pipe(
     isNonNullable(),
     distinctUntilChanged()
   );
@@ -75,6 +84,7 @@ export class CameraComponent implements OnDestroy {
     private readonly alertController: AlertController,
     private readonly junctureRepository: JunctureRepository
   ) {
+    this.revokePreviousImageUrl$.pipe(untilDestroyed(this)).subscribe();
     this.cameraPreview$.pipe(untilDestroyed(this)).subscribe();
   }
 
@@ -82,9 +92,9 @@ export class CameraComponent implements OnDestroy {
     this.imageCapture$
       .pipe(
         switchMap(imageCapture => imageCapture.takePhoto()),
-        tap(imageBlob =>
-          this._capturedImage$.next(URL.createObjectURL(imageBlob))
-        ),
+        tap(imageBlob => {
+          this._capturedImageUrl$.next(URL.createObjectURL(imageBlob));
+        }),
         concatTap(imageBlob =>
           this.junctureRepository.add$({ data: imageBlob })
         ),
