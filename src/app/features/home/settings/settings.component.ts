@@ -1,28 +1,28 @@
 import { Component } from '@angular/core';
-import { IonToggle } from '@ionic/angular';
-import { fromEvent } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { IonSelect } from '@ionic/angular';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { version } from '../../../../../package.json';
+import { SettingsService } from '../../../shared/data/settings/settings.service';
 
+@UntilDestroy()
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss'],
 })
 export class SettingsComponent {
-  readonly prefersDark$ = fromEvent<MediaQueryListEvent>(
-    matchMedia('(prefers-color-scheme: dark)'),
-    'change'
-  ).pipe(
-    map(event => event.matches),
-    startWith(matchMedia('(prefers-color-scheme: dark)').matches)
-  );
+  readonly themes = SettingsService.THEMES;
+
+  readonly theme$ = this.settingsService.theme$;
+
   readonly version = version;
 
-  onToggleDarkTheme(event: Event) {
-    document.body.classList.toggle(
-      'dark',
-      (event as CustomEvent<IonToggle>).detail.checked
-    );
+  constructor(private readonly settingsService: SettingsService) {}
+
+  onChangeDarkTheme(event: Event) {
+    return this.settingsService
+      .setTheme$((event as CustomEvent<IonSelect>).detail.value)
+      .pipe(untilDestroyed(this))
+      .subscribe();
   }
 }

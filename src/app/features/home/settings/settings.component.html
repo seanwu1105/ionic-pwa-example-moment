@@ -1,11 +1,16 @@
 <ion-list lines="none">
   <ion-item>
     <ion-icon name="moon-outline" slot="start"></ion-icon>
-    <ion-label>Dark Theme</ion-label>
-    <ion-toggle
-      [checked]="prefersDark$ | async"
-      (ionChange)="onToggleDarkTheme($event)"
-    ></ion-toggle>
+    <ion-label>Theme</ion-label>
+    <ion-select
+      *ngIf="theme$ | async as theme"
+      [value]="theme"
+      (ionChange)="onChangeDarkTheme($event)"
+    >
+      <ion-select-option *ngFor="let theme of themes" [value]="theme">
+        {{ theme }}
+      </ion-select-option>
+    </ion-select>
   </ion-item>
   <ion-item>
     <ion-icon name="information-outline" slot="start"></ion-icon>
