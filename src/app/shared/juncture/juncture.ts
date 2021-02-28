@@ -1,7 +1,7 @@
 import { RxAttachment, RxDocument, RxJsonSchema } from 'rxdb';
 import { defer } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { DataNotFoundError } from '../../../utils/errors';
+import { DataNotFoundError } from '../../utils/errors';
 
 export interface JunctureIndex {
   id: string;

@@ -1,11 +1,14 @@
 import { TestBed } from '@angular/core/testing';
+import { SharedTestingModule } from '../shared-testing.module';
 import { PreferenceManager } from './preference-manager.service';
 
 describe('PreferenceManager', () => {
   let service: PreferenceManager;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [SharedTestingModule],
+    });
     service = TestBed.inject(PreferenceManager);
   });
 

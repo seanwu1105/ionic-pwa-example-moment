@@ -11,7 +11,7 @@ import {
   switchMap,
   tap,
 } from 'rxjs/operators';
-import { JunctureRepository } from '../../../shared/data/juncture/juncture-repository.service';
+import { JunctureRepository } from '../../../shared/juncture/juncture-repository.service';
 import { concatTap, isNonNullable } from '../../../utils/rx-operators';
 
 @UntilDestroy()

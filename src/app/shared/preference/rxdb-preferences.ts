@@ -7,12 +7,22 @@ import {
   pluck,
   shareReplay,
 } from 'rxjs/operators';
-import { isNonNullable } from '../../../utils/rx-operators';
-import { database$ } from '../database';
+import { isNonNullable } from '../../utils/rx-operators';
+import { Database } from '../database/database.service';
 import { Preferences } from './preferences';
 
 export class RxdbPreferences implements Preferences {
-  constructor(readonly id: string) {}
+  private readonly collection$: Observable<
+    RxCollection<Preference>
+  > = this.database.main$.pipe(
+    concatMap(database =>
+      database.addCollections({ [COLLECTION_NAME]: { schema } })
+    ),
+    pluck(COLLECTION_NAME),
+    shareReplay({ bufferSize: 1, refCount: true })
+  );
+
+  constructor(readonly id: string, private readonly database: Database) {}
 
   getBoolean$(key: string, defaultValue = false): Observable<boolean> {
     return this.get$(key, defaultValue);
@@ -33,7 +43,7 @@ export class RxdbPreferences implements Preferences {
     key: string,
     defaultValue: SupportedValue
   ): Observable<SupportedValue> {
-    return collection$.pipe(
+    return this.collection$.pipe(
       concatMap(collection =>
         combineLatest([
           of(collection),
@@ -70,7 +80,7 @@ export class RxdbPreferences implements Preferences {
   private set$(key: string, value: number): Observable<number>;
   private set$(key: string, value: string): Observable<string>;
   private set$(key: string, value: SupportedValue): Observable<SupportedValue> {
-    return collection$.pipe(
+    return this.collection$.pipe(
       concatMap(collection =>
         collection.atomicUpsert({ key: this.toInternalKey(key), value })
       ),
@@ -106,10 +116,3 @@ const schema: RxJsonSchema<Preference> = {
 };
 
 const COLLECTION_NAME = 'preferences';
-const collection$: Observable<RxCollection<Preference>> = database$.pipe(
-  concatMap(database =>
-    database.addCollections({ [COLLECTION_NAME]: { schema } })
-  ),
-  pluck(COLLECTION_NAME),
-  shareReplay({ bufferSize: 1, refCount: true })
-);

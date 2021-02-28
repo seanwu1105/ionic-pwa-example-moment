@@ -2,6 +2,8 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { Platform } from '@ionic/angular';
 import { AppComponent } from './app.component';
+import { TestingDatabase } from './shared/database/database-testing.service';
+import { Database } from './shared/database/database.service';
 
 describe('AppComponent', () => {
   let platformReadySpy: Promise<void>;
@@ -17,7 +19,16 @@ describe('AppComponent', () => {
       TestBed.configureTestingModule({
         declarations: [AppComponent],
         schemas: [CUSTOM_ELEMENTS_SCHEMA],
-        providers: [{ provide: Platform, useValue: platformSpy }],
+        providers: [
+          {
+            provide: Platform,
+            useValue: platformSpy,
+          },
+          {
+            provide: Database,
+            useClass: TestingDatabase,
+          },
+        ],
       }).compileComponents();
     })
   );

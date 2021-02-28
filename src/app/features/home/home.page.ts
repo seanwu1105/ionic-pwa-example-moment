@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonContent, ModalController, PopoverController } from '@ionic/angular';
 import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
 import { distinctUntilChanged, switchMap } from 'rxjs/operators';
-import { JunctureRepository } from '../../shared/data/juncture/juncture-repository.service';
+import { JunctureRepository } from '../../shared/juncture/juncture-repository.service';
 import { isNonNullable } from '../../utils/rx-operators';
 import { CameraComponent } from './camera/camera.component';
 import { SettingsComponent } from './settings/settings.component';

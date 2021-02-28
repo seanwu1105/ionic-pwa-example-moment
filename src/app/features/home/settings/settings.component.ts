@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonSelect } from '@ionic/angular';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { version } from '../../../../../package.json';
-import { SettingsService } from '../../../shared/data/settings/settings.service';
+import { SettingsService } from '../../../shared/settings/settings.service';
 
 @UntilDestroy()
 @Component({

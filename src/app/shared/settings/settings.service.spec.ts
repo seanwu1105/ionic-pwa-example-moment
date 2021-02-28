@@ -1,11 +1,14 @@
 import { TestBed } from '@angular/core/testing';
+import { SharedTestingModule } from '../shared-testing.module';
 import { SettingsService } from './settings.service';
 
 describe('SettingsService', () => {
   let service: SettingsService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [SharedTestingModule],
+    });
     service = TestBed.inject(SettingsService);
   });
 

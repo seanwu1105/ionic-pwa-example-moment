@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { combineLatest } from 'rxjs';
 import { distinctUntilChanged, map, switchMap } from 'rxjs/operators';
-import { JunctureRepository } from '../../../shared/data/juncture/juncture-repository.service';
+import { JunctureRepository } from '../../../shared/juncture/juncture-repository.service';
 import { isNonNullable } from '../../../utils/rx-operators';
 
 @UntilDestroy()

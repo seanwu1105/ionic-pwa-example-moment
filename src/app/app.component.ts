@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { combineLatest, fromEvent } from 'rxjs';
-import { tap } from 'rxjs/operators';
-import { SettingsService } from './shared/data/settings/settings.service';
+import { pluck, startWith, tap } from 'rxjs/operators';
+import { SettingsService } from './shared/settings/settings.service';
 
 @UntilDestroy()
 @Component({
@@ -25,17 +25,19 @@ export class AppComponent {
   }
 
   updateTheme() {
-    combineLatest([
-      this.settingsService.theme$,
-      fromEvent<MediaQueryListEvent>(
-        matchMedia('(prefers-color-scheme: dark)'),
-        'change'
-      ),
-    ])
+    const systemDarkScheme$ = fromEvent<MediaQueryListEvent>(
+      matchMedia('(prefers-color-scheme: dark)'),
+      'change'
+    ).pipe(
+      pluck('matches'),
+      startWith(matchMedia('(prefers-color-scheme: dark)').matches)
+    );
+
+    combineLatest([this.settingsService.theme$, systemDarkScheme$])
       .pipe(
-        tap(([theme, mediaQueryListEvent]) => {
+        tap(([theme, systemDarkScheme]) => {
           if (theme === 'system')
-            document.body.classList.toggle('dark', mediaQueryListEvent.matches);
+            document.body.classList.toggle('dark', systemDarkScheme);
           else if (theme === 'dark')
             document.body.classList.toggle('dark', true);
           else document.body.classList.toggle('dark', false);

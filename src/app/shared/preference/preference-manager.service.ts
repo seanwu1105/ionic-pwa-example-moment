@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Database } from '../database/database.service';
 import { Preferences } from './preferences';
 import { RxdbPreferences } from './rxdb-preferences';
 
@@ -7,6 +8,8 @@ import { RxdbPreferences } from './rxdb-preferences';
 })
 export class PreferenceManager {
   private readonly preferencesMap = new Map<string, Preferences>();
+
+  constructor(private readonly database: Database) {}
 
   getPreferences(id: string) {
     if (this.preferencesMap.has(id)) {
@@ -17,7 +20,7 @@ export class PreferenceManager {
   }
 
   private createPreferences(id: string) {
-    const created = new RxdbPreferences(id);
+    const created = new RxdbPreferences(id, this.database);
     this.preferencesMap.set(id, created);
     return created;
   }
