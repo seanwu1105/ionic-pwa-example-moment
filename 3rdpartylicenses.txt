@@ -100,6 +100,9 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 @ngneat/until-destroy
 MIT
 
+@ngrx/component
+MIT
+
 abstract-leveldown
 MIT
 # The MIT License (MIT)
