@@ -8,6 +8,6 @@
   *ngIf="!isImageError"
   (ionImgDidLoad)="onImageLoaded($event)"
   (ionError)="onImageError()"
-  [attr.src]="src$ | async"
+  [attr.src]="src$ | ngrxPush"
 ></ion-img>
 <ng-content *ngIf="!isImageError"></ng-content>

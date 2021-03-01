@@ -3,7 +3,7 @@
     <ion-icon name="moon-outline" slot="start"></ion-icon>
     <ion-label>Theme</ion-label>
     <ion-select
-      *ngIf="theme$ | async as theme"
+      *ngrxLet="theme$ as theme"
       [value]="theme"
       (ionChange)="onChangeDarkTheme($event)"
     >

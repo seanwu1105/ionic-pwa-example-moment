@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonContent, ModalController, PopoverController } from '@ionic/angular';
 import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
 import { distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { Juncture } from '../../shared/juncture/juncture';
 import { JunctureRepository } from '../../shared/juncture/juncture-repository.service';
 import { isNonNullable } from '../../utils/rx-operators';
 import { CameraComponent } from './camera/camera.component';
@@ -70,5 +71,9 @@ export class HomePage {
       component: CameraComponent,
     });
     return await cameraModal.present();
+  }
+
+  trackJuncture(index: number, item: Juncture) {
+    return item.id;
   }
 }

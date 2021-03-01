@@ -3,21 +3,13 @@
     <ion-row>
       <ion-col
         #col
-        *ngFor="let juncture of junctures$ | async"
+        *ngFor="let juncture of junctures$ | ngrxPush; trackBy: trackJuncture"
         size="6"
         size-sm="4"
         size-md="3"
         size-lg="2"
       >
-        <app-image
-          *ngIf="juncture.photoUrl$ | async as photoUrl"
-          routerLink="photo"
-          [queryParams]="{ id: juncture.id }"
-          [src]="photoUrl"
-          class="ion-activatable"
-        >
-          <ion-ripple-effect></ion-ripple-effect>
-        </app-image>
+        <app-juncture-thumbnail [juncture]="juncture"></app-juncture-thumbnail>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -27,7 +19,7 @@
     </ion-fab-button>
   </ion-fab>
 </ion-content>
-<ion-footer [class.ion-no-border]="noFooterBorder$ | async">
+<ion-footer [class.ion-no-border]="noFooterBorder$ | ngrxPush">
   <ion-toolbar>
     <ion-buttons slot="primary">
       <ion-button (click)="presentSettings($event)" slot="secondary">

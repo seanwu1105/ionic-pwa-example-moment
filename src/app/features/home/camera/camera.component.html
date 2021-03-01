@@ -9,7 +9,7 @@
   ></ion-icon>
 </ion-button>
 <div
-  *ngIf="capturedImageUrl$ | async as capturedImageUrl"
+  *ngrxLet="capturedImageUrl$ as capturedImageUrl"
   class="captured ion-margin"
 >
   <app-image ionImgViewer [src]="capturedImageUrl"></app-image>

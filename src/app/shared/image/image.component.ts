@@ -11,16 +11,19 @@ import { isNonNullable } from '../../utils/rx-operators';
 })
 export class ImageComponent {
   private readonly _src$ = new BehaviorSubject<string | undefined>(undefined);
+
   readonly src$ = this._src$.pipe(
     startWith(TINIEST_GIF),
     isNonNullable(),
     distinctUntilChanged(),
     tap(() => (this.isImageError = false))
   );
+
   @Input()
   set src(value: string) {
     this._src$.next(value);
   }
+
   isImageError = false;
 
   async onImageLoaded(event: Event) {

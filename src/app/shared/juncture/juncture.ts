@@ -5,6 +5,7 @@ import { DataNotFoundError } from '../../utils/errors';
 
 export interface JunctureIndex {
   id: string;
+  timestamp: number;
 }
 
 export const schema: RxJsonSchema<JunctureIndex> = {
@@ -15,7 +16,11 @@ export const schema: RxJsonSchema<JunctureIndex> = {
       type: 'string',
       primary: true,
     },
+    timestamp: {
+      type: 'number',
+    },
   },
+  indexes: ['timestamp'],
   attachments: {
     encrypted: false,
   },
@@ -25,6 +30,8 @@ export class Juncture {
   readonly id = this.document.id;
 
   readonly mimeType = this.attachment.type;
+
+  readonly timestamp = this.document.timestamp;
 
   private get attachment(): RxAttachment<JunctureIndex> {
     const attachment = this.document.getAttachment(this.id);

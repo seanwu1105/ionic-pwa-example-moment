@@ -23,7 +23,7 @@ export class JunctureRepository {
   );
 
   readonly all$ = this.collection$.pipe(
-    concatMap(c => c.find().$),
+    concatMap(c => c.find().sort({ timestamp: 'desc' }).$),
     map(documents => documents.map(d => new Juncture(d)))
   );
 
@@ -39,7 +39,7 @@ export class JunctureRepository {
   private _add$({ id, data }: { id: string; data: Blob }) {
     return this.collection$.pipe(
       first(),
-      concatMap(collection => collection.insert({ id })),
+      concatMap(collection => collection.insert({ id, timestamp: Date.now() })),
       concatMap(document =>
         document.putAttachment({ id, data, type: data.type }, true)
       )
