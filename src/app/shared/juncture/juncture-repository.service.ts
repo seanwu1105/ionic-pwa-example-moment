@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { RxCollection } from 'rxdb';
-import { defer, Observable } from 'rxjs';
+import { combineLatest, defer, Observable } from 'rxjs';
 import { concatMap, first, map, pluck, shareReplay } from 'rxjs/operators';
 import { sha256WithBlob } from '../../utils/crypto';
 import { Database } from '../database/database.service';
+import { GeolocationService } from '../geolocation/geolocation.service';
 import { Juncture, JunctureIndex, schema } from './juncture';
 
 @Injectable({
@@ -27,7 +28,10 @@ export class JunctureRepository {
     map(documents => documents.map(d => new Juncture(d)))
   );
 
-  constructor(private readonly database: Database) {}
+  constructor(
+    private readonly database: Database,
+    private readonly geolocationService: GeolocationService
+  ) {}
 
   add$(value: { data: Blob }) {
     return defer(() => sha256WithBlob(value.data)).pipe(
@@ -37,9 +41,21 @@ export class JunctureRepository {
   }
 
   private _add$({ id, data }: { id: string; data: Blob }) {
-    return this.collection$.pipe(
+    return combineLatest([
+      this.collection$,
+      this.geolocationService.currentPositionOrUndefined$,
+    ]).pipe(
       first(),
-      concatMap(collection => collection.insert({ id, timestamp: Date.now() })),
+      concatMap(([collection, currentPosition]) =>
+        collection.insert({
+          id,
+          timestamp: Date.now(),
+          geolocationPosition: {
+            latitude: currentPosition?.coords.latitude,
+            longitude: currentPosition?.coords.longitude,
+          },
+        })
+      ),
       concatMap(document =>
         document.putAttachment({ id, data, type: data.type }, true)
       )

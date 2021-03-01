@@ -47,14 +47,17 @@
       <ion-icon name="time-outline" slot="start"></ion-icon>
       <ion-label>
         <h3>Timestamp</h3>
-        <p>2020/02/01 10:10:10</p>
+        <p>{{ (currentJuncture$ | ngrxPush)?.timestamp | date: 'long' }}</p>
       </ion-label>
     </ion-item>
     <ion-item>
       <ion-icon name="location-outline" slot="start"></ion-icon>
       <ion-label>
         <h3>Geolocation</h3>
-        <p>121.69, 23.22</p>
+        <p>
+          {{ (currentJuncture$ | ngrxPush)?.geolocationPosition.latitude }},
+          {{ (currentJuncture$ | ngrxPush)?.geolocationPosition.longitude }}
+        </p>
       </ion-label>
     </ion-item>
     <ion-item>
