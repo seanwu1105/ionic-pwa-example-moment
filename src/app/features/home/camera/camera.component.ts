@@ -95,10 +95,10 @@ export class CameraComponent implements OnDestroy {
         tap(imageBlob => {
           this._capturedImageUrl$.next(URL.createObjectURL(imageBlob));
         }),
-        concatTap(imageBlob =>
-          this.junctureRepository.add$({ data: imageBlob })
-        ),
+        concatTap(imageBlob => this.junctureRepository.add$(imageBlob)),
         catchError(async (err: unknown) => {
+          // eslint-disable-next-line no-console
+          console.error(err);
           await this.presentErrorDialog(err);
           return undefined;
         }),

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { RxCollection } from 'rxdb';
-import { combineLatest, defer, Observable } from 'rxjs';
+import { defer, forkJoin, Observable } from 'rxjs';
 import { concatMap, first, map, pluck, shareReplay } from 'rxjs/operators';
 import { sha256WithBlob } from '../../utils/crypto';
+import { getCurrentPositionOrUndefined } from '../../utils/geolocation';
 import { Database } from '../database/database.service';
-import { GeolocationService } from '../geolocation/geolocation.service';
 import { Juncture, JunctureIndex, schema } from './juncture';
 
 @Injectable({
@@ -28,37 +28,33 @@ export class JunctureRepository {
     map(documents => documents.map(d => new Juncture(d)))
   );
 
-  constructor(
-    private readonly database: Database,
-    private readonly geolocationService: GeolocationService
-  ) {}
+  constructor(private readonly database: Database) {}
 
-  add$(value: { data: Blob }) {
-    return defer(() => sha256WithBlob(value.data)).pipe(
-      concatMap(id => this._add$({ id, data: value.data })),
-      map(attachment => new Juncture(attachment.doc))
-    );
-  }
-
-  private _add$({ id, data }: { id: string; data: Blob }) {
-    return combineLatest([
-      this.collection$,
-      this.geolocationService.currentPositionOrUndefined$,
-    ]).pipe(
-      first(),
-      concatMap(([collection, currentPosition]) =>
+  add$(photo: Blob) {
+    return defer(() =>
+      forkJoin([
+        this.collection$.pipe(first()),
+        sha256WithBlob(photo),
+        getCurrentPositionOrUndefined(),
+      ])
+    ).pipe(
+      concatMap(([collection, id, geolocationPosition]) =>
         collection.insert({
           id,
           timestamp: Date.now(),
           geolocationPosition: {
-            latitude: currentPosition?.coords.latitude,
-            longitude: currentPosition?.coords.longitude,
+            latitude: geolocationPosition?.coords.latitude,
+            longitude: geolocationPosition?.coords.longitude,
           },
         })
       ),
       concatMap(document =>
-        document.putAttachment({ id, data, type: data.type }, true)
-      )
+        document.putAttachment(
+          { id: Juncture.PHOTO_ATTACHMENT_ID, data: photo, type: photo.type },
+          true
+        )
+      ),
+      map(attachment => attachment.doc)
     );
   }
 

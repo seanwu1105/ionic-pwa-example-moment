@@ -1,7 +1,8 @@
-import { RxAttachment, RxDocument, RxJsonSchema } from 'rxdb';
-import { defer } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
+import { RxDocument, RxJsonSchema } from 'rxdb';
+import { defer, of } from 'rxjs';
+import { concatMap, map, shareReplay } from 'rxjs/operators';
 import { DataNotFoundError } from '../../utils/errors';
+import { makeThumbnail } from '../../utils/thumbnail';
 
 export interface JunctureIndex {
   readonly id: string;
@@ -37,24 +38,57 @@ export const schema: RxJsonSchema<JunctureIndex> = {
 };
 
 export class Juncture {
+  static readonly PHOTO_ATTACHMENT_ID = 'original';
+
+  private static readonly THUMBNAIL_ATTACHMENT_ID = 'thumbnail';
+
   readonly id = this.document.id;
 
-  readonly mimeType = this.attachment.type;
+  readonly mimeType = this.getAttachment(Juncture.PHOTO_ATTACHMENT_ID).type;
 
   readonly timestamp = this.document.timestamp;
 
   readonly geolocationPosition = this.document.geolocationPosition;
 
-  private get attachment(): RxAttachment<JunctureIndex> {
-    const attachment = this.document.getAttachment(this.id);
-    if (attachment) return attachment;
-    throw new DataNotFoundError(`Cannot get attachment with ID: ${this.id}`);
-  }
+  readonly photoUrl$ = defer(() =>
+    this.getAttachment(Juncture.PHOTO_ATTACHMENT_ID).getData()
+  ).pipe(
+    map(blob => URL.createObjectURL(blob)),
+    shareReplay({ bufferSize: 1, refCount: true })
+  );
 
-  readonly photoUrl$ = defer(() => this.attachment.getData()).pipe(
+  readonly thumbnailUrl$ = defer(() =>
+    of(this.document.getAttachment(Juncture.THUMBNAIL_ATTACHMENT_ID))
+  ).pipe(
+    concatMap(async attachment => {
+      if (attachment) return attachment.getData();
+      const thumbnail = await makeThumbnail({
+        image: await this.getAttachment(Juncture.PHOTO_ATTACHMENT_ID).getData(),
+        maxSize: 300,
+      });
+      await this.document.putAttachment(
+        {
+          id: Juncture.THUMBNAIL_ATTACHMENT_ID,
+          data: thumbnail,
+          type: this.mimeType,
+        },
+        true
+      );
+      return thumbnail;
+    }),
     map(blob => URL.createObjectURL(blob)),
     shareReplay({ bufferSize: 1, refCount: true })
   );
 
   constructor(private readonly document: RxDocument<JunctureIndex>) {}
+
+  private getAttachment(
+    id:
+      | typeof Juncture.PHOTO_ATTACHMENT_ID
+      | typeof Juncture.THUMBNAIL_ATTACHMENT_ID
+  ) {
+    const attachment = this.document.getAttachment(id);
+    if (attachment) return attachment;
+    throw new DataNotFoundError(`Cannot get the attachment with ID: ${id}`);
+  }
 }

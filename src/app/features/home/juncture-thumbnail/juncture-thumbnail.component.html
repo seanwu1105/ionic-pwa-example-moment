@@ -1,9 +1,9 @@
 <ng-container *ngrxLet="juncture$ as juncture">
   <app-image
-    *ngrxLet="juncture.photoUrl$ as photoUrl"
+    *ngrxLet="juncture.thumbnailUrl$ as thumbnailUrl"
     routerLink="photo"
     [queryParams]="{ id: juncture.id }"
-    [src]="photoUrl"
+    [src]="thumbnailUrl"
     class="ion-activatable"
   >
     <ion-ripple-effect></ion-ripple-effect>
