@@ -26,5 +26,15 @@
         ]
       }
     }
+  ],
+  "dataGroups": [
+    {
+      "name": "geodecoder",
+      "urls": ["^https://nominatim.openstreetmap.org/reverse"],
+      "cacheConfig": {
+        "maxSize": 10000,
+        "maxAge": "100d"
+      }
+    }
   ]
 }

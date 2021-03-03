@@ -1,7 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { FeatureCollection } from 'geojson';
 import { combineLatest } from 'rxjs';
 import { distinctUntilChanged, map, switchMap } from 'rxjs/operators';
 import { JunctureRepository } from '../../../shared/juncture/juncture-repository.service';
@@ -32,6 +34,22 @@ export class PhotoPage {
     this.currentJunctureIndex$,
   ]).pipe(map(([junctures, currentIndex]) => junctures[currentIndex]));
 
+  readonly address$ = this.currentJuncture$.pipe(
+    map(juncture => juncture.geolocationPosition),
+    isNonNullable(),
+    switchMap(position =>
+      this.httpClient.get<FeatureCollection>(
+        `https://nominatim.openstreetmap.org/reverse?lat=${position.latitude}&lon=${position.longitude}&format=geojson&accept-language=en-US`
+      )
+    ),
+    map(json => {
+      if (json.features.length === 0) return undefined;
+      const properties = json.features[0].properties;
+      if (!properties) return undefined;
+      return properties['display_name'] as string | undefined;
+    })
+  );
+
   readonly mapUrl$ = this.currentJuncture$.pipe(
     map(juncture => juncture.geolocationPosition),
     isNonNullable(),
@@ -54,7 +72,8 @@ export class PhotoPage {
     private readonly junctureRepository: JunctureRepository,
     private readonly route: ActivatedRoute,
     private readonly router: Router,
-    private readonly sanitizer: DomSanitizer
+    private readonly sanitizer: DomSanitizer,
+    private readonly httpClient: HttpClient
   ) {}
 
   onPhotoSlidesChanged(event: Event) {
