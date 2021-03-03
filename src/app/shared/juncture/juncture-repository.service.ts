@@ -42,10 +42,12 @@ export class JunctureRepository {
         collection.insert({
           id,
           timestamp: Date.now(),
-          geolocationPosition: {
-            latitude: geolocationPosition?.coords.latitude,
-            longitude: geolocationPosition?.coords.longitude,
-          },
+          geolocationPosition: geolocationPosition
+            ? {
+                latitude: geolocationPosition.coords.latitude,
+                longitude: geolocationPosition.coords.longitude,
+              }
+            : undefined,
         })
       ),
       concatMap(document =>

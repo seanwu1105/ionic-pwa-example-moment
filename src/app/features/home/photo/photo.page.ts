@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { combineLatest } from 'rxjs';
@@ -31,6 +32,17 @@ export class PhotoPage {
     this.currentJunctureIndex$,
   ]).pipe(map(([junctures, currentIndex]) => junctures[currentIndex]));
 
+  readonly mapUrl$ = this.currentJuncture$.pipe(
+    map(juncture => juncture.geolocationPosition),
+    isNonNullable(),
+    map(position =>
+      this.sanitizer.bypassSecurityTrustResourceUrl(
+        `https://maps.google.com/maps?q=${position.latitude},${position.longitude}&z=15&output=embed`
+      )
+    ),
+    isNonNullable()
+  );
+
   readonly photoSlidesOptions$ = this.currentJunctureIndex$.pipe(
     map(initialIndex => ({
       resistanceRatio: 0,
@@ -41,7 +53,8 @@ export class PhotoPage {
   constructor(
     private readonly junctureRepository: JunctureRepository,
     private readonly route: ActivatedRoute,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly sanitizer: DomSanitizer
   ) {}
 
   onPhotoSlidesChanged(event: Event) {

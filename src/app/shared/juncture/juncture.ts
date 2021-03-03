@@ -7,9 +7,9 @@ import { makeThumbnail } from '../../utils/thumbnail';
 export interface JunctureIndex {
   readonly id: string;
   readonly timestamp: number;
-  readonly geolocationPosition: {
-    readonly latitude?: number;
-    readonly longitude?: number;
+  readonly geolocationPosition?: {
+    readonly latitude: number;
+    readonly longitude: number;
   };
 }
 
@@ -28,6 +28,7 @@ export const schema: RxJsonSchema<JunctureIndex> = {
         latitude: { type: 'number' },
         longitude: { type: 'number' },
       },
+      required: ['latitude', 'longitude'],
     },
   },
   indexes: ['timestamp'],

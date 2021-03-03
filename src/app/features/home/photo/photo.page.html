@@ -55,8 +55,8 @@
       <ion-label>
         <h3>Geolocation</h3>
         <p>
-          {{ (currentJuncture$ | ngrxPush)?.geolocationPosition.latitude }},
-          {{ (currentJuncture$ | ngrxPush)?.geolocationPosition.longitude }}
+          {{ (currentJuncture$ | ngrxPush)?.geolocationPosition?.latitude }},
+          {{ (currentJuncture$ | ngrxPush)?.geolocationPosition?.longitude }}
         </p>
       </ion-label>
     </ion-item>
@@ -70,7 +70,8 @@
     <ion-item>
       <ion-icon slot="start"></ion-icon>
       <iframe
-        src="https://maps.google.com/maps?q=35.856737, 10.606619&z=15&output=embed"
+        *ngrxLet="mapUrl$ as mapUrl"
+        [src]="mapUrl"
         frameborder="0"
         loading="lazy"
       ></iframe>
