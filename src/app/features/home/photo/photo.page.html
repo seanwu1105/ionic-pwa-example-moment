@@ -12,75 +12,78 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
   <ion-slides
     *ngrxLet="photoSlidesOptions$ as options"
     [options]="options"
     (ionSlideDidChange)="onPhotoSlidesChanged($event)"
-    class="photo-slides"
   >
-    <ion-slide *ngFor="let juncture of junctures$ | ngrxPush">
+    <ion-slide
+      *ngFor="let juncture of junctures$ | ngrxPush; trackBy: trackJuncture"
+    >
       <app-image
         *ngrxLet="juncture.photoUrl$ as photoUrl"
         ionImgViewer
         [src]="photoUrl"
       ></app-image>
+
+      <ion-list lines="none">
+        <ion-item>
+          <ion-label>
+            {{ juncture.timestamp | date: 'long' }}
+          </ion-label>
+        </ion-item>
+        <ion-item-group>
+          <ion-item-divider>
+            <ion-label>Location</ion-label>
+          </ion-item-divider>
+          <iframe
+            *ngrxLet="mapUrl$ as mapUrl"
+            [src]="mapUrl"
+            frameborder="0"
+            loading="lazy"
+          ></iframe>
+          <ion-item>
+            <ion-icon name="location-outline" slot="start"></ion-icon>
+            <ion-label>
+              <h3>Coordinates</h3>
+              <p>
+                {{ juncture.geolocationPosition?.latitude }}
+                ,
+                {{ juncture.geolocationPosition?.longitude }}
+              </p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="home-outline" slot="start"></ion-icon>
+            <ion-label>
+              <h3>Address</h3>
+              <p>{{ address$ | ngrxPush }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-item-group>
+
+        <ion-item-group>
+          <ion-item-divider>
+            <ion-label>Details</ion-label>
+          </ion-item-divider>
+          <ion-item>
+            <ion-icon name="code-outline" slot="start"></ion-icon>
+            <ion-label>
+              <h3>Hash</h3>
+              <p>{{ juncture.id }}</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="document-outline" slot="start"></ion-icon>
+            <ion-label>
+              <h3>MIME Type</h3>
+              <p>{{ juncture.mimeType }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-item-group>
+      </ion-list>
     </ion-slide>
   </ion-slides>
-</ion-header>
-<ion-content fullscreen>
-  <ion-list lines="none">
-    <ion-item>
-      <ion-label>
-        {{ (currentJuncture$ | ngrxPush)?.timestamp | date: 'long' }}
-      </ion-label>
-    </ion-item>
-    <ion-item-group>
-      <ion-item-divider>
-        <ion-label>Location</ion-label>
-      </ion-item-divider>
-      <iframe
-        *ngrxLet="mapUrl$ as mapUrl"
-        [src]="mapUrl"
-        frameborder="0"
-        loading="lazy"
-      ></iframe>
-      <ion-item>
-        <ion-icon name="location-outline" slot="start"></ion-icon>
-        <ion-label>
-          <h3>Coordinates</h3>
-          <p>
-            {{ (currentJuncture$ | ngrxPush)?.geolocationPosition?.latitude }},
-            {{ (currentJuncture$ | ngrxPush)?.geolocationPosition?.longitude }}
-          </p>
-        </ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-icon name="home-outline" slot="start"></ion-icon>
-        <ion-label>
-          <h3>Address</h3>
-          <p>{{ address$ | ngrxPush }}</p>
-        </ion-label>
-      </ion-item>
-    </ion-item-group>
-
-    <ion-item-group>
-      <ion-item-divider>
-        <ion-label>Details</ion-label>
-      </ion-item-divider>
-      <ion-item>
-        <ion-icon name="code-outline" slot="start"></ion-icon>
-        <ion-label>
-          <h3>Hash</h3>
-          <p>{{ (currentJuncture$ | ngrxPush)?.id }}</p>
-        </ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-icon name="document-outline" slot="start"></ion-icon>
-        <ion-label>
-          <h3>MIME Type</h3>
-          <p>{{ (currentJuncture$ | ngrxPush)?.mimeType }}</p>
-        </ion-label>
-      </ion-item>
-    </ion-item-group>
-  </ion-list>
 </ion-content>

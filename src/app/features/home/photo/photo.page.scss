@@ -5,31 +5,34 @@
 ion-toolbar {
   position: absolute;
 
-  --background: transparent;
+  --background: #00000025;
 }
 
-ion-content {
-  /* stylelint-disable-next-line declaration-no-important */
-  --offset-top: var(--photo-radius) !important;
+ion-slides {
+  height: 100%;
 }
 
-.photo-slides {
-  overflow: hidden;
+ion-slide {
+  flex-direction: column;
+  height: auto;
+}
+
+app-image {
+  height: 100%;
+  max-height: 40vh;
+  min-height: 200px;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
   border-radius: 0 0 var(--photo-radius) var(--photo-radius);
-  box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
+  z-index: 99;
+}
 
-  ion-slide {
-    height: auto;
-
-    app-image {
-      height: 100%;
-      max-height: 40vh;
-      min-height: 100px;
-      width: 100%;
-      object-fit: cover;
-      object-position: center;
-    }
-  }
+ion-list {
+  width: 100%;
+  overflow: scroll;
+  margin-top: calc(-1 * var(--photo-radius));
+  padding-top: var(--photo-radius);
 }
 
 iframe {

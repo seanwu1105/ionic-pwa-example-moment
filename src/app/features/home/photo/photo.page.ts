@@ -6,6 +6,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { FeatureCollection } from 'geojson';
 import { combineLatest } from 'rxjs';
 import { distinctUntilChanged, map, switchMap } from 'rxjs/operators';
+import { Juncture } from '../../../shared/juncture/juncture';
 import { JunctureRepository } from '../../../shared/juncture/juncture-repository.service';
 import { isNonNullable } from '../../../utils/rx-operators';
 
@@ -75,6 +76,10 @@ export class PhotoPage {
     private readonly sanitizer: DomSanitizer,
     private readonly httpClient: HttpClient
   ) {}
+
+  trackJuncture(_: number, item: Juncture) {
+    return item.id;
+  }
 
   onPhotoSlidesChanged(event: Event) {
     const ionSlides = event.target as HTMLIonSlidesElement;
