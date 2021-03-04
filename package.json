@@ -6,6 +6,7 @@
   "scripts": {
     "serve": "ionic serve",
     "serve.hmr": "ionic serve -- --hmr",
+    "serve.prod": "ionic serve --prod",
     "build": "ionic build --prod",
     "build.watch.pwa": "ionic build --prod --watch",
     "test": "ng test",

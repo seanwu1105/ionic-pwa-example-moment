@@ -22,7 +22,7 @@ export class TranslocoHttpLoader implements TranslocoLoader {
   constructor(private readonly httpClient: HttpClient) {}
 
   getTranslation(lang: string) {
-    return this.httpClient.get<Translation>(`/assets/i18n/${lang}.json`);
+    return this.httpClient.get<Translation>(`./assets/i18n/${lang}.json`);
   }
 }
 
