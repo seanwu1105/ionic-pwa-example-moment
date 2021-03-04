@@ -15,6 +15,7 @@
 </ion-header>
 <ion-content fullscreen>
   <ion-slides
+    #slides
     *ngrxLet="photoSlidesOptions$ as options"
     [options]="options"
     (ionSlideDidChange)="onPhotoSlidesChanged($event)"

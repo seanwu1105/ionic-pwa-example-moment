@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { IonSlides } from '@ionic/angular';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { FeatureCollection } from 'geojson';
-import { combineLatest } from 'rxjs';
+import { BehaviorSubject, combineLatest } from 'rxjs';
 import { distinctUntilChanged, map, switchMap } from 'rxjs/operators';
 import { Moment } from '../../../shared/moment/moment';
 import { MomentRepository } from '../../../shared/moment/moment-repository.service';
@@ -17,6 +18,19 @@ import { isNonNullable } from '../../../utils/rx-operators';
   styleUrls: ['./photo.page.scss'],
 })
 export class PhotoPage {
+  private readonly _ionSlides$ = new BehaviorSubject<undefined | IonSlides>(
+    undefined
+  );
+
+  @ViewChild('slides') set ionSlides(value: IonSlides) {
+    this._ionSlides$.next(value);
+  }
+
+  private readonly ionSlides$ = this._ionSlides$.pipe(
+    isNonNullable(),
+    distinctUntilChanged()
+  );
+
   private readonly currentMemontId$ = this.route.queryParamMap.pipe(
     map(params => params.get('id')),
     isNonNullable(),
@@ -28,7 +42,10 @@ export class PhotoPage {
   private readonly currentMomentIndex$ = combineLatest([
     this.moments$,
     this.currentMemontId$,
-  ]).pipe(map(([moments, id]) => moments.findIndex(j => j.id === id)));
+  ]).pipe(
+    map(([moments, id]) => moments.findIndex(j => j.id === id)),
+    distinctUntilChanged()
+  );
 
   readonly currentMoment$ = combineLatest([
     this.moments$,
@@ -69,13 +86,20 @@ export class PhotoPage {
     }))
   );
 
+  private readonly slideToMoment$ = combineLatest([
+    this.ionSlides$,
+    this.currentMomentIndex$,
+  ]).pipe(switchMap(([slides, index]) => slides.slideTo(index)));
+
   constructor(
     private readonly momentRepository: MomentRepository,
     private readonly route: ActivatedRoute,
     private readonly router: Router,
     private readonly sanitizer: DomSanitizer,
     private readonly httpClient: HttpClient
-  ) {}
+  ) {
+    this.slideToMoment$.pipe(untilDestroyed(this)).subscribe();
+  }
 
   trackMoment(_: number, item: Moment) {
     return item.id;
