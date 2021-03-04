@@ -17,6 +17,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./settings/settings.module').then(m => m.SettingsPageModule),
   },
+  {
+    path: 'camera',
+    loadChildren: () =>
+      import('./camera/camera.module').then(m => m.CameraPageModule),
+  },
 ];
 
 @NgModule({

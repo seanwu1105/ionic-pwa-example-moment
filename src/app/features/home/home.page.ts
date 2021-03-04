@@ -5,7 +5,6 @@ import { distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { Moment } from '../../shared/moment/moment';
 import { MomentRepository } from '../../shared/moment/moment-repository.service';
 import { isNonNullable } from '../../utils/rx-operators';
-import { CameraComponent } from './camera/camera.component';
 
 @Component({
   selector: 'app-home',
@@ -55,13 +54,6 @@ export class HomePage {
       scrollElement.scrollTop ===
       scrollElement.scrollHeight - scrollElement.clientHeight
     );
-  }
-
-  async presentCamera() {
-    const cameraModal = await this.modalController.create({
-      component: CameraComponent,
-    });
-    return await cameraModal.present();
   }
 
   trackMoment(_: number, item: Moment) {

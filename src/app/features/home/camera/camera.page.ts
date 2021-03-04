@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
-import { AlertController, ModalController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { BehaviorSubject, combineLatest, defer } from 'rxjs';
 import {
@@ -17,10 +17,10 @@ import { concatTap, isNonNullable } from '../../../utils/rx-operators';
 @UntilDestroy()
 @Component({
   selector: 'app-camera',
-  templateUrl: './camera.component.html',
-  styleUrls: ['./camera.component.scss'],
+  templateUrl: './camera.page.html',
+  styleUrls: ['./camera.page.scss'],
 })
-export class CameraComponent implements OnDestroy {
+export class CameraPage implements OnDestroy {
   private readonly _videoElement$ = new BehaviorSubject<
     HTMLVideoElement | undefined
   >(undefined);
@@ -42,7 +42,6 @@ export class CameraComponent implements OnDestroy {
   ).pipe(
     catchError(async (err: unknown) => {
       await this.presentErrorDialog(err);
-      await this.dismiss();
       return undefined;
     }),
     shareReplay({ bufferSize: 1, refCount: true })
@@ -80,7 +79,6 @@ export class CameraComponent implements OnDestroy {
   );
 
   constructor(
-    private readonly modalController: ModalController,
     private readonly alertController: AlertController,
     private readonly momentRepository: MomentRepository
   ) {
@@ -97,8 +95,6 @@ export class CameraComponent implements OnDestroy {
         }),
         concatTap(imageBlob => this.momentRepository.add$(imageBlob)),
         catchError(async (err: unknown) => {
-          // eslint-disable-next-line no-console
-          console.error(err);
           await this.presentErrorDialog(err);
           return undefined;
         }),
@@ -107,11 +103,9 @@ export class CameraComponent implements OnDestroy {
       .subscribe();
   }
 
-  async dismiss() {
-    return this.modalController.dismiss();
-  }
-
   async presentErrorDialog(err: unknown) {
+    // eslint-disable-next-line no-console
+    console.error(err);
     const alert = await this.alertController.create({
       header: err instanceof Error ? err.name : 'Unknown Error',
       message: err instanceof Error ? err.message : JSON.stringify(err),

@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { SharedTestingModule } from '../../../shared/shared-testing.module';
-import { CameraComponent } from './camera.component';
+import { CameraPage } from './camera.page';
 
-describe('CameraComponent', () => {
-  let component: CameraComponent;
-  let fixture: ComponentFixture<CameraComponent>;
+describe('CameraPage', () => {
+  let component: CameraPage;
+  let fixture: ComponentFixture<CameraPage>;
 
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        declarations: [CameraComponent],
+        declarations: [CameraPage],
         imports: [SharedTestingModule],
       }).compileComponents();
 
-      fixture = TestBed.createComponent(CameraComponent);
+      fixture = TestBed.createComponent(CameraPage);
       component = fixture.componentInstance;
       fixture.detectChanges();
     })
