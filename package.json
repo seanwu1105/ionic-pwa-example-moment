@@ -25,6 +25,8 @@
     "@angular/service-worker": "~11.2.3",
     "@ionic-native/core": "^5.0.0",
     "@ionic/angular": "^5.5.5",
+    "@ngneat/transloco": "^2.20.1",
+    "@ngneat/transloco-locale": "^1.4.0",
     "@ngneat/until-destroy": "^8.0.4",
     "@ngrx/component": "^11.0.1",
     "buffer": "^6.0.3",

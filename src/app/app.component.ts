@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { combineLatest, fromEvent } from 'rxjs';
-import { pluck, startWith, tap } from 'rxjs/operators';
-import { SettingsService } from './shared/settings/settings.service';
+import { LanguagesService } from './shared/languages/languages.service';
+import { ThemesService } from './shared/themes/themes.service';
 
 @UntilDestroy()
 @Component({
@@ -14,36 +13,15 @@ import { SettingsService } from './shared/settings/settings.service';
 export class AppComponent {
   constructor(
     private readonly platform: Platform,
-    private readonly settingsService: SettingsService
+    private readonly themesService: ThemesService,
+    private readonly languagesService: LanguagesService
   ) {
     this.initializeApp();
   }
 
   async initializeApp() {
     await this.platform.ready();
-    this.updateTheme();
-  }
-
-  updateTheme() {
-    const systemDarkScheme$ = fromEvent<MediaQueryListEvent>(
-      matchMedia('(prefers-color-scheme: dark)'),
-      'change'
-    ).pipe(
-      pluck('matches'),
-      startWith(matchMedia('(prefers-color-scheme: dark)').matches)
-    );
-
-    combineLatest([this.settingsService.theme$, systemDarkScheme$])
-      .pipe(
-        tap(([theme, systemDarkScheme]) => {
-          if (theme === 'system')
-            document.body.classList.toggle('dark', systemDarkScheme);
-          else if (theme === 'dark')
-            document.body.classList.toggle('dark', true);
-          else document.body.classList.toggle('dark', false);
-        }),
-        untilDestroyed(this)
-      )
-      .subscribe();
+    this.themesService.initialize$().pipe(untilDestroyed(this)).subscribe();
+    this.languagesService.initialize$().pipe(untilDestroyed(this)).subscribe();
   }
 }

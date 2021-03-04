@@ -3,6 +3,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { TranslocoModule } from '@ngneat/transloco';
+import { TranslocoLocaleModule } from '@ngneat/transloco-locale';
 import { ReactiveComponentModule } from '@ngrx/component';
 import { ImageComponent } from './image/image.component';
 
@@ -15,6 +17,8 @@ import { ImageComponent } from './image/image.component';
     IonicModule,
     HttpClientModule,
     ReactiveComponentModule,
+    TranslocoModule,
+    TranslocoLocaleModule,
   ],
   exports: [
     CommonModule,
@@ -22,6 +26,8 @@ import { ImageComponent } from './image/image.component';
     ReactiveFormsModule,
     IonicModule,
     ReactiveComponentModule,
+    TranslocoModule,
+    TranslocoLocaleModule,
     ImageComponent,
   ],
 })
