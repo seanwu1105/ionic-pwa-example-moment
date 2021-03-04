@@ -1,0 +1,16 @@
+{
+  "languages": "語言",
+  "location": "地點",
+  "coordinates": "座標",
+  "address": "地址",
+  "details": "詳細資訊",
+  "hash": "雜湊值",
+  "mimeType": "MIME 類別",
+  "version": "版本號碼",
+  ".theme": "配色主題",
+  "theme": {
+    "system": "系統預設",
+    "light": "淺色",
+    "dark": "深色"
+  }
+}

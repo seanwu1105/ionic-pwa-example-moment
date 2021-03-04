@@ -1,0 +1,16 @@
+{
+  "languages": "Languages",
+  "location": "Location",
+  "coordinates": "Coordinates",
+  "address": "Address",
+  "details": "Details",
+  "hash": "Hash",
+  "mimeType": "MIME Type",
+  "version": "Version",
+  ".theme": "Theme",
+  "theme": {
+    "system": "System Default",
+    "light": "Light",
+    "dark": "Dark"
+  }
+}
