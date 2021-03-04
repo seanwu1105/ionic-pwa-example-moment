@@ -74,3 +74,4 @@ Thumbnail.style = thumbnailCss;
 /***/ })
 
 }]);
+//# sourceMappingURL=8-es2015.7c78c447434fd7927a7a.js.map

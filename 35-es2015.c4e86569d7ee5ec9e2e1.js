@@ -354,3 +354,4 @@ Searchbar.style = {
 /***/ })
 
 }]);
+//# sourceMappingURL=35-es2015.c4e86569d7ee5ec9e2e1.js.map

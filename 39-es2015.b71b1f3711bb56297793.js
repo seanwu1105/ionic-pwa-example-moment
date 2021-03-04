@@ -79,3 +79,4 @@ Spinner.style = spinnerCss;
 /***/ })
 
 }]);
+//# sourceMappingURL=39-es2015.b71b1f3711bb56297793.js.map
