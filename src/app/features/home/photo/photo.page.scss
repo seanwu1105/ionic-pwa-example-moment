@@ -1,12 +1,21 @@
+:host {
+  --photo-radius: 32px;
+}
+
 ion-toolbar {
   position: absolute;
 
   --background: transparent;
 }
 
+ion-content {
+  /* stylelint-disable-next-line declaration-no-important */
+  --offset-top: var(--photo-radius) !important;
+}
+
 .photo-slides {
   overflow: hidden;
-  border-radius: 0 0 32px 32px;
+  border-radius: 0 0 var(--photo-radius) var(--photo-radius);
   box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
 
   ion-slide {
@@ -26,5 +35,4 @@ ion-toolbar {
 iframe {
   width: 100%;
   height: 100px;
-  border-radius: 4px;
 }
