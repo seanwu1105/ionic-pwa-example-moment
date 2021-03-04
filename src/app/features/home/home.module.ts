@@ -4,7 +4,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { CameraComponent } from './camera/camera.component';
 import { HomePageRoutingModule } from './home-routing.module';
 import { HomePage } from './home.page';
-import { JunctureThumbnailComponent } from './juncture-thumbnail/juncture-thumbnail.component';
+import { MomentThumbnailComponent } from './moment-thumbnail/moment-thumbnail.component';
 import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
@@ -13,7 +13,7 @@ import { SettingsComponent } from './settings/settings.component';
     HomePage,
     SettingsComponent,
     CameraComponent,
-    JunctureThumbnailComponent,
+    MomentThumbnailComponent,
   ],
 })
 export class HomePageModule {}

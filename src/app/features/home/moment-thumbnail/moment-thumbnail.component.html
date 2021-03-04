@@ -1,8 +1,8 @@
-<ng-container *ngrxLet="juncture$ as juncture">
+<ng-container *ngrxLet="moment$ as moment">
   <app-image
-    *ngrxLet="juncture.thumbnailUrl$ as thumbnailUrl"
+    *ngrxLet="moment.thumbnailUrl$ as thumbnailUrl"
     routerLink="photo"
-    [queryParams]="{ id: juncture.id }"
+    [queryParams]="{ id: moment.id }"
     [src]="thumbnailUrl"
     class="ion-activatable"
   >

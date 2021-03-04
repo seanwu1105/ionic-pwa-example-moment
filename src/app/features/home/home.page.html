@@ -3,13 +3,13 @@
     <ion-row>
       <ion-col
         #col
-        *ngFor="let juncture of junctures$ | ngrxPush; trackBy: trackJuncture"
+        *ngFor="let moment of moments$ | ngrxPush; trackBy: trackMoment"
         size="6"
         size-sm="4"
         size-md="3"
         size-lg="2"
       >
-        <app-juncture-thumbnail [juncture]="juncture"></app-juncture-thumbnail>
+        <app-moment-thumbnail [moment]="moment"></app-moment-thumbnail>
       </ion-col>
     </ion-row>
   </ion-grid>

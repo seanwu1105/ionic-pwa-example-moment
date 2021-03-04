@@ -19,11 +19,9 @@
     [options]="options"
     (ionSlideDidChange)="onPhotoSlidesChanged($event)"
   >
-    <ion-slide
-      *ngFor="let juncture of junctures$ | ngrxPush; trackBy: trackJuncture"
-    >
+    <ion-slide *ngFor="let moment of moments$ | ngrxPush; trackBy: trackMoment">
       <app-image
-        *ngrxLet="juncture.photoUrl$ as photoUrl"
+        *ngrxLet="moment.photoUrl$ as photoUrl"
         ionImgViewer
         [src]="photoUrl"
       ></app-image>
@@ -31,7 +29,7 @@
       <ion-list lines="none">
         <ion-item>
           <ion-label>
-            {{ juncture.timestamp | date: 'long' }}
+            {{ moment.timestamp | date: 'long' }}
           </ion-label>
         </ion-item>
         <ion-item-group>
@@ -49,9 +47,9 @@
             <ion-label>
               <h3>Coordinates</h3>
               <p>
-                {{ juncture.geolocationPosition?.latitude }}
+                {{ moment.geolocationPosition?.latitude }}
                 ,
-                {{ juncture.geolocationPosition?.longitude }}
+                {{ moment.geolocationPosition?.longitude }}
               </p>
             </ion-label>
           </ion-item>
@@ -72,14 +70,14 @@
             <ion-icon name="code-outline" slot="start"></ion-icon>
             <ion-label>
               <h3>Hash</h3>
-              <p>{{ juncture.id }}</p>
+              <p>{{ moment.id }}</p>
             </ion-label>
           </ion-item>
           <ion-item>
             <ion-icon name="document-outline" slot="start"></ion-icon>
             <ion-label>
               <h3>MIME Type</h3>
-              <p>{{ juncture.mimeType }}</p>
+              <p>{{ moment.mimeType }}</p>
             </ion-label>
           </ion-item>
         </ion-item-group>

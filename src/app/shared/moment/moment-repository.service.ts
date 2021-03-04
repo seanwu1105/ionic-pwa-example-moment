@@ -5,14 +5,14 @@ import { concatMap, first, map, pluck, shareReplay } from 'rxjs/operators';
 import { sha256WithBlob } from '../../utils/crypto';
 import { getCurrentPositionOrUndefined } from '../../utils/geolocation';
 import { Database } from '../database/database.service';
-import { Juncture, JunctureIndex, schema } from './juncture';
+import { MemontIndex, Moment, schema } from './moment';
 
 @Injectable({
   providedIn: 'root',
 })
-export class JunctureRepository {
+export class MomentRepository {
   private readonly collection$: Observable<
-    RxCollection<JunctureIndex>
+    RxCollection<MemontIndex>
   > = this.database.main$.pipe(
     concatMap(database =>
       database.addCollections({
@@ -25,7 +25,7 @@ export class JunctureRepository {
 
   readonly all$ = this.collection$.pipe(
     concatMap(c => c.find().sort({ timestamp: 'desc' }).$),
-    map(documents => documents.map(d => new Juncture(d)))
+    map(documents => documents.map(d => new Moment(d)))
   );
 
   constructor(private readonly database: Database) {}
@@ -52,7 +52,7 @@ export class JunctureRepository {
       ),
       concatMap(document =>
         document.putAttachment(
-          { id: Juncture.PHOTO_ATTACHMENT_ID, data: photo, type: photo.type },
+          { id: Moment.PHOTO_ATTACHMENT_ID, data: photo, type: photo.type },
           true
         )
       ),
@@ -65,4 +65,4 @@ export class JunctureRepository {
   }
 }
 
-const COLLECTION_NAME = 'junctures';
+const COLLECTION_NAME = 'moments';

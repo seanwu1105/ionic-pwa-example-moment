@@ -6,8 +6,8 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { FeatureCollection } from 'geojson';
 import { combineLatest } from 'rxjs';
 import { distinctUntilChanged, map, switchMap } from 'rxjs/operators';
-import { Juncture } from '../../../shared/juncture/juncture';
-import { JunctureRepository } from '../../../shared/juncture/juncture-repository.service';
+import { Moment } from '../../../shared/moment/moment';
+import { MomentRepository } from '../../../shared/moment/moment-repository.service';
 import { isNonNullable } from '../../../utils/rx-operators';
 
 @UntilDestroy()
@@ -17,26 +17,26 @@ import { isNonNullable } from '../../../utils/rx-operators';
   styleUrls: ['./photo.page.scss'],
 })
 export class PhotoPage {
-  private readonly currentJunctureId$ = this.route.queryParamMap.pipe(
+  private readonly currentMemontId$ = this.route.queryParamMap.pipe(
     map(params => params.get('id')),
     isNonNullable(),
     distinctUntilChanged()
   );
 
-  readonly junctures$ = this.junctureRepository.all$;
+  readonly moments$ = this.momentRepository.all$;
 
-  private readonly currentJunctureIndex$ = combineLatest([
-    this.junctures$,
-    this.currentJunctureId$,
-  ]).pipe(map(([junctures, id]) => junctures.findIndex(j => j.id === id)));
+  private readonly currentMomentIndex$ = combineLatest([
+    this.moments$,
+    this.currentMemontId$,
+  ]).pipe(map(([moments, id]) => moments.findIndex(j => j.id === id)));
 
-  readonly currentJuncture$ = combineLatest([
-    this.junctures$,
-    this.currentJunctureIndex$,
-  ]).pipe(map(([junctures, currentIndex]) => junctures[currentIndex]));
+  readonly currentMoment$ = combineLatest([
+    this.moments$,
+    this.currentMomentIndex$,
+  ]).pipe(map(([moments, currentIndex]) => moments[currentIndex]));
 
-  readonly address$ = this.currentJuncture$.pipe(
-    map(juncture => juncture.geolocationPosition),
+  readonly address$ = this.currentMoment$.pipe(
+    map(moment => moment.geolocationPosition),
     isNonNullable(),
     switchMap(position =>
       this.httpClient.get<FeatureCollection>(
@@ -51,8 +51,8 @@ export class PhotoPage {
     })
   );
 
-  readonly mapUrl$ = this.currentJuncture$.pipe(
-    map(juncture => juncture.geolocationPosition),
+  readonly mapUrl$ = this.currentMoment$.pipe(
+    map(moment => moment.geolocationPosition),
     isNonNullable(),
     map(position =>
       this.sanitizer.bypassSecurityTrustResourceUrl(
@@ -62,7 +62,7 @@ export class PhotoPage {
     isNonNullable()
   );
 
-  readonly photoSlidesOptions$ = this.currentJunctureIndex$.pipe(
+  readonly photoSlidesOptions$ = this.currentMomentIndex$.pipe(
     map(initialIndex => ({
       resistanceRatio: 0,
       initialSlide: initialIndex,
@@ -70,23 +70,23 @@ export class PhotoPage {
   );
 
   constructor(
-    private readonly junctureRepository: JunctureRepository,
+    private readonly momentRepository: MomentRepository,
     private readonly route: ActivatedRoute,
     private readonly router: Router,
     private readonly sanitizer: DomSanitizer,
     private readonly httpClient: HttpClient
   ) {}
 
-  trackJuncture(_: number, item: Juncture) {
+  trackMoment(_: number, item: Moment) {
     return item.id;
   }
 
   onPhotoSlidesChanged(event: Event) {
     const ionSlides = event.target as HTMLIonSlidesElement;
-    return this.junctures$
+    return this.moments$
       .pipe(
         switchMap(
-          async junctures => junctures[await ionSlides.getActiveIndex()].id
+          async moments => moments[await ionSlides.getActiveIndex()].id
         ),
         switchMap(id =>
           this.router.navigate([], {

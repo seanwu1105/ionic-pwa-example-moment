@@ -4,7 +4,7 @@ import { concatMap, map, shareReplay } from 'rxjs/operators';
 import { DataNotFoundError } from '../../utils/errors';
 import { makeThumbnail } from '../../utils/thumbnail';
 
-export interface JunctureIndex {
+export interface MemontIndex {
   readonly id: string;
   readonly timestamp: number;
   readonly geolocationPosition?: {
@@ -13,7 +13,7 @@ export interface JunctureIndex {
   };
 }
 
-export const schema: RxJsonSchema<JunctureIndex> = {
+export const schema: RxJsonSchema<MemontIndex> = {
   version: 0,
   type: 'object',
   properties: {
@@ -38,38 +38,38 @@ export const schema: RxJsonSchema<JunctureIndex> = {
   },
 };
 
-export class Juncture {
+export class Moment {
   static readonly PHOTO_ATTACHMENT_ID = 'original';
 
   private static readonly THUMBNAIL_ATTACHMENT_ID = 'thumbnail';
 
   readonly id = this.document.id;
 
-  readonly mimeType = this.getAttachment(Juncture.PHOTO_ATTACHMENT_ID).type;
+  readonly mimeType = this.getAttachment(Moment.PHOTO_ATTACHMENT_ID).type;
 
   readonly timestamp = this.document.timestamp;
 
   readonly geolocationPosition = this.document.geolocationPosition;
 
   readonly photoUrl$ = defer(() =>
-    this.getAttachment(Juncture.PHOTO_ATTACHMENT_ID).getData()
+    this.getAttachment(Moment.PHOTO_ATTACHMENT_ID).getData()
   ).pipe(
     map(blob => URL.createObjectURL(blob)),
     shareReplay({ bufferSize: 1, refCount: true })
   );
 
   readonly thumbnailUrl$ = defer(() =>
-    of(this.document.getAttachment(Juncture.THUMBNAIL_ATTACHMENT_ID))
+    of(this.document.getAttachment(Moment.THUMBNAIL_ATTACHMENT_ID))
   ).pipe(
     concatMap(async attachment => {
       if (attachment) return attachment.getData();
       const thumbnail = await makeThumbnail({
-        image: await this.getAttachment(Juncture.PHOTO_ATTACHMENT_ID).getData(),
+        image: await this.getAttachment(Moment.PHOTO_ATTACHMENT_ID).getData(),
         maxSize: 300,
       });
       await this.document.putAttachment(
         {
-          id: Juncture.THUMBNAIL_ATTACHMENT_ID,
+          id: Moment.THUMBNAIL_ATTACHMENT_ID,
           data: thumbnail,
           type: this.mimeType,
         },
@@ -81,12 +81,12 @@ export class Juncture {
     shareReplay({ bufferSize: 1, refCount: true })
   );
 
-  constructor(private readonly document: RxDocument<JunctureIndex>) {}
+  constructor(private readonly document: RxDocument<MemontIndex>) {}
 
   private getAttachment(
     id:
-      | typeof Juncture.PHOTO_ATTACHMENT_ID
-      | typeof Juncture.THUMBNAIL_ATTACHMENT_ID
+      | typeof Moment.PHOTO_ATTACHMENT_ID
+      | typeof Moment.THUMBNAIL_ATTACHMENT_ID
   ) {
     const attachment = this.document.getAttachment(id);
     if (attachment) return attachment;

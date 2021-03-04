@@ -1,15 +1,15 @@
 import { TestBed } from '@angular/core/testing';
 import { SharedTestingModule } from '../shared-testing.module';
-import { JunctureRepository } from './juncture-repository.service';
+import { MomentRepository } from './moment-repository.service';
 
-describe('JunctureRepository', () => {
-  let service: JunctureRepository;
+describe('MomentRepository', () => {
+  let service: MomentRepository;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [SharedTestingModule],
     });
-    service = TestBed.inject(JunctureRepository);
+    service = TestBed.inject(MomentRepository);
   });
 
   it('should be created', () => {

@@ -2,8 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { IonContent, ModalController, PopoverController } from '@ionic/angular';
 import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
 import { distinctUntilChanged, switchMap } from 'rxjs/operators';
-import { Juncture } from '../../shared/juncture/juncture';
-import { JunctureRepository } from '../../shared/juncture/juncture-repository.service';
+import { Moment } from '../../shared/moment/moment';
+import { MomentRepository } from '../../shared/moment/moment-repository.service';
 import { isNonNullable } from '../../utils/rx-operators';
 import { CameraComponent } from './camera/camera.component';
 import { SettingsComponent } from './settings/settings.component';
@@ -13,7 +13,7 @@ import { SettingsComponent } from './settings/settings.component';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  readonly junctures$ = this.junctureRepository.all$;
+  readonly moments$ = this.momentRepository.all$;
 
   private readonly _ionContent$ = new BehaviorSubject<IonContent | undefined>(
     undefined
@@ -43,7 +43,7 @@ export class HomePage {
   constructor(
     private readonly popoverController: PopoverController,
     private readonly modalController: ModalController,
-    private readonly junctureRepository: JunctureRepository
+    private readonly momentRepository: MomentRepository
   ) {}
 
   onScroll(event: Event) {
@@ -73,7 +73,7 @@ export class HomePage {
     return await cameraModal.present();
   }
 
-  trackJuncture(index: number, item: Juncture) {
+  trackMoment(_: number, item: Moment) {
     return item.id;
   }
 }

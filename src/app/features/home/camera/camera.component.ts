@@ -11,7 +11,7 @@ import {
   switchMap,
   tap,
 } from 'rxjs/operators';
-import { JunctureRepository } from '../../../shared/juncture/juncture-repository.service';
+import { MomentRepository } from '../../../shared/moment/moment-repository.service';
 import { concatTap, isNonNullable } from '../../../utils/rx-operators';
 
 @UntilDestroy()
@@ -82,7 +82,7 @@ export class CameraComponent implements OnDestroy {
   constructor(
     private readonly modalController: ModalController,
     private readonly alertController: AlertController,
-    private readonly junctureRepository: JunctureRepository
+    private readonly momentRepository: MomentRepository
   ) {
     this.revokePreviousImageUrl$.pipe(untilDestroyed(this)).subscribe();
     this.cameraPreview$.pipe(untilDestroyed(this)).subscribe();
@@ -95,7 +95,7 @@ export class CameraComponent implements OnDestroy {
         tap(imageBlob => {
           this._capturedImageUrl$.next(URL.createObjectURL(imageBlob));
         }),
-        concatTap(imageBlob => this.junctureRepository.add$(imageBlob)),
+        concatTap(imageBlob => this.momentRepository.add$(imageBlob)),
         catchError(async (err: unknown) => {
           // eslint-disable-next-line no-console
           console.error(err);
