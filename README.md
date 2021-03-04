@@ -10,8 +10,8 @@
   - [x] details view
 - [x] RxDB
 - [x] GPS collection
-- [ ] i18n
-- [ ] date i18n
+- [x] i18n
+- [x] date i18n
 - [ ] NgRx/data
 - [ ] App shell
 
