@@ -5,15 +5,9 @@ import { CameraComponent } from './camera/camera.component';
 import { HomePageRoutingModule } from './home-routing.module';
 import { HomePage } from './home.page';
 import { MomentThumbnailComponent } from './moment-thumbnail/moment-thumbnail.component';
-import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   imports: [SharedModule, HomePageRoutingModule, NgxIonicImageViewerModule],
-  declarations: [
-    HomePage,
-    SettingsComponent,
-    CameraComponent,
-    MomentThumbnailComponent,
-  ],
+  declarations: [HomePage, CameraComponent, MomentThumbnailComponent],
 })
 export class HomePageModule {}

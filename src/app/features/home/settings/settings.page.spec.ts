@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { SharedTestingModule } from '../../../shared/shared-testing.module';
-import { SettingsComponent } from './settings.component';
+import { SettingsPage } from './settings.page';
 
-describe('SettingsComponent', () => {
-  let component: SettingsComponent;
-  let fixture: ComponentFixture<SettingsComponent>;
+describe('SettingsPage', () => {
+  let component: SettingsPage;
+  let fixture: ComponentFixture<SettingsPage>;
 
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        declarations: [SettingsComponent],
+        declarations: [SettingsPage],
         imports: [SharedTestingModule],
       }).compileComponents();
 
-      fixture = TestBed.createComponent(SettingsComponent);
+      fixture = TestBed.createComponent(SettingsPage);
       component = fixture.componentInstance;
       fixture.detectChanges();
     })

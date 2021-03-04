@@ -7,6 +7,9 @@
   "hash": "Hash",
   "mimeType": "MIME Type",
   "version": "Version",
+  "settings": "Settings",
+  "help": "Help",
+  "issueReport": "Issue Report",
   ".theme": "Theme",
   "theme": {
     "system": "System Default",

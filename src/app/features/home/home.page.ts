@@ -1,12 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonContent, ModalController, PopoverController } from '@ionic/angular';
+import { IonContent, ModalController } from '@ionic/angular';
 import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
 import { distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { Moment } from '../../shared/moment/moment';
 import { MomentRepository } from '../../shared/moment/moment-repository.service';
 import { isNonNullable } from '../../utils/rx-operators';
 import { CameraComponent } from './camera/camera.component';
-import { SettingsComponent } from './settings/settings.component';
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -41,7 +41,6 @@ export class HomePage {
   ]).pipe(switchMap(([ionContent]) => this.detectBottom(ionContent)));
 
   constructor(
-    private readonly popoverController: PopoverController,
     private readonly modalController: ModalController,
     private readonly momentRepository: MomentRepository
   ) {}
@@ -56,14 +55,6 @@ export class HomePage {
       scrollElement.scrollTop ===
       scrollElement.scrollHeight - scrollElement.clientHeight
     );
-  }
-
-  async presentSettings(event: Event) {
-    const settingsPopover = await this.popoverController.create({
-      component: SettingsComponent,
-      event,
-    });
-    return await settingsPopover.present();
   }
 
   async presentCamera() {

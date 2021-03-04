@@ -7,6 +7,9 @@
   "hash": "雜湊值",
   "mimeType": "MIME 類別",
   "version": "版本號碼",
+  "settings": "設定",
+  "help": "尋求幫助",
+  "issueReport": "回報問題",
   ".theme": "配色主題",
   "theme": {
     "system": "系統預設",

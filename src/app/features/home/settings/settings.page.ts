@@ -9,10 +9,10 @@ import { languages } from '../../../shared/transloco/transloco-root.module';
 @UntilDestroy()
 @Component({
   selector: 'app-settings',
-  templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.scss'],
+  templateUrl: './settings.page.html',
+  styleUrls: ['./settings.page.scss'],
 })
-export class SettingsComponent {
+export class SettingsPage {
   readonly themes = ThemesService.THEMES;
 
   readonly theme$ = this.themesService.theme$;
