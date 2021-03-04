@@ -1,3 +1,5 @@
+/* stylelint-disable declaration-no-important */
+
 /*
  * App Global CSS
  * ----------------------------------------------------------------------------
@@ -27,4 +29,8 @@
 
 ion-note {
   font-size: inherit;
+}
+
+ion-popover {
+  --width: 90% !important;
 }

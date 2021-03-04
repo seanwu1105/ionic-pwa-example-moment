@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { IonSelect } from '@ionic/angular';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { version } from '../../../../../package.json';
-import { SettingsService } from '../../../shared/settings/settings.service';
+import { LanguagesService } from '../../../shared/languages/languages.service';
+import { ThemesService } from '../../../shared/themes/themes.service';
+import { languages } from '../../../shared/transloco/transloco-root.module';
 
 @UntilDestroy()
 @Component({
@@ -11,17 +13,31 @@ import { SettingsService } from '../../../shared/settings/settings.service';
   styleUrls: ['./settings.component.scss'],
 })
 export class SettingsComponent {
-  readonly themes = SettingsService.THEMES;
+  readonly themes = ThemesService.THEMES;
 
-  readonly theme$ = this.settingsService.theme$;
+  readonly theme$ = this.themesService.theme$;
+
+  readonly languages = languages;
+
+  readonly language$ = this.languagesService.language$;
 
   readonly version = version;
 
-  constructor(private readonly settingsService: SettingsService) {}
+  constructor(
+    private readonly themesService: ThemesService,
+    private readonly languagesService: LanguagesService
+  ) {}
 
-  onChangeDarkTheme(event: Event) {
-    return this.settingsService
+  onChangeTheme(event: Event) {
+    return this.themesService
       .setTheme$((event as CustomEvent<IonSelect>).detail.value)
+      .pipe(untilDestroyed(this))
+      .subscribe();
+  }
+
+  onChangeLanguage(event: Event) {
+    return this.languagesService
+      .setLanguage$((event as CustomEvent<IonSelect>).detail.value)
       .pipe(untilDestroyed(this))
       .subscribe();
   }

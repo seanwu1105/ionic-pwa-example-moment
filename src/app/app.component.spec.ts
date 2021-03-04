@@ -1,6 +1,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { Platform } from '@ionic/angular';
+import { TranslocoTestingModule } from '@ngneat/transloco';
 import { AppComponent } from './app.component';
 import { TestingDatabase } from './shared/database/database-testing.service';
 import { Database } from './shared/database/database.service';
@@ -19,6 +20,7 @@ describe('AppComponent', () => {
       TestBed.configureTestingModule({
         declarations: [AppComponent],
         schemas: [CUSTOM_ELEMENTS_SCHEMA],
+        imports: [TranslocoTestingModule],
         providers: [
           {
             provide: Platform,
