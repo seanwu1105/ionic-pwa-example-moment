@@ -1,0 +1,7191 @@
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[1],{
+
+/***/ "/Q3I":
+/*!**************************************!*\
+  !*** ./src/app/utils/geolocation.ts ***!
+  \**************************************/
+/*! exports provided: getCurrentPositionOrUndefined */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCurrentPositionOrUndefined", function() { return getCurrentPositionOrUndefined; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "mrSG");
+
+function getCurrentPosition() {
+    return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+        return new Promise((resolve, reject) => {
+            navigator.geolocation.getCurrentPosition(success => resolve(success), error => reject(error), { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 });
+        });
+    });
+}
+function getCurrentPositionOrUndefined() {
+    return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+        try {
+            return yield getCurrentPosition();
+        }
+        catch (_a) {
+            return undefined;
+        }
+    });
+}
+
+
+/***/ }),
+
+/***/ "/T4s":
+/*!*************************************************!*\
+  !*** ./src/app/shared/image/image.component.ts ***!
+  \*************************************************/
+/*! exports provided: ImageComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ImageComponent", function() { return ImageComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "mrSG");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ionic/angular */ "TEn/");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "qCKp");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "kU1M");
+/* harmony import */ var _utils_rx_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../utils/rx-operators */ "KJy6");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common */ "ofXK");
+/* harmony import */ var _ngrx_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ngrx/component */ "9A8T");
+
+
+
+
+
+
+
+
+
+function ImageComponent_ion_icon_0_Template(rf, ctx) {
+    if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](0, "ion-icon", 3);
+    }
+}
+function ImageComponent_ion_img_1_Template(rf, ctx) {
+    if (rf & 1) {
+        const _r4 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵgetCurrentView"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "ion-img", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵlistener"]("ionImgDidLoad", function ImageComponent_ion_img_1_Template_ion_img_ionImgDidLoad_0_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵrestoreView"](_r4); const ctx_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵnextContext"](); return ctx_r3.onImageLoaded($event); })("ionError", function ImageComponent_ion_img_1_Template_ion_img_ionError_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵrestoreView"](_r4); const ctx_r5 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵnextContext"](); return ctx_r5.onImageError(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵpipe"](1, "ngrxPush");
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+    }
+    if (rf & 2) {
+        const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵnextContext"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵattribute"]("src", _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵpipeBind1"](1, 1, ctx_r1.src$));
+    }
+}
+function ImageComponent_ng_content_2_Template(rf, ctx) {
+    if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵprojection"](0, 0, ["*ngIf", "!isImageError"]);
+    }
+}
+const _c0 = ["*"];
+let ImageComponent = /*@__PURE__*/ (() => {
+    class ImageComponent {
+        constructor() {
+            this._src$ = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](undefined);
+            this.src$ = this._src$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["startWith"])(TINIEST_GIF), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_4__["isNonNullable"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["distinctUntilChanged"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(() => (this.isImageError = false)));
+            this.isImageError = false;
+        }
+        set src(value) {
+            this._src$.next(value);
+        }
+        onImageLoaded(event) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+                const imgElement = event.target;
+                const fadeInAnimation = Object(_ionic_angular__WEBPACK_IMPORTED_MODULE_1__["createAnimation"])()
+                    .addElement(imgElement)
+                    .duration(300)
+                    .iterations(1)
+                    .fromTo('opacity', '0', '1');
+                return fadeInAnimation.play();
+            });
+        }
+        onImageError() {
+            this.isImageError = true;
+        }
+    }
+    ImageComponent.ɵfac = function ImageComponent_Factory(t) { return new (t || ImageComponent)(); };
+    ImageComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdefineComponent"]({ type: ImageComponent, selectors: [["app-image"]], inputs: { src: "src" }, ngContentSelectors: _c0, decls: 3, vars: 3, consts: [["src", "/assets/icons/broken-image.svg", "color", "danger", "size", "large", 4, "ngIf"], [3, "ionImgDidLoad", "ionError", 4, "ngIf"], [4, "ngIf"], ["src", "/assets/icons/broken-image.svg", "color", "danger", "size", "large"], [3, "ionImgDidLoad", "ionError"]], template: function ImageComponent_Template(rf, ctx) {
+            if (rf & 1) {
+                _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵprojectionDef"]();
+                _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](0, ImageComponent_ion_icon_0_Template, 1, 0, "ion-icon", 0);
+                _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](1, ImageComponent_ion_img_1_Template, 2, 3, "ion-img", 1);
+                _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](2, ImageComponent_ng_content_2_Template, 1, 0, "ng-content", 2);
+            }
+            if (rf & 2) {
+                _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", ctx.isImageError);
+                _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](1);
+                _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", !ctx.isImageError);
+                _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](1);
+                _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", !ctx.isImageError);
+            }
+        }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_6__["NgIf"], _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["IonIcon"], _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["IonImg"]], pipes: [_ngrx_component__WEBPACK_IMPORTED_MODULE_7__["PushPipe"]], styles: ["[_nghost-%COMP%] {\n  display: block;\n  overflow: hidden;\n  -o-object-fit: cover;\n     object-fit: cover;\n  position: relative;\n  -webkit-animation: loading 2.5s ease-in-out alternate infinite;\n          animation: loading 2.5s ease-in-out alternate infinite;\n}\n\nion-img[_ngcontent-%COMP%] {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: inherit;\n     object-fit: inherit;\n  -o-object-position: inherit;\n     object-position: inherit;\n  opacity: 0;\n}\n\n@-webkit-keyframes loading {\n  0% {\n    background-color: var(--ion-color-light-shade);\n  }\n  100% {\n    background-color: var(--ion-color-light);\n  }\n}\n\n@keyframes loading {\n  0% {\n    background-color: var(--ion-color-light-shade);\n  }\n  100% {\n    background-color: var(--ion-color-light);\n  }\n}\n\n@media (prefers-color-scheme: dark) {\n  @-webkit-keyframes loading {\n    0% {\n      background-color: var(--ion-color-step-150);\n    }\n    100% {\n      background-color: var(--ion-color-step-100);\n    }\n  }\n  @keyframes loading {\n    0% {\n      background-color: var(--ion-color-step-150);\n    }\n    100% {\n      background-color: var(--ion-color-step-100);\n    }\n  }\n}\n\nion-icon[_ngcontent-%COMP%] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  margin-right: -50%;\n  transform: translate(-50%, -50%);\n}"] });
+    return ImageComponent;
+})();
+const TINIEST_GIF = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
+
+
+/***/ }),
+
+/***/ "6g0+":
+/*!*********************************************************************************************!*\
+  !*** ./node_modules/ngx-ionic-image-viewer/__ivy_ngcc__/fesm2015/ngx-ionic-image-viewer.js ***!
+  \*********************************************************************************************/
+/*! exports provided: NgxIonicImageViewerComponent, NgxIonicImageViewerDirective, NgxIonicImageViewerModule, NgxIonicImageViewerService, ViewerModalComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgxIonicImageViewerComponent", function() { return NgxIonicImageViewerComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgxIonicImageViewerDirective", function() { return NgxIonicImageViewerDirective; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgxIonicImageViewerModule", function() { return NgxIonicImageViewerModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NgxIonicImageViewerService", function() { return NgxIonicImageViewerService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ViewerModalComponent", function() { return ViewerModalComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tslib */ "O1h7");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "TEn/");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ "ofXK");
+
+
+
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: lib/ngx-ionic-image-viewer.service.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+
+
+const _c0 = ["sliderRef"];
+const _c1 = function (a0) { return { "no-title": a0 }; };
+const _c2 = function (a0) { return { "no-text": a0 }; };
+let NgxIonicImageViewerService = /*@__PURE__*/ (() => {
+    class NgxIonicImageViewerService {
+        constructor() { }
+    }
+    NgxIonicImageViewerService.ɵfac = function NgxIonicImageViewerService_Factory(t) { return new (t || NgxIonicImageViewerService)(); };
+    NgxIonicImageViewerService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: NgxIonicImageViewerService, factory: NgxIonicImageViewerService.ɵfac, providedIn: 'root' });
+    /** @nocollapse */ NgxIonicImageViewerService.ngInjectableDef = Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"])({ factory: function NgxIonicImageViewerService_Factory() { return new NgxIonicImageViewerService(); }, token: NgxIonicImageViewerService, providedIn: "root" });
+    return NgxIonicImageViewerService;
+})();
+let ViewerModalComponent = /*@__PURE__*/ (() => {
+    class ViewerModalComponent {
+        /**
+         * @param {?} modalController
+         */
+        constructor(modalController) {
+            this.modalController = modalController;
+            // tslint:disable: no-inferrable-types
+            this.alt = '';
+            this.scheme = 'auto';
+            this.slideOptions = {};
+            this.srcFallback = '';
+            this.srcHighRes = '';
+            this.swipeToClose = true;
+            this.text = '';
+            this.title = '';
+            this.titleSize = '';
+            // tslint:enable: no-inferrable-types
+            this.defaultSlideOptions = {
+                centeredSlides: true,
+                passiveListeners: false,
+                zoom: {
+                    enabled: true,
+                },
+            };
+            this.options = {};
+            this.swipeState = {
+                phase: 'init',
+                direction: 'none',
+                swipeType: 'none',
+                startX: 0,
+                startY: 0,
+                distance: 0,
+                distanceX: 0,
+                distanceY: 0,
+                threshold: 150,
+                // required min distance traveled to be considered swipe
+                restraint: 100,
+                // maximum distance allowed at the same time in perpendicular direction
+                allowedTime: 500,
+                // maximum time allowed to travel that distance
+                elapsedTime: 0,
+                startTime: 0,
+            };
+        }
+        /**
+         * @return {?}
+         */
+        ngOnInit() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__awaiter"])(this, void 0, void 0, function* () {
+                this.options = Object.assign({}, this.defaultSlideOptions, this.slideOptions);
+                this.src = this.srcHighRes || this.src;
+                this.setStyle();
+                this.setScheme(this.scheme);
+                this.initSwipeToClose(this.swipeToClose);
+                /**
+                 * Current Workaround
+                 * See reported bug: https://github.com/ionic-team/ionic/issues/19638#issuecomment-584828315
+                 * Hint: Comment in '<ion-slide>' in component
+                 * @type {?}
+                 */
+                const swiper = yield this.slides.getSwiper();
+                swiper.appendSlide(`<ion-slide><img alt="${this.alt}" src="${this.src}" onerror="this.src='${this.srcFallback}'"/></ion-slide>`);
+            });
+        }
+        /**
+         * @return {?}
+         */
+        setStyle() {
+            /** @type {?} */
+            const el = document.querySelector('.ion-img-viewer');
+            el.style.setProperty('--height', '100%');
+            el.style.setProperty('--width', '100%');
+            el.style.setProperty('--border-radius', '0');
+        }
+        /**
+         * @param {?} scheme
+         * @return {?}
+         */
+        setScheme(scheme) {
+            if (scheme === 'auto') {
+                return;
+            }
+            /** @type {?} */
+            const el = document.querySelector('.ion-img-viewer');
+            if (this.scheme === 'light') {
+                el.style.setProperty('--ion-background-color', '#ffffff');
+                el.style.setProperty('--ion-background-color-rgb', '255, 255, 255');
+                el.style.setProperty('--ion-text-color', '#000');
+                el.style.setProperty('--ion-text-color-rgb', '0,0,0');
+            }
+            if (this.scheme === 'dark') {
+                if (el.classList.contains('ios')) {
+                    el.style.setProperty('--ion-background-color', '#000000');
+                    el.style.setProperty('--ion-background-color-rgb', '0, 0, 0');
+                }
+                else {
+                    el.style.setProperty('--ion-background-color', '#121212');
+                    el.style.setProperty('--ion-background-color-rgb', '18,18,18');
+                }
+                el.style.setProperty('--ion-text-color', '#ffffff');
+                el.style.setProperty('--ion-text-color-rgb', '255,255,255');
+            }
+        }
+        /**
+         * @see http://www.javascriptkit.com/javatutors/touchevents3.shtml
+         * @param {?=} isActive
+         * @return {?}
+         */
+        initSwipeToClose(isActive = true) {
+            if (!isActive) {
+                return;
+            }
+            /** @type {?} */
+            const el = document.querySelector('ion-modal');
+            el.addEventListener('mousedown', ( /**
+             * @param {?} event
+             * @return {?}
+             */(event) => this.swipeStart(event)), true);
+            el.addEventListener('mousemove', ( /**
+             * @param {?} event
+             * @return {?}
+             */(event) => this.swipeMove(event)), true);
+            el.addEventListener('mouseup', ( /**
+             * @param {?} event
+             * @return {?}
+             */(event) => this.swipeEnd(event)), true);
+            el.addEventListener('touchstart', ( /**
+             * @param {?} event
+             * @return {?}
+             */(event) => this.swipeStart(event)), true);
+            el.addEventListener('touchmove', ( /**
+             * @param {?} event
+             * @return {?}
+             */(event) => this.swipeMove(event)), true);
+            el.addEventListener('touchend', ( /**
+             * @param {?} event
+             * @return {?}
+             */(event) => this.swipeEnd(event)), true);
+            this.modalController.getTop().then(( /**
+             * @param {?} modal
+             * @return {?}
+             */(modal) => {
+                modal.onWillDismiss().then(( /**
+                 * @return {?}
+                 */() => {
+                    document.removeEventListener('mousedown', this.swipeStart, true);
+                    document.removeEventListener('mousemove', this.swipeMove, true);
+                    document.removeEventListener('mouseup', this.swipeMove, true);
+                    document.removeEventListener('touchstart', this.swipeStart, true);
+                    document.removeEventListener('touchmove', this.swipeMove, true);
+                    document.removeEventListener('touchend', this.swipeMove, true);
+                }));
+            }));
+        }
+        /**
+         * @param {?} event
+         * @return {?}
+         */
+        swipeStart(event) {
+            const { pageX, pageY } = event.type === 'touchstart' ? event.changedTouches[0] : event;
+            this.swipeState = Object.assign({}, this.swipeState, { phase: 'start', direction: 'none', distance: 0, startX: pageX, startY: pageY, startTime: new Date().getTime() });
+        }
+        /**
+         * @param {?} event
+         * @return {?}
+         */
+        swipeMove(event) {
+            if (this.swipeState.phase === 'none') {
+                return;
+            }
+            const { pageX, pageY } = event.type === 'touchmove' ? event.changedTouches[0] : event;
+            // get horizontal dist traveled by finger while in contact with surface
+            /** @type {?} */
+            const distanceX = pageX - this.swipeState.startX;
+            // get vertical dist traveled by finger while in contact with surface
+            /** @type {?} */
+            const distanceY = pageY - this.swipeState.startY;
+            /** @type {?} */
+            let direction;
+            /** @type {?} */
+            let distance;
+            if (Math.abs(distanceX) > Math.abs(distanceY)) {
+                // if distance traveled horizontally is greater than vertically, consider this a horizontal swipe
+                direction = distanceX < 0 ? 'left' : 'right';
+                distance = distanceX;
+            }
+            else {
+                // else consider this a vertical swipe
+                direction = distanceY < 0 ? 'up' : 'down';
+                distance = distanceY;
+            }
+            this.swipeState = Object.assign({}, this.swipeState, { phase: 'move', direction,
+                distance,
+                distanceX,
+                distanceY });
+            event.preventDefault();
+        }
+        /**
+         * @param {?} event
+         * @return {?}
+         */
+        swipeEnd(event) {
+            if (this.swipeState.phase === 'none') {
+                return;
+            }
+            const { allowedTime, direction, restraint, startTime, threshold, distanceX, distanceY } = this.swipeState;
+            /** @type {?} */
+            let swipeType;
+            /** @type {?} */
+            const elapsedTime = new Date().getTime() - startTime;
+            if (elapsedTime <= allowedTime) {
+                // first condition for a swipe met
+                if (Math.abs(distanceX) >= threshold && Math.abs(distanceY) <= restraint) {
+                    // 2nd condition for horizontal swipe met
+                    swipeType = direction; // set swipeType to either "left" or "right"
+                }
+                else if (Math.abs(distanceY) >= threshold && Math.abs(distanceX) <= restraint) {
+                    // 2nd condition for vertical swipe met
+                    swipeType = direction; // set swipeType to either "top" or "down"
+                }
+            }
+            this.swipeState = Object.assign({}, this.swipeState, { phase: 'end', swipeType });
+            if (swipeType === 'down') {
+                return this.closeModal();
+            }
+        }
+        /**
+         * @return {?}
+         */
+        closeModal() {
+            this.modalController.dismiss();
+        }
+    }
+    ViewerModalComponent.ɵfac = function ViewerModalComponent_Factory(t) { return new (t || ViewerModalComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"])); };
+    ViewerModalComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: ViewerModalComponent, selectors: [["ion-viewer-modal"]], viewQuery: function ViewerModalComponent_Query(rf, ctx) {
+            if (rf & 1) {
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵviewQuery"](_c0, 3);
+            }
+            if (rf & 2) {
+                let _t;
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵloadQuery"]()) && (ctx.slides = _t.first);
+            }
+        }, inputs: { alt: "alt", scheme: "scheme", slideOptions: "slideOptions", srcFallback: "srcFallback", srcHighRes: "srcHighRes", swipeToClose: "swipeToClose", text: "text", title: "title", titleSize: "titleSize", src: "src" }, decls: 14, vars: 11, consts: [[3, "ngClass"], ["slot", "primary"], [3, "click"], ["slot", "icon-only", "name", "close"], [3, "size"], [3, "forceOverscroll"], [3, "options"], ["sliderRef", ""], [1, "ion-text-center"]], template: function ViewerModalComponent_Template(rf, ctx) {
+            if (rf & 1) {
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "ion-header", 0);
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "ion-toolbar");
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "ion-buttons", 1);
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "ion-button", 2);
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function ViewerModalComponent_Template_ion_button_click_3_listener() { return ctx.closeModal(); });
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](4, "ion-icon", 3);
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "ion-title", 4);
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](6);
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "ion-content", 5);
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](8, "ion-slides", 6, 7);
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "ion-footer", 0);
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](11, "ion-toolbar", 8);
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](12, "ion-text");
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](13);
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+            }
+            if (rf & 2) {
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction1"](7, _c1, ctx.title.length <= 0));
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](5);
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("size", ctx.titleSize);
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx.title);
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("forceOverscroll", false);
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("options", ctx.options);
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction1"](9, _c2, ctx.text.length <= 0));
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx.text);
+            }
+        }, directives: [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["IonHeader"], _angular_common__WEBPACK_IMPORTED_MODULE_3__["NgClass"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["IonToolbar"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["IonButtons"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["IonButton"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["IonIcon"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["IonTitle"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["IonContent"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["IonSlides"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["IonFooter"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["IonText"]], styles: ["ion-slides[_ngcontent-%COMP%]{--height:100%;height:100%}ion-toolbar[_ngcontent-%COMP%]{--border-style:none;--background:rgba(var(--ion-background-color-rgb, (255, 255, 255)), 0.6);background:rgba(var(--ion-background-color-rgb,255,255,255),.6)}ion-header[_ngcontent-%COMP%]{opacity:1;position:absolute}ion-header.no-title[_ngcontent-%COMP%]:after{content:none}ion-header.no-title[_ngcontent-%COMP%]   ion-toolbar[_ngcontent-%COMP%]{--background:rgba(0, 0, 0, 0);background:rgba(0,0,0,0)}ion-footer[_ngcontent-%COMP%]{position:absolute;bottom:0}ion-footer.no-text[_ngcontent-%COMP%]:before{content:none}ion-footer.no-text[_ngcontent-%COMP%]   ion-toolbar[_ngcontent-%COMP%]{--background:rgba(0, 0, 0, 0);background:rgba(0,0,0,0)}"] });
+    return ViewerModalComponent;
+})();
+if (false) {}
+let NgxIonicImageViewerComponent = /*@__PURE__*/ (() => {
+    class NgxIonicImageViewerComponent {
+        /**
+         * @param {?} modalController
+         */
+        constructor(modalController) {
+            this.modalController = modalController;
+        }
+        /**
+         * @param {?} src
+         * @param {?=} srcFallback
+         * @param {?=} srcHighRes
+         * @param {?=} title
+         * @param {?=} titleSize
+         * @param {?=} text
+         * @param {?=} scheme
+         * @param {?=} slideOptions
+         * @param {?=} swipeToClose
+         * @return {?}
+         */
+        viewImage(src, srcFallback = '', srcHighRes = '', title = '', titleSize = '', text = '', scheme = 'auto', slideOptions = {}, swipeToClose = true) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__awaiter"])(this, void 0, void 0, function* () {
+                /** @type {?} */
+                const modal = yield this.modalController.create({
+                    component: ViewerModalComponent,
+                    componentProps: {
+                        src,
+                        srcFallback,
+                        srcHighRes,
+                        title,
+                        titleSize,
+                        text,
+                        scheme,
+                        slideOptions,
+                        swipeToClose
+                    },
+                    cssClass: this.cssClass instanceof Array ? ['ion-img-viewer', ...this.cssClass] : ['ion-img-viewer', this.cssClass],
+                    keyboardClose: true,
+                    showBackdrop: true
+                });
+                return yield modal.present();
+            });
+        }
+        /**
+         * @return {?}
+         */
+        ngOnInit() { }
+    }
+    NgxIonicImageViewerComponent.ɵfac = function NgxIonicImageViewerComponent_Factory(t) { return new (t || NgxIonicImageViewerComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"])); };
+    NgxIonicImageViewerComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: NgxIonicImageViewerComponent, selectors: [["ion-img-viewer"]], inputs: { alt: "alt", cssClass: "cssClass", scheme: "scheme", slideOptions: "slideOptions", src: "src", srcFallback: "srcFallback", srcHighRes: "srcHighRes", swipeToClose: "swipeToClose", text: "text", title: "title", titleSize: "titleSize" }, decls: 1, vars: 2, consts: [[3, "alt", "src", "click", "error"]], template: function NgxIonicImageViewerComponent_Template(rf, ctx) {
+            if (rf & 1) {
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "img", 0);
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function NgxIonicImageViewerComponent_Template_img_click_0_listener() { return ctx.viewImage(ctx.src, ctx.srcFallback, ctx.srcHighRes, ctx.title, ctx.titleSize, ctx.text, ctx.scheme, ctx.slideOptions, ctx.swipeToClose); })("error", function NgxIonicImageViewerComponent_Template_img_error_0_listener() { return ctx.src = ctx.srcFallback; });
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+            }
+            if (rf & 2) {
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("alt", ctx.alt)("src", ctx.src, _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
+            }
+        }, styles: ["[_nghost-%COMP%] {\n        display: block;\n      }"] });
+    return NgxIonicImageViewerComponent;
+})();
+if (false) {}
+let NgxIonicImageViewerDirective = /*@__PURE__*/ (() => {
+    class NgxIonicImageViewerDirective {
+        /**
+         * @param {?} el
+         * @param {?} renderer
+         * @param {?} modalController
+         */
+        constructor(el, renderer, modalController) {
+            this.el = el;
+            this.renderer = renderer;
+            this.modalController = modalController;
+        }
+        /**
+         * @return {?}
+         */
+        onClick() {
+            this.viewImage(this.src, this.srcFallback, this.srcHighRes, this.title, this.titleSize, this.text, this.scheme, this.slideOptions, this.swipeToClose);
+        }
+        /**
+         * @param {?} error
+         * @return {?}
+         */
+        onError(error) {
+            if (this.src !== this.el.nativeElement.src) {
+                this.src = this.el.nativeElement.src;
+            }
+            if (this.srcFallback) {
+                this.renderer.setAttribute(this.el.nativeElement, 'src', this.srcFallback);
+            }
+        }
+        /**
+         * @return {?}
+         */
+        ngOnInit() {
+            if (!this.el.nativeElement.hasAttribute('src')) {
+                this.renderer.setAttribute(this.el.nativeElement, 'src', this.src);
+            }
+        }
+        /**
+         * @param {?} src
+         * @param {?=} srcFallback
+         * @param {?=} srcHighRes
+         * @param {?=} title
+         * @param {?=} titleSize
+         * @param {?=} text
+         * @param {?=} scheme
+         * @param {?=} slideOptions
+         * @param {?=} swipeToClose
+         * @return {?}
+         */
+        viewImage(src, srcFallback = '', srcHighRes = '', title = '', titleSize = '', text = '', scheme = 'auto', slideOptions = {}, swipeToClose = true) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_1__["__awaiter"])(this, void 0, void 0, function* () {
+                /** @type {?} */
+                const modal = yield this.modalController.create({
+                    component: ViewerModalComponent,
+                    componentProps: {
+                        src,
+                        srcFallback,
+                        srcHighRes,
+                        title,
+                        titleSize,
+                        text,
+                        scheme,
+                        slideOptions,
+                        swipeToClose
+                    },
+                    cssClass: this.cssClass instanceof Array ? ['ion-img-viewer', ...this.cssClass] : ['ion-img-viewer', this.cssClass],
+                    keyboardClose: true,
+                    showBackdrop: true
+                });
+                return yield modal.present();
+            });
+        }
+    }
+    NgxIonicImageViewerDirective.ɵfac = function NgxIonicImageViewerDirective_Factory(t) { return new (t || NgxIonicImageViewerDirective)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["Renderer2"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ModalController"])); };
+    NgxIonicImageViewerDirective.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({ type: NgxIonicImageViewerDirective, selectors: [["", "ionImgViewer", ""]], hostBindings: function NgxIonicImageViewerDirective_HostBindings(rf, ctx) {
+            if (rf & 1) {
+                _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function NgxIonicImageViewerDirective_click_HostBindingHandler() { return ctx.onClick(); })("error", function NgxIonicImageViewerDirective_error_HostBindingHandler($event) { return ctx.onError($event); });
+            }
+        }, inputs: { src: "src", cssClass: "cssClass", scheme: "scheme", slideOptions: "slideOptions", srcFallback: "srcFallback", srcHighRes: "srcHighRes", swipeToClose: "swipeToClose", text: "text", title: "title", titleSize: "titleSize" } });
+    return NgxIonicImageViewerDirective;
+})();
+if (false) {}
+let NgxIonicImageViewerModule = /*@__PURE__*/ (() => {
+    class NgxIonicImageViewerModule {
+    }
+    NgxIonicImageViewerModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({ type: NgxIonicImageViewerModule });
+    NgxIonicImageViewerModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({ factory: function NgxIonicImageViewerModule_Factory(t) { return new (t || NgxIonicImageViewerModule)(); }, imports: [[_angular_common__WEBPACK_IMPORTED_MODULE_3__["CommonModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["IonicModule"]]] });
+    return NgxIonicImageViewerModule;
+})();
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsetNgModuleScope"](NgxIonicImageViewerModule, { declarations: function () { return [NgxIonicImageViewerComponent, NgxIonicImageViewerDirective, ViewerModalComponent]; }, imports: function () { return [_angular_common__WEBPACK_IMPORTED_MODULE_3__["CommonModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["IonicModule"]]; }, exports: function () { return [NgxIonicImageViewerComponent, NgxIonicImageViewerDirective, ViewerModalComponent]; } }); })();
+/**
+ * @fileoverview added by tsickle
+ * Generated from: public-api.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @fileoverview added by tsickle
+ * Generated from: ngx-ionic-image-viewer.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+//# sourceMappingURL=ngx-ionic-image-viewer.js.map
+
+
+/***/ }),
+
+/***/ "6y+t":
+/*!*********************************!*\
+  !*** ./src/app/utils/crypto.ts ***!
+  \*********************************/
+/*! exports provided: sha256WithBlob */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sha256WithBlob", function() { return sha256WithBlob; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "mrSG");
+/* harmony import */ var _encoding__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./encoding */ "PXhR");
+
+
+function sha256WithBlob(blob) {
+    return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+        const digested = yield crypto.subtle.digest('SHA-256', yield blob.arrayBuffer());
+        return Object(_encoding__WEBPACK_IMPORTED_MODULE_1__["arrayBufferToHex"])(digested);
+    });
+}
+
+
+/***/ }),
+
+/***/ "7fvk":
+/*!********************************************!*\
+  !*** ./src/app/features/home/home.page.ts ***!
+  \********************************************/
+/*! exports provided: HomePage */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomePage", function() { return HomePage; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "mrSG");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ionic/angular */ "TEn/");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "qCKp");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "kU1M");
+/* harmony import */ var _utils_rx_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../utils/rx-operators */ "KJy6");
+/* harmony import */ var _camera_camera_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./camera/camera.component */ "fIW9");
+/* harmony import */ var _settings_settings_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./settings/settings.component */ "k0O3");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _shared_moment_moment_repository_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../shared/moment/moment-repository.service */ "BJdS");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/common */ "ofXK");
+/* harmony import */ var _moment_thumbnail_moment_thumbnail_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./moment-thumbnail/moment-thumbnail.component */ "lK9d");
+/* harmony import */ var _ngrx_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ngrx/component */ "9A8T");
+
+
+
+
+
+
+
+
+
+
+
+
+
+function HomePage_ion_col_3_Template(rf, ctx) {
+    if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "ion-col", 8, 9);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelement"](2, "app-moment-thumbnail", 10);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+    }
+    if (rf & 2) {
+        const moment_r1 = ctx.$implicit;
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("moment", moment_r1);
+    }
+}
+let HomePage = /*@__PURE__*/ (() => {
+    class HomePage {
+        constructor(popoverController, modalController, momentRepository) {
+            this.popoverController = popoverController;
+            this.modalController = modalController;
+            this.momentRepository = momentRepository;
+            this.moments$ = this.momentRepository.all$;
+            this._ionContent$ = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](undefined);
+            this.ionContent$ = this._ionContent$.pipe(Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_4__["isNonNullable"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["distinctUntilChanged"])());
+            this._scrollEvent$ = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
+            this.scrollEvent$ = this._scrollEvent$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["distinctUntilChanged"])());
+            this.noFooterBorder$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["combineLatest"])([
+                this.ionContent$,
+                this.scrollEvent$,
+            ]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["switchMap"])(([ionContent]) => this.detectBottom(ionContent)));
+        }
+        set ionContent(value) {
+            this._ionContent$.next(value);
+        }
+        onScroll(event) {
+            this._scrollEvent$.next(event);
+        }
+        detectBottom(ionContent) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+                const scrollElement = yield ionContent.getScrollElement();
+                return (scrollElement.scrollTop ===
+                    scrollElement.scrollHeight - scrollElement.clientHeight);
+            });
+        }
+        presentSettings(event) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+                const settingsPopover = yield this.popoverController.create({
+                    component: _settings_settings_component__WEBPACK_IMPORTED_MODULE_6__["SettingsComponent"],
+                    event,
+                });
+                return yield settingsPopover.present();
+            });
+        }
+        presentCamera() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+                const cameraModal = yield this.modalController.create({
+                    component: _camera_camera_component__WEBPACK_IMPORTED_MODULE_5__["CameraComponent"],
+                });
+                return yield cameraModal.present();
+            });
+        }
+        trackMoment(_, item) {
+            return item.id;
+        }
+    }
+    HomePage.ɵfac = function HomePage_Factory(t) { return new (t || HomePage)(_angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_ionic_angular__WEBPACK_IMPORTED_MODULE_1__["PopoverController"]), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_ionic_angular__WEBPACK_IMPORTED_MODULE_1__["ModalController"]), _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdirectiveInject"](_shared_moment_moment_repository_service__WEBPACK_IMPORTED_MODULE_8__["MomentRepository"])); };
+    HomePage.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdefineComponent"]({ type: HomePage, selectors: [["app-home"]], viewQuery: function HomePage_Query(rf, ctx) {
+            if (rf & 1) {
+                _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵviewQuery"](_ionic_angular__WEBPACK_IMPORTED_MODULE_1__["IonContent"], 1);
+            }
+            if (rf & 2) {
+                let _t;
+                _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵloadQuery"]()) && (ctx.ionContent = _t.first);
+            }
+        }, decls: 14, vars: 8, consts: [["scrollEvents", "", 3, "ionScroll"], ["size", "6", "size-sm", "4", "size-md", "3", "size-lg", "2", 4, "ngFor", "ngForOf", "ngForTrackBy"], ["vertical", "bottom", "horizontal", "center", "slot", "fixed", "edge", ""], [3, "click"], ["name", "camera-outline"], ["slot", "primary"], ["slot", "secondary", 3, "click"], ["slot", "icon-only", "name", "settings-outline"], ["size", "6", "size-sm", "4", "size-md", "3", "size-lg", "2"], ["col", ""], [3, "moment"]], template: function HomePage_Template(rf, ctx) {
+            if (rf & 1) {
+                _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "ion-content", 0);
+                _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("ionScroll", function HomePage_Template_ion_content_ionScroll_0_listener($event) { return ctx.onScroll($event); });
+                _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](1, "ion-grid");
+                _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](2, "ion-row");
+                _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵtemplate"](3, HomePage_ion_col_3_Template, 3, 1, "ion-col", 1);
+                _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipe"](4, "ngrxPush");
+                _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+                _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+                _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](5, "ion-fab", 2);
+                _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](6, "ion-fab-button", 3);
+                _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("click", function HomePage_Template_ion_fab_button_click_6_listener() { return ctx.presentCamera(); });
+                _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelement"](7, "ion-icon", 4);
+                _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+                _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+                _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+                _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](8, "ion-footer");
+                _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipe"](9, "ngrxPush");
+                _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](10, "ion-toolbar");
+                _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](11, "ion-buttons", 5);
+                _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](12, "ion-button", 6);
+                _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵlistener"]("click", function HomePage_Template_ion_button_click_12_listener($event) { return ctx.presentSettings($event); });
+                _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelement"](13, "ion-icon", 7);
+                _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+                _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+                _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+                _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementEnd"]();
+            }
+            if (rf & 2) {
+                _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](3);
+                _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngForOf", _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipeBind1"](4, 4, ctx.moments$))("ngForTrackBy", ctx.trackMoment);
+                _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵadvance"](5);
+                _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵclassProp"]("ion-no-border", _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵpipeBind1"](9, 6, ctx.noFooterBorder$));
+            }
+        }, directives: [_ionic_angular__WEBPACK_IMPORTED_MODULE_1__["IonContent"], _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["IonGrid"], _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["IonRow"], _angular_common__WEBPACK_IMPORTED_MODULE_9__["NgForOf"], _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["IonFab"], _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["IonFabButton"], _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["IonIcon"], _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["IonFooter"], _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["IonToolbar"], _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["IonButtons"], _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["IonButton"], _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["IonCol"], _moment_thumbnail_moment_thumbnail_component__WEBPACK_IMPORTED_MODULE_10__["MomentThumbnailComponent"]], pipes: [_ngrx_component__WEBPACK_IMPORTED_MODULE_11__["PushPipe"]], styles: ["app-moment-thumbnail[_ngcontent-%COMP%] {\n  height: 150px;\n  border-radius: 4px;\n  box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;\n}"] });
+    return HomePage;
+})();
+
+
+/***/ }),
+
+/***/ "9A8T":
+/*!******************************************************************************!*\
+  !*** ./node_modules/@ngrx/component/__ivy_ngcc__/fesm2015/ngrx-component.js ***!
+  \******************************************************************************/
+/*! exports provided: LetDirective, PushPipe, ReactiveComponentModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LetDirective", function() { return LetDirective; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PushPipe", function() { return PushPipe; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReactiveComponentModule", function() { return ReactiveComponentModule; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "qCKp");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "kU1M");
+
+
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/core/cd-aware/cd-aware_creator.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ * @template U
+ */
+
+function CdAware() { }
+if (false) {}
+/**
+ * class CdAware
+ *
+ * \@description
+ * This abstract class holds all the shared logic for the push pipe and the let directive
+ * responsible for change detection
+ * If you extend this class you need to implement how the update of the rendered value happens.
+ * Also custom behaviour is something you need to implement in the extending class
+ * @template U
+ * @param {?} cfg
+ * @return {?}
+ */
+function createCdAware(cfg) {
+    /** @type {?} */
+    const potentialObservablesSubject = new rxjs__WEBPACK_IMPORTED_MODULE_1__["Subject"]();
+    /** @type {?} */
+    const observablesFromTemplate$ = potentialObservablesSubject.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["distinctUntilChanged"])());
+    /** @type {?} */
+    const rendering$ = observablesFromTemplate$.pipe(
+    // Compose the observables from the template and the strategy
+    Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMap"])(( /**
+     * @param {?} observable$
+     * @return {?}
+     */(observable$) => {
+        // If the passed observable is:
+        // - undefined - No value set
+        // - null - null passed directly or no value set over `async` pipe
+        if (observable$ == null) {
+            // Update the value to render_creator with null/undefined
+            cfg.updateViewContextObserver.next(( /** @type {?} */(observable$)));
+            // Render the view
+            cfg.render();
+            // Stop further processing
+            return rxjs__WEBPACK_IMPORTED_MODULE_1__["EMPTY"];
+        }
+        /** @type {?} */
+        const ob$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["isObservable"])(observable$)
+            ? (( /** @type {?} */(observable$)))
+            : Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["from"])(observable$);
+        // If a new Observable arrives, reset the value to render_creator
+        // We do this because we don't know when the next value arrives and want to get rid of the old value
+        cfg.resetContextObserver.next();
+        cfg.render();
+        return (( /** @type {?} */(ob$))).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["distinctUntilChanged"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(cfg.updateViewContextObserver), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(( /**
+         * @return {?}
+         */() => cfg.render())), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["catchError"])(( /**
+         * @param {?} e
+         * @return {?}
+         */(e) => {
+            return rxjs__WEBPACK_IMPORTED_MODULE_1__["EMPTY"];
+        })));
+    })));
+    return ( /** @type {?} */({
+        /**
+         * @param {?} value
+         * @return {?}
+         */
+        nextPotentialObservable(value) {
+            potentialObservablesSubject.next(value);
+        },
+        /**
+         * @return {?}
+         */
+        subscribe() {
+            return rendering$.subscribe();
+        },
+    }));
+}
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/core/utils/has-zone.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * \@description
+ *
+ * Determines if the application uses `NgZone` or `NgNoopZone` as ngZone service instance.
+ *
+ * The function can be just imported and used everywhere.
+ *
+ * ```ts
+ * import { hasZone } from `utils/has-zone`;
+ *
+ * console.log(hasZone());
+ * ```
+ * @param {?} z
+ * @return {?}
+ */
+function hasZone(z) {
+    return z instanceof _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"];
+}
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/core/cd-aware/creator_render.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function RenderConfig() { }
+if (false) {}
+/**
+ * @template T
+ * @param {?} config
+ * @return {?}
+ */
+function createRender(config) {
+    /**
+     * @return {?}
+     */
+    function render() {
+        if (hasZone(config.ngZone)) {
+            config.cdRef.markForCheck();
+        }
+        else {
+            config.cdRef.detectChanges();
+        }
+    }
+    return render;
+}
+let PushPipe = /*@__PURE__*/ (() => {
+    class PushPipe {
+        /**
+         * @param {?} cdRef
+         * @param {?} ngZone
+         */
+        constructor(cdRef, ngZone) {
+            this.resetContextObserver = {
+                next: ( /**
+                 * @return {?}
+                 */() => (this.renderedValue = undefined)),
+            };
+            this.updateViewContextObserver = {
+                next: ( /**
+                 * @param {?} value
+                 * @return {?}
+                 */(value) => (this.renderedValue = value)),
+            };
+            this.cdAware = createCdAware({
+                render: createRender({ cdRef, ngZone }),
+                updateViewContextObserver: this.updateViewContextObserver,
+                resetContextObserver: this.resetContextObserver,
+            });
+            this.subscription = this.cdAware.subscribe();
+        }
+        /**
+         * @template T
+         * @param {?} potentialObservable
+         * @return {?}
+         */
+        transform(potentialObservable) {
+            this.cdAware.nextPotentialObservable(potentialObservable);
+            return ( /** @type {?} */(this.renderedValue));
+        }
+        /**
+         * @return {?}
+         */
+        ngOnDestroy() {
+            this.subscription.unsubscribe();
+        }
+    }
+    PushPipe.ɵfac = function PushPipe_Factory(t) { return new (t || PushPipe)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinjectPipeChangeDetectorRef"](), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"])); };
+    PushPipe.ɵpipe = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefinePipe"]({ name: "ngrxPush", type: PushPipe, pure: false });
+    return PushPipe;
+})();
+if (false) {}
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/let/let.directive.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ * @template T
+ */
+function LetViewContext() { }
+if (false) {}
+let LetDirective = /*@__PURE__*/ (() => {
+    class LetDirective {
+        /**
+         * @param {?} cdRef
+         * @param {?} ngZone
+         * @param {?} templateRef
+         * @param {?} viewContainerRef
+         */
+        constructor(cdRef, ngZone, templateRef, viewContainerRef) {
+            this.templateRef = templateRef;
+            this.viewContainerRef = viewContainerRef;
+            this.ViewContext = {
+                $implicit: undefined,
+                ngrxLet: undefined,
+                $error: false,
+                $complete: false,
+            };
+            this.resetContextObserver = {
+                next: ( /**
+                 * @return {?}
+                 */() => {
+                    // if not initialized no need to set undefined
+                    if (this.embeddedView) {
+                        this.ViewContext.$implicit = undefined;
+                        this.ViewContext.ngrxLet = undefined;
+                        this.ViewContext.$error = false;
+                        this.ViewContext.$complete = false;
+                    }
+                }),
+            };
+            this.updateViewContextObserver = {
+                next: ( /**
+                 * @param {?} value
+                 * @return {?}
+                 */(value) => {
+                    // to have init lazy
+                    if (!this.embeddedView) {
+                        this.createEmbeddedView();
+                    }
+                    this.ViewContext.$implicit = value;
+                    this.ViewContext.ngrxLet = value;
+                }),
+                error: ( /**
+                 * @param {?} error
+                 * @return {?}
+                 */(error) => {
+                    // to have init lazy
+                    if (!this.embeddedView) {
+                        this.createEmbeddedView();
+                    }
+                    this.ViewContext.$error = true;
+                }),
+                complete: ( /**
+                 * @return {?}
+                 */() => {
+                    // to have init lazy
+                    if (!this.embeddedView) {
+                        this.createEmbeddedView();
+                    }
+                    this.ViewContext.$complete = true;
+                }),
+            };
+            this.cdAware = createCdAware({
+                render: createRender({ cdRef, ngZone }),
+                resetContextObserver: this.resetContextObserver,
+                updateViewContextObserver: this.updateViewContextObserver,
+            });
+            this.subscription = this.cdAware.subscribe();
+        }
+        /**
+         * @template U
+         * @param {?} dir
+         * @param {?} ctx
+         * @return {?}
+         */
+        static ngTemplateContextGuard(dir, ctx) {
+            return true;
+        }
+        /**
+         * @param {?} potentialObservable
+         * @return {?}
+         */
+        set ngrxLet(potentialObservable) {
+            this.cdAware.nextPotentialObservable(potentialObservable);
+        }
+        /**
+         * @return {?}
+         */
+        createEmbeddedView() {
+            this.embeddedView = this.viewContainerRef.createEmbeddedView(this.templateRef, this.ViewContext);
+        }
+        /**
+         * @return {?}
+         */
+        ngOnDestroy() {
+            this.subscription.unsubscribe();
+            this.viewContainerRef.clear();
+        }
+    }
+    LetDirective.ɵfac = function LetDirective_Factory(t) { return new (t || LetDirective)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ChangeDetectorRef"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgZone"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["TemplateRef"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewContainerRef"])); };
+    LetDirective.ɵdir = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({ type: LetDirective, selectors: [["", "ngrxLet", ""]], inputs: { ngrxLet: "ngrxLet" } });
+    return LetDirective;
+})();
+if (false) {}
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/reactive-component.module.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+const DECLARATIONS = [LetDirective, PushPipe];
+/** @type {?} */
+const EXPORTS = [DECLARATIONS];
+let ReactiveComponentModule = /*@__PURE__*/ (() => {
+    class ReactiveComponentModule {
+    }
+    ReactiveComponentModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({ type: ReactiveComponentModule });
+    ReactiveComponentModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({ factory: function ReactiveComponentModule_Factory(t) { return new (t || ReactiveComponentModule)(); } });
+    return ReactiveComponentModule;
+})();
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsetNgModuleScope"](ReactiveComponentModule, { declarations: [LetDirective, PushPipe], exports: [LetDirective, PushPipe] }); })();
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/index.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @fileoverview added by tsickle
+ * Generated from: public_api.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @fileoverview added by tsickle
+ * Generated from: index.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @fileoverview added by tsickle
+ * Generated from: ngrx-component.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+//# sourceMappingURL=ngrx-component.js.map
+
+
+/***/ }),
+
+/***/ "9GuR":
+/*!***********************************************************************!*\
+  !*** ./node_modules/image-blob-reduce/dist/image-blob-reduce.esm.mjs ***!
+  \***********************************************************************/
+/*! exports provided: default */
+/***/ (function(__webpack_module__, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+
+/*! image-blob-reduce 2.2.2 https://github.com/nodeca/image-blob-reduce @license MIT */
+var assign = function assign(to) {
+  var from;
+
+  for (var s = 1; s < arguments.length; s++) {
+    from = Object(arguments[s]);
+
+    for (var key in from) {
+      if (Object.prototype.hasOwnProperty.call(from, key)) to[key] = from[key];
+    }
+  }
+
+  return to;
+};
+
+
+function pick(from, props) {
+  var to = {};
+
+  props.forEach(function (key) {
+    if (Object.prototype.hasOwnProperty.call(from, key)) to[key] = from[key];
+  });
+
+  return to;
+}
+
+
+function pick_pica_resize_options(from) {
+  return pick(from, [
+    'alpha',
+    'unsharpAmount',
+    'unsharpRadius',
+    'unsharpThreshold',
+    'cancelToken'
+  ]);
+}
+
+
+var pick_1 = pick;
+var pick_pica_resize_options_1 = pick_pica_resize_options;
+
+var utils = {
+	assign: assign,
+	pick: pick_1,
+	pick_pica_resize_options: pick_pica_resize_options_1
+};
+
+function createCommonjsModule(fn) {
+  var module = { exports: {} };
+	return fn(module, module.exports), module.exports;
+}
+
+function commonjsRequire (target) {
+	throw new Error('Could not dynamically require "' + target + '". Please configure the dynamicRequireTargets option of @rollup/plugin-commonjs appropriately for this require call to behave properly.');
+}
+
+/*!
+
+pica
+https://github.com/nodeca/pica
+
+*/
+
+var pica = createCommonjsModule(function (module, exports) {
+(function(f){{module.exports=f();}})(function(){return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof commonjsRequire&&commonjsRequire;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t);}return n[i].exports}for(var u="function"==typeof commonjsRequire&&commonjsRequire,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(_dereq_,module,exports){
+
+var inherits = _dereq_('inherits');
+
+var Multimath = _dereq_('multimath');
+
+var mm_unsharp_mask = _dereq_('multimath/lib/unsharp_mask');
+
+var mm_resize = _dereq_('./mm_resize');
+
+function MathLib(requested_features) {
+  var __requested_features = requested_features || [];
+
+  var features = {
+    js: __requested_features.indexOf('js') >= 0,
+    wasm: __requested_features.indexOf('wasm') >= 0
+  };
+  Multimath.call(this, features);
+  this.features = {
+    js: features.js,
+    wasm: features.wasm && this.has_wasm()
+  };
+  this.use(mm_unsharp_mask);
+  this.use(mm_resize);
+}
+
+inherits(MathLib, Multimath);
+
+MathLib.prototype.resizeAndUnsharp = function resizeAndUnsharp(options, cache) {
+  var result = this.resize(options, cache);
+
+  if (options.unsharpAmount) {
+    this.unsharp_mask(result, options.toWidth, options.toHeight, options.unsharpAmount, options.unsharpRadius, options.unsharpThreshold);
+  }
+
+  return result;
+};
+
+module.exports = MathLib;
+
+},{"./mm_resize":4,"inherits":15,"multimath":16,"multimath/lib/unsharp_mask":19}],2:[function(_dereq_,module,exports){
+//var FIXED_FRAC_BITS = 14;
+
+function clampTo8(i) {
+  return i < 0 ? 0 : i > 255 ? 255 : i;
+} // Convolve image in horizontal directions and transpose output. In theory,
+// transpose allow:
+//
+// - use the same convolver for both passes (this fails due different
+//   types of input array and temporary buffer)
+// - making vertical pass by horisonltal lines inprove CPU cache use.
+//
+// But in real life this doesn't work :)
+//
+
+
+function convolveHorizontally(src, dest, srcW, srcH, destW, filters) {
+  var r, g, b, a;
+  var filterPtr, filterShift, filterSize;
+  var srcPtr, srcY, destX, filterVal;
+  var srcOffset = 0,
+      destOffset = 0; // For each row
+
+  for (srcY = 0; srcY < srcH; srcY++) {
+    filterPtr = 0; // Apply precomputed filters to each destination row point
+
+    for (destX = 0; destX < destW; destX++) {
+      // Get the filter that determines the current output pixel.
+      filterShift = filters[filterPtr++];
+      filterSize = filters[filterPtr++];
+      srcPtr = srcOffset + filterShift * 4 | 0;
+      r = g = b = a = 0; // Apply the filter to the row to get the destination pixel r, g, b, a
+
+      for (; filterSize > 0; filterSize--) {
+        filterVal = filters[filterPtr++]; // Use reverse order to workaround deopts in old v8 (node v.10)
+        // Big thanks to @mraleph (Vyacheslav Egorov) for the tip.
+
+        a = a + filterVal * src[srcPtr + 3] | 0;
+        b = b + filterVal * src[srcPtr + 2] | 0;
+        g = g + filterVal * src[srcPtr + 1] | 0;
+        r = r + filterVal * src[srcPtr] | 0;
+        srcPtr = srcPtr + 4 | 0;
+      } // Bring this value back in range. All of the filter scaling factors
+      // are in fixed point with FIXED_FRAC_BITS bits of fractional part.
+      //
+      // (!) Add 1/2 of value before clamping to get proper rounding. In other
+      // case brightness loss will be noticeable if you resize image with white
+      // border and place it on white background.
+      //
+
+
+      dest[destOffset + 3] = clampTo8(a + (1 << 13) >> 14
+      /*FIXED_FRAC_BITS*/
+      );
+      dest[destOffset + 2] = clampTo8(b + (1 << 13) >> 14
+      /*FIXED_FRAC_BITS*/
+      );
+      dest[destOffset + 1] = clampTo8(g + (1 << 13) >> 14
+      /*FIXED_FRAC_BITS*/
+      );
+      dest[destOffset] = clampTo8(r + (1 << 13) >> 14
+      /*FIXED_FRAC_BITS*/
+      );
+      destOffset = destOffset + srcH * 4 | 0;
+    }
+
+    destOffset = (srcY + 1) * 4 | 0;
+    srcOffset = (srcY + 1) * srcW * 4 | 0;
+  }
+} // Technically, convolvers are the same. But input array and temporary
+// buffer can be of different type (especially, in old browsers). So,
+// keep code in separate functions to avoid deoptimizations & speed loss.
+
+
+function convolveVertically(src, dest, srcW, srcH, destW, filters) {
+  var r, g, b, a;
+  var filterPtr, filterShift, filterSize;
+  var srcPtr, srcY, destX, filterVal;
+  var srcOffset = 0,
+      destOffset = 0; // For each row
+
+  for (srcY = 0; srcY < srcH; srcY++) {
+    filterPtr = 0; // Apply precomputed filters to each destination row point
+
+    for (destX = 0; destX < destW; destX++) {
+      // Get the filter that determines the current output pixel.
+      filterShift = filters[filterPtr++];
+      filterSize = filters[filterPtr++];
+      srcPtr = srcOffset + filterShift * 4 | 0;
+      r = g = b = a = 0; // Apply the filter to the row to get the destination pixel r, g, b, a
+
+      for (; filterSize > 0; filterSize--) {
+        filterVal = filters[filterPtr++]; // Use reverse order to workaround deopts in old v8 (node v.10)
+        // Big thanks to @mraleph (Vyacheslav Egorov) for the tip.
+
+        a = a + filterVal * src[srcPtr + 3] | 0;
+        b = b + filterVal * src[srcPtr + 2] | 0;
+        g = g + filterVal * src[srcPtr + 1] | 0;
+        r = r + filterVal * src[srcPtr] | 0;
+        srcPtr = srcPtr + 4 | 0;
+      } // Bring this value back in range. All of the filter scaling factors
+      // are in fixed point with FIXED_FRAC_BITS bits of fractional part.
+      //
+      // (!) Add 1/2 of value before clamping to get proper rounding. In other
+      // case brightness loss will be noticeable if you resize image with white
+      // border and place it on white background.
+      //
+
+
+      dest[destOffset + 3] = clampTo8(a + (1 << 13) >> 14
+      /*FIXED_FRAC_BITS*/
+      );
+      dest[destOffset + 2] = clampTo8(b + (1 << 13) >> 14
+      /*FIXED_FRAC_BITS*/
+      );
+      dest[destOffset + 1] = clampTo8(g + (1 << 13) >> 14
+      /*FIXED_FRAC_BITS*/
+      );
+      dest[destOffset] = clampTo8(r + (1 << 13) >> 14
+      /*FIXED_FRAC_BITS*/
+      );
+      destOffset = destOffset + srcH * 4 | 0;
+    }
+
+    destOffset = (srcY + 1) * 4 | 0;
+    srcOffset = (srcY + 1) * srcW * 4 | 0;
+  }
+}
+
+module.exports = {
+  convolveHorizontally: convolveHorizontally,
+  convolveVertically: convolveVertically
+};
+
+},{}],3:[function(_dereq_,module,exports){
+/* eslint-disable max-len */
+
+module.exports = 'AGFzbQEAAAABFAJgBn9/f39/fwBgB39/f39/f38AAg8BA2VudgZtZW1vcnkCAAEDAwIAAQQEAXAAAAcZAghjb252b2x2ZQAACmNvbnZvbHZlSFYAAQkBAArmAwLBAwEQfwJAIANFDQAgBEUNACAFQQRqIRVBACEMQQAhDQNAIA0hDkEAIRFBACEHA0AgB0ECaiESAn8gBSAHQQF0IgdqIgZBAmouAQAiEwRAQQAhCEEAIBNrIRQgFSAHaiEPIAAgDCAGLgEAakECdGohEEEAIQlBACEKQQAhCwNAIBAoAgAiB0EYdiAPLgEAIgZsIAtqIQsgB0H/AXEgBmwgCGohCCAHQRB2Qf8BcSAGbCAKaiEKIAdBCHZB/wFxIAZsIAlqIQkgD0ECaiEPIBBBBGohECAUQQFqIhQNAAsgEiATagwBC0EAIQtBACEKQQAhCUEAIQggEgshByABIA5BAnRqIApBgMAAakEOdSIGQf8BIAZB/wFIG0EQdEGAgPwHcUEAIAZBAEobIAtBgMAAakEOdSIGQf8BIAZB/wFIG0EYdEEAIAZBAEobciAJQYDAAGpBDnUiBkH/ASAGQf8BSBtBCHRBgP4DcUEAIAZBAEobciAIQYDAAGpBDnUiBkH/ASAGQf8BSBtB/wFxQQAgBkEAShtyNgIAIA4gA2ohDiARQQFqIhEgBEcNAAsgDCACaiEMIA1BAWoiDSADRw0ACwsLIQACQEEAIAIgAyAEIAUgABAAIAJBACAEIAUgBiABEAALCw==';
+
+},{}],4:[function(_dereq_,module,exports){
+
+module.exports = {
+  name: 'resize',
+  fn: _dereq_('./resize'),
+  wasm_fn: _dereq_('./resize_wasm'),
+  wasm_src: _dereq_('./convolve_wasm_base64')
+};
+
+},{"./convolve_wasm_base64":3,"./resize":5,"./resize_wasm":8}],5:[function(_dereq_,module,exports){
+
+var createFilters = _dereq_('./resize_filter_gen');
+
+var convolveHorizontally = _dereq_('./convolve').convolveHorizontally;
+
+var convolveVertically = _dereq_('./convolve').convolveVertically;
+
+function resetAlpha(dst, width, height) {
+  var ptr = 3,
+      len = width * height * 4 | 0;
+
+  while (ptr < len) {
+    dst[ptr] = 0xFF;
+    ptr = ptr + 4 | 0;
+  }
+}
+
+module.exports = function resize(options) {
+  var src = options.src;
+  var srcW = options.width;
+  var srcH = options.height;
+  var destW = options.toWidth;
+  var destH = options.toHeight;
+  var scaleX = options.scaleX || options.toWidth / options.width;
+  var scaleY = options.scaleY || options.toHeight / options.height;
+  var offsetX = options.offsetX || 0;
+  var offsetY = options.offsetY || 0;
+  var dest = options.dest || new Uint8Array(destW * destH * 4);
+  var quality = typeof options.quality === 'undefined' ? 3 : options.quality;
+  var alpha = options.alpha || false;
+  var filtersX = createFilters(quality, srcW, destW, scaleX, offsetX),
+      filtersY = createFilters(quality, srcH, destH, scaleY, offsetY);
+  var tmp = new Uint8Array(destW * srcH * 4); // To use single function we need src & tmp of the same type.
+  // But src can be CanvasPixelArray, and tmp - Uint8Array. So, keep
+  // vertical and horizontal passes separately to avoid deoptimization.
+
+  convolveHorizontally(src, tmp, srcW, srcH, destW, filtersX);
+  convolveVertically(tmp, dest, srcH, destW, destH, filtersY); // That's faster than doing checks in convolver.
+  // !!! Note, canvas data is not premultipled. We don't need other
+  // alpha corrections.
+
+  if (!alpha) resetAlpha(dest, destW, destH);
+  return dest;
+};
+
+},{"./convolve":2,"./resize_filter_gen":6}],6:[function(_dereq_,module,exports){
+
+var FILTER_INFO = _dereq_('./resize_filter_info'); // Precision of fixed FP values
+
+
+var FIXED_FRAC_BITS = 14;
+
+function toFixedPoint(num) {
+  return Math.round(num * ((1 << FIXED_FRAC_BITS) - 1));
+}
+
+module.exports = function resizeFilterGen(quality, srcSize, destSize, scale, offset) {
+  var filterFunction = FILTER_INFO[quality].filter;
+  var scaleInverted = 1.0 / scale;
+  var scaleClamped = Math.min(1.0, scale); // For upscale
+  // Filter window (averaging interval), scaled to src image
+
+  var srcWindow = FILTER_INFO[quality].win / scaleClamped;
+  var destPixel, srcPixel, srcFirst, srcLast, filterElementSize, floatFilter, fxpFilter, total, pxl, idx, floatVal, filterTotal, filterVal;
+  var leftNotEmpty, rightNotEmpty, filterShift, filterSize;
+  var maxFilterElementSize = Math.floor((srcWindow + 1) * 2);
+  var packedFilter = new Int16Array((maxFilterElementSize + 2) * destSize);
+  var packedFilterPtr = 0;
+  var slowCopy = !packedFilter.subarray || !packedFilter.set; // For each destination pixel calculate source range and built filter values
+
+  for (destPixel = 0; destPixel < destSize; destPixel++) {
+    // Scaling should be done relative to central pixel point
+    srcPixel = (destPixel + 0.5) * scaleInverted + offset;
+    srcFirst = Math.max(0, Math.floor(srcPixel - srcWindow));
+    srcLast = Math.min(srcSize - 1, Math.ceil(srcPixel + srcWindow));
+    filterElementSize = srcLast - srcFirst + 1;
+    floatFilter = new Float32Array(filterElementSize);
+    fxpFilter = new Int16Array(filterElementSize);
+    total = 0.0; // Fill filter values for calculated range
+
+    for (pxl = srcFirst, idx = 0; pxl <= srcLast; pxl++, idx++) {
+      floatVal = filterFunction((pxl + 0.5 - srcPixel) * scaleClamped);
+      total += floatVal;
+      floatFilter[idx] = floatVal;
+    } // Normalize filter, convert to fixed point and accumulate conversion error
+
+
+    filterTotal = 0;
+
+    for (idx = 0; idx < floatFilter.length; idx++) {
+      filterVal = floatFilter[idx] / total;
+      filterTotal += filterVal;
+      fxpFilter[idx] = toFixedPoint(filterVal);
+    } // Compensate normalization error, to minimize brightness drift
+
+
+    fxpFilter[destSize >> 1] += toFixedPoint(1.0 - filterTotal); //
+    // Now pack filter to useable form
+    //
+    // 1. Trim heading and tailing zero values, and compensate shitf/length
+    // 2. Put all to single array in this format:
+    //
+    //    [ pos shift, data length, value1, value2, value3, ... ]
+    //
+
+    leftNotEmpty = 0;
+
+    while (leftNotEmpty < fxpFilter.length && fxpFilter[leftNotEmpty] === 0) {
+      leftNotEmpty++;
+    }
+
+    if (leftNotEmpty < fxpFilter.length) {
+      rightNotEmpty = fxpFilter.length - 1;
+
+      while (rightNotEmpty > 0 && fxpFilter[rightNotEmpty] === 0) {
+        rightNotEmpty--;
+      }
+
+      filterShift = srcFirst + leftNotEmpty;
+      filterSize = rightNotEmpty - leftNotEmpty + 1;
+      packedFilter[packedFilterPtr++] = filterShift; // shift
+
+      packedFilter[packedFilterPtr++] = filterSize; // size
+
+      if (!slowCopy) {
+        packedFilter.set(fxpFilter.subarray(leftNotEmpty, rightNotEmpty + 1), packedFilterPtr);
+        packedFilterPtr += filterSize;
+      } else {
+        // fallback for old IE < 11, without subarray/set methods
+        for (idx = leftNotEmpty; idx <= rightNotEmpty; idx++) {
+          packedFilter[packedFilterPtr++] = fxpFilter[idx];
+        }
+      }
+    } else {
+      // zero data, write header only
+      packedFilter[packedFilterPtr++] = 0; // shift
+
+      packedFilter[packedFilterPtr++] = 0; // size
+    }
+  }
+
+  return packedFilter;
+};
+
+},{"./resize_filter_info":7}],7:[function(_dereq_,module,exports){
+
+module.exports = [{
+  // Nearest neibor (Box)
+  win: 0.5,
+  filter: function filter(x) {
+    return x >= -0.5 && x < 0.5 ? 1.0 : 0.0;
+  }
+}, {
+  // Hamming
+  win: 1.0,
+  filter: function filter(x) {
+    if (x <= -1.0 || x >= 1.0) {
+      return 0.0;
+    }
+
+    if (x > -1.19209290E-07 && x < 1.19209290E-07) {
+      return 1.0;
+    }
+
+    var xpi = x * Math.PI;
+    return Math.sin(xpi) / xpi * (0.54 + 0.46 * Math.cos(xpi / 1.0));
+  }
+}, {
+  // Lanczos, win = 2
+  win: 2.0,
+  filter: function filter(x) {
+    if (x <= -2.0 || x >= 2.0) {
+      return 0.0;
+    }
+
+    if (x > -1.19209290E-07 && x < 1.19209290E-07) {
+      return 1.0;
+    }
+
+    var xpi = x * Math.PI;
+    return Math.sin(xpi) / xpi * Math.sin(xpi / 2.0) / (xpi / 2.0);
+  }
+}, {
+  // Lanczos, win = 3
+  win: 3.0,
+  filter: function filter(x) {
+    if (x <= -3.0 || x >= 3.0) {
+      return 0.0;
+    }
+
+    if (x > -1.19209290E-07 && x < 1.19209290E-07) {
+      return 1.0;
+    }
+
+    var xpi = x * Math.PI;
+    return Math.sin(xpi) / xpi * Math.sin(xpi / 3.0) / (xpi / 3.0);
+  }
+}];
+
+},{}],8:[function(_dereq_,module,exports){
+
+var createFilters = _dereq_('./resize_filter_gen');
+
+function resetAlpha(dst, width, height) {
+  var ptr = 3,
+      len = width * height * 4 | 0;
+
+  while (ptr < len) {
+    dst[ptr] = 0xFF;
+    ptr = ptr + 4 | 0;
+  }
+}
+
+function asUint8Array(src) {
+  return new Uint8Array(src.buffer, 0, src.byteLength);
+}
+
+var IS_LE = true; // should not crash everything on module load in old browsers
+
+try {
+  IS_LE = new Uint32Array(new Uint8Array([1, 0, 0, 0]).buffer)[0] === 1;
+} catch (__) {}
+
+function copyInt16asLE(src, target, target_offset) {
+  if (IS_LE) {
+    target.set(asUint8Array(src), target_offset);
+    return;
+  }
+
+  for (var ptr = target_offset, i = 0; i < src.length; i++) {
+    var data = src[i];
+    target[ptr++] = data & 0xFF;
+    target[ptr++] = data >> 8 & 0xFF;
+  }
+}
+
+module.exports = function resize_wasm(options) {
+  var src = options.src;
+  var srcW = options.width;
+  var srcH = options.height;
+  var destW = options.toWidth;
+  var destH = options.toHeight;
+  var scaleX = options.scaleX || options.toWidth / options.width;
+  var scaleY = options.scaleY || options.toHeight / options.height;
+  var offsetX = options.offsetX || 0.0;
+  var offsetY = options.offsetY || 0.0;
+  var dest = options.dest || new Uint8Array(destW * destH * 4);
+  var quality = typeof options.quality === 'undefined' ? 3 : options.quality;
+  var alpha = options.alpha || false;
+  var filtersX = createFilters(quality, srcW, destW, scaleX, offsetX),
+      filtersY = createFilters(quality, srcH, destH, scaleY, offsetY); // destination is 0 too.
+
+  var src_offset = 0; // buffer between convolve passes
+
+  var tmp_offset = this.__align(src_offset + Math.max(src.byteLength, dest.byteLength));
+
+  var filtersX_offset = this.__align(tmp_offset + srcH * destW * 4);
+
+  var filtersY_offset = this.__align(filtersX_offset + filtersX.byteLength);
+
+  var alloc_bytes = filtersY_offset + filtersY.byteLength;
+
+  var instance = this.__instance('resize', alloc_bytes); //
+  // Fill memory block with data to process
+  //
+
+
+  var mem = new Uint8Array(this.__memory.buffer);
+  var mem32 = new Uint32Array(this.__memory.buffer); // 32-bit copy is much faster in chrome
+
+  var src32 = new Uint32Array(src.buffer);
+  mem32.set(src32); // We should guarantee LE bytes order. Filters are not big, so
+  // speed difference is not significant vs direct .set()
+
+  copyInt16asLE(filtersX, mem, filtersX_offset);
+  copyInt16asLE(filtersY, mem, filtersY_offset); //
+  // Now call webassembly method
+  // emsdk does method names with '_'
+
+  var fn = instance.exports.convolveHV || instance.exports._convolveHV;
+  fn(filtersX_offset, filtersY_offset, tmp_offset, srcW, srcH, destW, destH); //
+  // Copy data back to typed array
+  //
+  // 32-bit copy is much faster in chrome
+
+  var dest32 = new Uint32Array(dest.buffer);
+  dest32.set(new Uint32Array(this.__memory.buffer, 0, destH * destW)); // That's faster than doing checks in convolver.
+  // !!! Note, canvas data is not premultipled. We don't need other
+  // alpha corrections.
+
+  if (!alpha) resetAlpha(dest, destW, destH);
+  return dest;
+};
+
+},{"./resize_filter_gen":6}],9:[function(_dereq_,module,exports){
+
+var GC_INTERVAL = 100;
+
+function Pool(create, idle) {
+  this.create = create;
+  this.available = [];
+  this.acquired = {};
+  this.lastId = 1;
+  this.timeoutId = 0;
+  this.idle = idle || 2000;
+}
+
+Pool.prototype.acquire = function () {
+  var _this = this;
+
+  var resource;
+
+  if (this.available.length !== 0) {
+    resource = this.available.pop();
+  } else {
+    resource = this.create();
+    resource.id = this.lastId++;
+
+    resource.release = function () {
+      return _this.release(resource);
+    };
+  }
+
+  this.acquired[resource.id] = resource;
+  return resource;
+};
+
+Pool.prototype.release = function (resource) {
+  var _this2 = this;
+
+  delete this.acquired[resource.id];
+  resource.lastUsed = Date.now();
+  this.available.push(resource);
+
+  if (this.timeoutId === 0) {
+    this.timeoutId = setTimeout(function () {
+      return _this2.gc();
+    }, GC_INTERVAL);
+  }
+};
+
+Pool.prototype.gc = function () {
+  var _this3 = this;
+
+  var now = Date.now();
+  this.available = this.available.filter(function (resource) {
+    if (now - resource.lastUsed > _this3.idle) {
+      resource.destroy();
+      return false;
+    }
+
+    return true;
+  });
+
+  if (this.available.length !== 0) {
+    this.timeoutId = setTimeout(function () {
+      return _this3.gc();
+    }, GC_INTERVAL);
+  } else {
+    this.timeoutId = 0;
+  }
+};
+
+module.exports = Pool;
+
+},{}],10:[function(_dereq_,module,exports){
+// min size = 1 can consume large amount of memory
+
+var MIN_INNER_TILE_SIZE = 2;
+
+module.exports = function createStages(fromWidth, fromHeight, toWidth, toHeight, srcTileSize, destTileBorder) {
+  var scaleX = toWidth / fromWidth;
+  var scaleY = toHeight / fromHeight; // derived from createRegions equation:
+  // innerTileWidth = pixelFloor(srcTileSize * scaleX) - 2 * destTileBorder;
+
+  var minScale = (2 * destTileBorder + MIN_INNER_TILE_SIZE + 1) / srcTileSize; // refuse to scale image multiple times by less than twice each time,
+  // it could only happen because of invalid options
+
+  if (minScale > 0.5) return [[toWidth, toHeight]];
+  var stageCount = Math.ceil(Math.log(Math.min(scaleX, scaleY)) / Math.log(minScale)); // no additional resizes are necessary,
+  // stageCount can be zero or be negative when enlarging the image
+
+  if (stageCount <= 1) return [[toWidth, toHeight]];
+  var result = [];
+
+  for (var i = 0; i < stageCount; i++) {
+    var width = Math.round(Math.pow(Math.pow(fromWidth, stageCount - i - 1) * Math.pow(toWidth, i + 1), 1 / stageCount));
+    var height = Math.round(Math.pow(Math.pow(fromHeight, stageCount - i - 1) * Math.pow(toHeight, i + 1), 1 / stageCount));
+    result.push([width, height]);
+  }
+
+  return result;
+};
+
+},{}],11:[function(_dereq_,module,exports){
+/*
+ * pixelFloor and pixelCeil are modified versions of Math.floor and Math.ceil
+ * functions which take into account floating point arithmetic errors.
+ * Those errors can cause undesired increments/decrements of sizes and offsets:
+ * Math.ceil(36 / (36 / 500)) = 501
+ * pixelCeil(36 / (36 / 500)) = 500
+ */
+
+var PIXEL_EPSILON = 1e-5;
+
+function pixelFloor(x) {
+  var nearest = Math.round(x);
+
+  if (Math.abs(x - nearest) < PIXEL_EPSILON) {
+    return nearest;
+  }
+
+  return Math.floor(x);
+}
+
+function pixelCeil(x) {
+  var nearest = Math.round(x);
+
+  if (Math.abs(x - nearest) < PIXEL_EPSILON) {
+    return nearest;
+  }
+
+  return Math.ceil(x);
+}
+
+module.exports = function createRegions(options) {
+  var scaleX = options.toWidth / options.width;
+  var scaleY = options.toHeight / options.height;
+  var innerTileWidth = pixelFloor(options.srcTileSize * scaleX) - 2 * options.destTileBorder;
+  var innerTileHeight = pixelFloor(options.srcTileSize * scaleY) - 2 * options.destTileBorder; // prevent infinite loop, this should never happen
+
+  if (innerTileWidth < 1 || innerTileHeight < 1) {
+    throw new Error('Internal error in pica: target tile width/height is too small.');
+  }
+
+  var x, y;
+  var innerX, innerY, toTileWidth, toTileHeight;
+  var tiles = [];
+  var tile; // we go top-to-down instead of left-to-right to make image displayed from top to
+  // doesn in the browser
+
+  for (innerY = 0; innerY < options.toHeight; innerY += innerTileHeight) {
+    for (innerX = 0; innerX < options.toWidth; innerX += innerTileWidth) {
+      x = innerX - options.destTileBorder;
+
+      if (x < 0) {
+        x = 0;
+      }
+
+      toTileWidth = innerX + innerTileWidth + options.destTileBorder - x;
+
+      if (x + toTileWidth >= options.toWidth) {
+        toTileWidth = options.toWidth - x;
+      }
+
+      y = innerY - options.destTileBorder;
+
+      if (y < 0) {
+        y = 0;
+      }
+
+      toTileHeight = innerY + innerTileHeight + options.destTileBorder - y;
+
+      if (y + toTileHeight >= options.toHeight) {
+        toTileHeight = options.toHeight - y;
+      }
+
+      tile = {
+        toX: x,
+        toY: y,
+        toWidth: toTileWidth,
+        toHeight: toTileHeight,
+        toInnerX: innerX,
+        toInnerY: innerY,
+        toInnerWidth: innerTileWidth,
+        toInnerHeight: innerTileHeight,
+        offsetX: x / scaleX - pixelFloor(x / scaleX),
+        offsetY: y / scaleY - pixelFloor(y / scaleY),
+        scaleX: scaleX,
+        scaleY: scaleY,
+        x: pixelFloor(x / scaleX),
+        y: pixelFloor(y / scaleY),
+        width: pixelCeil(toTileWidth / scaleX),
+        height: pixelCeil(toTileHeight / scaleY)
+      };
+      tiles.push(tile);
+    }
+  }
+
+  return tiles;
+};
+
+},{}],12:[function(_dereq_,module,exports){
+
+function objClass(obj) {
+  return Object.prototype.toString.call(obj);
+}
+
+module.exports.isCanvas = function isCanvas(element) {
+  var cname = objClass(element);
+  return cname === '[object HTMLCanvasElement]'
+  /* browser */
+  || cname === '[object OffscreenCanvas]' || cname === '[object Canvas]'
+  /* node-canvas */
+  ;
+};
+
+module.exports.isImage = function isImage(element) {
+  return objClass(element) === '[object HTMLImageElement]';
+};
+
+module.exports.isImageBitmap = function isImageBitmap(element) {
+  return objClass(element) === '[object ImageBitmap]';
+};
+
+module.exports.limiter = function limiter(concurrency) {
+  var active = 0,
+      queue = [];
+
+  function roll() {
+    if (active < concurrency && queue.length) {
+      active++;
+      queue.shift()();
+    }
+  }
+
+  return function limit(fn) {
+    return new Promise(function (resolve, reject) {
+      queue.push(function () {
+        fn().then(function (result) {
+          resolve(result);
+          active--;
+          roll();
+        }, function (err) {
+          reject(err);
+          active--;
+          roll();
+        });
+      });
+      roll();
+    });
+  };
+};
+
+module.exports.cib_quality_name = function cib_quality_name(num) {
+  switch (num) {
+    case 0:
+      return 'pixelated';
+
+    case 1:
+      return 'low';
+
+    case 2:
+      return 'medium';
+  }
+
+  return 'high';
+};
+
+module.exports.cib_support = function cib_support(createCanvas) {
+  return Promise.resolve().then(function () {
+    if (typeof createImageBitmap === 'undefined') {
+      return false;
+    }
+
+    var c = createCanvas(100, 100);
+    return createImageBitmap(c, 0, 0, 100, 100, {
+      resizeWidth: 10,
+      resizeHeight: 10,
+      resizeQuality: 'high'
+    }).then(function (bitmap) {
+      var status = bitmap.width === 10; // Branch below is filtered on upper level. We do not call resize
+      // detection for basic ImageBitmap.
+      //
+      // https://developer.mozilla.org/en-US/docs/Web/API/ImageBitmap
+      // old Crome 51 has ImageBitmap without .close(). Then this code
+      // will throw and return 'false' as expected.
+      //
+
+      bitmap.close();
+      c = null;
+      return status;
+    });
+  })["catch"](function () {
+    return false;
+  });
+};
+
+},{}],13:[function(_dereq_,module,exports){
+
+module.exports = function () {
+  var MathLib = _dereq_('./mathlib');
+
+  var mathLib;
+  /* eslint-disable no-undef */
+
+  onmessage = function onmessage(ev) {
+    var opts = ev.data.opts;
+    if (!mathLib) mathLib = new MathLib(ev.data.features); // Use multimath's sync auto-init. Avoid Promise use in old browsers,
+    // because polyfills are not propagated to webworker.
+
+    var result = mathLib.resizeAndUnsharp(opts);
+    postMessage({
+      result: result
+    }, [result.buffer]);
+  };
+};
+
+},{"./mathlib":1}],14:[function(_dereq_,module,exports){
+// Calculate Gaussian blur of an image using IIR filter
+// The method is taken from Intel's white paper and code example attached to it:
+// https://software.intel.com/en-us/articles/iir-gaussian-blur-filter
+// -implementation-using-intel-advanced-vector-extensions
+
+var a0, a1, a2, a3, b1, b2, left_corner, right_corner;
+
+function gaussCoef(sigma) {
+  if (sigma < 0.5) {
+    sigma = 0.5;
+  }
+
+  var a = Math.exp(0.726 * 0.726) / sigma,
+      g1 = Math.exp(-a),
+      g2 = Math.exp(-2 * a),
+      k = (1 - g1) * (1 - g1) / (1 + 2 * a * g1 - g2);
+
+  a0 = k;
+  a1 = k * (a - 1) * g1;
+  a2 = k * (a + 1) * g1;
+  a3 = -k * g2;
+  b1 = 2 * g1;
+  b2 = -g2;
+  left_corner = (a0 + a1) / (1 - b1 - b2);
+  right_corner = (a2 + a3) / (1 - b1 - b2);
+
+  // Attempt to force type to FP32.
+  return new Float32Array([ a0, a1, a2, a3, b1, b2, left_corner, right_corner ]);
+}
+
+function convolveMono16(src, out, line, coeff, width, height) {
+  // takes src image and writes the blurred and transposed result into out
+
+  var prev_src, curr_src, curr_out, prev_out, prev_prev_out;
+  var src_index, out_index, line_index;
+  var i, j;
+  var coeff_a0, coeff_a1, coeff_b1, coeff_b2;
+
+  for (i = 0; i < height; i++) {
+    src_index = i * width;
+    out_index = i;
+    line_index = 0;
+
+    // left to right
+    prev_src = src[src_index];
+    prev_prev_out = prev_src * coeff[6];
+    prev_out = prev_prev_out;
+
+    coeff_a0 = coeff[0];
+    coeff_a1 = coeff[1];
+    coeff_b1 = coeff[4];
+    coeff_b2 = coeff[5];
+
+    for (j = 0; j < width; j++) {
+      curr_src = src[src_index];
+
+      curr_out = curr_src * coeff_a0 +
+                 prev_src * coeff_a1 +
+                 prev_out * coeff_b1 +
+                 prev_prev_out * coeff_b2;
+
+      prev_prev_out = prev_out;
+      prev_out = curr_out;
+      prev_src = curr_src;
+
+      line[line_index] = prev_out;
+      line_index++;
+      src_index++;
+    }
+
+    src_index--;
+    line_index--;
+    out_index += height * (width - 1);
+
+    // right to left
+    prev_src = src[src_index];
+    prev_prev_out = prev_src * coeff[7];
+    prev_out = prev_prev_out;
+    curr_src = prev_src;
+
+    coeff_a0 = coeff[2];
+    coeff_a1 = coeff[3];
+
+    for (j = width - 1; j >= 0; j--) {
+      curr_out = curr_src * coeff_a0 +
+                 prev_src * coeff_a1 +
+                 prev_out * coeff_b1 +
+                 prev_prev_out * coeff_b2;
+
+      prev_prev_out = prev_out;
+      prev_out = curr_out;
+
+      prev_src = curr_src;
+      curr_src = src[src_index];
+
+      out[out_index] = line[line_index] + prev_out;
+
+      src_index--;
+      line_index--;
+      out_index -= height;
+    }
+  }
+}
+
+
+function blurMono16(src, width, height, radius) {
+  // Quick exit on zero radius
+  if (!radius) { return; }
+
+  var out      = new Uint16Array(src.length),
+      tmp_line = new Float32Array(Math.max(width, height));
+
+  var coeff = gaussCoef(radius);
+
+  convolveMono16(src, out, tmp_line, coeff, width, height);
+  convolveMono16(out, src, tmp_line, coeff, height, width);
+}
+
+module.exports = blurMono16;
+
+},{}],15:[function(_dereq_,module,exports){
+if (typeof Object.create === 'function') {
+  // implementation from standard node.js 'util' module
+  module.exports = function inherits(ctor, superCtor) {
+    if (superCtor) {
+      ctor.super_ = superCtor;
+      ctor.prototype = Object.create(superCtor.prototype, {
+        constructor: {
+          value: ctor,
+          enumerable: false,
+          writable: true,
+          configurable: true
+        }
+      });
+    }
+  };
+} else {
+  // old school shim for old browsers
+  module.exports = function inherits(ctor, superCtor) {
+    if (superCtor) {
+      ctor.super_ = superCtor;
+      var TempCtor = function () {};
+      TempCtor.prototype = superCtor.prototype;
+      ctor.prototype = new TempCtor();
+      ctor.prototype.constructor = ctor;
+    }
+  };
+}
+
+},{}],16:[function(_dereq_,module,exports){
+
+
+var assign         = _dereq_('object-assign');
+var base64decode   = _dereq_('./lib/base64decode');
+var hasWebAssembly = _dereq_('./lib/wa_detect');
+
+
+var DEFAULT_OPTIONS = {
+  js: true,
+  wasm: true
+};
+
+
+function MultiMath(options) {
+  if (!(this instanceof MultiMath)) return new MultiMath(options);
+
+  var opts = assign({}, DEFAULT_OPTIONS, options || {});
+
+  this.options         = opts;
+
+  this.__cache         = {};
+
+  this.__init_promise  = null;
+  this.__modules       = opts.modules || {};
+  this.__memory        = null;
+  this.__wasm          = {};
+
+  this.__isLE = ((new Uint32Array((new Uint8Array([ 1, 0, 0, 0 ])).buffer))[0] === 1);
+
+  if (!this.options.js && !this.options.wasm) {
+    throw new Error('mathlib: at least "js" or "wasm" should be enabled');
+  }
+}
+
+
+MultiMath.prototype.has_wasm = hasWebAssembly;
+
+
+MultiMath.prototype.use = function (module) {
+  this.__modules[module.name] = module;
+
+  // Pin the best possible implementation
+  if (this.options.wasm && this.has_wasm() && module.wasm_fn) {
+    this[module.name] = module.wasm_fn;
+  } else {
+    this[module.name] = module.fn;
+  }
+
+  return this;
+};
+
+
+MultiMath.prototype.init = function () {
+  if (this.__init_promise) return this.__init_promise;
+
+  if (!this.options.js && this.options.wasm && !this.has_wasm()) {
+    return Promise.reject(new Error('mathlib: only "wasm" was enabled, but it\'s not supported'));
+  }
+
+  var self = this;
+
+  this.__init_promise = Promise.all(Object.keys(self.__modules).map(function (name) {
+    var module = self.__modules[name];
+
+    if (!self.options.wasm || !self.has_wasm() || !module.wasm_fn) return null;
+
+    // If already compiled - exit
+    if (self.__wasm[name]) return null;
+
+    // Compile wasm source
+    return WebAssembly.compile(self.__base64decode(module.wasm_src))
+      .then(function (m) { self.__wasm[name] = m; });
+  }))
+    .then(function () { return self; });
+
+  return this.__init_promise;
+};
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Methods below are for internal use from plugins
+
+
+// Simple decode base64 to typed array. Useful to load embedded webassembly
+// code. You probably don't need to call this method directly.
+//
+MultiMath.prototype.__base64decode = base64decode;
+
+
+// Increase current memory to include specified number of bytes. Do nothing if
+// size is already ok. You probably don't need to call this method directly,
+// because it will be invoked from `.__instance()`.
+//
+MultiMath.prototype.__reallocate = function mem_grow_to(bytes) {
+  if (!this.__memory) {
+    this.__memory = new WebAssembly.Memory({
+      initial: Math.ceil(bytes / (64 * 1024))
+    });
+    return this.__memory;
+  }
+
+  var mem_size = this.__memory.buffer.byteLength;
+
+  if (mem_size < bytes) {
+    this.__memory.grow(Math.ceil((bytes - mem_size) / (64 * 1024)));
+  }
+
+  return this.__memory;
+};
+
+
+// Returns instantinated webassembly item by name, with specified memory size
+// and environment.
+// - use cache if available
+// - do sync module init, if async init was not called earlier
+// - allocate memory if not enougth
+// - can export functions to webassembly via "env_extra",
+//   for example, { exp: Math.exp }
+//
+MultiMath.prototype.__instance = function instance(name, memsize, env_extra) {
+  if (memsize) this.__reallocate(memsize);
+
+  // If .init() was not called, do sync compile
+  if (!this.__wasm[name]) {
+    var module = this.__modules[name];
+    this.__wasm[name] = new WebAssembly.Module(this.__base64decode(module.wasm_src));
+  }
+
+  if (!this.__cache[name]) {
+    var env_base = {
+      memoryBase: 0,
+      memory: this.__memory,
+      tableBase: 0,
+      table: new WebAssembly.Table({ initial: 0, element: 'anyfunc' })
+    };
+
+    this.__cache[name] = new WebAssembly.Instance(this.__wasm[name], {
+      env: assign(env_base, env_extra || {})
+    });
+  }
+
+  return this.__cache[name];
+};
+
+
+// Helper to calculate memory aligh for pointers. Webassembly does not require
+// this, but you may wish to experiment. Default base = 8;
+//
+MultiMath.prototype.__align = function align(number, base) {
+  base = base || 8;
+  var reminder = number % base;
+  return number + (reminder ? base - reminder : 0);
+};
+
+
+module.exports = MultiMath;
+
+},{"./lib/base64decode":17,"./lib/wa_detect":23,"object-assign":24}],17:[function(_dereq_,module,exports){
+
+
+var BASE64_MAP = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+
+
+module.exports = function base64decode(str) {
+  var input = str.replace(/[\r\n=]/g, ''), // remove CR/LF & padding to simplify scan
+      max   = input.length;
+
+  var out = new Uint8Array((max * 3) >> 2);
+
+  // Collect by 6*4 bits (3 bytes)
+
+  var bits = 0;
+  var ptr  = 0;
+
+  for (var idx = 0; idx < max; idx++) {
+    if ((idx % 4 === 0) && idx) {
+      out[ptr++] = (bits >> 16) & 0xFF;
+      out[ptr++] = (bits >> 8) & 0xFF;
+      out[ptr++] = bits & 0xFF;
+    }
+
+    bits = (bits << 6) | BASE64_MAP.indexOf(input.charAt(idx));
+  }
+
+  // Dump tail
+
+  var tailbits = (max % 4) * 6;
+
+  if (tailbits === 0) {
+    out[ptr++] = (bits >> 16) & 0xFF;
+    out[ptr++] = (bits >> 8) & 0xFF;
+    out[ptr++] = bits & 0xFF;
+  } else if (tailbits === 18) {
+    out[ptr++] = (bits >> 10) & 0xFF;
+    out[ptr++] = (bits >> 2) & 0xFF;
+  } else if (tailbits === 12) {
+    out[ptr++] = (bits >> 4) & 0xFF;
+  }
+
+  return out;
+};
+
+},{}],18:[function(_dereq_,module,exports){
+
+
+module.exports = function hsl_l16_js(img, width, height) {
+  var size = width * height;
+  var out = new Uint16Array(size);
+  var r, g, b, min, max;
+  for (var i = 0; i < size; i++) {
+    r = img[4 * i];
+    g = img[4 * i + 1];
+    b = img[4 * i + 2];
+    max = (r >= g && r >= b) ? r : (g >= b && g >= r) ? g : b;
+    min = (r <= g && r <= b) ? r : (g <= b && g <= r) ? g : b;
+    out[i] = (max + min) * 257 >> 1;
+  }
+  return out;
+};
+
+},{}],19:[function(_dereq_,module,exports){
+
+module.exports = {
+  name:     'unsharp_mask',
+  fn:       _dereq_('./unsharp_mask'),
+  wasm_fn:  _dereq_('./unsharp_mask_wasm'),
+  wasm_src: _dereq_('./unsharp_mask_wasm_base64')
+};
+
+},{"./unsharp_mask":20,"./unsharp_mask_wasm":21,"./unsharp_mask_wasm_base64":22}],20:[function(_dereq_,module,exports){
+
+
+var glur_mono16 = _dereq_('glur/mono16');
+var hsl_l16     = _dereq_('./hsl_l16');
+
+
+module.exports = function unsharp(img, width, height, amount, radius, threshold) {
+  var r, g, b;
+  var h, s, l;
+  var min, max;
+  var m1, m2, hShifted;
+  var diff, iTimes4;
+
+  if (amount === 0 || radius < 0.5) {
+    return;
+  }
+  if (radius > 2.0) {
+    radius = 2.0;
+  }
+
+  var lightness = hsl_l16(img, width, height);
+
+  var blured = new Uint16Array(lightness); // copy, because blur modify src
+
+  glur_mono16(blured, width, height, radius);
+
+  var amountFp = (amount / 100 * 0x1000 + 0.5)|0;
+  var thresholdFp = (threshold * 257)|0;
+
+  var size = width * height;
+
+  /* eslint-disable indent */
+  for (var i = 0; i < size; i++) {
+    diff = 2 * (lightness[i] - blured[i]);
+
+    if (Math.abs(diff) >= thresholdFp) {
+      iTimes4 = i * 4;
+      r = img[iTimes4];
+      g = img[iTimes4 + 1];
+      b = img[iTimes4 + 2];
+
+      // convert RGB to HSL
+      // take RGB, 8-bit unsigned integer per each channel
+      // save HSL, H and L are 16-bit unsigned integers, S is 12-bit unsigned integer
+      // math is taken from here: http://www.easyrgb.com/index.php?X=MATH&H=18
+      // and adopted to be integer (fixed point in fact) for sake of performance
+      max = (r >= g && r >= b) ? r : (g >= r && g >= b) ? g : b; // min and max are in [0..0xff]
+      min = (r <= g && r <= b) ? r : (g <= r && g <= b) ? g : b;
+      l = (max + min) * 257 >> 1; // l is in [0..0xffff] that is caused by multiplication by 257
+
+      if (min === max) {
+        h = s = 0;
+      } else {
+        s = (l <= 0x7fff) ?
+          (((max - min) * 0xfff) / (max + min))|0 :
+          (((max - min) * 0xfff) / (2 * 0xff - max - min))|0; // s is in [0..0xfff]
+        // h could be less 0, it will be fixed in backward conversion to RGB, |h| <= 0xffff / 6
+        h = (r === max) ? (((g - b) * 0xffff) / (6 * (max - min)))|0
+          : (g === max) ? 0x5555 + ((((b - r) * 0xffff) / (6 * (max - min)))|0) // 0x5555 == 0xffff / 3
+          : 0xaaaa + ((((r - g) * 0xffff) / (6 * (max - min)))|0); // 0xaaaa == 0xffff * 2 / 3
+      }
+
+      // add unsharp mask mask to the lightness channel
+      l += (amountFp * diff + 0x800) >> 12;
+      if (l > 0xffff) {
+        l = 0xffff;
+      } else if (l < 0) {
+        l = 0;
+      }
+
+      // convert HSL back to RGB
+      // for information about math look above
+      if (s === 0) {
+        r = g = b = l >> 8;
+      } else {
+        m2 = (l <= 0x7fff) ? (l * (0x1000 + s) + 0x800) >> 12 :
+          l  + (((0xffff - l) * s + 0x800) >>  12);
+        m1 = 2 * l - m2 >> 8;
+        m2 >>= 8;
+        // save result to RGB channels
+        // R channel
+        hShifted = (h + 0x5555) & 0xffff; // 0x5555 == 0xffff / 3
+        r = (hShifted >= 0xaaaa) ? m1 // 0xaaaa == 0xffff * 2 / 3
+          : (hShifted >= 0x7fff) ?  m1 + ((m2 - m1) * 6 * (0xaaaa - hShifted) + 0x8000 >> 16)
+          : (hShifted >= 0x2aaa) ? m2 // 0x2aaa == 0xffff / 6
+          : m1 + ((m2 - m1) * 6 * hShifted + 0x8000 >> 16);
+        // G channel
+        hShifted = h & 0xffff;
+        g = (hShifted >= 0xaaaa) ? m1 // 0xaaaa == 0xffff * 2 / 3
+          : (hShifted >= 0x7fff) ?  m1 + ((m2 - m1) * 6 * (0xaaaa - hShifted) + 0x8000 >> 16)
+          : (hShifted >= 0x2aaa) ? m2 // 0x2aaa == 0xffff / 6
+          : m1 + ((m2 - m1) * 6 * hShifted + 0x8000 >> 16);
+        // B channel
+        hShifted = (h - 0x5555) & 0xffff;
+        b = (hShifted >= 0xaaaa) ? m1 // 0xaaaa == 0xffff * 2 / 3
+          : (hShifted >= 0x7fff) ?  m1 + ((m2 - m1) * 6 * (0xaaaa - hShifted) + 0x8000 >> 16)
+          : (hShifted >= 0x2aaa) ? m2 // 0x2aaa == 0xffff / 6
+          : m1 + ((m2 - m1) * 6 * hShifted + 0x8000 >> 16);
+      }
+
+      img[iTimes4] = r;
+      img[iTimes4 + 1] = g;
+      img[iTimes4 + 2] = b;
+    }
+  }
+};
+
+},{"./hsl_l16":18,"glur/mono16":14}],21:[function(_dereq_,module,exports){
+
+
+module.exports = function unsharp(img, width, height, amount, radius, threshold) {
+  if (amount === 0 || radius < 0.5) {
+    return;
+  }
+
+  if (radius > 2.0) {
+    radius = 2.0;
+  }
+
+  var pixels = width * height;
+
+  var img_bytes_cnt        = pixels * 4;
+  var hsl_bytes_cnt        = pixels * 2;
+  var blur_bytes_cnt       = pixels * 2;
+  var blur_line_byte_cnt   = Math.max(width, height) * 4; // float32 array
+  var blur_coeffs_byte_cnt = 8 * 4; // float32 array
+
+  var img_offset         = 0;
+  var hsl_offset         = img_bytes_cnt;
+  var blur_offset        = hsl_offset + hsl_bytes_cnt;
+  var blur_tmp_offset    = blur_offset + blur_bytes_cnt;
+  var blur_line_offset   = blur_tmp_offset + blur_bytes_cnt;
+  var blur_coeffs_offset = blur_line_offset + blur_line_byte_cnt;
+
+  var instance = this.__instance(
+    'unsharp_mask',
+    img_bytes_cnt + hsl_bytes_cnt + blur_bytes_cnt * 2 + blur_line_byte_cnt + blur_coeffs_byte_cnt,
+    { exp: Math.exp }
+  );
+
+  // 32-bit copy is much faster in chrome
+  var img32 = new Uint32Array(img.buffer);
+  var mem32 = new Uint32Array(this.__memory.buffer);
+  mem32.set(img32);
+
+  // HSL
+  var fn = instance.exports.hsl_l16 || instance.exports._hsl_l16;
+  fn(img_offset, hsl_offset, width, height);
+
+  // BLUR
+  fn = instance.exports.blurMono16 || instance.exports._blurMono16;
+  fn(hsl_offset, blur_offset, blur_tmp_offset,
+    blur_line_offset, blur_coeffs_offset, width, height, radius);
+
+  // UNSHARP
+  fn = instance.exports.unsharp || instance.exports._unsharp;
+  fn(img_offset, img_offset, hsl_offset,
+    blur_offset, width, height, amount, threshold);
+
+  // 32-bit copy is much faster in chrome
+  img32.set(new Uint32Array(this.__memory.buffer, 0, pixels));
+};
+
+},{}],22:[function(_dereq_,module,exports){
+
+/* eslint-disable max-len */
+module.exports = 'AGFzbQEAAAABMQZgAXwBfGACfX8AYAZ/f39/f38AYAh/f39/f39/fQBgBH9/f38AYAh/f39/f39/fwACGQIDZW52A2V4cAAAA2VudgZtZW1vcnkCAAEDBgUBAgMEBQQEAXAAAAdMBRZfX2J1aWxkX2dhdXNzaWFuX2NvZWZzAAEOX19nYXVzczE2X2xpbmUAAgpibHVyTW9ubzE2AAMHaHNsX2wxNgAEB3Vuc2hhcnAABQkBAAqJEAXZAQEGfAJAIAFE24a6Q4Ia+z8gALujIgOaEAAiBCAEoCIGtjgCECABIANEAAAAAAAAAMCiEAAiBbaMOAIUIAFEAAAAAAAA8D8gBKEiAiACoiAEIAMgA6CiRAAAAAAAAPA/oCAFoaMiArY4AgAgASAEIANEAAAAAAAA8L+gIAKioiIHtjgCBCABIAQgA0QAAAAAAADwP6AgAqKiIgO2OAIIIAEgBSACoiIEtow4AgwgASACIAegIAVEAAAAAAAA8D8gBqGgIgKjtjgCGCABIAMgBKEgAqO2OAIcCwu3AwMDfwR9CHwCQCADKgIUIQkgAyoCECEKIAMqAgwhCyADKgIIIQwCQCAEQX9qIgdBAEgiCA0AIAIgAC8BALgiDSADKgIYu6IiDiAJuyIQoiAOIAq7IhGiIA0gAyoCBLsiEqIgAyoCALsiEyANoqCgoCIPtjgCACACQQRqIQIgAEECaiEAIAdFDQAgBCEGA0AgAiAOIBCiIA8iDiARoiANIBKiIBMgAC8BALgiDaKgoKAiD7Y4AgAgAkEEaiECIABBAmohACAGQX9qIgZBAUoNAAsLAkAgCA0AIAEgByAFbEEBdGogAEF+ai8BACIIuCINIAu7IhGiIA0gDLsiEqKgIA0gAyoCHLuiIg4gCrsiE6KgIA4gCbsiFKKgIg8gAkF8aioCALugqzsBACAHRQ0AIAJBeGohAiAAQXxqIQBBACAFQQF0ayEHIAEgBSAEQQF0QXxqbGohBgNAIAghAyAALwEAIQggBiANIBGiIAO4Ig0gEqKgIA8iECAToqAgDiAUoqAiDyACKgIAu6CrOwEAIAYgB2ohBiAAQX5qIQAgAkF8aiECIBAhDiAEQX9qIgRBAUoNAAsLCwvfAgIDfwZ8AkAgB0MAAAAAWw0AIARE24a6Q4Ia+z8gB0MAAAA/l7ujIgyaEAAiDSANoCIPtjgCECAEIAxEAAAAAAAAAMCiEAAiDraMOAIUIAREAAAAAAAA8D8gDaEiCyALoiANIAwgDKCiRAAAAAAAAPA/oCAOoaMiC7Y4AgAgBCANIAxEAAAAAAAA8L+gIAuioiIQtjgCBCAEIA0gDEQAAAAAAADwP6AgC6KiIgy2OAIIIAQgDiALoiINtow4AgwgBCALIBCgIA5EAAAAAAAA8D8gD6GgIgujtjgCGCAEIAwgDaEgC6O2OAIcIAYEQCAFQQF0IQogBiEJIAIhCANAIAAgCCADIAQgBSAGEAIgACAKaiEAIAhBAmohCCAJQX9qIgkNAAsLIAVFDQAgBkEBdCEIIAUhAANAIAIgASADIAQgBiAFEAIgAiAIaiECIAFBAmohASAAQX9qIgANAAsLC7wBAQV/IAMgAmwiAwRAQQAgA2shBgNAIAAoAgAiBEEIdiIHQf8BcSECAn8gBEH/AXEiAyAEQRB2IgRB/wFxIgVPBEAgAyIIIAMgAk8NARoLIAQgBCAHIAIgA0kbIAIgBUkbQf8BcQshCAJAIAMgAk0EQCADIAVNDQELIAQgByAEIAMgAk8bIAIgBUsbQf8BcSEDCyAAQQRqIQAgASADIAhqQYECbEEBdjsBACABQQJqIQEgBkEBaiIGDQALCwvTBgEKfwJAIAazQwAAgEWUQwAAyEKVu0QAAAAAAADgP6CqIQ0gBSAEbCILBEAgB0GBAmwhDgNAQQAgAi8BACADLwEAayIGQQF0IgdrIAcgBkEASBsgDk8EQCAAQQJqLQAAIQUCfyAALQAAIgYgAEEBai0AACIESSIJRQRAIAYiCCAGIAVPDQEaCyAFIAUgBCAEIAVJGyAGIARLGwshCAJ/IAYgBE0EQCAGIgogBiAFTQ0BGgsgBSAFIAQgBCAFSxsgCRsLIgogCGoiD0GBAmwiEEEBdiERQQAhDAJ/QQAiCSAIIApGDQAaIAggCmsiCUH/H2wgD0H+AyAIayAKayAQQYCABEkbbSEMIAYgCEYEQCAEIAVrQf//A2wgCUEGbG0MAQsgBSAGayAGIARrIAQgCEYiBhtB//8DbCAJQQZsbUHVqgFBqtUCIAYbagshCSARIAcgDWxBgBBqQQx1aiIGQQAgBkEAShsiBkH//wMgBkH//wNIGyEGAkACfwJAIAxB//8DcSIFBEAgBkH//wFKDQEgBUGAIGogBmxBgBBqQQx2DAILIAZBCHYiBiEFIAYhBAwCCyAFIAZB//8Dc2xBgBBqQQx2IAZqCyIFQQh2IQcgBkEBdCAFa0EIdiIGIQQCQCAJQdWqAWpB//8DcSIFQanVAksNACAFQf//AU8EQEGq1QIgBWsgByAGa2xBBmxBgIACakEQdiAGaiEEDAELIAchBCAFQanVAEsNACAFIAcgBmtsQQZsQYCAAmpBEHYgBmohBAsCfyAGIgUgCUH//wNxIghBqdUCSw0AGkGq1QIgCGsgByAGa2xBBmxBgIACakEQdiAGaiAIQf//AU8NABogByIFIAhBqdUASw0AGiAIIAcgBmtsQQZsQYCAAmpBEHYgBmoLIQUgCUGr1QJqQf//A3EiCEGp1QJLDQAgCEH//wFPBEBBqtUCIAhrIAcgBmtsQQZsQYCAAmpBEHYgBmohBgwBCyAIQanVAEsEQCAHIQYMAQsgCCAHIAZrbEEGbEGAgAJqQRB2IAZqIQYLIAEgBDoAACABQQFqIAU6AAAgAUECaiAGOgAACyADQQJqIQMgAkECaiECIABBBGohACABQQRqIQEgC0F/aiILDQALCwsL';
+
+},{}],23:[function(_dereq_,module,exports){
+
+
+var wa;
+
+
+module.exports = function hasWebAssembly() {
+  // use cache if called before;
+  if (typeof wa !== 'undefined') return wa;
+
+  wa = false;
+
+  if (typeof WebAssembly === 'undefined') return wa;
+
+  // If WebAssenbly is disabled, code can throw on compile
+  try {
+    // https://github.com/brion/min-wasm-fail/blob/master/min-wasm-fail.in.js
+    // Additional check that WA internals are correct
+
+    /* eslint-disable comma-spacing, max-len */
+    var bin      = new Uint8Array([ 0,97,115,109,1,0,0,0,1,6,1,96,1,127,1,127,3,2,1,0,5,3,1,0,1,7,8,1,4,116,101,115,116,0,0,10,16,1,14,0,32,0,65,1,54,2,0,32,0,40,2,0,11 ]);
+    var module   = new WebAssembly.Module(bin);
+    var instance = new WebAssembly.Instance(module, {});
+
+    // test storing to and loading from a non-zero location via a parameter.
+    // Safari on iOS 11.2.5 returns 0 unexpectedly at non-zero locations
+    if (instance.exports.test(4) !== 0) wa = true;
+
+    return wa;
+  } catch (__) {}
+
+  return wa;
+};
+
+},{}],24:[function(_dereq_,module,exports){
+/* eslint-disable no-unused-vars */
+var getOwnPropertySymbols = Object.getOwnPropertySymbols;
+var hasOwnProperty = Object.prototype.hasOwnProperty;
+var propIsEnumerable = Object.prototype.propertyIsEnumerable;
+
+function toObject(val) {
+	if (val === null || val === undefined) {
+		throw new TypeError('Object.assign cannot be called with null or undefined');
+	}
+
+	return Object(val);
+}
+
+function shouldUseNative() {
+	try {
+		if (!Object.assign) {
+			return false;
+		}
+
+		// Detect buggy property enumeration order in older V8 versions.
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=4118
+		var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
+		test1[5] = 'de';
+		if (Object.getOwnPropertyNames(test1)[0] === '5') {
+			return false;
+		}
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		var test2 = {};
+		for (var i = 0; i < 10; i++) {
+			test2['_' + String.fromCharCode(i)] = i;
+		}
+		var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
+			return test2[n];
+		});
+		if (order2.join('') !== '0123456789') {
+			return false;
+		}
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		var test3 = {};
+		'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
+			test3[letter] = letter;
+		});
+		if (Object.keys(Object.assign({}, test3)).join('') !==
+				'abcdefghijklmnopqrst') {
+			return false;
+		}
+
+		return true;
+	} catch (err) {
+		// We don't expect any of the above to throw, but better to be safe.
+		return false;
+	}
+}
+
+module.exports = shouldUseNative() ? Object.assign : function (target, source) {
+	var from;
+	var to = toObject(target);
+	var symbols;
+
+	for (var s = 1; s < arguments.length; s++) {
+		from = Object(arguments[s]);
+
+		for (var key in from) {
+			if (hasOwnProperty.call(from, key)) {
+				to[key] = from[key];
+			}
+		}
+
+		if (getOwnPropertySymbols) {
+			symbols = getOwnPropertySymbols(from);
+			for (var i = 0; i < symbols.length; i++) {
+				if (propIsEnumerable.call(from, symbols[i])) {
+					to[symbols[i]] = from[symbols[i]];
+				}
+			}
+		}
+	}
+
+	return to;
+};
+
+},{}],25:[function(_dereq_,module,exports){
+var bundleFn = arguments[3];
+var sources = arguments[4];
+var cache = arguments[5];
+
+var stringify = JSON.stringify;
+
+module.exports = function (fn, options) {
+    var wkey;
+    var cacheKeys = Object.keys(cache);
+
+    for (var i = 0, l = cacheKeys.length; i < l; i++) {
+        var key = cacheKeys[i];
+        var exp = cache[key].exports;
+        // Using babel as a transpiler to use esmodule, the export will always
+        // be an object with the default export as a property of it. To ensure
+        // the existing api and babel esmodule exports are both supported we
+        // check for both
+        if (exp === fn || exp && exp.default === fn) {
+            wkey = key;
+            break;
+        }
+    }
+
+    if (!wkey) {
+        wkey = Math.floor(Math.pow(16, 8) * Math.random()).toString(16);
+        var wcache = {};
+        for (var i = 0, l = cacheKeys.length; i < l; i++) {
+            var key = cacheKeys[i];
+            wcache[key] = key;
+        }
+        sources[wkey] = [
+            'function(require,module,exports){' + fn + '(self); }',
+            wcache
+        ];
+    }
+    var skey = Math.floor(Math.pow(16, 8) * Math.random()).toString(16);
+
+    var scache = {}; scache[wkey] = wkey;
+    sources[skey] = [
+        'function(require,module,exports){' +
+            // try to call default if defined to also support babel esmodule exports
+            'var f = require(' + stringify(wkey) + ');' +
+            '(f.default ? f.default : f)(self);' +
+        '}',
+        scache
+    ];
+
+    var workerSources = {};
+    resolveSources(skey);
+
+    function resolveSources(key) {
+        workerSources[key] = true;
+
+        for (var depPath in sources[key][1]) {
+            var depKey = sources[key][1][depPath];
+            if (!workerSources[depKey]) {
+                resolveSources(depKey);
+            }
+        }
+    }
+
+    var src = '(' + bundleFn + ')({'
+        + Object.keys(workerSources).map(function (key) {
+            return stringify(key) + ':['
+                + sources[key][0]
+                + ',' + stringify(sources[key][1]) + ']'
+            ;
+        }).join(',')
+        + '},{},[' + stringify(skey) + '])'
+    ;
+
+    var URL = window.URL || window.webkitURL || window.mozURL || window.msURL;
+
+    var blob = new Blob([src], { type: 'text/javascript' });
+    if (options && options.bare) { return blob; }
+    var workerUrl = URL.createObjectURL(blob);
+    var worker = new Worker(workerUrl);
+    worker.objectURL = workerUrl;
+    return worker;
+};
+
+},{}],"/index.js":[function(_dereq_,module,exports){
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+var assign = _dereq_('object-assign');
+
+var webworkify = _dereq_('webworkify');
+
+var MathLib = _dereq_('./lib/mathlib');
+
+var Pool = _dereq_('./lib/pool');
+
+var utils = _dereq_('./lib/utils');
+
+var worker = _dereq_('./lib/worker');
+
+var createStages = _dereq_('./lib/stepper');
+
+var createRegions = _dereq_('./lib/tiler'); // Deduplicate pools & limiters with the same configs
+// when user creates multiple pica instances.
+
+
+var singletones = {};
+var NEED_SAFARI_FIX = false;
+
+try {
+  if (typeof navigator !== 'undefined' && navigator.userAgent) {
+    NEED_SAFARI_FIX = navigator.userAgent.indexOf('Safari') >= 0;
+  }
+} catch (e) {}
+
+var concurrency = 1;
+
+if (typeof navigator !== 'undefined') {
+  concurrency = Math.min(navigator.hardwareConcurrency || 1, 4);
+}
+
+var DEFAULT_PICA_OPTS = {
+  tile: 1024,
+  concurrency: concurrency,
+  features: ['js', 'wasm', 'ww'],
+  idle: 2000,
+  createCanvas: function createCanvas(width, height) {
+    var tmpCanvas = document.createElement('canvas');
+    tmpCanvas.width = width;
+    tmpCanvas.height = height;
+    return tmpCanvas;
+  }
+};
+var DEFAULT_RESIZE_OPTS = {
+  quality: 3,
+  alpha: false,
+  unsharpAmount: 0,
+  unsharpRadius: 0.0,
+  unsharpThreshold: 0
+};
+var CAN_NEW_IMAGE_DATA;
+var CAN_CREATE_IMAGE_BITMAP;
+
+function workerFabric() {
+  return {
+    value: webworkify(worker),
+    destroy: function destroy() {
+      this.value.terminate();
+
+      if (typeof window !== 'undefined') {
+        var url = window.URL || window.webkitURL || window.mozURL || window.msURL;
+
+        if (url && url.revokeObjectURL && this.value.objectURL) {
+          url.revokeObjectURL(this.value.objectURL);
+        }
+      }
+    }
+  };
+} ////////////////////////////////////////////////////////////////////////////////
+// API methods
+
+
+function Pica(options) {
+  if (!(this instanceof Pica)) return new Pica(options);
+  this.options = assign({}, DEFAULT_PICA_OPTS, options || {});
+  var limiter_key = "lk_".concat(this.options.concurrency); // Share limiters to avoid multiple parallel workers when user creates
+  // multiple pica instances.
+
+  this.__limit = singletones[limiter_key] || utils.limiter(this.options.concurrency);
+  if (!singletones[limiter_key]) singletones[limiter_key] = this.__limit; // List of supported features, according to options & browser/node.js
+
+  this.features = {
+    js: false,
+    // pure JS implementation, can be disabled for testing
+    wasm: false,
+    // webassembly implementation for heavy functions
+    cib: false,
+    // resize via createImageBitmap (only FF at this moment)
+    ww: false // webworkers
+
+  };
+  this.__workersPool = null; // Store requested features for webworkers
+
+  this.__requested_features = [];
+  this.__mathlib = null;
+}
+
+Pica.prototype.init = function () {
+  var _this = this;
+
+  if (this.__initPromise) return this.__initPromise; // Test if we can create ImageData without canvas and memory copy
+
+  if (CAN_NEW_IMAGE_DATA !== false && CAN_NEW_IMAGE_DATA !== true) {
+    CAN_NEW_IMAGE_DATA = false;
+
+    if (typeof ImageData !== 'undefined' && typeof Uint8ClampedArray !== 'undefined') {
+      try {
+        /* eslint-disable no-new */
+        new ImageData(new Uint8ClampedArray(400), 10, 10);
+        CAN_NEW_IMAGE_DATA = true;
+      } catch (__) {}
+    }
+  } // ImageBitmap can be effective in 2 places:
+  //
+  // 1. Threaded jpeg unpack (basic)
+  // 2. Built-in resize (blocked due problem in chrome, see issue #89)
+  //
+  // For basic use we also need ImageBitmap wo support .close() method,
+  // see https://developer.mozilla.org/ru/docs/Web/API/ImageBitmap
+
+
+  if (CAN_CREATE_IMAGE_BITMAP !== false && CAN_CREATE_IMAGE_BITMAP !== true) {
+    CAN_CREATE_IMAGE_BITMAP = false;
+
+    if (typeof ImageBitmap !== 'undefined') {
+      if (ImageBitmap.prototype && ImageBitmap.prototype.close) {
+        CAN_CREATE_IMAGE_BITMAP = true;
+      } else {
+        this.debug('ImageBitmap does not support .close(), disabled');
+      }
+    }
+  }
+
+  var features = this.options.features.slice();
+
+  if (features.indexOf('all') >= 0) {
+    features = ['cib', 'wasm', 'js', 'ww'];
+  }
+
+  this.__requested_features = features;
+  this.__mathlib = new MathLib(features); // Check WebWorker support if requested
+
+  if (features.indexOf('ww') >= 0) {
+    if (typeof window !== 'undefined' && 'Worker' in window) {
+      // IE <= 11 don't allow to create webworkers from string. We should check it.
+      // https://connect.microsoft.com/IE/feedback/details/801810/web-workers-from-blob-urls-in-ie-10-and-11
+      try {
+        var wkr = _dereq_('webworkify')(function () {});
+
+        wkr.terminate();
+        this.features.ww = true; // pool uniqueness depends on pool config + webworker config
+
+        var wpool_key = "wp_".concat(JSON.stringify(this.options));
+
+        if (singletones[wpool_key]) {
+          this.__workersPool = singletones[wpool_key];
+        } else {
+          this.__workersPool = new Pool(workerFabric, this.options.idle);
+          singletones[wpool_key] = this.__workersPool;
+        }
+      } catch (__) {}
+    }
+  }
+
+  var initMath = this.__mathlib.init().then(function (mathlib) {
+    // Copy detected features
+    assign(_this.features, mathlib.features);
+  });
+
+  var checkCibResize;
+
+  if (!CAN_CREATE_IMAGE_BITMAP) {
+    checkCibResize = Promise.resolve(false);
+  } else {
+    checkCibResize = utils.cib_support(this.options.createCanvas).then(function (status) {
+      if (_this.features.cib && features.indexOf('cib') < 0) {
+        _this.debug('createImageBitmap() resize supported, but disabled by config');
+
+        return;
+      }
+
+      if (features.indexOf('cib') >= 0) _this.features.cib = status;
+    });
+  } // Init math lib. That's async because can load some
+
+
+  this.__initPromise = Promise.all([initMath, checkCibResize]).then(function () {
+    return _this;
+  });
+  return this.__initPromise;
+};
+
+Pica.prototype.resize = function (from, to, options) {
+  var _this2 = this;
+
+  this.debug('Start resize...');
+  var opts = assign({}, DEFAULT_RESIZE_OPTS);
+
+  if (!isNaN(options)) {
+    opts = assign(opts, {
+      quality: options
+    });
+  } else if (options) {
+    opts = assign(opts, options);
+  }
+
+  opts.toWidth = to.width;
+  opts.toHeight = to.height;
+  opts.width = from.naturalWidth || from.width;
+  opts.height = from.naturalHeight || from.height; // Prevent stepper from infinite loop
+
+  if (to.width === 0 || to.height === 0) {
+    return Promise.reject(new Error("Invalid output size: ".concat(to.width, "x").concat(to.height)));
+  }
+
+  if (opts.unsharpRadius > 2) opts.unsharpRadius = 2;
+  var canceled = false;
+  var cancelToken = null;
+
+  if (opts.cancelToken) {
+    // Wrap cancelToken to avoid successive resolve & set flag
+    cancelToken = opts.cancelToken.then(function (data) {
+      canceled = true;
+      throw data;
+    }, function (err) {
+      canceled = true;
+      throw err;
+    });
+  }
+
+  var DEST_TILE_BORDER = 3; // Max possible filter window size
+
+  var destTileBorder = Math.ceil(Math.max(DEST_TILE_BORDER, 2.5 * opts.unsharpRadius | 0));
+  return this.init().then(function () {
+    if (canceled) return cancelToken; // if createImageBitmap supports resize, just do it and return
+
+    if (_this2.features.cib) {
+      var toCtx = to.getContext('2d', {
+        alpha: Boolean(opts.alpha)
+      });
+
+      _this2.debug('Resize via createImageBitmap()');
+
+      return createImageBitmap(from, {
+        resizeWidth: opts.toWidth,
+        resizeHeight: opts.toHeight,
+        resizeQuality: utils.cib_quality_name(opts.quality)
+      }).then(function (imageBitmap) {
+        if (canceled) return cancelToken; // if no unsharp - draw directly to output canvas
+
+        if (!opts.unsharpAmount) {
+          toCtx.drawImage(imageBitmap, 0, 0);
+          imageBitmap.close();
+          toCtx = null;
+
+          _this2.debug('Finished!');
+
+          return to;
+        }
+
+        _this2.debug('Unsharp result');
+
+        var tmpCanvas = _this2.options.createCanvas(opts.toWidth, opts.toHeight);
+
+        var tmpCtx = tmpCanvas.getContext('2d', {
+          alpha: Boolean(opts.alpha)
+        });
+        tmpCtx.drawImage(imageBitmap, 0, 0);
+        imageBitmap.close();
+        var iData = tmpCtx.getImageData(0, 0, opts.toWidth, opts.toHeight);
+
+        _this2.__mathlib.unsharp_mask(iData.data, opts.toWidth, opts.toHeight, opts.unsharpAmount, opts.unsharpRadius, opts.unsharpThreshold);
+
+        toCtx.putImageData(iData, 0, 0); // Safari 12 workaround
+        // https://github.com/nodeca/pica/issues/199
+
+        tmpCanvas.width = tmpCanvas.height = 0;
+        iData = tmpCtx = tmpCanvas = toCtx = null;
+
+        _this2.debug('Finished!');
+
+        return to;
+      });
+    } //
+    // No easy way, let's resize manually via arrays
+    //
+    // Share cache between calls:
+    //
+    // - wasm instance
+    // - wasm memory object
+    //
+
+
+    var cache = {}; // Call resizer in webworker or locally, depending on config
+
+    var invokeResize = function invokeResize(opts) {
+      return Promise.resolve().then(function () {
+        if (!_this2.features.ww) return _this2.__mathlib.resizeAndUnsharp(opts, cache);
+        return new Promise(function (resolve, reject) {
+          var w = _this2.__workersPool.acquire();
+
+          if (cancelToken) cancelToken["catch"](function (err) {
+            return reject(err);
+          });
+
+          w.value.onmessage = function (ev) {
+            w.release();
+            if (ev.data.err) reject(ev.data.err);else resolve(ev.data.result);
+          };
+
+          w.value.postMessage({
+            opts: opts,
+            features: _this2.__requested_features,
+            preload: {
+              wasm_nodule: _this2.__mathlib.__
+            }
+          }, [opts.src.buffer]);
+        });
+      });
+    };
+
+    var tileAndResize = function tileAndResize(from, to, opts) {
+      var srcCtx;
+      var srcImageBitmap;
+      var isImageBitmapReused = false;
+      var toCtx;
+
+      var processTile = function processTile(tile) {
+        return _this2.__limit(function () {
+          if (canceled) return cancelToken;
+          var srcImageData; // Extract tile RGBA buffer, depending on input type
+
+          if (utils.isCanvas(from)) {
+            _this2.debug('Get tile pixel data'); // If input is Canvas - extract region data directly
+
+
+            srcImageData = srcCtx.getImageData(tile.x, tile.y, tile.width, tile.height);
+          } else {
+            // If input is Image or decoded to ImageBitmap,
+            // draw region to temporary canvas and extract data from it
+            //
+            // Note! Attempt to reuse this canvas causes significant slowdown in chrome
+            //
+            _this2.debug('Draw tile imageBitmap/image to temporary canvas');
+
+            var tmpCanvas = _this2.options.createCanvas(tile.width, tile.height);
+
+            var tmpCtx = tmpCanvas.getContext('2d', {
+              alpha: Boolean(opts.alpha)
+            });
+            tmpCtx.globalCompositeOperation = 'copy';
+            tmpCtx.drawImage(srcImageBitmap || from, tile.x, tile.y, tile.width, tile.height, 0, 0, tile.width, tile.height);
+
+            _this2.debug('Get tile pixel data');
+
+            srcImageData = tmpCtx.getImageData(0, 0, tile.width, tile.height); // Safari 12 workaround
+            // https://github.com/nodeca/pica/issues/199
+
+            tmpCanvas.width = tmpCanvas.height = 0;
+            tmpCtx = tmpCanvas = null;
+          }
+
+          var o = {
+            src: srcImageData.data,
+            width: tile.width,
+            height: tile.height,
+            toWidth: tile.toWidth,
+            toHeight: tile.toHeight,
+            scaleX: tile.scaleX,
+            scaleY: tile.scaleY,
+            offsetX: tile.offsetX,
+            offsetY: tile.offsetY,
+            quality: opts.quality,
+            alpha: opts.alpha,
+            unsharpAmount: opts.unsharpAmount,
+            unsharpRadius: opts.unsharpRadius,
+            unsharpThreshold: opts.unsharpThreshold
+          };
+
+          _this2.debug('Invoke resize math');
+
+          return Promise.resolve().then(function () {
+            return invokeResize(o);
+          }).then(function (result) {
+            if (canceled) return cancelToken;
+            srcImageData = null;
+            var toImageData;
+
+            _this2.debug('Convert raw rgba tile result to ImageData');
+
+            if (CAN_NEW_IMAGE_DATA) {
+              // this branch is for modern browsers
+              // If `new ImageData()` & Uint8ClampedArray suported
+              toImageData = new ImageData(new Uint8ClampedArray(result), tile.toWidth, tile.toHeight);
+            } else {
+              // fallback for `node-canvas` and old browsers
+              // (IE11 has ImageData but does not support `new ImageData()`)
+              toImageData = toCtx.createImageData(tile.toWidth, tile.toHeight);
+
+              if (toImageData.data.set) {
+                toImageData.data.set(result);
+              } else {
+                // IE9 don't have `.set()`
+                for (var i = toImageData.data.length - 1; i >= 0; i--) {
+                  toImageData.data[i] = result[i];
+                }
+              }
+            }
+
+            _this2.debug('Draw tile');
+
+            if (NEED_SAFARI_FIX) {
+              // Safari draws thin white stripes between tiles without this fix
+              toCtx.putImageData(toImageData, tile.toX, tile.toY, tile.toInnerX - tile.toX, tile.toInnerY - tile.toY, tile.toInnerWidth + 1e-5, tile.toInnerHeight + 1e-5);
+            } else {
+              toCtx.putImageData(toImageData, tile.toX, tile.toY, tile.toInnerX - tile.toX, tile.toInnerY - tile.toY, tile.toInnerWidth, tile.toInnerHeight);
+            }
+
+            return null;
+          });
+        });
+      }; // Need to normalize data source first. It can be canvas or image.
+      // If image - try to decode in background if possible
+
+
+      return Promise.resolve().then(function () {
+        toCtx = to.getContext('2d', {
+          alpha: Boolean(opts.alpha)
+        });
+
+        if (utils.isCanvas(from)) {
+          srcCtx = from.getContext('2d', {
+            alpha: Boolean(opts.alpha)
+          });
+          return null;
+        }
+
+        if (utils.isImageBitmap(from)) {
+          srcImageBitmap = from;
+          isImageBitmapReused = true;
+          return null;
+        }
+
+        if (utils.isImage(from)) {
+          // try do decode image in background for faster next operations
+          if (!CAN_CREATE_IMAGE_BITMAP) return null;
+
+          _this2.debug('Decode image via createImageBitmap');
+
+          return createImageBitmap(from).then(function (imageBitmap) {
+            srcImageBitmap = imageBitmap;
+          }) // Suppress error to use fallback, if method fails
+          // https://github.com/nodeca/pica/issues/190
+
+          /* eslint-disable no-unused-vars */
+          ["catch"](function (e) {
+            return null;
+          });
+        }
+
+        throw new Error('Pica: ".from" should be Image, Canvas or ImageBitmap');
+      }).then(function () {
+        if (canceled) return cancelToken;
+
+        _this2.debug('Calculate tiles'); //
+        // Here we are with "normalized" source,
+        // follow to tiling
+        //
+
+
+        var regions = createRegions({
+          width: opts.width,
+          height: opts.height,
+          srcTileSize: _this2.options.tile,
+          toWidth: opts.toWidth,
+          toHeight: opts.toHeight,
+          destTileBorder: destTileBorder
+        });
+        var jobs = regions.map(function (tile) {
+          return processTile(tile);
+        });
+
+        function cleanup() {
+          if (srcImageBitmap) {
+            if (!isImageBitmapReused) srcImageBitmap.close();
+            srcImageBitmap = null;
+          }
+        }
+
+        _this2.debug('Process tiles');
+
+        return Promise.all(jobs).then(function () {
+          _this2.debug('Finished!');
+
+          cleanup();
+          return to;
+        }, function (err) {
+          cleanup();
+          throw err;
+        });
+      });
+    };
+
+    var processStages = function processStages(stages, from, to, opts) {
+      if (canceled) return cancelToken;
+
+      var _stages$shift = stages.shift(),
+          _stages$shift2 = _slicedToArray(_stages$shift, 2),
+          toWidth = _stages$shift2[0],
+          toHeight = _stages$shift2[1];
+
+      var isLastStage = stages.length === 0;
+      opts = assign({}, opts, {
+        toWidth: toWidth,
+        toHeight: toHeight,
+        // only use user-defined quality for the last stage,
+        // use simpler (Hamming) filter for the first stages where
+        // scale factor is large enough (more than 2-3)
+        quality: isLastStage ? opts.quality : Math.min(1, opts.quality)
+      });
+      var tmpCanvas;
+
+      if (!isLastStage) {
+        // create temporary canvas
+        tmpCanvas = _this2.options.createCanvas(toWidth, toHeight);
+      }
+
+      return tileAndResize(from, isLastStage ? to : tmpCanvas, opts).then(function () {
+        if (isLastStage) return to;
+        opts.width = toWidth;
+        opts.height = toHeight;
+        return processStages(stages, tmpCanvas, to, opts);
+      }).then(function (res) {
+        if (tmpCanvas) {
+          // Safari 12 workaround
+          // https://github.com/nodeca/pica/issues/199
+          tmpCanvas.width = tmpCanvas.height = 0;
+        }
+
+        return res;
+      });
+    };
+
+    var stages = createStages(opts.width, opts.height, opts.toWidth, opts.toHeight, _this2.options.tile, destTileBorder);
+    return processStages(stages, from, to, opts);
+  });
+}; // RGBA buffer resize
+//
+
+
+Pica.prototype.resizeBuffer = function (options) {
+  var _this3 = this;
+
+  var opts = assign({}, DEFAULT_RESIZE_OPTS, options);
+  return this.init().then(function () {
+    return _this3.__mathlib.resizeAndUnsharp(opts);
+  });
+};
+
+Pica.prototype.toBlob = function (canvas, mimeType, quality) {
+  mimeType = mimeType || 'image/png';
+  return new Promise(function (resolve) {
+    if (canvas.toBlob) {
+      canvas.toBlob(function (blob) {
+        return resolve(blob);
+      }, mimeType, quality);
+      return;
+    }
+
+    if (canvas.convertToBlob) {
+      resolve(canvas.convertToBlob({
+        type: mimeType,
+        quality: quality
+      }));
+      return;
+    } // Fallback for old browsers
+
+
+    var asString = atob(canvas.toDataURL(mimeType, quality).split(',')[1]);
+    var len = asString.length;
+    var asBuffer = new Uint8Array(len);
+
+    for (var i = 0; i < len; i++) {
+      asBuffer[i] = asString.charCodeAt(i);
+    }
+
+    resolve(new Blob([asBuffer], {
+      type: mimeType
+    }));
+  });
+};
+
+Pica.prototype.debug = function () {};
+
+module.exports = Pica;
+
+},{"./lib/mathlib":1,"./lib/pool":9,"./lib/stepper":10,"./lib/tiler":11,"./lib/utils":12,"./lib/worker":13,"object-assign":24,"webworkify":25}]},{},[])("/index.js")
+});
+});
+
+var image_traverse = createCommonjsModule(function (module) {
+
+//////////////////////////////////////////////////////////////////////////
+// Helpers
+//
+function error(message, code) {
+  var err = new Error(message);
+  err.code = code;
+  return err;
+}
+
+
+// Convert number to 0xHH string
+//
+function to_hex(number) {
+  var n = number.toString(16).toUpperCase();
+  for (var i = 2 - n.length; i > 0; i--) n = '0' + n;
+  return '0x' + n;
+}
+
+
+function utf8_encode(str) {
+  try {
+    return unescape(encodeURIComponent(str));
+  } catch (_) {
+    return str;
+  }
+}
+
+
+function utf8_decode(str) {
+  try {
+    return decodeURIComponent(escape(str));
+  } catch (_) {
+    return str;
+  }
+}
+
+
+// Check if input is a Uint8Array
+//
+function is_uint8array(bin) {
+  return Object.prototype.toString.call(bin) === '[object Uint8Array]';
+}
+
+
+//////////////////////////////////////////////////////////////////////////
+// Exif parser
+//
+// Input:
+//  - jpeg_bin:   Uint8Array - jpeg file
+//  - exif_start: Number     - start of TIFF header (after Exif\0\0)
+//  - exif_end:   Number     - end of Exif segment
+//  - on_entry:   Number     - callback
+//
+function ExifParser(jpeg_bin, exif_start, exif_end) {
+  // Uint8Array, exif without signature (which isn't included in offsets)
+  this.input      = jpeg_bin.subarray(exif_start, exif_end);
+
+  // offset correction for `on_entry` callback
+  this.start      = exif_start;
+
+  // Check TIFF header (includes byte alignment and first IFD offset)
+  var sig = String.fromCharCode.apply(null, this.input.subarray(0, 4));
+
+  if (sig !== 'II\x2A\0' && sig !== 'MM\0\x2A') {
+    throw error('invalid TIFF signature', 'EBADDATA');
+  }
+
+  // true if motorola (big endian) byte alignment, false if intel
+  this.big_endian = sig[0] === 'M';
+}
+
+
+ExifParser.prototype.each = function (on_entry) {
+  // allow premature exit
+  this.aborted = false;
+
+  var offset = this.read_uint32(4);
+
+  this.ifds_to_read = [ {
+    id:     0,
+    offset: offset
+  } ];
+
+  while (this.ifds_to_read.length > 0 && !this.aborted) {
+    var i = this.ifds_to_read.shift();
+    if (!i.offset) continue;
+    this.scan_ifd(i.id, i.offset, on_entry);
+  }
+};
+
+
+ExifParser.prototype.filter = function (on_entry) {
+  var ifds = {};
+
+  // make sure IFD0 always exists
+  ifds.ifd0 = { id: 0, entries: [] };
+
+  this.each(function (entry) {
+    if (on_entry(entry) === false && !entry.is_subifd_link) return;
+    if (entry.is_subifd_link && entry.count !== 1 && entry.format !== 4) return; // filter out bogus links
+
+    if (!ifds['ifd' + entry.ifd]) {
+      ifds['ifd' + entry.ifd] = { id: entry.ifd, entries: [] };
+    }
+
+    ifds['ifd' + entry.ifd].entries.push(entry);
+  });
+
+  // thumbnails are not supported just yet, so delete all information related to it
+  delete ifds.ifd1;
+
+  // Calculate output size
+  var length = 8;
+  Object.keys(ifds).forEach(function (ifd_no) {
+    length += 2;
+
+    ifds[ifd_no].entries.forEach(function (entry) {
+      length += 12 + (entry.data_length > 4 ? Math.ceil(entry.data_length / 2) * 2 : 0);
+    });
+
+    length += 4;
+  });
+
+  this.output = new Uint8Array(length);
+  this.output[0] = this.output[1] = (this.big_endian ? 'M' : 'I').charCodeAt(0);
+  this.write_uint16(2, 0x2A);
+
+  var offset = 8;
+  var self = this;
+  this.write_uint32(4, offset);
+
+  Object.keys(ifds).forEach(function (ifd_no) {
+    ifds[ifd_no].written_offset = offset;
+
+    var ifd_start = offset;
+    var ifd_end   = ifd_start + 2 + ifds[ifd_no].entries.length * 12 + 4;
+    offset = ifd_end;
+
+    self.write_uint16(ifd_start, ifds[ifd_no].entries.length);
+
+    ifds[ifd_no].entries.sort(function (a, b) {
+      // IFD entries must be in order of increasing tag IDs
+      return a.tag - b.tag;
+    }).forEach(function (entry, idx) {
+      var entry_offset = ifd_start + 2 + idx * 12;
+
+      self.write_uint16(entry_offset, entry.tag);
+      self.write_uint16(entry_offset + 2, entry.format);
+      self.write_uint32(entry_offset + 4, entry.count);
+
+      if (entry.is_subifd_link) {
+        // filled in later
+        if (ifds['ifd' + entry.tag]) ifds['ifd' + entry.tag].link_offset = entry_offset + 8;
+      } else if (entry.data_length <= 4) {
+        self.output.set(
+          self.input.subarray(entry.data_offset - self.start, entry.data_offset - self.start + 4),
+          entry_offset + 8
+        );
+      } else {
+        self.write_uint32(entry_offset + 8, offset);
+        self.output.set(
+          self.input.subarray(entry.data_offset - self.start, entry.data_offset - self.start + entry.data_length),
+          offset
+        );
+        offset += Math.ceil(entry.data_length / 2) * 2;
+      }
+    });
+
+    var next_ifd = ifds['ifd' + (ifds[ifd_no].id + 1)];
+    if (next_ifd) next_ifd.link_offset = ifd_end - 4;
+  });
+
+  Object.keys(ifds).forEach(function (ifd_no) {
+    if (ifds[ifd_no].written_offset && ifds[ifd_no].link_offset) {
+      self.write_uint32(ifds[ifd_no].link_offset, ifds[ifd_no].written_offset);
+    }
+  });
+
+  if (this.output.length !== offset) throw error('internal error: incorrect buffer size allocated');
+
+  return this.output;
+};
+
+
+ExifParser.prototype.read_uint16 = function (offset) {
+  var d = this.input;
+  if (offset + 2 > d.length) throw error('unexpected EOF', 'EBADDATA');
+
+  return this.big_endian ?
+    d[offset] * 0x100 + d[offset + 1] :
+    d[offset] + d[offset + 1] * 0x100;
+};
+
+
+ExifParser.prototype.read_uint32 = function (offset) {
+  var d = this.input;
+  if (offset + 4 > d.length) throw error('unexpected EOF', 'EBADDATA');
+
+  return this.big_endian ?
+    d[offset] * 0x1000000 + d[offset + 1] * 0x10000 + d[offset + 2] * 0x100 + d[offset + 3] :
+    d[offset] + d[offset + 1] * 0x100 + d[offset + 2] * 0x10000 + d[offset + 3] * 0x1000000;
+};
+
+
+ExifParser.prototype.write_uint16 = function (offset, value) {
+  var d = this.output;
+
+  if (this.big_endian) {
+    d[offset]     = (value >>> 8) & 0xFF;
+    d[offset + 1] = value & 0xFF;
+  } else {
+    d[offset]     = value & 0xFF;
+    d[offset + 1] = (value >>> 8) & 0xFF;
+  }
+};
+
+
+ExifParser.prototype.write_uint32 = function (offset, value) {
+  var d = this.output;
+
+  if (this.big_endian) {
+    d[offset]     = (value >>> 24) & 0xFF;
+    d[offset + 1] = (value >>> 16) & 0xFF;
+    d[offset + 2] = (value >>> 8) & 0xFF;
+    d[offset + 3] = value & 0xFF;
+  } else {
+    d[offset]     = value & 0xFF;
+    d[offset + 1] = (value >>> 8) & 0xFF;
+    d[offset + 2] = (value >>> 16) & 0xFF;
+    d[offset + 3] = (value >>> 24) & 0xFF;
+  }
+};
+
+
+ExifParser.prototype.is_subifd_link = function (ifd, tag) {
+  return (ifd === 0 && tag === 0x8769) || // SubIFD
+         (ifd === 0 && tag === 0x8825) || // GPS Info
+         (ifd === 0x8769 && tag === 0xA005); // Interop IFD
+};
+
+
+// Returns byte length of a single component of a given format
+//
+ExifParser.prototype.exif_format_length = function (format) {
+  switch (format) {
+    case 1: // byte
+    case 2: // ascii
+    case 6: // sbyte
+    case 7: // undefined
+      return 1;
+
+    case 3: // short
+    case 8: // sshort
+      return 2;
+
+    case 4:  // long
+    case 9:  // slong
+    case 11: // float
+      return 4;
+
+    case 5:  // rational
+    case 10: // srational
+    case 12: // double
+      return 8;
+
+    default:
+      // unknown type
+      return 0;
+  }
+};
+
+
+// Reads Exif data
+//
+ExifParser.prototype.exif_format_read = function (format, offset) {
+  var v;
+
+  switch (format) {
+    case 1: // byte
+    case 2: // ascii
+      v = this.input[offset];
+      return v;
+
+    case 6: // sbyte
+      v = this.input[offset];
+      return v | (v & 0x80) * 0x1fffffe;
+
+    case 3: // short
+      v = this.read_uint16(offset);
+      return v;
+
+    case 8: // sshort
+      v = this.read_uint16(offset);
+      return v | (v & 0x8000) * 0x1fffe;
+
+    case 4: // long
+      v = this.read_uint32(offset);
+      return v;
+
+    case 9: // slong
+      v = this.read_uint32(offset);
+      return v | 0;
+
+    case 5:  // rational
+    case 10: // srational
+    case 11: // float
+    case 12: // double
+      return null; // not implemented
+
+    case 7: // undefined
+      return null; // blob
+
+    default:
+      // unknown type
+      return null;
+  }
+};
+
+
+ExifParser.prototype.scan_ifd = function (ifd_no, offset, on_entry) {
+  var entry_count = this.read_uint16(offset);
+
+  offset += 2;
+
+  for (var i = 0; i < entry_count; i++) {
+    var tag    = this.read_uint16(offset);
+    var format = this.read_uint16(offset + 2);
+    var count  = this.read_uint32(offset + 4);
+
+    var comp_length    = this.exif_format_length(format);
+    var data_length    = count * comp_length;
+    var data_offset    = data_length <= 4 ? offset + 8 : this.read_uint32(offset + 8);
+    var is_subifd_link = false;
+
+    if (data_offset + data_length > this.input.length) {
+      throw error('unexpected EOF', 'EBADDATA');
+    }
+
+    var value = [];
+    var comp_offset = data_offset;
+
+    for (var j = 0; j < count; j++, comp_offset += comp_length) {
+      var item = this.exif_format_read(format, comp_offset);
+      if (item === null) {
+        value = null;
+        break;
+      }
+      value.push(item);
+    }
+
+    if (Array.isArray(value) && format === 2) {
+      try {
+        value = utf8_decode(String.fromCharCode.apply(null, value));
+      } catch (_) {
+        value = null;
+      }
+
+      if (value && value[value.length - 1] === '\0') value = value.slice(0, -1);
+    }
+
+    if (this.is_subifd_link(ifd_no, tag)) {
+      if (Array.isArray(value) && Number.isInteger(value[0]) && value[0] > 0) {
+        this.ifds_to_read.push({
+          id:     tag,
+          offset: value[0]
+        });
+        is_subifd_link = true;
+      }
+    }
+
+    var entry = {
+      is_big_endian:  this.big_endian,
+      ifd:            ifd_no,
+      tag:            tag,
+      format:         format,
+      count:          count,
+      entry_offset:   offset + this.start,
+      data_length:    data_length,
+      data_offset:    data_offset + this.start,
+      value:          value,
+      is_subifd_link: is_subifd_link
+    };
+
+    if (on_entry(entry) === false) {
+      this.aborted = true;
+      return;
+    }
+
+    offset += 12;
+  }
+
+  if (ifd_no === 0) {
+    this.ifds_to_read.push({
+      id:     1,
+      offset: this.read_uint32(offset)
+    });
+  }
+};
+
+
+// Check whether input is a JPEG image
+//
+// Input:
+//  - jpeg_bin: Uint8Array - jpeg file
+//
+// Returns true if it is and false otherwise
+//
+module.exports.is_jpeg = function (jpeg_bin) {
+  return jpeg_bin.length >= 4 && jpeg_bin[0] === 0xFF && jpeg_bin[1] === 0xD8 && jpeg_bin[2] === 0xFF;
+};
+
+
+// Call an iterator on each segment in the given JPEG image
+//
+// Input:
+//  - jpeg_bin:   Uint8Array - jpeg file
+//  - on_segment: Function - callback executed on each JPEG marker segment
+//    - segment:  Object
+//      - code:   Number - marker type (2nd byte, e.g. 0xE0 for APP0)
+//      - offset: Number - offset of the first byte (0xFF) relative to `jpeg_bin` start
+//      - length: Number - length of the entire marker segment including first two bytes and length
+//        - 2 for standalone markers
+//        - 4+length for markers with data
+//
+// Iteration stops when `EOI` (0xFFD9) marker is reached or if `on_segment`
+// function returns `false`.
+//
+module.exports.jpeg_segments_each = function (jpeg_bin, on_segment) {
+  if (!is_uint8array(jpeg_bin)) {
+    throw error('Invalid argument (jpeg_bin), Uint8Array expected', 'EINVAL');
+  }
+
+  if (typeof on_segment !== 'function') {
+    throw error('Invalid argument (on_segment), Function expected', 'EINVAL');
+  }
+
+  if (!module.exports.is_jpeg(jpeg_bin)) {
+    throw error('Unknown file format', 'ENOTJPEG');
+  }
+
+  var offset = 0, length = jpeg_bin.length, inside_scan = false;
+
+  for (;;) {
+    var segment_code, segment_length;
+
+    if (offset + 1 >= length) throw error('Unexpected EOF', 'EBADDATA');
+    var byte1 = jpeg_bin[offset];
+    var byte2 = jpeg_bin[offset + 1];
+
+    if (byte1 === 0xFF && byte2 === 0xFF) {
+      // padding
+      segment_code = 0xFF;
+      segment_length = 1;
+
+    } else if (byte1 === 0xFF && byte2 !== 0) {
+      // marker
+      segment_code = byte2;
+      segment_length = 2;
+
+      if ((0xD0 <= segment_code && segment_code <= 0xD9) || segment_code === 0x01) ; else {
+        if (offset + 3 >= length) throw error('Unexpected EOF', 'EBADDATA');
+        segment_length += jpeg_bin[offset + 2] * 0x100 + jpeg_bin[offset + 3];
+        if (segment_length < 2) throw error('Invalid segment length', 'EBADDATA');
+        if (offset + segment_length - 1 >= length) throw error('Unexpected EOF', 'EBADDATA');
+      }
+
+      if (inside_scan) {
+        if (segment_code >= 0xD0 && segment_code <= 0xD7) ; else {
+          inside_scan = false;
+        }
+      }
+
+      if (segment_code === 0xDA /* SOS */) inside_scan = true;
+    } else if (inside_scan) {
+      // entropy-encoded segment
+      for (var pos = offset + 1; ; pos++) {
+        // scan until we find FF
+        if (pos >= length) throw error('Unexpected EOF', 'EBADDATA');
+        if (jpeg_bin[pos] === 0xFF) {
+          if (pos + 1 >= length) throw error('Unexpected EOF', 'EBADDATA');
+          if (jpeg_bin[pos + 1] !== 0) {
+            segment_code = 0;
+            segment_length = pos - offset;
+            break;
+          }
+        }
+      }
+    } else {
+      throw error('Unexpected byte at segment start: ' + to_hex(byte1) +
+        ' (offset ' + to_hex(offset) + ')', 'EBADDATA');
+    }
+
+    if (on_segment({ code: segment_code, offset: offset, length: segment_length }) === false) break;
+    if (segment_code === 0xD9 /* EOI */) break;
+    offset += segment_length;
+  }
+};
+
+
+// Replace or remove segments in the given JPEG image
+//
+// Input:
+//  - jpeg_bin:   Uint8Array - jpeg file
+//  - on_segment: Function - callback executed on each JPEG marker segment
+//    - segment:  Object
+//      - code:   Number - marker type (2nd byte, e.g. 0xE0 for APP0)
+//      - offset: Number - offset of the first byte (0xFF) relative to `jpeg_bin` start
+//      - length: Number - length of the entire marker segment including first two bytes and length
+//        - 2 for standalone markers
+//        - 4+length for markers with data
+//
+// `on_segment` function should return one of the following:
+//  - `false`        - segment is removed from the output
+//  - Uint8Array     - segment is replaced with the new data
+//  - [ Uint8Array ] - segment is replaced with the new data
+//  - anything else  - segment is copied to the output as is
+//
+// Any data after `EOI` (0xFFD9) marker is removed.
+//
+module.exports.jpeg_segments_filter = function (jpeg_bin, on_segment) {
+  if (!is_uint8array(jpeg_bin)) {
+    throw error('Invalid argument (jpeg_bin), Uint8Array expected', 'EINVAL');
+  }
+
+  if (typeof on_segment !== 'function') {
+    throw error('Invalid argument (on_segment), Function expected', 'EINVAL');
+  }
+
+  var ranges = [];
+  var out_length = 0;
+
+  module.exports.jpeg_segments_each(jpeg_bin, function (segment) {
+    var new_segment = on_segment(segment);
+
+    if (is_uint8array(new_segment)) {
+      ranges.push({ data: new_segment });
+      out_length += new_segment.length;
+    } else if (Array.isArray(new_segment)) {
+      new_segment.filter(is_uint8array).forEach(function (s) {
+        ranges.push({ data: s });
+        out_length += s.length;
+      });
+    } else if (new_segment !== false) {
+      var new_range = { start: segment.offset, end: segment.offset + segment.length };
+
+      if (ranges.length > 0 && ranges[ranges.length - 1].end === new_range.start) {
+        ranges[ranges.length - 1].end = new_range.end;
+      } else {
+        ranges.push(new_range);
+      }
+
+      out_length += segment.length;
+    }
+  });
+
+  var result = new Uint8Array(out_length);
+  var offset = 0;
+
+  ranges.forEach(function (range) {
+    var data = range.data || jpeg_bin.subarray(range.start, range.end);
+    result.set(data, offset);
+    offset += data.length;
+  });
+
+  return result;
+};
+
+
+// Call an iterator on each Exif entry in the given JPEG image
+//
+// Input:
+//  - jpeg_bin: Uint8Array - jpeg file
+//  - on_entry: Function - callback executed on each Exif entry
+//    - entry:  Object
+//      - is_big_endian:  Boolean - whether Exif uses big or little endian byte alignment
+//      - ifd:            Number  - IFD identifier (0 for IFD0, 1 for IFD1, 0x8769 for SubIFD,
+//                                 0x8825 for GPS Info, 0xA005 for Interop IFD)
+//      - tag:            Number  - exif entry tag (0x0110 - camera name, 0x0112 - orientation, etc. - see Exif spec)
+//      - format:         Number  - exif entry format (1 - byte, 2 - ascii, 3 - short, etc. - see Exif spec)
+//      - count:          Number  - number of components of the given format inside data
+//                                 (usually 1, or string length for ascii format)
+//      - entry_offset:   Number  - start of Exif entry (entry length is always 12, so not included)
+//      - data_offset:    Number  - start of data attached to Exif entry (will overlap with entry if length <= 4)
+//      - data_length:    Number  - length of data attached to Exif entry
+//      - value:          Array|String|Null - our best attempt at parsing data (not all formats supported right now)
+//      - is_subifd_link: Boolean - whether this entry is recognized to be a link to subifd (can't filter these out)
+//
+// Iteration stops early if iterator returns `false`.
+//
+// If Exif wasn't found anywhere (before start of the image data, SOS),
+// iterator is never executed.
+//
+module.exports.jpeg_exif_tags_each = function (jpeg_bin, on_exif_entry) {
+  if (!is_uint8array(jpeg_bin)) {
+    throw error('Invalid argument (jpeg_bin), Uint8Array expected', 'EINVAL');
+  }
+
+  if (typeof on_exif_entry !== 'function') {
+    throw error('Invalid argument (on_exif_entry), Function expected', 'EINVAL');
+  }
+
+  /* eslint-disable consistent-return */
+  module.exports.jpeg_segments_each(jpeg_bin, function (segment) {
+    if (segment.code === 0xDA /* SOS */) return false;
+
+    // look for APP1 segment and compare header with 'Exif\0\0'
+    if (segment.code === 0xE1 && segment.length >= 10 &&
+        jpeg_bin[segment.offset + 4] === 0x45 && jpeg_bin[segment.offset + 5] === 0x78 &&
+        jpeg_bin[segment.offset + 6] === 0x69 && jpeg_bin[segment.offset + 7] === 0x66 &&
+        jpeg_bin[segment.offset + 8] === 0x00 && jpeg_bin[segment.offset + 9] === 0x00) {
+
+      new ExifParser(jpeg_bin, segment.offset + 10, segment.offset + segment.length).each(on_exif_entry);
+      return false;
+    }
+  });
+};
+
+
+// Remove Exif entries in the given JPEG image
+//
+// Input:
+//  - jpeg_bin: Uint8Array - jpeg file
+//  - on_entry: Function - callback executed on each Exif entry
+//    - entry:  Object
+//      - is_big_endian:  Boolean - whether Exif uses big or little endian byte alignment
+//      - ifd:            Number  - IFD identifier (0 for IFD0, 1 for IFD1, 0x8769 for SubIFD,
+//                                  0x8825 for GPS Info, 0xA005 for Interop IFD)
+//      - tag:            Number  - exif entry tag (0x0110 - camera name, 0x0112 - orientation, etc. - see Exif spec)
+//      - format:         Number  - exif entry format (1 - byte, 2 - ascii, 3 - short, etc. - see Exif spec)
+//      - count:          Number  - number of components of the given format inside data
+//                                  (usually 1, or string length for ascii format)
+//      - entry_offset:   Number  - start of Exif entry (entry length is always 12, so not included)
+//      - data_offset:    Number  - start of data attached to Exif entry (will overlap with entry if length <= 4)
+//      - data_length:    Number  - length of data attached to Exif entry
+//      - value:          Array|String|Null - our best attempt at parsing data (not all formats supported right now)
+//      - is_subifd_link: Boolean - whether this entry is recognized to be a link to subifd (can't filter these out)
+//
+// This function removes following from Exif:
+//  - all entries where iterator returned false (except subifd links which are mandatory)
+//  - IFD1 and thumbnail image (the purpose of this function is to reduce file size,
+//    so thumbnail is usually the first thing to go)
+//  - all other data that isn't in IFD0, SubIFD, GPSIFD, InteropIFD
+//    (theoretically possible proprietary extensions, I haven't seen any of these yet)
+//
+// Changing data inside Exif entries is NOT supported yet (modifying `entry` object inside callback may break stuff).
+//
+// If Exif wasn't found anywhere (before start of the image data, SOS),
+// iterator is never executed, and original JPEG is returned as is.
+//
+module.exports.jpeg_exif_tags_filter = function (jpeg_bin, on_exif_entry) {
+  if (!is_uint8array(jpeg_bin)) {
+    throw error('Invalid argument (jpeg_bin), Uint8Array expected', 'EINVAL');
+  }
+
+  if (typeof on_exif_entry !== 'function') {
+    throw error('Invalid argument (on_exif_entry), Function expected', 'EINVAL');
+  }
+
+  var stop_search = false;
+
+  return module.exports.jpeg_segments_filter(jpeg_bin, function (segment) {
+    if (stop_search) return;
+    if (segment.code === 0xDA /* SOS */) stop_search = true;
+
+    // look for APP1 segment and compare header with 'Exif\0\0'
+    if (segment.code === 0xE1 && segment.length >= 10 &&
+        jpeg_bin[segment.offset + 4] === 0x45 && jpeg_bin[segment.offset + 5] === 0x78 &&
+        jpeg_bin[segment.offset + 6] === 0x69 && jpeg_bin[segment.offset + 7] === 0x66 &&
+        jpeg_bin[segment.offset + 8] === 0x00 && jpeg_bin[segment.offset + 9] === 0x00) {
+
+      var new_exif = new ExifParser(jpeg_bin, segment.offset + 10, segment.offset + segment.length)
+        .filter(on_exif_entry);
+      if (!new_exif) return false;
+
+      var header = new Uint8Array(10);
+
+      header.set(jpeg_bin.slice(segment.offset, segment.offset + 10));
+      header[2] = ((new_exif.length + 8) >>> 8) & 0xFF;
+      header[3] = (new_exif.length + 8) & 0xFF;
+
+      stop_search = true;
+      return [ header, new_exif ];
+    }
+  });
+};
+
+
+// Inserts a custom comment marker segment into JPEG file.
+//
+// Input:
+//  - jpeg_bin: Uint8Array - jpeg file
+//  - comment:  String
+//
+// Comment is inserted after first two bytes (FFD8, SOI).
+//
+// If JFIF (APP0) marker exists immediately after SOI (as mandated by the JFIF
+// spec), we insert comment after it instead.
+//
+module.exports.jpeg_add_comment = function (jpeg_bin, comment) {
+  var comment_inserted = false, segment_count = 0;
+
+  return module.exports.jpeg_segments_filter(jpeg_bin, function (segment) {
+    segment_count++;
+    if (segment_count === 1 && segment.code === 0xD8 /* SOI  */) return;
+    if (segment_count === 2 && segment.code === 0xE0 /* APP0 */) return;
+
+    if (comment_inserted) return;
+    comment = utf8_encode(comment);
+
+    // comment segment
+    var csegment = new Uint8Array(5 + comment.length);
+    var offset = 0;
+
+    csegment[offset++] = 0xFF;
+    csegment[offset++] = 0xFE;
+    csegment[offset++] = ((comment.length + 3) >>> 8) & 0xFF;
+    csegment[offset++] = (comment.length + 3) & 0xFF;
+
+    comment.split('').forEach(function (c) {
+      csegment[offset++] = c.charCodeAt(0) & 0xFF;
+    });
+
+    csegment[offset++] = 0;
+    comment_inserted = true;
+
+    return [ csegment, jpeg_bin.subarray(segment.offset, segment.offset + segment.length) ];
+  });
+};
+});
+
+function jpeg_patch_exif(env) {
+  return this._getUint8Array(env.blob).then(function (data) {
+    env.is_jpeg = image_traverse.is_jpeg(data);
+
+    if (!env.is_jpeg) return Promise.resolve(env);
+
+    env.orig_blob = env.blob;
+
+    try {
+      var exif_is_big_endian, orientation_offset;
+
+      /* eslint-disable consistent-return */
+      image_traverse.jpeg_exif_tags_each(data, function (entry) {
+        if (entry.ifd === 0 && entry.tag === 0x112 && Array.isArray(entry.value)) {
+          env.orientation    = entry.value[0] || 1;
+          exif_is_big_endian = entry.big_endian;
+          orientation_offset = entry.data_offset;
+          return false;
+        }
+      });
+
+      if (orientation_offset) {
+        var orientation_patch = exif_is_big_endian ?
+          new Uint8Array([ 0, 1 ]) :
+          new Uint8Array([ 1, 0 ]);
+
+        env.blob = new Blob([
+          data.slice(0, orientation_offset),
+          orientation_patch,
+          data.slice(orientation_offset + 2)
+        ], { type: 'image/jpeg' });
+      }
+    } catch (_) {}
+
+    return env;
+  });
+}
+
+
+function jpeg_rotate_canvas(env) {
+  if (!env.is_jpeg) return Promise.resolve(env);
+
+  var orientation = env.orientation - 1;
+  if (!orientation) return Promise.resolve(env);
+
+  var canvas;
+
+  if (orientation & 4) {
+    canvas = this.pica.options.createCanvas(env.out_canvas.height, env.out_canvas.width);
+  } else {
+    canvas = this.pica.options.createCanvas(env.out_canvas.width, env.out_canvas.height);
+  }
+
+  var ctx = canvas.getContext('2d');
+
+  ctx.save();
+
+  if (orientation & 1) ctx.transform(-1, 0, 0, 1, canvas.width, 0);
+  if (orientation & 2) ctx.transform(-1, 0, 0, -1, canvas.width, canvas.height);
+  if (orientation & 4) ctx.transform(0, 1, 1, 0, 0, 0);
+
+  ctx.drawImage(env.out_canvas, 0, 0);
+  ctx.restore();
+
+  // Safari 12 workaround
+  // https://github.com/nodeca/pica/issues/199
+  env.out_canvas.width = env.out_canvas.height = 0;
+
+  env.out_canvas = canvas;
+
+  return Promise.resolve(env);
+}
+
+
+function jpeg_attach_orig_segments(env) {
+  if (!env.is_jpeg) return Promise.resolve(env);
+
+  return Promise.all([
+    this._getUint8Array(env.blob),
+    this._getUint8Array(env.out_blob)
+  ]).then(function (res) {
+    var data = res[0];
+    var data_out = res[1];
+
+    if (image_traverse.is_jpeg(data_out)) return Promise.resolve(env);
+
+    var segments = [];
+
+    image_traverse.jpeg_segments_each(data, function (segment) {
+      if (segment.code === 0xDA /* SOS */) return false;
+      segments.push(segment);
+    });
+
+    segments = segments
+      .filter(function (segment) {
+        if (segment.code === 0xE2) {
+          var hdr = data.slice(segment.offset + 4, segment.offset + 11);
+          if (String.fromCharCode.apply(hdr) === 'ICC_PROFILE') {
+            return false;
+          }
+        }
+
+        // Keep all APPn segments excluding APP2 (ICC_PROFILE),
+        // remove others because most of them depend on image data (DCT and such).
+        //
+        // APP0 - JFIF, APP1 - Exif, the rest are photoshop metadata and such
+        //
+        // See full list at https://www.w3.org/Graphics/JPEG/itu-t81.pdf (table B.1 on page 32)
+        //
+        if (segment.code >= 0xE0 && segment.code < 0xF0) return true;
+
+        // Keep comments
+        //
+        if (segment.code === 0xFE) return true;
+
+        return false;
+      })
+      .map(function (segment) {
+        return data.slice(segment.offset, segment.offset + segment.length);
+      });
+
+    env.blob = new Blob(
+      [ data.slice(0, 20) ].concat(segments).concat([ data.slice(20) ]),
+      { type: 'image/jpeg' }
+    );
+
+    return env;
+  });
+}
+
+
+function assign$1(reducer) {
+  reducer.before('_blob_to_image', jpeg_patch_exif);
+  reducer.after('_transform',      jpeg_rotate_canvas);
+  reducer.after('_create_blob',    jpeg_attach_orig_segments);
+}
+
+
+var jpeg_patch_exif_1 = jpeg_patch_exif;
+var jpeg_rotate_canvas_1 = jpeg_rotate_canvas;
+var jpeg_attach_orig_segments_1 = jpeg_attach_orig_segments;
+var assign_1 = assign$1;
+
+var jpeg_plugins = {
+	jpeg_patch_exif: jpeg_patch_exif_1,
+	jpeg_rotate_canvas: jpeg_rotate_canvas_1,
+	jpeg_attach_orig_segments: jpeg_attach_orig_segments_1,
+	assign: assign_1
+};
+
+function ImageBlobReduce(options) {
+  if (!(this instanceof ImageBlobReduce)) return new ImageBlobReduce(options);
+
+  options = options || {};
+
+  this.pica = options.pica || pica({});
+  this.initialized = false;
+
+  this.utils = utils;
+}
+
+
+ImageBlobReduce.prototype.use = function (plugin /*, params, ... */) {
+  var args = [ this ].concat(Array.prototype.slice.call(arguments, 1));
+  plugin.apply(plugin, args);
+  return this;
+};
+
+
+ImageBlobReduce.prototype.init = function () {
+  this.use(jpeg_plugins.assign);
+};
+
+
+ImageBlobReduce.prototype.toBlob = function (blob, options) {
+  var opts = utils.assign({ max: Infinity }, options);
+  var env = {
+    blob: blob,
+    opts: opts
+  };
+
+  if (!this.initialized) {
+    this.init();
+    this.initialized = true;
+  }
+
+  return Promise.resolve(env)
+    .then(this._blob_to_image)
+    .then(this._calculate_size)
+    .then(this._transform)
+    .then(this._cleanup)
+    .then(this._create_blob)
+    .then(function (_env) {
+      // Safari 12 workaround
+      // https://github.com/nodeca/pica/issues/199
+      _env.out_canvas.width = _env.out_canvas.height = 0;
+
+      return _env.out_blob;
+    });
+};
+
+
+ImageBlobReduce.prototype.toCanvas = function (blob, options) {
+  var opts = utils.assign({ max: Infinity }, options);
+  var env = {
+    blob: blob,
+    opts: opts
+  };
+
+  if (!this.initialized) {
+    this.init();
+    this.initialized = true;
+  }
+
+  return Promise.resolve(env)
+    .then(this._blob_to_image)
+    .then(this._calculate_size)
+    .then(this._transform)
+    .then(this._cleanup)
+    .then(function (_env) { return _env.out_canvas; });
+};
+
+
+ImageBlobReduce.prototype.before = function (method_name, fn) {
+  if (!this[method_name]) throw new Error('Method "' + method_name + '" does not exist');
+  if (typeof fn !== 'function') throw new Error('Invalid argument "fn", function expected');
+
+  var old_fn = this[method_name];
+  var self = this;
+
+  this[method_name] = function (env) {
+    return fn.call(self, env).then(function (_env) {
+      return old_fn.call(self, _env);
+    });
+  };
+
+  return this;
+};
+
+
+ImageBlobReduce.prototype.after = function (method_name, fn) {
+  if (!this[method_name]) throw new Error('Method "' + method_name + '" does not exist');
+  if (typeof fn !== 'function') throw new Error('Invalid argument "fn", function expected');
+
+  var old_fn = this[method_name];
+  var self = this;
+
+  this[method_name] = function (env) {
+    return old_fn.call(self, env).then(function (_env) {
+      return fn.call(self, _env);
+    });
+  };
+
+  return this;
+};
+
+
+ImageBlobReduce.prototype._blob_to_image = function (env) {
+  var URL = window.URL || window.webkitURL || window.mozURL || window.msURL;
+
+  env.image = document.createElement('img');
+  env.image_url = URL.createObjectURL(env.blob);
+  env.image.src = env.image_url;
+
+  return new Promise(function (resolve, reject) {
+    env.image.onerror = function () { reject(new Error('ImageBlobReduce: failed to create Image() from blob')); };
+    env.image.onload = function () { resolve(env); };
+  });
+};
+
+
+ImageBlobReduce.prototype._calculate_size = function (env) {
+  //
+  // Note, if your need not "symmetric" resize logic, you MUST check
+  // `env.orientation` (set by plugins) and swap width/height appropriately.
+  //
+  var scale_factor = env.opts.max / Math.max(env.image.width, env.image.height);
+
+  if (scale_factor > 1) scale_factor = 1;
+
+  env.transform_width = Math.max(Math.round(env.image.width * scale_factor), 1);
+  env.transform_height = Math.max(Math.round(env.image.height * scale_factor), 1);
+
+  // Info for user plugins, to check if scaling applied
+  env.scale_factor = scale_factor;
+
+  return Promise.resolve(env);
+};
+
+
+ImageBlobReduce.prototype._transform = function (env) {
+  env.out_canvas = this.pica.options.createCanvas(env.transform_width, env.transform_height);
+
+  // Dim env temporary vars to prohibit use and avoid confusion when orientation
+  // changed. You should take real size from canvas.
+  env.transform_width = null;
+  env.transform_height = null;
+
+  // By default use alpha for png only
+  var pica_opts = { alpha: env.blob.type === 'image/png' };
+
+  // Extract pica options if been passed
+  this.utils.assign(pica_opts, this.utils.pick_pica_resize_options(env.opts));
+
+  return this.pica
+    .resize(env.image, env.out_canvas, pica_opts)
+    .then(function () { return env; });
+};
+
+
+ImageBlobReduce.prototype._cleanup = function (env) {
+  env.image.src = '';
+  env.image = null;
+
+  var URL = window.URL || window.webkitURL || window.mozURL || window.msURL;
+  if (URL.revokeObjectURL) URL.revokeObjectURL(env.image_url);
+
+  env.image_url = null;
+
+  return Promise.resolve(env);
+};
+
+
+ImageBlobReduce.prototype._create_blob = function (env) {
+  return this.pica.toBlob(env.out_canvas, env.blob.type)
+    .then(function (blob) {
+      env.out_blob = blob;
+      return env;
+    });
+};
+
+
+ImageBlobReduce.prototype._getUint8Array = function (blob) {
+  if (blob.arrayBuffer) {
+    return blob.arrayBuffer().then(function (buf) {
+      return new Uint8Array(buf);
+    });
+  }
+
+  return new Promise(function (resolve, reject) {
+    var fr = new FileReader();
+
+    fr.readAsArrayBuffer(blob);
+
+    fr.onload = function () { resolve(new Uint8Array(fr.result)); };
+    fr.onerror = function () {
+      reject(new Error('ImageBlobReduce: failed to load data from input blob'));
+      fr.abort();
+    };
+    fr.onabort = function () {
+      reject(new Error('ImageBlobReduce: failed to load data from input blob (aborted)'));
+    };
+  });
+};
+
+
+ImageBlobReduce.pica = pica;
+
+var imageBlobReduce = ImageBlobReduce;
+
+/* harmony default export */ __webpack_exports__["default"] = (imageBlobReduce);
+
+
+/***/ }),
+
+/***/ "BJdS":
+/*!************************************************************!*\
+  !*** ./src/app/shared/moment/moment-repository.service.ts ***!
+  \************************************************************/
+/*! exports provided: MomentRepository */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MomentRepository", function() { return MomentRepository; });
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ "qCKp");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ "kU1M");
+/* harmony import */ var _utils_crypto__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/crypto */ "6y+t");
+/* harmony import */ var _utils_geolocation__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utils/geolocation */ "/Q3I");
+/* harmony import */ var _moment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./moment */ "uxeB");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _database_database_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../database/database.service */ "aNgo");
+
+
+
+
+
+
+
+let MomentRepository = /*@__PURE__*/ (() => {
+    class MomentRepository {
+        constructor(database) {
+            this.database = database;
+            this.collection$ = this.database.main$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["concatMap"])(database => database.addCollections({
+                [COLLECTION_NAME]: { schema: _moment__WEBPACK_IMPORTED_MODULE_4__["schema"] },
+            })), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["pluck"])(COLLECTION_NAME), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["shareReplay"])({ bufferSize: 1, refCount: true }));
+            this.all$ = this.collection$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["concatMap"])(c => c.find().sort({ timestamp: 'desc' }).$), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(documents => documents.map(d => new _moment__WEBPACK_IMPORTED_MODULE_4__["Moment"](d))));
+        }
+        add$(photo) {
+            return Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["defer"])(() => Object(rxjs__WEBPACK_IMPORTED_MODULE_0__["forkJoin"])([
+                this.collection$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["first"])()),
+                Object(_utils_crypto__WEBPACK_IMPORTED_MODULE_2__["sha256WithBlob"])(photo),
+                Object(_utils_geolocation__WEBPACK_IMPORTED_MODULE_3__["getCurrentPositionOrUndefined"])(),
+            ])).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["concatMap"])(([collection, id, geolocationPosition]) => collection.insert({
+                id,
+                timestamp: Date.now(),
+                geolocationPosition: geolocationPosition
+                    ? {
+                        latitude: geolocationPosition.coords.latitude,
+                        longitude: geolocationPosition.coords.longitude,
+                    }
+                    : undefined,
+            })), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["concatMap"])(document => document.putAttachment({ id: _moment__WEBPACK_IMPORTED_MODULE_4__["Moment"].PHOTO_ATTACHMENT_ID, data: photo, type: photo.type }, true)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(attachment => attachment.doc));
+        }
+        remove$(id) {
+            return this.collection$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["concatMap"])(c => c.bulkRemove([id])));
+        }
+    }
+    MomentRepository.ɵfac = function MomentRepository_Factory(t) { return new (t || MomentRepository)(_angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵinject"](_database_database_service__WEBPACK_IMPORTED_MODULE_6__["Database"])); };
+    MomentRepository.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdefineInjectable"]({ token: MomentRepository, factory: MomentRepository.ɵfac, providedIn: 'root' });
+    return MomentRepository;
+})();
+const COLLECTION_NAME = 'moments';
+
+
+/***/ }),
+
+/***/ "PCNd":
+/*!*****************************************!*\
+  !*** ./src/app/shared/shared.module.ts ***!
+  \*****************************************/
+/*! exports provided: SharedModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SharedModule", function() { return SharedModule; });
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common */ "ofXK");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "tk/3");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "3Pt+");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "TEn/");
+/* harmony import */ var _ngrx_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ngrx/component */ "9A8T");
+/* harmony import */ var _image_image_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./image/image.component */ "/T4s");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ "fXoL");
+
+
+
+
+
+
+
+let SharedModule = /*@__PURE__*/ (() => {
+    class SharedModule {
+    }
+    SharedModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdefineNgModule"]({ type: SharedModule });
+    SharedModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵdefineInjector"]({ factory: function SharedModule_Factory(t) { return new (t || SharedModule)(); }, imports: [[
+                _angular_common__WEBPACK_IMPORTED_MODULE_0__["CommonModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"],
+                _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["IonicModule"],
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClientModule"],
+                _ngrx_component__WEBPACK_IMPORTED_MODULE_4__["ReactiveComponentModule"],
+            ], _angular_common__WEBPACK_IMPORTED_MODULE_0__["CommonModule"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["IonicModule"],
+            _ngrx_component__WEBPACK_IMPORTED_MODULE_4__["ReactiveComponentModule"]] });
+    return SharedModule;
+})();
+(function () {
+    (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵsetNgModuleScope"](SharedModule, { declarations: [_image_image_component__WEBPACK_IMPORTED_MODULE_5__["ImageComponent"]], imports: [_angular_common__WEBPACK_IMPORTED_MODULE_0__["CommonModule"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["IonicModule"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClientModule"],
+            _ngrx_component__WEBPACK_IMPORTED_MODULE_4__["ReactiveComponentModule"]], exports: [_angular_common__WEBPACK_IMPORTED_MODULE_0__["CommonModule"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["IonicModule"],
+            _ngrx_component__WEBPACK_IMPORTED_MODULE_4__["ReactiveComponentModule"],
+            _image_image_component__WEBPACK_IMPORTED_MODULE_5__["ImageComponent"]] });
+})();
+
+
+/***/ }),
+
+/***/ "PXhR":
+/*!***********************************!*\
+  !*** ./src/app/utils/encoding.ts ***!
+  \***********************************/
+/*! exports provided: arrayBufferToHex */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "arrayBufferToHex", function() { return arrayBufferToHex; });
+function arrayBufferToHex(arrayBuffer) {
+    return [...new Uint8Array(arrayBuffer)]
+        .map(b => b.toString(16).padStart(2, '0'))
+        .join('');
+}
+
+
+/***/ }),
+
+/***/ "RxMv":
+/*!******************************************************!*\
+  !*** ./src/app/features/home/home-routing.module.ts ***!
+  \******************************************************/
+/*! exports provided: HomePageRoutingModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomePageRoutingModule", function() { return HomePageRoutingModule; });
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/router */ "tyNb");
+/* harmony import */ var _home_page__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./home.page */ "7fvk");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "fXoL");
+
+
+
+
+const routes = [
+    {
+        path: '',
+        component: _home_page__WEBPACK_IMPORTED_MODULE_1__["HomePage"],
+    },
+    {
+        path: 'photo',
+        loadChildren: () => __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./photo/photo.module */ "MTLF")).then(m => m.PhotoPageModule),
+    },
+];
+let HomePageRoutingModule = /*@__PURE__*/ (() => {
+    class HomePageRoutingModule {
+    }
+    HomePageRoutingModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineNgModule"]({ type: HomePageRoutingModule });
+    HomePageRoutingModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineInjector"]({ factory: function HomePageRoutingModule_Factory(t) { return new (t || HomePageRoutingModule)(); }, imports: [[_angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"].forChild(routes)], _angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"]] });
+    return HomePageRoutingModule;
+})();
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵsetNgModuleScope"](HomePageRoutingModule, { imports: [_angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"]], exports: [_angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"]] }); })();
+
+
+/***/ }),
+
+/***/ "XjKM":
+/*!************************************!*\
+  !*** ./src/app/utils/thumbnail.ts ***!
+  \************************************/
+/*! exports provided: makeThumbnail */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "makeThumbnail", function() { return makeThumbnail; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "mrSG");
+/* harmony import */ var image_blob_reduce__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! image-blob-reduce */ "9GuR");
+
+
+const imageBlobReduce = new image_blob_reduce__WEBPACK_IMPORTED_MODULE_1__["default"]();
+function makeThumbnail({ image, maxSize, }) {
+    return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+        return imageBlobReduce.toBlob(image, { max: maxSize });
+    });
+}
+
+
+/***/ }),
+
+/***/ "fIW9":
+/*!**********************************************************!*\
+  !*** ./src/app/features/home/camera/camera.component.ts ***!
+  \**********************************************************/
+/*! exports provided: CameraComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CameraComponent", function() { return CameraComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "mrSG");
+/* harmony import */ var _ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ngneat/until-destroy */ "VfN6");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "qCKp");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "kU1M");
+/* harmony import */ var _utils_rx_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../utils/rx-operators */ "KJy6");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ "TEn/");
+/* harmony import */ var _shared_moment_moment_repository_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../shared/moment/moment-repository.service */ "BJdS");
+/* harmony import */ var _ngrx_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ngrx/component */ "9A8T");
+/* harmony import */ var _shared_image_image_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../shared/image/image.component */ "/T4s");
+/* harmony import */ var ngx_ionic_image_viewer__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ngx-ionic-image-viewer */ "6g0+");
+
+
+
+
+
+
+
+
+
+
+
+const _c0 = ["video"];
+function CameraComponent_div_4_Template(rf, ctx) {
+    if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "div", 7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](1, "app-image", 8);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+    }
+    if (rf & 2) {
+        const capturedImageUrl_r2 = ctx.ngrxLet;
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("src", capturedImageUrl_r2);
+    }
+}
+let CameraComponent = /*@__PURE__*/ (() => {
+    let CameraComponent = class CameraComponent {
+        constructor(modalController, alertController, momentRepository) {
+            this.modalController = modalController;
+            this.alertController = alertController;
+            this.momentRepository = momentRepository;
+            this._videoElement$ = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](undefined);
+            this.videoElement$ = this._videoElement$.pipe(Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_4__["isNonNullable"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["distinctUntilChanged"])());
+            this.mediaStream$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["defer"])(() => navigator.mediaDevices.getUserMedia({
+                video: { facingMode: 'environment' },
+            })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])((err) => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+                yield this.presentErrorDialog(err);
+                yield this.dismiss();
+                return undefined;
+            })), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["shareReplay"])({ bufferSize: 1, refCount: true }));
+            this.imageCapture$ = this.mediaStream$.pipe(Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_4__["isNonNullable"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(mediaStream => new ImageCapture(mediaStream.getVideoTracks()[0])), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["shareReplay"])({ bufferSize: 1, refCount: true }));
+            this._capturedImageUrl$ = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](undefined);
+            this.revokePreviousImageUrl$ = this._capturedImageUrl$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["pairwise"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(([previous]) => {
+                if (previous)
+                    URL.revokeObjectURL(previous);
+            }));
+            this.capturedImageUrl$ = this._capturedImageUrl$.pipe(Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_4__["isNonNullable"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["distinctUntilChanged"])());
+            this.cameraPreview$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["combineLatest"])([
+                this.videoElement$,
+                this.mediaStream$.pipe(Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_4__["isNonNullable"])()),
+            ]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(([videoElement, mediaStream]) => {
+                videoElement.srcObject = mediaStream;
+            }));
+            this.revokePreviousImageUrl$.pipe(Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_1__["untilDestroyed"])(this)).subscribe();
+            this.cameraPreview$.pipe(Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_1__["untilDestroyed"])(this)).subscribe();
+        }
+        set videoElement(value) {
+            this._videoElement$.next(value.nativeElement);
+        }
+        capture() {
+            this.imageCapture$
+                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["switchMap"])(imageCapture => imageCapture.takePhoto()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(imageBlob => {
+                this._capturedImageUrl$.next(URL.createObjectURL(imageBlob));
+            }), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_4__["concatTap"])(imageBlob => this.momentRepository.add$(imageBlob)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])((err) => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+                // eslint-disable-next-line no-console
+                console.error(err);
+                yield this.presentErrorDialog(err);
+                return undefined;
+            })), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_1__["untilDestroyed"])(this))
+                .subscribe();
+        }
+        dismiss() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+                return this.modalController.dismiss();
+            });
+        }
+        presentErrorDialog(err) {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+                const alert = yield this.alertController.create({
+                    header: err instanceof Error ? err.name : 'Unknown Error',
+                    message: err instanceof Error ? err.message : JSON.stringify(err),
+                    buttons: [{ text: 'ok' }],
+                });
+                yield alert.present();
+            });
+        }
+        ngOnDestroy() {
+            this.mediaStream$
+                .pipe(Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_4__["isNonNullable"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(mediaStream => mediaStream.getTracks().forEach(track => track.stop())))
+                .subscribe();
+        }
+    };
+    CameraComponent.ɵfac = function CameraComponent_Factory(t) { return new (t || CameraComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdirectiveInject"](_ionic_angular__WEBPACK_IMPORTED_MODULE_6__["ModalController"]), _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdirectiveInject"](_ionic_angular__WEBPACK_IMPORTED_MODULE_6__["AlertController"]), _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdirectiveInject"](_shared_moment_moment_repository_service__WEBPACK_IMPORTED_MODULE_7__["MomentRepository"])); };
+    CameraComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdefineComponent"]({ type: CameraComponent, selectors: [["app-camera"]], viewQuery: function CameraComponent_Query(rf, ctx) {
+            if (rf & 1) {
+                _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵviewQuery"](_c0, 1);
+            }
+            if (rf & 2) {
+                let _t;
+                _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵloadQuery"]()) && (ctx.videoElement = _t.first);
+            }
+        }, decls: 7, vars: 1, consts: [["fill", "clear", 1, "dismiss", 3, "click"], ["slot", "icon-only", "name", "close-outline", "color", "light"], ["fill", "clear", 1, "capture", 3, "click"], ["slot", "icon-only", "name", "radio-button-on-outline", "color", "light"], ["class", "captured ion-margin", 4, "ngrxLet"], ["playsinline", "", "autoplay", ""], ["video", ""], [1, "captured", "ion-margin"], ["ionImgViewer", "", 3, "src"]], template: function CameraComponent_Template(rf, ctx) {
+            if (rf & 1) {
+                _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "ion-button", 0);
+                _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵlistener"]("click", function CameraComponent_Template_ion_button_click_0_listener() { return ctx.dismiss(); });
+                _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](1, "ion-icon", 1);
+                _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+                _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](2, "ion-button", 2);
+                _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵlistener"]("click", function CameraComponent_Template_ion_button_click_2_listener() { return ctx.capture(); });
+                _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](3, "ion-icon", 3);
+                _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+                _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](4, CameraComponent_div_4_Template, 2, 1, "div", 4);
+                _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](5, "video", 5, 6);
+            }
+            if (rf & 2) {
+                _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](4);
+                _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngrxLet", ctx.capturedImageUrl$);
+            }
+        }, directives: [_ionic_angular__WEBPACK_IMPORTED_MODULE_6__["IonButton"], _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["IonIcon"], _ngrx_component__WEBPACK_IMPORTED_MODULE_8__["LetDirective"], _shared_image_image_component__WEBPACK_IMPORTED_MODULE_9__["ImageComponent"], ngx_ionic_image_viewer__WEBPACK_IMPORTED_MODULE_10__["NgxIonicImageViewerDirective"]], styles: ["[_nghost-%COMP%] {\n  display: contents;\n  position: relative;\n}\n\nvideo[_ngcontent-%COMP%] {\n  width: 100%;\n  height: 100%;\n  -o-object-fit: cover;\n     object-fit: cover;\n  -o-object-position: center;\n     object-position: center;\n}\n\nion-button.dismiss[_ngcontent-%COMP%] {\n  position: absolute;\n  right: 0;\n  z-index: 1;\n  width: 48px;\n  height: 48px;\n  --border-radius: 50%;\n  --padding-end: 0;\n  --padding-start: 0;\n}\n\nion-button.capture[_ngcontent-%COMP%] {\n  position: absolute;\n  bottom: 0;\n  left: 50%;\n  transform: translate(-50%);\n  z-index: 1;\n  height: 72px;\n  width: 72px;\n  margin: 0 0 var(--ion-margin, 16px);\n  --border-radius: 50%;\n  --padding-end: 0;\n  --padding-start: 0;\n  --background: #0006;\n}\n\nion-button.capture[_ngcontent-%COMP%]   ion-icon[_ngcontent-%COMP%] {\n  font-size: 64px;\n}\n\n.captured[_ngcontent-%COMP%] {\n  position: absolute;\n  bottom: 16px;\n  right: 16px;\n  overflow: hidden;\n  border-radius: 4px;\n  border: 1px solid var(--ion-color-light-shade);\n}\n\n.captured[_ngcontent-%COMP%]   app-image[_ngcontent-%COMP%] {\n  z-index: 1;\n  width: 60px;\n  height: 60px;\n}"] });
+    CameraComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+        Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_1__["UntilDestroy"])()
+    ], CameraComponent);
+    return CameraComponent;
+})();
+
+
+
+/***/ }),
+
+/***/ "fOOd":
+/*!**********************************************!*\
+  !*** ./src/app/features/home/home.module.ts ***!
+  \**********************************************/
+/*! exports provided: HomePageModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomePageModule", function() { return HomePageModule; });
+/* harmony import */ var ngx_ionic_image_viewer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ngx-ionic-image-viewer */ "6g0+");
+/* harmony import */ var _shared_shared_module__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../shared/shared.module */ "PCNd");
+/* harmony import */ var _camera_camera_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./camera/camera.component */ "fIW9");
+/* harmony import */ var _home_routing_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./home-routing.module */ "RxMv");
+/* harmony import */ var _home_page__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./home.page */ "7fvk");
+/* harmony import */ var _moment_thumbnail_moment_thumbnail_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./moment-thumbnail/moment-thumbnail.component */ "lK9d");
+/* harmony import */ var _settings_settings_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./settings/settings.component */ "k0O3");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ "fXoL");
+
+
+
+
+
+
+
+
+let HomePageModule = /*@__PURE__*/ (() => {
+    class HomePageModule {
+    }
+    HomePageModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdefineNgModule"]({ type: HomePageModule });
+    HomePageModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdefineInjector"]({ factory: function HomePageModule_Factory(t) { return new (t || HomePageModule)(); }, imports: [[_shared_shared_module__WEBPACK_IMPORTED_MODULE_1__["SharedModule"], _home_routing_module__WEBPACK_IMPORTED_MODULE_3__["HomePageRoutingModule"], ngx_ionic_image_viewer__WEBPACK_IMPORTED_MODULE_0__["NgxIonicImageViewerModule"]]] });
+    return HomePageModule;
+})();
+(function () {
+    (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵsetNgModuleScope"](HomePageModule, { declarations: [_home_page__WEBPACK_IMPORTED_MODULE_4__["HomePage"],
+            _settings_settings_component__WEBPACK_IMPORTED_MODULE_6__["SettingsComponent"],
+            _camera_camera_component__WEBPACK_IMPORTED_MODULE_2__["CameraComponent"],
+            _moment_thumbnail_moment_thumbnail_component__WEBPACK_IMPORTED_MODULE_5__["MomentThumbnailComponent"]], imports: [_shared_shared_module__WEBPACK_IMPORTED_MODULE_1__["SharedModule"], _home_routing_module__WEBPACK_IMPORTED_MODULE_3__["HomePageRoutingModule"], ngx_ionic_image_viewer__WEBPACK_IMPORTED_MODULE_0__["NgxIonicImageViewerModule"]] });
+})();
+
+
+/***/ }),
+
+/***/ "k0O3":
+/*!**************************************************************!*\
+  !*** ./src/app/features/home/settings/settings.component.ts ***!
+  \**************************************************************/
+/*! exports provided: SettingsComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SettingsComponent", function() { return SettingsComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "mrSG");
+/* harmony import */ var _ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ngneat/until-destroy */ "VfN6");
+/* harmony import */ var _package_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../package.json */ "kiQV");
+var _package_json__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../../../../package.json */ "kiQV", 1);
+/* harmony import */ var _shared_settings_settings_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../shared/settings/settings.service */ "kgew");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ "TEn/");
+/* harmony import */ var _ngrx_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ngrx/component */ "9A8T");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common */ "ofXK");
+
+
+
+
+
+
+
+
+
+function SettingsComponent_ion_select_5_ion_select_option_1_Template(rf, ctx) {
+    if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](0, "ion-select-option", 7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
+    }
+    if (rf & 2) {
+        const theme_r3 = ctx.$implicit;
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("value", theme_r3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtextInterpolate1"](" ", theme_r3, " ");
+    }
+}
+function SettingsComponent_ion_select_5_Template(rf, ctx) {
+    if (rf & 1) {
+        const _r5 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵgetCurrentView"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](0, "ion-select", 5);
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵlistener"]("ionChange", function SettingsComponent_ion_select_5_Template_ion_select_ionChange_0_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵrestoreView"](_r5); const ctx_r4 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵnextContext"](); return ctx_r4.onChangeDarkTheme($event); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtemplate"](1, SettingsComponent_ion_select_5_ion_select_option_1_Template, 2, 2, "ion-select-option", 6);
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
+    }
+    if (rf & 2) {
+        const theme_r1 = ctx.ngrxLet;
+        const ctx_r0 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵnextContext"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("value", theme_r1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("ngForOf", ctx_r0.themes);
+    }
+}
+let SettingsComponent = /*@__PURE__*/ (() => {
+    let SettingsComponent = class SettingsComponent {
+        constructor(settingsService) {
+            this.settingsService = settingsService;
+            this.themes = _shared_settings_settings_service__WEBPACK_IMPORTED_MODULE_3__["SettingsService"].THEMES;
+            this.theme$ = this.settingsService.theme$;
+            this.version = _package_json__WEBPACK_IMPORTED_MODULE_2__["version"];
+        }
+        onChangeDarkTheme(event) {
+            return this.settingsService
+                .setTheme$(event.detail.value)
+                .pipe(Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_1__["untilDestroyed"])(this))
+                .subscribe();
+        }
+    };
+    SettingsComponent.ɵfac = function SettingsComponent_Factory(t) { return new (t || SettingsComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdirectiveInject"](_shared_settings_settings_service__WEBPACK_IMPORTED_MODULE_3__["SettingsService"])); };
+    SettingsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineComponent"]({ type: SettingsComponent, selectors: [["app-settings"]], decls: 12, vars: 2, consts: [["lines", "none"], ["name", "moon-outline", "slot", "start"], [3, "value", "ionChange", 4, "ngrxLet"], ["name", "information-outline", "slot", "start"], ["slot", "end"], [3, "value", "ionChange"], [3, "value", 4, "ngFor", "ngForOf"], [3, "value"]], template: function SettingsComponent_Template(rf, ctx) {
+            if (rf & 1) {
+                _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](0, "ion-list", 0);
+                _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](1, "ion-item");
+                _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelement"](2, "ion-icon", 1);
+                _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](3, "ion-label");
+                _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](4, "Theme");
+                _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
+                _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtemplate"](5, SettingsComponent_ion_select_5_Template, 2, 2, "ion-select", 2);
+                _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
+                _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](6, "ion-item");
+                _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelement"](7, "ion-icon", 3);
+                _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](8, "ion-label");
+                _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](9, "Version");
+                _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
+                _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](10, "ion-note", 4);
+                _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](11);
+                _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
+                _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
+                _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
+            }
+            if (rf & 2) {
+                _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](5);
+                _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("ngrxLet", ctx.theme$);
+                _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](6);
+                _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtextInterpolate"](ctx.version);
+            }
+        }, directives: [_ionic_angular__WEBPACK_IMPORTED_MODULE_5__["IonList"], _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["IonItem"], _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["IonIcon"], _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["IonLabel"], _ngrx_component__WEBPACK_IMPORTED_MODULE_6__["LetDirective"], _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["IonNote"], _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["IonSelect"], _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["SelectValueAccessor"], _angular_common__WEBPACK_IMPORTED_MODULE_7__["NgForOf"], _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["IonSelectOption"]], styles: ["ion-select[_ngcontent-%COMP%] {\n  max-width: -webkit-fit-content;\n  max-width: -moz-fit-content;\n  max-width: fit-content;\n}"] });
+    SettingsComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
+        Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_1__["UntilDestroy"])()
+    ], SettingsComponent);
+    return SettingsComponent;
+})();
+
+
+
+/***/ }),
+
+/***/ "kiQV":
+/*!**********************!*\
+  !*** ./package.json ***!
+  \**********************/
+/*! exports provided: name, version, author, homepage, scripts, private, dependencies, devDependencies, husky, lint-staged, default */
+/***/ (function(module) {
+
+module.exports = JSON.parse("{\"name\":\"moment\",\"version\":\"0.0.1\",\"author\":\"Sean Wu\",\"homepage\":\"https://github.com/seanwu1105\",\"scripts\":{\"serve\":\"ionic serve\",\"serve.hmr\":\"ionic serve -- --hmr\",\"build\":\"ionic build --prod\",\"build.watch.pwa\":\"ionic build --prod --watch\",\"test\":\"ng test\",\"test.ci\":\"ng test --no-watch --no-progress --browsers=ChromeHeadlessCI\",\"lint\":\"prettier --check . && stylelint \\\"**/*.{css,scss,sass}\\\" && ng lint\",\"e2e\":\"ng e2e\",\"prepare\":\"husky install\"},\"private\":true,\"dependencies\":{\"@angular/common\":\"~11.2.3\",\"@angular/core\":\"~11.2.3\",\"@angular/forms\":\"~11.2.3\",\"@angular/platform-browser\":\"~11.2.3\",\"@angular/platform-browser-dynamic\":\"~11.2.3\",\"@angular/router\":\"~11.2.3\",\"@angular/service-worker\":\"~11.2.3\",\"@ionic-native/core\":\"^5.0.0\",\"@ionic/angular\":\"^5.5.5\",\"@ngneat/until-destroy\":\"^8.0.4\",\"@ngrx/component\":\"^11.0.1\",\"buffer\":\"^6.0.3\",\"image-blob-reduce\":\"^2.2.2\",\"ngx-ionic-image-viewer\":\"^0.7.4\",\"pouchdb-adapter-memory\":\"^7.2.2\",\"process\":\"^0.11.10\",\"rxdb\":\"^9.15.0\",\"rxjs\":\"^6.6.6\",\"stream-browserify\":\"^3.0.0\",\"tslib\":\"^2.0.0\",\"zone.js\":\"^0.11.4\"},\"devDependencies\":{\"@angular-devkit/build-angular\":\"^0.1101.0\",\"@angular-eslint/builder\":\"1.2.0\",\"@angular-eslint/eslint-plugin\":\"1.2.0\",\"@angular-eslint/eslint-plugin-template\":\"1.2.0\",\"@angular-eslint/schematics\":\"1.2.0\",\"@angular-eslint/template-parser\":\"1.2.0\",\"@angular/cli\":\"~11.1.2\",\"@angular/compiler\":\"~11.2.3\",\"@angular/compiler-cli\":\"~11.2.3\",\"@angular/language-service\":\"~11.2.3\",\"@ionic/angular-toolkit\":\"^3.0.0\",\"@types/geojson\":\"^7946.0.7\",\"@types/jasmine\":\"^3.6.4\",\"@types/jasminewd2\":\"~2.0.3\",\"@types/node\":\"^14.14.31\",\"@types/pouchdb-adapter-memory\":\"^6.1.3\",\"@types/w3c-image-capture\":\"^1.0.2\",\"@typescript-eslint/eslint-plugin\":\"4.16.1\",\"@typescript-eslint/parser\":\"4.16.1\",\"eslint\":\"^7.21.0\",\"eslint-plugin-import\":\"2.22.1\",\"eslint-plugin-jsdoc\":\"32.2.0\",\"eslint-plugin-prefer-arrow\":\"1.2.3\",\"eslint-plugin-rxjs\":\"^3.1.0\",\"husky\":\"^5.1.3\",\"jasmine-core\":\"^3.6.0\",\"jasmine-spec-reporter\":\"^6.0.0\",\"karma\":\"^5.2.0\",\"karma-chrome-launcher\":\"~3.1.0\",\"karma-coverage\":\"^2.0.3\",\"karma-jasmine\":\"^4.0.1\",\"karma-jasmine-html-reporter\":\"^1.5.0\",\"lint-staged\":\"^10.5.4\",\"prettier\":\"^2.2.1\",\"protractor\":\"~7.0.0\",\"stylelint\":\"^13.11.0\",\"stylelint-config-standard\":\"^20.0.0\",\"stylelint-scss\":\"^3.19.0\",\"ts-node\":\"^9.1.1\",\"typescript\":\"~4.1.3\"},\"husky\":{\"hooks\":{\"pre-commit\":\"lint-staged\"}},\"lint-staged\":{\"*.{js,ts,scss,css,html,md,yml,json}\":\"prettier --write\"}}");
+
+/***/ }),
+
+/***/ "lK9d":
+/*!******************************************************************************!*\
+  !*** ./src/app/features/home/moment-thumbnail/moment-thumbnail.component.ts ***!
+  \******************************************************************************/
+/*! exports provided: MomentThumbnailComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MomentThumbnailComponent", function() { return MomentThumbnailComponent; });
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ "qCKp");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ "kU1M");
+/* harmony import */ var _utils_rx_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../utils/rx-operators */ "KJy6");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _ngrx_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ngrx/component */ "9A8T");
+/* harmony import */ var _shared_image_image_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../shared/image/image.component */ "/T4s");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ionic/angular */ "TEn/");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ "tyNb");
+
+
+
+
+
+
+
+
+const _c0 = function (a0) { return { id: a0 }; };
+function MomentThumbnailComponent_ng_container_0_app_image_1_Template(rf, ctx) {
+    if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "app-image", 2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelement"](1, "ion-ripple-effect");
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+    }
+    if (rf & 2) {
+        const thumbnailUrl_r3 = ctx.ngrxLet;
+        const moment_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵnextContext"]().ngrxLet;
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("queryParams", _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵpureFunction1"](2, _c0, moment_r1.id))("src", thumbnailUrl_r3);
+    }
+}
+function MomentThumbnailComponent_ng_container_0_Template(rf, ctx) {
+    if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementContainerStart"](0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](1, MomentThumbnailComponent_ng_container_0_app_image_1_Template, 2, 4, "app-image", 1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementContainerEnd"]();
+    }
+    if (rf & 2) {
+        const moment_r1 = ctx.ngrxLet;
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("ngrxLet", moment_r1.thumbnailUrl$);
+    }
+}
+let MomentThumbnailComponent = /*@__PURE__*/ (() => {
+    class MomentThumbnailComponent {
+        constructor() {
+            this._moment$ = new rxjs__WEBPACK_IMPORTED_MODULE_0__["BehaviorSubject"](undefined);
+            this.moment$ = this._moment$.pipe(Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_2__["isNonNullable"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["distinctUntilChanged"])((x, y) => x.id === y.id));
+        }
+        set moment(value) {
+            this._moment$.next(value);
+        }
+    }
+    MomentThumbnailComponent.ɵfac = function MomentThumbnailComponent_Factory(t) { return new (t || MomentThumbnailComponent)(); };
+    MomentThumbnailComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineComponent"]({ type: MomentThumbnailComponent, selectors: [["app-moment-thumbnail"]], inputs: { moment: "moment" }, decls: 1, vars: 1, consts: [[4, "ngrxLet"], ["routerLink", "photo", "class", "ion-activatable", 3, "queryParams", "src", 4, "ngrxLet"], ["routerLink", "photo", 1, "ion-activatable", 3, "queryParams", "src"]], template: function MomentThumbnailComponent_Template(rf, ctx) {
+            if (rf & 1) {
+                _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](0, MomentThumbnailComponent_ng_container_0_Template, 2, 1, "ng-container", 0);
+            }
+            if (rf & 2) {
+                _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("ngrxLet", ctx.moment$);
+            }
+        }, directives: [_ngrx_component__WEBPACK_IMPORTED_MODULE_4__["LetDirective"], _shared_image_image_component__WEBPACK_IMPORTED_MODULE_5__["ImageComponent"], _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["RouterLinkDelegate"], _angular_router__WEBPACK_IMPORTED_MODULE_7__["RouterLink"], _ionic_angular__WEBPACK_IMPORTED_MODULE_6__["IonRippleEffect"]], styles: ["[_nghost-%COMP%] {\n  display: block;\n  overflow: hidden;\n}\n\napp-image[_ngcontent-%COMP%] {\n  position: relative;\n  height: 100%;\n  width: 100%;\n}"] });
+    return MomentThumbnailComponent;
+})();
+
+
+/***/ }),
+
+/***/ "tOV+":
+/*!*********************************!*\
+  !*** ./src/app/utils/errors.ts ***!
+  \*********************************/
+/*! exports provided: DataNotFoundError */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DataNotFoundError", function() { return DataNotFoundError; });
+class DataNotFoundError extends Error {
+    constructor() {
+        super(...arguments);
+        this.name = DataNotFoundError.name;
+    }
+}
+
+
+/***/ }),
+
+/***/ "tk/3":
+/*!********************************************************************!*\
+  !*** ./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js ***!
+  \********************************************************************/
+/*! exports provided: HTTP_INTERCEPTORS, HttpBackend, HttpClient, HttpClientJsonpModule, HttpClientModule, HttpClientXsrfModule, HttpErrorResponse, HttpEventType, HttpHandler, HttpHeaderResponse, HttpHeaders, HttpParams, HttpRequest, HttpResponse, HttpResponseBase, HttpUrlEncodingCodec, HttpXhrBackend, HttpXsrfTokenExtractor, JsonpClientBackend, JsonpInterceptor, XhrFactory, ɵHttpInterceptingHandler, ɵangular_packages_common_http_http_a, ɵangular_packages_common_http_http_b, ɵangular_packages_common_http_http_c, ɵangular_packages_common_http_http_d, ɵangular_packages_common_http_http_e, ɵangular_packages_common_http_http_f, ɵangular_packages_common_http_http_g, ɵangular_packages_common_http_http_h */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HTTP_INTERCEPTORS", function() { return HTTP_INTERCEPTORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpBackend", function() { return HttpBackend; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpClient", function() { return HttpClient; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpClientJsonpModule", function() { return HttpClientJsonpModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpClientModule", function() { return HttpClientModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpClientXsrfModule", function() { return HttpClientXsrfModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpErrorResponse", function() { return HttpErrorResponse; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpEventType", function() { return HttpEventType; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpHandler", function() { return HttpHandler; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpHeaderResponse", function() { return HttpHeaderResponse; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpHeaders", function() { return HttpHeaders; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpParams", function() { return HttpParams; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpRequest", function() { return HttpRequest; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpResponse", function() { return HttpResponse; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpResponseBase", function() { return HttpResponseBase; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpUrlEncodingCodec", function() { return HttpUrlEncodingCodec; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpXhrBackend", function() { return HttpXhrBackend; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpXsrfTokenExtractor", function() { return HttpXsrfTokenExtractor; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "JsonpClientBackend", function() { return JsonpClientBackend; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "JsonpInterceptor", function() { return JsonpInterceptor; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "XhrFactory", function() { return XhrFactory; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵHttpInterceptingHandler", function() { return HttpInterceptingHandler; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵangular_packages_common_http_http_a", function() { return NoopInterceptor; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵangular_packages_common_http_http_b", function() { return JsonpCallbackContext; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵangular_packages_common_http_http_c", function() { return jsonpCallbackContext; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵangular_packages_common_http_http_d", function() { return BrowserXhr; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵangular_packages_common_http_http_e", function() { return XSRF_COOKIE_NAME; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵangular_packages_common_http_http_f", function() { return XSRF_HEADER_NAME; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵangular_packages_common_http_http_g", function() { return HttpXsrfCookieExtractor; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ɵangular_packages_common_http_http_h", function() { return HttpXsrfInterceptor; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "qCKp");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "kU1M");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ "ofXK");
+/**
+ * @license Angular v11.2.3
+ * (c) 2010-2021 Google LLC. https://angular.io/
+ * License: MIT
+ */
+
+
+
+
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+/**
+ * Transforms an `HttpRequest` into a stream of `HttpEvent`s, one of which will likely be a
+ * `HttpResponse`.
+ *
+ * `HttpHandler` is injectable. When injected, the handler instance dispatches requests to the
+ * first interceptor in the chain, which dispatches to the second, etc, eventually reaching the
+ * `HttpBackend`.
+ *
+ * In an `HttpInterceptor`, the `HttpHandler` parameter is the next interceptor in the chain.
+ *
+ * @publicApi
+ */
+
+class HttpHandler {
+}
+/**
+ * A final `HttpHandler` which will dispatch the request via browser HTTP APIs to a backend.
+ *
+ * Interceptors sit between the `HttpClient` interface and the `HttpBackend`.
+ *
+ * When injected, `HttpBackend` dispatches requests directly to the backend, without going
+ * through the interceptor chain.
+ *
+ * @publicApi
+ */
+class HttpBackend {
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+/**
+ * Represents the header configuration options for an HTTP request.
+ * Instances are immutable. Modifying methods return a cloned
+ * instance with the change. The original object is never changed.
+ *
+ * @publicApi
+ */
+class HttpHeaders {
+    /**  Constructs a new HTTP header object with the given values.*/
+    constructor(headers) {
+        /**
+         * Internal map of lowercased header names to the normalized
+         * form of the name (the form seen first).
+         */
+        this.normalizedNames = new Map();
+        /**
+         * Queued updates to be materialized the next initialization.
+         */
+        this.lazyUpdate = null;
+        if (!headers) {
+            this.headers = new Map();
+        }
+        else if (typeof headers === 'string') {
+            this.lazyInit = () => {
+                this.headers = new Map();
+                headers.split('\n').forEach(line => {
+                    const index = line.indexOf(':');
+                    if (index > 0) {
+                        const name = line.slice(0, index);
+                        const key = name.toLowerCase();
+                        const value = line.slice(index + 1).trim();
+                        this.maybeSetNormalizedName(name, key);
+                        if (this.headers.has(key)) {
+                            this.headers.get(key).push(value);
+                        }
+                        else {
+                            this.headers.set(key, [value]);
+                        }
+                    }
+                });
+            };
+        }
+        else {
+            this.lazyInit = () => {
+                this.headers = new Map();
+                Object.keys(headers).forEach(name => {
+                    let values = headers[name];
+                    const key = name.toLowerCase();
+                    if (typeof values === 'string') {
+                        values = [values];
+                    }
+                    if (values.length > 0) {
+                        this.headers.set(key, values);
+                        this.maybeSetNormalizedName(name, key);
+                    }
+                });
+            };
+        }
+    }
+    /**
+     * Checks for existence of a given header.
+     *
+     * @param name The header name to check for existence.
+     *
+     * @returns True if the header exists, false otherwise.
+     */
+    has(name) {
+        this.init();
+        return this.headers.has(name.toLowerCase());
+    }
+    /**
+     * Retrieves the first value of a given header.
+     *
+     * @param name The header name.
+     *
+     * @returns The value string if the header exists, null otherwise
+     */
+    get(name) {
+        this.init();
+        const values = this.headers.get(name.toLowerCase());
+        return values && values.length > 0 ? values[0] : null;
+    }
+    /**
+     * Retrieves the names of the headers.
+     *
+     * @returns A list of header names.
+     */
+    keys() {
+        this.init();
+        return Array.from(this.normalizedNames.values());
+    }
+    /**
+     * Retrieves a list of values for a given header.
+     *
+     * @param name The header name from which to retrieve values.
+     *
+     * @returns A string of values if the header exists, null otherwise.
+     */
+    getAll(name) {
+        this.init();
+        return this.headers.get(name.toLowerCase()) || null;
+    }
+    /**
+     * Appends a new value to the existing set of values for a header
+     * and returns them in a clone of the original instance.
+     *
+     * @param name The header name for which to append the values.
+     * @param value The value to append.
+     *
+     * @returns A clone of the HTTP headers object with the value appended to the given header.
+     */
+    append(name, value) {
+        return this.clone({ name, value, op: 'a' });
+    }
+    /**
+     * Sets or modifies a value for a given header in a clone of the original instance.
+     * If the header already exists, its value is replaced with the given value
+     * in the returned object.
+     *
+     * @param name The header name.
+     * @param value The value or values to set or overide for the given header.
+     *
+     * @returns A clone of the HTTP headers object with the newly set header value.
+     */
+    set(name, value) {
+        return this.clone({ name, value, op: 's' });
+    }
+    /**
+     * Deletes values for a given header in a clone of the original instance.
+     *
+     * @param name The header name.
+     * @param value The value or values to delete for the given header.
+     *
+     * @returns A clone of the HTTP headers object with the given value deleted.
+     */
+    delete(name, value) {
+        return this.clone({ name, value, op: 'd' });
+    }
+    maybeSetNormalizedName(name, lcName) {
+        if (!this.normalizedNames.has(lcName)) {
+            this.normalizedNames.set(lcName, name);
+        }
+    }
+    init() {
+        if (!!this.lazyInit) {
+            if (this.lazyInit instanceof HttpHeaders) {
+                this.copyFrom(this.lazyInit);
+            }
+            else {
+                this.lazyInit();
+            }
+            this.lazyInit = null;
+            if (!!this.lazyUpdate) {
+                this.lazyUpdate.forEach(update => this.applyUpdate(update));
+                this.lazyUpdate = null;
+            }
+        }
+    }
+    copyFrom(other) {
+        other.init();
+        Array.from(other.headers.keys()).forEach(key => {
+            this.headers.set(key, other.headers.get(key));
+            this.normalizedNames.set(key, other.normalizedNames.get(key));
+        });
+    }
+    clone(update) {
+        const clone = new HttpHeaders();
+        clone.lazyInit =
+            (!!this.lazyInit && this.lazyInit instanceof HttpHeaders) ? this.lazyInit : this;
+        clone.lazyUpdate = (this.lazyUpdate || []).concat([update]);
+        return clone;
+    }
+    applyUpdate(update) {
+        const key = update.name.toLowerCase();
+        switch (update.op) {
+            case 'a':
+            case 's':
+                let value = update.value;
+                if (typeof value === 'string') {
+                    value = [value];
+                }
+                if (value.length === 0) {
+                    return;
+                }
+                this.maybeSetNormalizedName(update.name, key);
+                const base = (update.op === 'a' ? this.headers.get(key) : undefined) || [];
+                base.push(...value);
+                this.headers.set(key, base);
+                break;
+            case 'd':
+                const toDelete = update.value;
+                if (!toDelete) {
+                    this.headers.delete(key);
+                    this.normalizedNames.delete(key);
+                }
+                else {
+                    let existing = this.headers.get(key);
+                    if (!existing) {
+                        return;
+                    }
+                    existing = existing.filter(value => toDelete.indexOf(value) === -1);
+                    if (existing.length === 0) {
+                        this.headers.delete(key);
+                        this.normalizedNames.delete(key);
+                    }
+                    else {
+                        this.headers.set(key, existing);
+                    }
+                }
+                break;
+        }
+    }
+    /**
+     * @internal
+     */
+    forEach(fn) {
+        this.init();
+        Array.from(this.normalizedNames.keys())
+            .forEach(key => fn(this.normalizedNames.get(key), this.headers.get(key)));
+    }
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+/**
+ * Provides encoding and decoding of URL parameter and query-string values.
+ *
+ * Serializes and parses URL parameter keys and values to encode and decode them.
+ * If you pass URL query parameters without encoding,
+ * the query parameters can be misinterpreted at the receiving end.
+ *
+ *
+ * @publicApi
+ */
+class HttpUrlEncodingCodec {
+    /**
+     * Encodes a key name for a URL parameter or query-string.
+     * @param key The key name.
+     * @returns The encoded key name.
+     */
+    encodeKey(key) {
+        return standardEncoding(key);
+    }
+    /**
+     * Encodes the value of a URL parameter or query-string.
+     * @param value The value.
+     * @returns The encoded value.
+     */
+    encodeValue(value) {
+        return standardEncoding(value);
+    }
+    /**
+     * Decodes an encoded URL parameter or query-string key.
+     * @param key The encoded key name.
+     * @returns The decoded key name.
+     */
+    decodeKey(key) {
+        return decodeURIComponent(key);
+    }
+    /**
+     * Decodes an encoded URL parameter or query-string value.
+     * @param value The encoded value.
+     * @returns The decoded value.
+     */
+    decodeValue(value) {
+        return decodeURIComponent(value);
+    }
+}
+function paramParser(rawParams, codec) {
+    const map = new Map();
+    if (rawParams.length > 0) {
+        // The `window.location.search` can be used while creating an instance of the `HttpParams` class
+        // (e.g. `new HttpParams({ fromString: window.location.search })`). The `window.location.search`
+        // may start with the `?` char, so we strip it if it's present.
+        const params = rawParams.replace(/^\?/, '').split('&');
+        params.forEach((param) => {
+            const eqIdx = param.indexOf('=');
+            const [key, val] = eqIdx == -1 ?
+                [codec.decodeKey(param), ''] :
+                [codec.decodeKey(param.slice(0, eqIdx)), codec.decodeValue(param.slice(eqIdx + 1))];
+            const list = map.get(key) || [];
+            list.push(val);
+            map.set(key, list);
+        });
+    }
+    return map;
+}
+function standardEncoding(v) {
+    return encodeURIComponent(v)
+        .replace(/%40/gi, '@')
+        .replace(/%3A/gi, ':')
+        .replace(/%24/gi, '$')
+        .replace(/%2C/gi, ',')
+        .replace(/%3B/gi, ';')
+        .replace(/%2B/gi, '+')
+        .replace(/%3D/gi, '=')
+        .replace(/%3F/gi, '?')
+        .replace(/%2F/gi, '/');
+}
+/**
+ * An HTTP request/response body that represents serialized parameters,
+ * per the MIME type `application/x-www-form-urlencoded`.
+ *
+ * This class is immutable; all mutation operations return a new instance.
+ *
+ * @publicApi
+ */
+class HttpParams {
+    constructor(options = {}) {
+        this.updates = null;
+        this.cloneFrom = null;
+        this.encoder = options.encoder || new HttpUrlEncodingCodec();
+        if (!!options.fromString) {
+            if (!!options.fromObject) {
+                throw new Error(`Cannot specify both fromString and fromObject.`);
+            }
+            this.map = paramParser(options.fromString, this.encoder);
+        }
+        else if (!!options.fromObject) {
+            this.map = new Map();
+            Object.keys(options.fromObject).forEach(key => {
+                const value = options.fromObject[key];
+                this.map.set(key, Array.isArray(value) ? value : [value]);
+            });
+        }
+        else {
+            this.map = null;
+        }
+    }
+    /**
+     * Reports whether the body includes one or more values for a given parameter.
+     * @param param The parameter name.
+     * @returns True if the parameter has one or more values,
+     * false if it has no value or is not present.
+     */
+    has(param) {
+        this.init();
+        return this.map.has(param);
+    }
+    /**
+     * Retrieves the first value for a parameter.
+     * @param param The parameter name.
+     * @returns The first value of the given parameter,
+     * or `null` if the parameter is not present.
+     */
+    get(param) {
+        this.init();
+        const res = this.map.get(param);
+        return !!res ? res[0] : null;
+    }
+    /**
+     * Retrieves all values for a  parameter.
+     * @param param The parameter name.
+     * @returns All values in a string array,
+     * or `null` if the parameter not present.
+     */
+    getAll(param) {
+        this.init();
+        return this.map.get(param) || null;
+    }
+    /**
+     * Retrieves all the parameters for this body.
+     * @returns The parameter names in a string array.
+     */
+    keys() {
+        this.init();
+        return Array.from(this.map.keys());
+    }
+    /**
+     * Appends a new value to existing values for a parameter.
+     * @param param The parameter name.
+     * @param value The new value to add.
+     * @return A new body with the appended value.
+     */
+    append(param, value) {
+        return this.clone({ param, value, op: 'a' });
+    }
+    /**
+     * Constructs a new body with appended values for the given parameter name.
+     * @param params parameters and values
+     * @return A new body with the new value.
+     */
+    appendAll(params) {
+        const updates = [];
+        Object.keys(params).forEach(param => {
+            const value = params[param];
+            if (Array.isArray(value)) {
+                value.forEach(_value => {
+                    updates.push({ param, value: _value, op: 'a' });
+                });
+            }
+            else {
+                updates.push({ param, value, op: 'a' });
+            }
+        });
+        return this.clone(updates);
+    }
+    /**
+     * Replaces the value for a parameter.
+     * @param param The parameter name.
+     * @param value The new value.
+     * @return A new body with the new value.
+     */
+    set(param, value) {
+        return this.clone({ param, value, op: 's' });
+    }
+    /**
+     * Removes a given value or all values from a parameter.
+     * @param param The parameter name.
+     * @param value The value to remove, if provided.
+     * @return A new body with the given value removed, or with all values
+     * removed if no value is specified.
+     */
+    delete(param, value) {
+        return this.clone({ param, value, op: 'd' });
+    }
+    /**
+     * Serializes the body to an encoded string, where key-value pairs (separated by `=`) are
+     * separated by `&`s.
+     */
+    toString() {
+        this.init();
+        return this.keys()
+            .map(key => {
+            const eKey = this.encoder.encodeKey(key);
+            // `a: ['1']` produces `'a=1'`
+            // `b: []` produces `''`
+            // `c: ['1', '2']` produces `'c=1&c=2'`
+            return this.map.get(key).map(value => eKey + '=' + this.encoder.encodeValue(value))
+                .join('&');
+        })
+            // filter out empty values because `b: []` produces `''`
+            // which results in `a=1&&c=1&c=2` instead of `a=1&c=1&c=2` if we don't
+            .filter(param => param !== '')
+            .join('&');
+    }
+    clone(update) {
+        const clone = new HttpParams({ encoder: this.encoder });
+        clone.cloneFrom = this.cloneFrom || this;
+        clone.updates = (this.updates || []).concat(update);
+        return clone;
+    }
+    init() {
+        if (this.map === null) {
+            this.map = new Map();
+        }
+        if (this.cloneFrom !== null) {
+            this.cloneFrom.init();
+            this.cloneFrom.keys().forEach(key => this.map.set(key, this.cloneFrom.map.get(key)));
+            this.updates.forEach(update => {
+                switch (update.op) {
+                    case 'a':
+                    case 's':
+                        const base = (update.op === 'a' ? this.map.get(update.param) : undefined) || [];
+                        base.push(update.value);
+                        this.map.set(update.param, base);
+                        break;
+                    case 'd':
+                        if (update.value !== undefined) {
+                            let base = this.map.get(update.param) || [];
+                            const idx = base.indexOf(update.value);
+                            if (idx !== -1) {
+                                base.splice(idx, 1);
+                            }
+                            if (base.length > 0) {
+                                this.map.set(update.param, base);
+                            }
+                            else {
+                                this.map.delete(update.param);
+                            }
+                        }
+                        else {
+                            this.map.delete(update.param);
+                            break;
+                        }
+                }
+            });
+            this.cloneFrom = this.updates = null;
+        }
+    }
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+/**
+ * Determine whether the given HTTP method may include a body.
+ */
+function mightHaveBody(method) {
+    switch (method) {
+        case 'DELETE':
+        case 'GET':
+        case 'HEAD':
+        case 'OPTIONS':
+        case 'JSONP':
+            return false;
+        default:
+            return true;
+    }
+}
+/**
+ * Safely assert whether the given value is an ArrayBuffer.
+ *
+ * In some execution environments ArrayBuffer is not defined.
+ */
+function isArrayBuffer(value) {
+    return typeof ArrayBuffer !== 'undefined' && value instanceof ArrayBuffer;
+}
+/**
+ * Safely assert whether the given value is a Blob.
+ *
+ * In some execution environments Blob is not defined.
+ */
+function isBlob(value) {
+    return typeof Blob !== 'undefined' && value instanceof Blob;
+}
+/**
+ * Safely assert whether the given value is a FormData instance.
+ *
+ * In some execution environments FormData is not defined.
+ */
+function isFormData(value) {
+    return typeof FormData !== 'undefined' && value instanceof FormData;
+}
+/**
+ * An outgoing HTTP request with an optional typed body.
+ *
+ * `HttpRequest` represents an outgoing request, including URL, method,
+ * headers, body, and other request configuration options. Instances should be
+ * assumed to be immutable. To modify a `HttpRequest`, the `clone`
+ * method should be used.
+ *
+ * @publicApi
+ */
+class HttpRequest {
+    constructor(method, url, third, fourth) {
+        this.url = url;
+        /**
+         * The request body, or `null` if one isn't set.
+         *
+         * Bodies are not enforced to be immutable, as they can include a reference to any
+         * user-defined data type. However, interceptors should take care to preserve
+         * idempotence by treating them as such.
+         */
+        this.body = null;
+        /**
+         * Whether this request should be made in a way that exposes progress events.
+         *
+         * Progress events are expensive (change detection runs on each event) and so
+         * they should only be requested if the consumer intends to monitor them.
+         */
+        this.reportProgress = false;
+        /**
+         * Whether this request should be sent with outgoing credentials (cookies).
+         */
+        this.withCredentials = false;
+        /**
+         * The expected response type of the server.
+         *
+         * This is used to parse the response appropriately before returning it to
+         * the requestee.
+         */
+        this.responseType = 'json';
+        this.method = method.toUpperCase();
+        // Next, need to figure out which argument holds the HttpRequestInit
+        // options, if any.
+        let options;
+        // Check whether a body argument is expected. The only valid way to omit
+        // the body argument is to use a known no-body method like GET.
+        if (mightHaveBody(this.method) || !!fourth) {
+            // Body is the third argument, options are the fourth.
+            this.body = (third !== undefined) ? third : null;
+            options = fourth;
+        }
+        else {
+            // No body required, options are the third argument. The body stays null.
+            options = third;
+        }
+        // If options have been passed, interpret them.
+        if (options) {
+            // Normalize reportProgress and withCredentials.
+            this.reportProgress = !!options.reportProgress;
+            this.withCredentials = !!options.withCredentials;
+            // Override default response type of 'json' if one is provided.
+            if (!!options.responseType) {
+                this.responseType = options.responseType;
+            }
+            // Override headers if they're provided.
+            if (!!options.headers) {
+                this.headers = options.headers;
+            }
+            if (!!options.params) {
+                this.params = options.params;
+            }
+        }
+        // If no headers have been passed in, construct a new HttpHeaders instance.
+        if (!this.headers) {
+            this.headers = new HttpHeaders();
+        }
+        // If no parameters have been passed in, construct a new HttpUrlEncodedParams instance.
+        if (!this.params) {
+            this.params = new HttpParams();
+            this.urlWithParams = url;
+        }
+        else {
+            // Encode the parameters to a string in preparation for inclusion in the URL.
+            const params = this.params.toString();
+            if (params.length === 0) {
+                // No parameters, the visible URL is just the URL given at creation time.
+                this.urlWithParams = url;
+            }
+            else {
+                // Does the URL already have query parameters? Look for '?'.
+                const qIdx = url.indexOf('?');
+                // There are 3 cases to handle:
+                // 1) No existing parameters -> append '?' followed by params.
+                // 2) '?' exists and is followed by existing query string ->
+                //    append '&' followed by params.
+                // 3) '?' exists at the end of the url -> append params directly.
+                // This basically amounts to determining the character, if any, with
+                // which to join the URL and parameters.
+                const sep = qIdx === -1 ? '?' : (qIdx < url.length - 1 ? '&' : '');
+                this.urlWithParams = url + sep + params;
+            }
+        }
+    }
+    /**
+     * Transform the free-form body into a serialized format suitable for
+     * transmission to the server.
+     */
+    serializeBody() {
+        // If no body is present, no need to serialize it.
+        if (this.body === null) {
+            return null;
+        }
+        // Check whether the body is already in a serialized form. If so,
+        // it can just be returned directly.
+        if (isArrayBuffer(this.body) || isBlob(this.body) || isFormData(this.body) ||
+            typeof this.body === 'string') {
+            return this.body;
+        }
+        // Check whether the body is an instance of HttpUrlEncodedParams.
+        if (this.body instanceof HttpParams) {
+            return this.body.toString();
+        }
+        // Check whether the body is an object or array, and serialize with JSON if so.
+        if (typeof this.body === 'object' || typeof this.body === 'boolean' ||
+            Array.isArray(this.body)) {
+            return JSON.stringify(this.body);
+        }
+        // Fall back on toString() for everything else.
+        return this.body.toString();
+    }
+    /**
+     * Examine the body and attempt to infer an appropriate MIME type
+     * for it.
+     *
+     * If no such type can be inferred, this method will return `null`.
+     */
+    detectContentTypeHeader() {
+        // An empty body has no content type.
+        if (this.body === null) {
+            return null;
+        }
+        // FormData bodies rely on the browser's content type assignment.
+        if (isFormData(this.body)) {
+            return null;
+        }
+        // Blobs usually have their own content type. If it doesn't, then
+        // no type can be inferred.
+        if (isBlob(this.body)) {
+            return this.body.type || null;
+        }
+        // Array buffers have unknown contents and thus no type can be inferred.
+        if (isArrayBuffer(this.body)) {
+            return null;
+        }
+        // Technically, strings could be a form of JSON data, but it's safe enough
+        // to assume they're plain strings.
+        if (typeof this.body === 'string') {
+            return 'text/plain';
+        }
+        // `HttpUrlEncodedParams` has its own content-type.
+        if (this.body instanceof HttpParams) {
+            return 'application/x-www-form-urlencoded;charset=UTF-8';
+        }
+        // Arrays, objects, and numbers will be encoded as JSON.
+        if (typeof this.body === 'object' || typeof this.body === 'number' ||
+            Array.isArray(this.body)) {
+            return 'application/json';
+        }
+        // No type could be inferred.
+        return null;
+    }
+    clone(update = {}) {
+        // For method, url, and responseType, take the current value unless
+        // it is overridden in the update hash.
+        const method = update.method || this.method;
+        const url = update.url || this.url;
+        const responseType = update.responseType || this.responseType;
+        // The body is somewhat special - a `null` value in update.body means
+        // whatever current body is present is being overridden with an empty
+        // body, whereas an `undefined` value in update.body implies no
+        // override.
+        const body = (update.body !== undefined) ? update.body : this.body;
+        // Carefully handle the boolean options to differentiate between
+        // `false` and `undefined` in the update args.
+        const withCredentials = (update.withCredentials !== undefined) ? update.withCredentials : this.withCredentials;
+        const reportProgress = (update.reportProgress !== undefined) ? update.reportProgress : this.reportProgress;
+        // Headers and params may be appended to if `setHeaders` or
+        // `setParams` are used.
+        let headers = update.headers || this.headers;
+        let params = update.params || this.params;
+        // Check whether the caller has asked to add headers.
+        if (update.setHeaders !== undefined) {
+            // Set every requested header.
+            headers =
+                Object.keys(update.setHeaders)
+                    .reduce((headers, name) => headers.set(name, update.setHeaders[name]), headers);
+        }
+        // Check whether the caller has asked to set params.
+        if (update.setParams) {
+            // Set every requested param.
+            params = Object.keys(update.setParams)
+                .reduce((params, param) => params.set(param, update.setParams[param]), params);
+        }
+        // Finally, construct the new HttpRequest using the pieces from above.
+        return new HttpRequest(method, url, body, {
+            params,
+            headers,
+            reportProgress,
+            responseType,
+            withCredentials,
+        });
+    }
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+/**
+ * Type enumeration for the different kinds of `HttpEvent`.
+ *
+ * @publicApi
+ */
+var HttpEventType = /*@__PURE__*/ (function (HttpEventType) {
+    /**
+     * The request was sent out over the wire.
+     */
+    HttpEventType[HttpEventType["Sent"] = 0] = "Sent";
+    /**
+     * An upload progress event was received.
+     */
+    HttpEventType[HttpEventType["UploadProgress"] = 1] = "UploadProgress";
+    /**
+     * The response status code and headers were received.
+     */
+    HttpEventType[HttpEventType["ResponseHeader"] = 2] = "ResponseHeader";
+    /**
+     * A download progress event was received.
+     */
+    HttpEventType[HttpEventType["DownloadProgress"] = 3] = "DownloadProgress";
+    /**
+     * The full response including the body was received.
+     */
+    HttpEventType[HttpEventType["Response"] = 4] = "Response";
+    /**
+     * A custom event from an interceptor or a backend.
+     */
+    HttpEventType[HttpEventType["User"] = 5] = "User";
+    return HttpEventType;
+})({});
+/**
+ * Base class for both `HttpResponse` and `HttpHeaderResponse`.
+ *
+ * @publicApi
+ */
+class HttpResponseBase {
+    /**
+     * Super-constructor for all responses.
+     *
+     * The single parameter accepted is an initialization hash. Any properties
+     * of the response passed there will override the default values.
+     */
+    constructor(init, defaultStatus = 200, defaultStatusText = 'OK') {
+        // If the hash has values passed, use them to initialize the response.
+        // Otherwise use the default values.
+        this.headers = init.headers || new HttpHeaders();
+        this.status = init.status !== undefined ? init.status : defaultStatus;
+        this.statusText = init.statusText || defaultStatusText;
+        this.url = init.url || null;
+        // Cache the ok value to avoid defining a getter.
+        this.ok = this.status >= 200 && this.status < 300;
+    }
+}
+/**
+ * A partial HTTP response which only includes the status and header data,
+ * but no response body.
+ *
+ * `HttpHeaderResponse` is a `HttpEvent` available on the response
+ * event stream, only when progress events are requested.
+ *
+ * @publicApi
+ */
+class HttpHeaderResponse extends HttpResponseBase {
+    /**
+     * Create a new `HttpHeaderResponse` with the given parameters.
+     */
+    constructor(init = {}) {
+        super(init);
+        this.type = HttpEventType.ResponseHeader;
+    }
+    /**
+     * Copy this `HttpHeaderResponse`, overriding its contents with the
+     * given parameter hash.
+     */
+    clone(update = {}) {
+        // Perform a straightforward initialization of the new HttpHeaderResponse,
+        // overriding the current parameters with new ones if given.
+        return new HttpHeaderResponse({
+            headers: update.headers || this.headers,
+            status: update.status !== undefined ? update.status : this.status,
+            statusText: update.statusText || this.statusText,
+            url: update.url || this.url || undefined,
+        });
+    }
+}
+/**
+ * A full HTTP response, including a typed response body (which may be `null`
+ * if one was not returned).
+ *
+ * `HttpResponse` is a `HttpEvent` available on the response event
+ * stream.
+ *
+ * @publicApi
+ */
+class HttpResponse extends HttpResponseBase {
+    /**
+     * Construct a new `HttpResponse`.
+     */
+    constructor(init = {}) {
+        super(init);
+        this.type = HttpEventType.Response;
+        this.body = init.body !== undefined ? init.body : null;
+    }
+    clone(update = {}) {
+        return new HttpResponse({
+            body: (update.body !== undefined) ? update.body : this.body,
+            headers: update.headers || this.headers,
+            status: (update.status !== undefined) ? update.status : this.status,
+            statusText: update.statusText || this.statusText,
+            url: update.url || this.url || undefined,
+        });
+    }
+}
+/**
+ * A response that represents an error or failure, either from a
+ * non-successful HTTP status, an error while executing the request,
+ * or some other failure which occurred during the parsing of the response.
+ *
+ * Any error returned on the `Observable` response stream will be
+ * wrapped in an `HttpErrorResponse` to provide additional context about
+ * the state of the HTTP layer when the error occurred. The error property
+ * will contain either a wrapped Error object or the error response returned
+ * from the server.
+ *
+ * @publicApi
+ */
+class HttpErrorResponse extends HttpResponseBase {
+    constructor(init) {
+        // Initialize with a default status of 0 / Unknown Error.
+        super(init, 0, 'Unknown Error');
+        this.name = 'HttpErrorResponse';
+        /**
+         * Errors are never okay, even when the status code is in the 2xx success range.
+         */
+        this.ok = false;
+        // If the response was successful, then this was a parse error. Otherwise, it was
+        // a protocol-level failure of some sort. Either the request failed in transit
+        // or the server returned an unsuccessful status code.
+        if (this.status >= 200 && this.status < 300) {
+            this.message = `Http failure during parsing for ${init.url || '(unknown url)'}`;
+        }
+        else {
+            this.message = `Http failure response for ${init.url || '(unknown url)'}: ${init.status} ${init.statusText}`;
+        }
+        this.error = init.error || null;
+    }
+}
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+/**
+ * Constructs an instance of `HttpRequestOptions<T>` from a source `HttpMethodOptions` and
+ * the given `body`. This function clones the object and adds the body.
+ *
+ * Note that the `responseType` *options* value is a String that identifies the
+ * single data type of the response.
+ * A single overload version of the method handles each response type.
+ * The value of `responseType` cannot be a union, as the combined signature could imply.
+ *
+ */
+function addBody(options, body) {
+    return {
+        body,
+        headers: options.headers,
+        observe: options.observe,
+        params: options.params,
+        reportProgress: options.reportProgress,
+        responseType: options.responseType,
+        withCredentials: options.withCredentials,
+    };
+}
+let HttpClient = /*@__PURE__*/ (() => {
+    class HttpClient {
+        constructor(handler) {
+            this.handler = handler;
+        }
+        /**
+         * Constructs an observable for a generic HTTP request that, when subscribed,
+         * fires the request through the chain of registered interceptors and on to the
+         * server.
+         *
+         * You can pass an `HttpRequest` directly as the only parameter. In this case,
+         * the call returns an observable of the raw `HttpEvent` stream.
+         *
+         * Alternatively you can pass an HTTP method as the first parameter,
+         * a URL string as the second, and an options hash containing the request body as the third.
+         * See `addBody()`. In this case, the specified `responseType` and `observe` options determine the
+         * type of returned observable.
+         *   * The `responseType` value determines how a successful response body is parsed.
+         *   * If `responseType` is the default `json`, you can pass a type interface for the resulting
+         * object as a type parameter to the call.
+         *
+         * The `observe` value determines the return type, according to what you are interested in
+         * observing.
+         *   * An `observe` value of events returns an observable of the raw `HttpEvent` stream, including
+         * progress events by default.
+         *   * An `observe` value of response returns an observable of `HttpResponse<T>`,
+         * where the `T` parameter depends on the `responseType` and any optionally provided type
+         * parameter.
+         *   * An `observe` value of body returns an observable of `<T>` with the same `T` body type.
+         *
+         */
+        request(first, url, options = {}) {
+            let req;
+            // First, check whether the primary argument is an instance of `HttpRequest`.
+            if (first instanceof HttpRequest) {
+                // It is. The other arguments must be undefined (per the signatures) and can be
+                // ignored.
+                req = first;
+            }
+            else {
+                // It's a string, so it represents a URL. Construct a request based on it,
+                // and incorporate the remaining arguments (assuming `GET` unless a method is
+                // provided.
+                // Figure out the headers.
+                let headers = undefined;
+                if (options.headers instanceof HttpHeaders) {
+                    headers = options.headers;
+                }
+                else {
+                    headers = new HttpHeaders(options.headers);
+                }
+                // Sort out parameters.
+                let params = undefined;
+                if (!!options.params) {
+                    if (options.params instanceof HttpParams) {
+                        params = options.params;
+                    }
+                    else {
+                        params = new HttpParams({ fromObject: options.params });
+                    }
+                }
+                // Construct the request.
+                req = new HttpRequest(first, url, (options.body !== undefined ? options.body : null), {
+                    headers,
+                    params,
+                    reportProgress: options.reportProgress,
+                    // By default, JSON is assumed to be returned for all calls.
+                    responseType: options.responseType || 'json',
+                    withCredentials: options.withCredentials,
+                });
+            }
+            // Start with an Observable.of() the initial request, and run the handler (which
+            // includes all interceptors) inside a concatMap(). This way, the handler runs
+            // inside an Observable chain, which causes interceptors to be re-run on every
+            // subscription (this also makes retries re-run the handler, including interceptors).
+            const events$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(req).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMap"])((req) => this.handler.handle(req)));
+            // If coming via the API signature which accepts a previously constructed HttpRequest,
+            // the only option is to get the event stream. Otherwise, return the event stream if
+            // that is what was requested.
+            if (first instanceof HttpRequest || options.observe === 'events') {
+                return events$;
+            }
+            // The requested stream contains either the full response or the body. In either
+            // case, the first step is to filter the event stream to extract a stream of
+            // responses(s).
+            const res$ = events$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["filter"])((event) => event instanceof HttpResponse));
+            // Decide which stream to return.
+            switch (options.observe || 'body') {
+                case 'body':
+                    // The requested stream is the body. Map the response stream to the response
+                    // body. This could be done more simply, but a misbehaving interceptor might
+                    // transform the response body into a different format and ignore the requested
+                    // responseType. Guard against this by validating that the response is of the
+                    // requested type.
+                    switch (req.responseType) {
+                        case 'arraybuffer':
+                            return res$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((res) => {
+                                // Validate that the body is an ArrayBuffer.
+                                if (res.body !== null && !(res.body instanceof ArrayBuffer)) {
+                                    throw new Error('Response is not an ArrayBuffer.');
+                                }
+                                return res.body;
+                            }));
+                        case 'blob':
+                            return res$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((res) => {
+                                // Validate that the body is a Blob.
+                                if (res.body !== null && !(res.body instanceof Blob)) {
+                                    throw new Error('Response is not a Blob.');
+                                }
+                                return res.body;
+                            }));
+                        case 'text':
+                            return res$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((res) => {
+                                // Validate that the body is a string.
+                                if (res.body !== null && typeof res.body !== 'string') {
+                                    throw new Error('Response is not a string.');
+                                }
+                                return res.body;
+                            }));
+                        case 'json':
+                        default:
+                            // No validation needed for JSON responses, as they can be of any type.
+                            return res$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((res) => res.body));
+                    }
+                case 'response':
+                    // The response stream was requested directly, so return it.
+                    return res$;
+                default:
+                    // Guard against new future observe types being added.
+                    throw new Error(`Unreachable: unhandled observe type ${options.observe}}`);
+            }
+        }
+        /**
+         * Constructs an observable that, when subscribed, causes the configured
+         * `DELETE` request to execute on the server. See the individual overloads for
+         * details on the return type.
+         *
+         * @param url     The endpoint URL.
+         * @param options The HTTP options to send with the request.
+         *
+         */
+        delete(url, options = {}) {
+            return this.request('DELETE', url, options);
+        }
+        /**
+         * Constructs an observable that, when subscribed, causes the configured
+         * `GET` request to execute on the server. See the individual overloads for
+         * details on the return type.
+         */
+        get(url, options = {}) {
+            return this.request('GET', url, options);
+        }
+        /**
+         * Constructs an observable that, when subscribed, causes the configured
+         * `HEAD` request to execute on the server. The `HEAD` method returns
+         * meta information about the resource without transferring the
+         * resource itself. See the individual overloads for
+         * details on the return type.
+         */
+        head(url, options = {}) {
+            return this.request('HEAD', url, options);
+        }
+        /**
+         * Constructs an `Observable` that, when subscribed, causes a request with the special method
+         * `JSONP` to be dispatched via the interceptor pipeline.
+         * The [JSONP pattern](https://en.wikipedia.org/wiki/JSONP) works around limitations of certain
+         * API endpoints that don't support newer,
+         * and preferable [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) protocol.
+         * JSONP treats the endpoint API as a JavaScript file and tricks the browser to process the
+         * requests even if the API endpoint is not located on the same domain (origin) as the client-side
+         * application making the request.
+         * The endpoint API must support JSONP callback for JSONP requests to work.
+         * The resource API returns the JSON response wrapped in a callback function.
+         * You can pass the callback function name as one of the query parameters.
+         * Note that JSONP requests can only be used with `GET` requests.
+         *
+         * @param url The resource URL.
+         * @param callbackParam The callback function name.
+         *
+         */
+        jsonp(url, callbackParam) {
+            return this.request('JSONP', url, {
+                params: new HttpParams().append(callbackParam, 'JSONP_CALLBACK'),
+                observe: 'body',
+                responseType: 'json',
+            });
+        }
+        /**
+         * Constructs an `Observable` that, when subscribed, causes the configured
+         * `OPTIONS` request to execute on the server. This method allows the client
+         * to determine the supported HTTP methods and other capabilites of an endpoint,
+         * without implying a resource action. See the individual overloads for
+         * details on the return type.
+         */
+        options(url, options = {}) {
+            return this.request('OPTIONS', url, options);
+        }
+        /**
+         * Constructs an observable that, when subscribed, causes the configured
+         * `PATCH` request to execute on the server. See the individual overloads for
+         * details on the return type.
+         */
+        patch(url, body, options = {}) {
+            return this.request('PATCH', url, addBody(options, body));
+        }
+        /**
+         * Constructs an observable that, when subscribed, causes the configured
+         * `POST` request to execute on the server. The server responds with the location of
+         * the replaced resource. See the individual overloads for
+         * details on the return type.
+         */
+        post(url, body, options = {}) {
+            return this.request('POST', url, addBody(options, body));
+        }
+        /**
+         * Constructs an observable that, when subscribed, causes the configured
+         * `PUT` request to execute on the server. The `PUT` method replaces an existing resource
+         * with a new set of values.
+         * See the individual overloads for details on the return type.
+         */
+        put(url, body, options = {}) {
+            return this.request('PUT', url, addBody(options, body));
+        }
+    }
+    HttpClient.ɵfac = function HttpClient_Factory(t) { return new (t || HttpClient)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](HttpHandler)); };
+    HttpClient.ɵprov = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: HttpClient, factory: HttpClient.ɵfac });
+    return HttpClient;
+})();
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+/**
+ * `HttpHandler` which applies an `HttpInterceptor` to an `HttpRequest`.
+ *
+ *
+ */
+class HttpInterceptorHandler {
+    constructor(next, interceptor) {
+        this.next = next;
+        this.interceptor = interceptor;
+    }
+    handle(req) {
+        return this.interceptor.intercept(req, this.next);
+    }
+}
+/**
+ * A multi-provider token that represents the array of registered
+ * `HttpInterceptor` objects.
+ *
+ * @publicApi
+ */
+const HTTP_INTERCEPTORS = /*@__PURE__*/ new _angular_core__WEBPACK_IMPORTED_MODULE_0__["InjectionToken"]('HTTP_INTERCEPTORS');
+let NoopInterceptor = /*@__PURE__*/ (() => {
+    class NoopInterceptor {
+        intercept(req, next) {
+            return next.handle(req);
+        }
+    }
+    NoopInterceptor.ɵfac = function NoopInterceptor_Factory(t) { return new (t || NoopInterceptor)(); };
+    NoopInterceptor.ɵprov = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: NoopInterceptor, factory: NoopInterceptor.ɵfac });
+    return NoopInterceptor;
+})();
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+// Every request made through JSONP needs a callback name that's unique across the
+// whole page. Each request is assigned an id and the callback name is constructed
+// from that. The next id to be assigned is tracked in a global variable here that
+// is shared among all applications on the page.
+let nextRequestId = 0;
+// Error text given when a JSONP script is injected, but doesn't invoke the callback
+// passed in its URL.
+const JSONP_ERR_NO_CALLBACK = 'JSONP injected script did not invoke callback.';
+// Error text given when a request is passed to the JsonpClientBackend that doesn't
+// have a request method JSONP.
+const JSONP_ERR_WRONG_METHOD = 'JSONP requests must use JSONP request method.';
+const JSONP_ERR_WRONG_RESPONSE_TYPE = 'JSONP requests must use Json response type.';
+/**
+ * DI token/abstract type representing a map of JSONP callbacks.
+ *
+ * In the browser, this should always be the `window` object.
+ *
+ *
+ */
+class JsonpCallbackContext {
+}
+let JsonpClientBackend = /*@__PURE__*/ (() => {
+    class JsonpClientBackend {
+        constructor(callbackMap, document) {
+            this.callbackMap = callbackMap;
+            this.document = document;
+            /**
+             * A resolved promise that can be used to schedule microtasks in the event handlers.
+             */
+            this.resolvedPromise = Promise.resolve();
+        }
+        /**
+         * Get the name of the next callback method, by incrementing the global `nextRequestId`.
+         */
+        nextCallback() {
+            return `ng_jsonp_callback_${nextRequestId++}`;
+        }
+        /**
+         * Processes a JSONP request and returns an event stream of the results.
+         * @param req The request object.
+         * @returns An observable of the response events.
+         *
+         */
+        handle(req) {
+            // Firstly, check both the method and response type. If either doesn't match
+            // then the request was improperly routed here and cannot be handled.
+            if (req.method !== 'JSONP') {
+                throw new Error(JSONP_ERR_WRONG_METHOD);
+            }
+            else if (req.responseType !== 'json') {
+                throw new Error(JSONP_ERR_WRONG_RESPONSE_TYPE);
+            }
+            // Everything else happens inside the Observable boundary.
+            return new rxjs__WEBPACK_IMPORTED_MODULE_1__["Observable"]((observer) => {
+                // The first step to make a request is to generate the callback name, and replace the
+                // callback placeholder in the URL with the name. Care has to be taken here to ensure
+                // a trailing &, if matched, gets inserted back into the URL in the correct place.
+                const callback = this.nextCallback();
+                const url = req.urlWithParams.replace(/=JSONP_CALLBACK(&|$)/, `=${callback}$1`);
+                // Construct the <script> tag and point it at the URL.
+                const node = this.document.createElement('script');
+                node.src = url;
+                // A JSONP request requires waiting for multiple callbacks. These variables
+                // are closed over and track state across those callbacks.
+                // The response object, if one has been received, or null otherwise.
+                let body = null;
+                // Whether the response callback has been called.
+                let finished = false;
+                // Whether the request has been cancelled (and thus any other callbacks)
+                // should be ignored.
+                let cancelled = false;
+                // Set the response callback in this.callbackMap (which will be the window
+                // object in the browser. The script being loaded via the <script> tag will
+                // eventually call this callback.
+                this.callbackMap[callback] = (data) => {
+                    // Data has been received from the JSONP script. Firstly, delete this callback.
+                    delete this.callbackMap[callback];
+                    // Next, make sure the request wasn't cancelled in the meantime.
+                    if (cancelled) {
+                        return;
+                    }
+                    // Set state to indicate data was received.
+                    body = data;
+                    finished = true;
+                };
+                // cleanup() is a utility closure that removes the <script> from the page and
+                // the response callback from the window. This logic is used in both the
+                // success, error, and cancellation paths, so it's extracted out for convenience.
+                const cleanup = () => {
+                    // Remove the <script> tag if it's still on the page.
+                    if (node.parentNode) {
+                        node.parentNode.removeChild(node);
+                    }
+                    // Remove the response callback from the callbackMap (window object in the
+                    // browser).
+                    delete this.callbackMap[callback];
+                };
+                // onLoad() is the success callback which runs after the response callback
+                // if the JSONP script loads successfully. The event itself is unimportant.
+                // If something went wrong, onLoad() may run without the response callback
+                // having been invoked.
+                const onLoad = (event) => {
+                    // Do nothing if the request has been cancelled.
+                    if (cancelled) {
+                        return;
+                    }
+                    // We wrap it in an extra Promise, to ensure the microtask
+                    // is scheduled after the loaded endpoint has executed any potential microtask itself,
+                    // which is not guaranteed in Internet Explorer and EdgeHTML. See issue #39496
+                    this.resolvedPromise.then(() => {
+                        // Cleanup the page.
+                        cleanup();
+                        // Check whether the response callback has run.
+                        if (!finished) {
+                            // It hasn't, something went wrong with the request. Return an error via
+                            // the Observable error path. All JSONP errors have status 0.
+                            observer.error(new HttpErrorResponse({
+                                url,
+                                status: 0,
+                                statusText: 'JSONP Error',
+                                error: new Error(JSONP_ERR_NO_CALLBACK),
+                            }));
+                            return;
+                        }
+                        // Success. body either contains the response body or null if none was
+                        // returned.
+                        observer.next(new HttpResponse({
+                            body,
+                            status: 200,
+                            statusText: 'OK',
+                            url,
+                        }));
+                        // Complete the stream, the response is over.
+                        observer.complete();
+                    });
+                };
+                // onError() is the error callback, which runs if the script returned generates
+                // a Javascript error. It emits the error via the Observable error channel as
+                // a HttpErrorResponse.
+                const onError = (error) => {
+                    // If the request was already cancelled, no need to emit anything.
+                    if (cancelled) {
+                        return;
+                    }
+                    cleanup();
+                    // Wrap the error in a HttpErrorResponse.
+                    observer.error(new HttpErrorResponse({
+                        error,
+                        status: 0,
+                        statusText: 'JSONP Error',
+                        url,
+                    }));
+                };
+                // Subscribe to both the success (load) and error events on the <script> tag,
+                // and add it to the page.
+                node.addEventListener('load', onLoad);
+                node.addEventListener('error', onError);
+                this.document.body.appendChild(node);
+                // The request has now been successfully sent.
+                observer.next({ type: HttpEventType.Sent });
+                // Cancellation handler.
+                return () => {
+                    // Track the cancellation so event listeners won't do anything even if already scheduled.
+                    cancelled = true;
+                    // Remove the event listeners so they won't run if the events later fire.
+                    node.removeEventListener('load', onLoad);
+                    node.removeEventListener('error', onError);
+                    // And finally, clean up the page.
+                    cleanup();
+                };
+            });
+        }
+    }
+    JsonpClientBackend.ɵfac = function JsonpClientBackend_Factory(t) { return new (t || JsonpClientBackend)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](JsonpCallbackContext), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common__WEBPACK_IMPORTED_MODULE_3__["DOCUMENT"])); };
+    JsonpClientBackend.ɵprov = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: JsonpClientBackend, factory: JsonpClientBackend.ɵfac });
+    return JsonpClientBackend;
+})();
+let JsonpInterceptor = /*@__PURE__*/ (() => {
+    class JsonpInterceptor {
+        constructor(jsonp) {
+            this.jsonp = jsonp;
+        }
+        /**
+         * Identifies and handles a given JSONP request.
+         * @param req The outgoing request object to handle.
+         * @param next The next interceptor in the chain, or the backend
+         * if no interceptors remain in the chain.
+         * @returns An observable of the event stream.
+         */
+        intercept(req, next) {
+            if (req.method === 'JSONP') {
+                return this.jsonp.handle(req);
+            }
+            // Fall through for normal HTTP requests.
+            return next.handle(req);
+        }
+    }
+    JsonpInterceptor.ɵfac = function JsonpInterceptor_Factory(t) { return new (t || JsonpInterceptor)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](JsonpClientBackend)); };
+    JsonpInterceptor.ɵprov = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: JsonpInterceptor, factory: JsonpInterceptor.ɵfac });
+    return JsonpInterceptor;
+})();
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+const XSSI_PREFIX = /^\)\]\}',?\n/;
+/**
+ * Determine an appropriate URL for the response, by checking either
+ * XMLHttpRequest.responseURL or the X-Request-URL header.
+ */
+function getResponseUrl(xhr) {
+    if ('responseURL' in xhr && xhr.responseURL) {
+        return xhr.responseURL;
+    }
+    if (/^X-Request-URL:/m.test(xhr.getAllResponseHeaders())) {
+        return xhr.getResponseHeader('X-Request-URL');
+    }
+    return null;
+}
+/**
+ * A wrapper around the `XMLHttpRequest` constructor.
+ *
+ * @publicApi
+ */
+class XhrFactory {
+}
+let BrowserXhr = /*@__PURE__*/ (() => {
+    class BrowserXhr {
+        constructor() { }
+        build() {
+            return (new XMLHttpRequest());
+        }
+    }
+    BrowserXhr.ɵfac = function BrowserXhr_Factory(t) { return new (t || BrowserXhr)(); };
+    BrowserXhr.ɵprov = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: BrowserXhr, factory: BrowserXhr.ɵfac });
+    return BrowserXhr;
+})();
+let HttpXhrBackend = /*@__PURE__*/ (() => {
+    class HttpXhrBackend {
+        constructor(xhrFactory) {
+            this.xhrFactory = xhrFactory;
+        }
+        /**
+         * Processes a request and returns a stream of response events.
+         * @param req The request object.
+         * @returns An observable of the response events.
+         */
+        handle(req) {
+            // Quick check to give a better error message when a user attempts to use
+            // HttpClient.jsonp() without installing the HttpClientJsonpModule
+            if (req.method === 'JSONP') {
+                throw new Error(`Attempted to construct Jsonp request without HttpClientJsonpModule installed.`);
+            }
+            // Everything happens on Observable subscription.
+            return new rxjs__WEBPACK_IMPORTED_MODULE_1__["Observable"]((observer) => {
+                // Start by setting up the XHR object with request method, URL, and withCredentials flag.
+                const xhr = this.xhrFactory.build();
+                xhr.open(req.method, req.urlWithParams);
+                if (!!req.withCredentials) {
+                    xhr.withCredentials = true;
+                }
+                // Add all the requested headers.
+                req.headers.forEach((name, values) => xhr.setRequestHeader(name, values.join(',')));
+                // Add an Accept header if one isn't present already.
+                if (!req.headers.has('Accept')) {
+                    xhr.setRequestHeader('Accept', 'application/json, text/plain, */*');
+                }
+                // Auto-detect the Content-Type header if one isn't present already.
+                if (!req.headers.has('Content-Type')) {
+                    const detectedType = req.detectContentTypeHeader();
+                    // Sometimes Content-Type detection fails.
+                    if (detectedType !== null) {
+                        xhr.setRequestHeader('Content-Type', detectedType);
+                    }
+                }
+                // Set the responseType if one was requested.
+                if (req.responseType) {
+                    const responseType = req.responseType.toLowerCase();
+                    // JSON responses need to be processed as text. This is because if the server
+                    // returns an XSSI-prefixed JSON response, the browser will fail to parse it,
+                    // xhr.response will be null, and xhr.responseText cannot be accessed to
+                    // retrieve the prefixed JSON data in order to strip the prefix. Thus, all JSON
+                    // is parsed by first requesting text and then applying JSON.parse.
+                    xhr.responseType = ((responseType !== 'json') ? responseType : 'text');
+                }
+                // Serialize the request body if one is present. If not, this will be set to null.
+                const reqBody = req.serializeBody();
+                // If progress events are enabled, response headers will be delivered
+                // in two events - the HttpHeaderResponse event and the full HttpResponse
+                // event. However, since response headers don't change in between these
+                // two events, it doesn't make sense to parse them twice. So headerResponse
+                // caches the data extracted from the response whenever it's first parsed,
+                // to ensure parsing isn't duplicated.
+                let headerResponse = null;
+                // partialFromXhr extracts the HttpHeaderResponse from the current XMLHttpRequest
+                // state, and memoizes it into headerResponse.
+                const partialFromXhr = () => {
+                    if (headerResponse !== null) {
+                        return headerResponse;
+                    }
+                    // Read status and normalize an IE9 bug (https://bugs.jquery.com/ticket/1450).
+                    const status = xhr.status === 1223 ? 204 : xhr.status;
+                    const statusText = xhr.statusText || 'OK';
+                    // Parse headers from XMLHttpRequest - this step is lazy.
+                    const headers = new HttpHeaders(xhr.getAllResponseHeaders());
+                    // Read the response URL from the XMLHttpResponse instance and fall back on the
+                    // request URL.
+                    const url = getResponseUrl(xhr) || req.url;
+                    // Construct the HttpHeaderResponse and memoize it.
+                    headerResponse = new HttpHeaderResponse({ headers, status, statusText, url });
+                    return headerResponse;
+                };
+                // Next, a few closures are defined for the various events which XMLHttpRequest can
+                // emit. This allows them to be unregistered as event listeners later.
+                // First up is the load event, which represents a response being fully available.
+                const onLoad = () => {
+                    // Read response state from the memoized partial data.
+                    let { headers, status, statusText, url } = partialFromXhr();
+                    // The body will be read out if present.
+                    let body = null;
+                    if (status !== 204) {
+                        // Use XMLHttpRequest.response if set, responseText otherwise.
+                        body = (typeof xhr.response === 'undefined') ? xhr.responseText : xhr.response;
+                    }
+                    // Normalize another potential bug (this one comes from CORS).
+                    if (status === 0) {
+                        status = !!body ? 200 : 0;
+                    }
+                    // ok determines whether the response will be transmitted on the event or
+                    // error channel. Unsuccessful status codes (not 2xx) will always be errors,
+                    // but a successful status code can still result in an error if the user
+                    // asked for JSON data and the body cannot be parsed as such.
+                    let ok = status >= 200 && status < 300;
+                    // Check whether the body needs to be parsed as JSON (in many cases the browser
+                    // will have done that already).
+                    if (req.responseType === 'json' && typeof body === 'string') {
+                        // Save the original body, before attempting XSSI prefix stripping.
+                        const originalBody = body;
+                        body = body.replace(XSSI_PREFIX, '');
+                        try {
+                            // Attempt the parse. If it fails, a parse error should be delivered to the user.
+                            body = body !== '' ? JSON.parse(body) : null;
+                        }
+                        catch (error) {
+                            // Since the JSON.parse failed, it's reasonable to assume this might not have been a
+                            // JSON response. Restore the original body (including any XSSI prefix) to deliver
+                            // a better error response.
+                            body = originalBody;
+                            // If this was an error request to begin with, leave it as a string, it probably
+                            // just isn't JSON. Otherwise, deliver the parsing error to the user.
+                            if (ok) {
+                                // Even though the response status was 2xx, this is still an error.
+                                ok = false;
+                                // The parse error contains the text of the body that failed to parse.
+                                body = { error, text: body };
+                            }
+                        }
+                    }
+                    if (ok) {
+                        // A successful response is delivered on the event stream.
+                        observer.next(new HttpResponse({
+                            body,
+                            headers,
+                            status,
+                            statusText,
+                            url: url || undefined,
+                        }));
+                        // The full body has been received and delivered, no further events
+                        // are possible. This request is complete.
+                        observer.complete();
+                    }
+                    else {
+                        // An unsuccessful request is delivered on the error channel.
+                        observer.error(new HttpErrorResponse({
+                            // The error in this case is the response body (error from the server).
+                            error: body,
+                            headers,
+                            status,
+                            statusText,
+                            url: url || undefined,
+                        }));
+                    }
+                };
+                // The onError callback is called when something goes wrong at the network level.
+                // Connection timeout, DNS error, offline, etc. These are actual errors, and are
+                // transmitted on the error channel.
+                const onError = (error) => {
+                    const { url } = partialFromXhr();
+                    const res = new HttpErrorResponse({
+                        error,
+                        status: xhr.status || 0,
+                        statusText: xhr.statusText || 'Unknown Error',
+                        url: url || undefined,
+                    });
+                    observer.error(res);
+                };
+                // The sentHeaders flag tracks whether the HttpResponseHeaders event
+                // has been sent on the stream. This is necessary to track if progress
+                // is enabled since the event will be sent on only the first download
+                // progerss event.
+                let sentHeaders = false;
+                // The download progress event handler, which is only registered if
+                // progress events are enabled.
+                const onDownProgress = (event) => {
+                    // Send the HttpResponseHeaders event if it hasn't been sent already.
+                    if (!sentHeaders) {
+                        observer.next(partialFromXhr());
+                        sentHeaders = true;
+                    }
+                    // Start building the download progress event to deliver on the response
+                    // event stream.
+                    let progressEvent = {
+                        type: HttpEventType.DownloadProgress,
+                        loaded: event.loaded,
+                    };
+                    // Set the total number of bytes in the event if it's available.
+                    if (event.lengthComputable) {
+                        progressEvent.total = event.total;
+                    }
+                    // If the request was for text content and a partial response is
+                    // available on XMLHttpRequest, include it in the progress event
+                    // to allow for streaming reads.
+                    if (req.responseType === 'text' && !!xhr.responseText) {
+                        progressEvent.partialText = xhr.responseText;
+                    }
+                    // Finally, fire the event.
+                    observer.next(progressEvent);
+                };
+                // The upload progress event handler, which is only registered if
+                // progress events are enabled.
+                const onUpProgress = (event) => {
+                    // Upload progress events are simpler. Begin building the progress
+                    // event.
+                    let progress = {
+                        type: HttpEventType.UploadProgress,
+                        loaded: event.loaded,
+                    };
+                    // If the total number of bytes being uploaded is available, include
+                    // it.
+                    if (event.lengthComputable) {
+                        progress.total = event.total;
+                    }
+                    // Send the event.
+                    observer.next(progress);
+                };
+                // By default, register for load and error events.
+                xhr.addEventListener('load', onLoad);
+                xhr.addEventListener('error', onError);
+                xhr.addEventListener('timeout', onError);
+                xhr.addEventListener('abort', onError);
+                // Progress events are only enabled if requested.
+                if (req.reportProgress) {
+                    // Download progress is always enabled if requested.
+                    xhr.addEventListener('progress', onDownProgress);
+                    // Upload progress depends on whether there is a body to upload.
+                    if (reqBody !== null && xhr.upload) {
+                        xhr.upload.addEventListener('progress', onUpProgress);
+                    }
+                }
+                // Fire the request, and notify the event stream that it was fired.
+                xhr.send(reqBody);
+                observer.next({ type: HttpEventType.Sent });
+                // This is the return from the Observable function, which is the
+                // request cancellation handler.
+                return () => {
+                    // On a cancellation, remove all registered event listeners.
+                    xhr.removeEventListener('error', onError);
+                    xhr.removeEventListener('abort', onError);
+                    xhr.removeEventListener('load', onLoad);
+                    xhr.removeEventListener('timeout', onError);
+                    if (req.reportProgress) {
+                        xhr.removeEventListener('progress', onDownProgress);
+                        if (reqBody !== null && xhr.upload) {
+                            xhr.upload.removeEventListener('progress', onUpProgress);
+                        }
+                    }
+                    // Finally, abort the in-flight request.
+                    if (xhr.readyState !== xhr.DONE) {
+                        xhr.abort();
+                    }
+                };
+            });
+        }
+    }
+    HttpXhrBackend.ɵfac = function HttpXhrBackend_Factory(t) { return new (t || HttpXhrBackend)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](XhrFactory)); };
+    HttpXhrBackend.ɵprov = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: HttpXhrBackend, factory: HttpXhrBackend.ɵfac });
+    return HttpXhrBackend;
+})();
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+const XSRF_COOKIE_NAME = /*@__PURE__*/ new _angular_core__WEBPACK_IMPORTED_MODULE_0__["InjectionToken"]('XSRF_COOKIE_NAME');
+const XSRF_HEADER_NAME = /*@__PURE__*/ new _angular_core__WEBPACK_IMPORTED_MODULE_0__["InjectionToken"]('XSRF_HEADER_NAME');
+/**
+ * Retrieves the current XSRF token to use with the next outgoing request.
+ *
+ * @publicApi
+ */
+class HttpXsrfTokenExtractor {
+}
+let HttpXsrfCookieExtractor = /*@__PURE__*/ (() => {
+    class HttpXsrfCookieExtractor {
+        constructor(doc, platform, cookieName) {
+            this.doc = doc;
+            this.platform = platform;
+            this.cookieName = cookieName;
+            this.lastCookieString = '';
+            this.lastToken = null;
+            /**
+             * @internal for testing
+             */
+            this.parseCount = 0;
+        }
+        getToken() {
+            if (this.platform === 'server') {
+                return null;
+            }
+            const cookieString = this.doc.cookie || '';
+            if (cookieString !== this.lastCookieString) {
+                this.parseCount++;
+                this.lastToken = Object(_angular_common__WEBPACK_IMPORTED_MODULE_3__["ɵparseCookieValue"])(cookieString, this.cookieName);
+                this.lastCookieString = cookieString;
+            }
+            return this.lastToken;
+        }
+    }
+    HttpXsrfCookieExtractor.ɵfac = function HttpXsrfCookieExtractor_Factory(t) { return new (t || HttpXsrfCookieExtractor)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common__WEBPACK_IMPORTED_MODULE_3__["DOCUMENT"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["PLATFORM_ID"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](XSRF_COOKIE_NAME)); };
+    HttpXsrfCookieExtractor.ɵprov = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: HttpXsrfCookieExtractor, factory: HttpXsrfCookieExtractor.ɵfac });
+    return HttpXsrfCookieExtractor;
+})();
+let HttpXsrfInterceptor = /*@__PURE__*/ (() => {
+    class HttpXsrfInterceptor {
+        constructor(tokenService, headerName) {
+            this.tokenService = tokenService;
+            this.headerName = headerName;
+        }
+        intercept(req, next) {
+            const lcUrl = req.url.toLowerCase();
+            // Skip both non-mutating requests and absolute URLs.
+            // Non-mutating requests don't require a token, and absolute URLs require special handling
+            // anyway as the cookie set
+            // on our origin is not the same as the token expected by another origin.
+            if (req.method === 'GET' || req.method === 'HEAD' || lcUrl.startsWith('http://') ||
+                lcUrl.startsWith('https://')) {
+                return next.handle(req);
+            }
+            const token = this.tokenService.getToken();
+            // Be careful not to overwrite an existing header of the same name.
+            if (token !== null && !req.headers.has(this.headerName)) {
+                req = req.clone({ headers: req.headers.set(this.headerName, token) });
+            }
+            return next.handle(req);
+        }
+    }
+    HttpXsrfInterceptor.ɵfac = function HttpXsrfInterceptor_Factory(t) { return new (t || HttpXsrfInterceptor)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](HttpXsrfTokenExtractor), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](XSRF_HEADER_NAME)); };
+    HttpXsrfInterceptor.ɵprov = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: HttpXsrfInterceptor, factory: HttpXsrfInterceptor.ɵfac });
+    return HttpXsrfInterceptor;
+})();
+let HttpInterceptingHandler = /*@__PURE__*/ (() => {
+    class HttpInterceptingHandler {
+        constructor(backend, injector) {
+            this.backend = backend;
+            this.injector = injector;
+            this.chain = null;
+        }
+        handle(req) {
+            if (this.chain === null) {
+                const interceptors = this.injector.get(HTTP_INTERCEPTORS, []);
+                this.chain = interceptors.reduceRight((next, interceptor) => new HttpInterceptorHandler(next, interceptor), this.backend);
+            }
+            return this.chain.handle(req);
+        }
+    }
+    HttpInterceptingHandler.ɵfac = function HttpInterceptingHandler_Factory(t) { return new (t || HttpInterceptingHandler)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](HttpBackend), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injector"])); };
+    HttpInterceptingHandler.ɵprov = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: HttpInterceptingHandler, factory: HttpInterceptingHandler.ɵfac });
+    return HttpInterceptingHandler;
+})();
+/**
+ * Constructs an `HttpHandler` that applies interceptors
+ * to a request before passing it to the given `HttpBackend`.
+ *
+ * Use as a factory function within `HttpClientModule`.
+ *
+ *
+ */
+function interceptingHandler(backend, interceptors = []) {
+    if (!interceptors) {
+        return backend;
+    }
+    return interceptors.reduceRight((next, interceptor) => new HttpInterceptorHandler(next, interceptor), backend);
+}
+/**
+ * Factory function that determines where to store JSONP callbacks.
+ *
+ * Ordinarily JSONP callbacks are stored on the `window` object, but this may not exist
+ * in test environments. In that case, callbacks are stored on an anonymous object instead.
+ *
+ *
+ */
+function jsonpCallbackContext() {
+    if (typeof window === 'object') {
+        return window;
+    }
+    return {};
+}
+let HttpClientXsrfModule = /*@__PURE__*/ (() => {
+    class HttpClientXsrfModule {
+        /**
+         * Disable the default XSRF protection.
+         */
+        static disable() {
+            return {
+                ngModule: HttpClientXsrfModule,
+                providers: [
+                    { provide: HttpXsrfInterceptor, useClass: NoopInterceptor },
+                ],
+            };
+        }
+        /**
+         * Configure XSRF protection.
+         * @param options An object that can specify either or both
+         * cookie name or header name.
+         * - Cookie name default is `XSRF-TOKEN`.
+         * - Header name default is `X-XSRF-TOKEN`.
+         *
+         */
+        static withOptions(options = {}) {
+            return {
+                ngModule: HttpClientXsrfModule,
+                providers: [
+                    options.cookieName ? { provide: XSRF_COOKIE_NAME, useValue: options.cookieName } : [],
+                    options.headerName ? { provide: XSRF_HEADER_NAME, useValue: options.headerName } : [],
+                ],
+            };
+        }
+    }
+    HttpClientXsrfModule.ɵmod = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({ type: HttpClientXsrfModule });
+    HttpClientXsrfModule.ɵinj = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({ factory: function HttpClientXsrfModule_Factory(t) { return new (t || HttpClientXsrfModule)(); }, providers: [
+            HttpXsrfInterceptor,
+            { provide: HTTP_INTERCEPTORS, useExisting: HttpXsrfInterceptor, multi: true },
+            { provide: HttpXsrfTokenExtractor, useClass: HttpXsrfCookieExtractor },
+            { provide: XSRF_COOKIE_NAME, useValue: 'XSRF-TOKEN' },
+            { provide: XSRF_HEADER_NAME, useValue: 'X-XSRF-TOKEN' },
+        ] });
+    return HttpClientXsrfModule;
+})();
+let HttpClientModule = /*@__PURE__*/ (() => {
+    class HttpClientModule {
+    }
+    HttpClientModule.ɵmod = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({ type: HttpClientModule });
+    HttpClientModule.ɵinj = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({ factory: function HttpClientModule_Factory(t) { return new (t || HttpClientModule)(); }, providers: [
+            HttpClient,
+            { provide: HttpHandler, useClass: HttpInterceptingHandler },
+            HttpXhrBackend,
+            { provide: HttpBackend, useExisting: HttpXhrBackend },
+            BrowserXhr,
+            { provide: XhrFactory, useExisting: BrowserXhr },
+        ], imports: [[
+                /*@__PURE__*/ HttpClientXsrfModule.withOptions({
+                    cookieName: 'XSRF-TOKEN',
+                    headerName: 'X-XSRF-TOKEN'
+                }),
+            ]] });
+    return HttpClientModule;
+})();
+/*@__PURE__*/ (function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsetNgModuleScope"](HttpClientModule, { imports: [HttpClientXsrfModule] }); })();
+let HttpClientJsonpModule = /*@__PURE__*/ (() => {
+    class HttpClientJsonpModule {
+    }
+    HttpClientJsonpModule.ɵmod = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineNgModule"]({ type: HttpClientJsonpModule });
+    HttpClientJsonpModule.ɵinj = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjector"]({ factory: function HttpClientJsonpModule_Factory(t) { return new (t || HttpClientJsonpModule)(); }, providers: [
+            JsonpClientBackend,
+            { provide: JsonpCallbackContext, useFactory: jsonpCallbackContext },
+            { provide: HTTP_INTERCEPTORS, useClass: JsonpInterceptor, multi: true },
+        ] });
+    return HttpClientJsonpModule;
+})();
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+/**
+ * @license
+ * Copyright Google LLC All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+/**
+ * Generated bundle index. Do not edit.
+ */
+
+//# sourceMappingURL=http.js.map
+
+
+/***/ }),
+
+/***/ "uxeB":
+/*!*****************************************!*\
+  !*** ./src/app/shared/moment/moment.ts ***!
+  \*****************************************/
+/*! exports provided: schema, Moment */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "schema", function() { return schema; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Moment", function() { return Moment; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "mrSG");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ "qCKp");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "kU1M");
+/* harmony import */ var _utils_errors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utils/errors */ "tOV+");
+/* harmony import */ var _utils_thumbnail__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../utils/thumbnail */ "XjKM");
+
+
+
+
+
+const schema = {
+    version: 0,
+    type: 'object',
+    properties: {
+        id: {
+            type: 'string',
+            primary: true,
+        },
+        timestamp: { type: 'number' },
+        geolocationPosition: {
+            type: 'object',
+            properties: {
+                latitude: { type: 'number' },
+                longitude: { type: 'number' },
+            },
+            required: ['latitude', 'longitude'],
+        },
+    },
+    indexes: ['timestamp'],
+    required: ['timestamp'],
+    attachments: {
+        encrypted: false,
+    },
+};
+let Moment = /*@__PURE__*/ (() => {
+    class Moment {
+        constructor(document) {
+            this.document = document;
+            this.id = this.document.id;
+            this.mimeType = this.getAttachment(Moment.PHOTO_ATTACHMENT_ID).type;
+            this.timestamp = this.document.timestamp;
+            this.geolocationPosition = this.document.geolocationPosition;
+            this.photoUrl$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(() => this.getAttachment(Moment.PHOTO_ATTACHMENT_ID).getData()).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(blob => URL.createObjectURL(blob)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["shareReplay"])({ bufferSize: 1, refCount: true }));
+            this.thumbnailUrl$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(() => Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(this.document.getAttachment(Moment.THUMBNAIL_ATTACHMENT_ID))).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMap"])((attachment) => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+                if (attachment)
+                    return attachment.getData();
+                const thumbnail = yield Object(_utils_thumbnail__WEBPACK_IMPORTED_MODULE_4__["makeThumbnail"])({
+                    image: yield this.getAttachment(Moment.PHOTO_ATTACHMENT_ID).getData(),
+                    maxSize: 300,
+                });
+                yield this.document.putAttachment({
+                    id: Moment.THUMBNAIL_ATTACHMENT_ID,
+                    data: thumbnail,
+                    type: this.mimeType,
+                }, true);
+                return thumbnail;
+            })), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(blob => URL.createObjectURL(blob)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["shareReplay"])({ bufferSize: 1, refCount: true }));
+        }
+        getAttachment(id) {
+            const attachment = this.document.getAttachment(id);
+            if (attachment)
+                return attachment;
+            throw new _utils_errors__WEBPACK_IMPORTED_MODULE_3__["DataNotFoundError"](`Cannot get the attachment with ID: ${id}`);
+        }
+    }
+    Moment.PHOTO_ATTACHMENT_ID = 'original';
+    Moment.THUMBNAIL_ATTACHMENT_ID = 'thumbnail';
+    return Moment;
+})();
+
+
+/***/ })
+
+}]);
