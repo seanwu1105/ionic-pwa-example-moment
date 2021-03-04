@@ -7,6 +7,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { FeatureCollection } from 'geojson';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { distinctUntilChanged, map, switchMap } from 'rxjs/operators';
+import { LanguagesService } from '../../../shared/languages/languages.service';
 import { Moment } from '../../../shared/moment/moment';
 import { MomentRepository } from '../../../shared/moment/moment-repository.service';
 import { isNonNullable } from '../../../utils/rx-operators';
@@ -52,12 +53,18 @@ export class PhotoPage {
     this.currentMomentIndex$,
   ]).pipe(map(([moments, currentIndex]) => moments[currentIndex]));
 
-  readonly address$ = this.currentMoment$.pipe(
+  private readonly geolocationPosition$ = this.currentMoment$.pipe(
     map(moment => moment.geolocationPosition),
-    isNonNullable(),
-    switchMap(position =>
+    isNonNullable()
+  );
+
+  readonly address$ = combineLatest([
+    this.geolocationPosition$,
+    this.languagesService.language$,
+  ]).pipe(
+    switchMap(([position, language]) =>
       this.httpClient.get<FeatureCollection>(
-        `https://nominatim.openstreetmap.org/reverse?lat=${position.latitude}&lon=${position.longitude}&format=geojson&accept-language=en-US`
+        `https://nominatim.openstreetmap.org/reverse?lat=${position.latitude}&lon=${position.longitude}&format=geojson&accept-language=${language}`
       )
     ),
     map(json => {
@@ -68,9 +75,7 @@ export class PhotoPage {
     })
   );
 
-  readonly mapUrl$ = this.currentMoment$.pipe(
-    map(moment => moment.geolocationPosition),
-    isNonNullable(),
+  readonly mapUrl$ = this.geolocationPosition$.pipe(
     map(position =>
       this.sanitizer.bypassSecurityTrustResourceUrl(
         `https://maps.google.com/maps?q=${position.latitude},${position.longitude}&z=15&output=embed`
@@ -96,7 +101,8 @@ export class PhotoPage {
     private readonly route: ActivatedRoute,
     private readonly router: Router,
     private readonly sanitizer: DomSanitizer,
-    private readonly httpClient: HttpClient
+    private readonly httpClient: HttpClient,
+    private readonly languagesService: LanguagesService
   ) {
     this.slideToMoment$.pipe(untilDestroyed(this)).subscribe();
   }

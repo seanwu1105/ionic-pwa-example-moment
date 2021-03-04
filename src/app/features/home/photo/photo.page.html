@@ -30,10 +30,13 @@
       <ion-list lines="none">
         <ion-item>
           <ion-label>
-            {{ moment.timestamp | date: 'long' }}
+            {{
+              moment.timestamp
+                | translocoDate: { dateStyle: 'full', timeStyle: 'full' }
+            }}
           </ion-label>
         </ion-item>
-        <ion-item-group>
+        <ion-item-group *ngIf="moment.geolocationPosition">
           <ion-item-divider>
             <ion-label>{{ t('location') }}</ion-label>
           </ion-item-divider>
