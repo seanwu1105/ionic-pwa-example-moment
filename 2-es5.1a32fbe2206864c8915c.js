@@ -98,11 +98,11 @@
 
       function SettingsPage_ion_header_0_Template(rf, ctx) {
         if (rf & 1) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "ion-header", 2);
+          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "ion-header", 3);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](1, "ion-toolbar");
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](2, "ion-buttons", 3);
+          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](2, "ion-buttons", 4);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](3, "ion-back-button");
 
@@ -128,9 +128,9 @@
         }
       }
 
-      function SettingsPage_ion_list_2_ion_select_5_ion_select_option_1_Template(rf, ctx) {
+      function SettingsPage_ion_list_4_ion_select_5_ion_select_option_1_Template(rf, ctx) {
         if (rf & 1) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "ion-select-option", 17);
+          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "ion-select-option", 18);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](1);
 
@@ -150,13 +150,13 @@
         }
       }
 
-      function SettingsPage_ion_list_2_ion_select_5_Template(rf, ctx) {
+      function SettingsPage_ion_list_4_ion_select_5_Template(rf, ctx) {
         if (rf & 1) {
           var _r11 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵgetCurrentView"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "ion-select", 15);
+          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "ion-select", 16);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵlistener"]("ionChange", function SettingsPage_ion_list_2_ion_select_5_Template_ion_select_ionChange_0_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵlistener"]("ionChange", function SettingsPage_ion_list_4_ion_select_5_Template_ion_select_ionChange_0_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵrestoreView"](_r11);
 
             var ctx_r10 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵnextContext"](2);
@@ -164,7 +164,7 @@
             return ctx_r10.onChangeTheme($event);
           });
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](1, SettingsPage_ion_list_2_ion_select_5_ion_select_option_1_Template, 2, 2, "ion-select-option", 16);
+          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](1, SettingsPage_ion_list_4_ion_select_5_ion_select_option_1_Template, 2, 2, "ion-select-option", 17);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
         }
@@ -182,9 +182,9 @@
         }
       }
 
-      function SettingsPage_ion_list_2_ion_select_10_ion_select_option_1_Template(rf, ctx) {
+      function SettingsPage_ion_list_4_ion_select_10_ion_select_option_1_Template(rf, ctx) {
         if (rf & 1) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "ion-select-option", 17);
+          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "ion-select-option", 18);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](1);
 
@@ -202,13 +202,13 @@
         }
       }
 
-      function SettingsPage_ion_list_2_ion_select_10_Template(rf, ctx) {
+      function SettingsPage_ion_list_4_ion_select_10_Template(rf, ctx) {
         if (rf & 1) {
           var _r16 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵgetCurrentView"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "ion-select", 15);
+          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "ion-select", 16);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵlistener"]("ionChange", function SettingsPage_ion_list_2_ion_select_10_Template_ion_select_ionChange_0_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵlistener"]("ionChange", function SettingsPage_ion_list_4_ion_select_10_Template_ion_select_ionChange_0_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵrestoreView"](_r16);
 
             var ctx_r15 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵnextContext"](2);
@@ -216,7 +216,7 @@
             return ctx_r15.onChangeLanguage($event);
           });
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](1, SettingsPage_ion_list_2_ion_select_10_ion_select_option_1_Template, 2, 2, "ion-select-option", 16);
+          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](1, SettingsPage_ion_list_4_ion_select_10_ion_select_option_1_Template, 2, 2, "ion-select-option", 17);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵpipe"](2, "keyvalue");
 
@@ -236,13 +236,13 @@
         }
       }
 
-      function SettingsPage_ion_list_2_Template(rf, ctx) {
+      function SettingsPage_ion_list_4_Template(rf, ctx) {
         if (rf & 1) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "ion-list", 4);
+          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "ion-list", 5);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](1, "ion-item");
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](2, "ion-icon", 5);
+          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](2, "ion-icon", 6);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](3, "ion-label");
 
@@ -250,13 +250,13 @@
 
           _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](5, SettingsPage_ion_list_2_ion_select_5_Template, 2, 2, "ion-select", 6);
+          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](5, SettingsPage_ion_list_4_ion_select_5_Template, 2, 2, "ion-select", 7);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
 
           _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](6, "ion-item");
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](7, "ion-icon", 7);
+          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](7, "ion-icon", 8);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](8, "ion-label");
 
@@ -264,13 +264,13 @@
 
           _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](10, SettingsPage_ion_list_2_ion_select_10_Template, 3, 4, "ion-select", 6);
+          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](10, SettingsPage_ion_list_4_ion_select_10_Template, 3, 4, "ion-select", 7);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
 
           _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](11, "ion-item");
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](12, "ion-icon", 8);
+          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](12, "ion-icon", 9);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](13, "ion-label");
 
@@ -278,7 +278,7 @@
 
           _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](15, "ion-note", 9);
+          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](15, "ion-note", 10);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](16);
 
@@ -286,9 +286,9 @@
 
           _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](17, "ion-item", 10);
+          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](17, "ion-item", 11);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](18, "ion-icon", 11);
+          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](18, "ion-icon", 12);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](19, "ion-label");
 
@@ -296,13 +296,13 @@
 
           _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](21, "ion-icon", 12);
+          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](21, "ion-icon", 13);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](22, "ion-item", 13);
+          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](22, "ion-item", 14);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](23, "ion-icon", 14);
+          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](23, "ion-icon", 15);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](24, "ion-label");
 
@@ -310,7 +310,7 @@
 
           _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](26, "ion-icon", 12);
+          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](26, "ion-icon", 13);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
 
@@ -392,23 +392,31 @@
         SettingsPage.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdefineComponent"]({
           type: SettingsPage,
           selectors: [["app-settings"]],
-          decls: 3,
+          decls: 5,
           vars: 0,
-          consts: [["class", "ion-no-border", 4, "transloco"], ["lines", "none", 4, "transloco"], [1, "ion-no-border"], ["slot", "start"], ["lines", "none"], ["name", "moon-outline", "slot", "start"], [3, "value", "ionChange", 4, "ngrxLet"], ["name", "language-outline", "slot", "start"], ["name", "information-outline", "slot", "start"], ["slot", "end"], ["href", "https://github.com/seanwu1105/moment-pwa/discussions", "target", "_blank"], ["name", "help-outline", "slot", "start"], ["name", "logo-github", "slot", "end"], ["href", "https://github.com/seanwu1105/moment-pwa/issues", "target", "_blank"], ["name", "bug-outline", "slot", "start"], [3, "value", "ionChange"], [3, "value", 4, "ngFor", "ngForOf"], [3, "value"]],
+          consts: [["class", "ion-no-border", 4, "transloco"], [1, "list-container"], ["lines", "none", 4, "transloco"], [1, "ion-no-border"], ["slot", "start"], ["lines", "none"], ["name", "moon-outline", "slot", "start"], [3, "value", "ionChange", 4, "ngrxLet"], ["name", "language-outline", "slot", "start"], ["name", "information-outline", "slot", "start"], ["slot", "end"], ["href", "https://github.com/seanwu1105/moment-pwa/discussions", "target", "_blank"], ["name", "help-outline", "slot", "start"], ["name", "logo-github", "slot", "end"], ["href", "https://github.com/seanwu1105/moment-pwa/issues", "target", "_blank"], ["name", "bug-outline", "slot", "start"], [3, "value", "ionChange"], [3, "value", 4, "ngFor", "ngForOf"], [3, "value"]],
           template: function SettingsPage_Template(rf, ctx) {
             if (rf & 1) {
               _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](0, SettingsPage_ion_header_0_Template, 6, 1, "ion-header", 0);
 
               _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](1, "ion-content");
 
-              _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](2, SettingsPage_ion_list_2_Template, 27, 8, "ion-list", 1);
+              _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](2, "div", 1);
+
+              _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](3, "ion-card");
+
+              _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](4, SettingsPage_ion_list_4_Template, 27, 8, "ion-list", 2);
+
+              _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
+
+              _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
 
               _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
             }
           },
-          directives: [_ngneat_transloco__WEBPACK_IMPORTED_MODULE_7__["TranslocoDirective"], _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["IonContent"], _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["IonHeader"], _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["IonToolbar"], _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["IonButtons"], _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["IonBackButton"], _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["IonBackButtonDelegate"], _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["IonTitle"], _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["IonList"], _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["IonItem"], _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["IonIcon"], _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["IonLabel"], _ngrx_component__WEBPACK_IMPORTED_MODULE_9__["LetDirective"], _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["IonNote"], _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["IonSelect"], _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["SelectValueAccessor"], _angular_common__WEBPACK_IMPORTED_MODULE_10__["NgForOf"], _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["IonSelectOption"]],
+          directives: [_ngneat_transloco__WEBPACK_IMPORTED_MODULE_7__["TranslocoDirective"], _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["IonContent"], _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["IonCard"], _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["IonHeader"], _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["IonToolbar"], _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["IonButtons"], _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["IonBackButton"], _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["IonBackButtonDelegate"], _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["IonTitle"], _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["IonList"], _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["IonItem"], _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["IonIcon"], _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["IonLabel"], _ngrx_component__WEBPACK_IMPORTED_MODULE_9__["LetDirective"], _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["IonNote"], _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["IonSelect"], _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["SelectValueAccessor"], _angular_common__WEBPACK_IMPORTED_MODULE_10__["NgForOf"], _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["IonSelectOption"]],
           pipes: [_angular_common__WEBPACK_IMPORTED_MODULE_10__["KeyValuePipe"]],
-          styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzZXR0aW5ncy5wYWdlLnNjc3MifQ== */"]
+          styles: [".list-container[_ngcontent-%COMP%] {\n  max-width: 1000px;\n  margin: auto;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uL3NldHRpbmdzLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGlCQUFBO0VBQ0EsWUFBQTtBQUNGIiwiZmlsZSI6InNldHRpbmdzLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5saXN0LWNvbnRhaW5lciB7XG4gIG1heC13aWR0aDogMTAwMHB4O1xuICBtYXJnaW46IGF1dG87XG59XG4iXX0= */"]
         });
         SettingsPage = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_1__["UntilDestroy"])()], SettingsPage);
         return SettingsPage;
@@ -573,4 +581,4 @@
     }
   }]);
 })();
-//# sourceMappingURL=2-es5.fb737515dd86d67384b1.js.map
+//# sourceMappingURL=2-es5.1a32fbe2206864c8915c.js.map

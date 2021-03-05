@@ -715,6 +715,17 @@
                 });
               }), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_1__["untilDestroyed"])(this)).subscribe();
             }
+          }, {
+            key: "remove",
+            value: function remove() {
+              var _this3 = this;
+
+              return this.currentMemontId$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["concatMap"])(function (id) {
+                return _this3.momentRepository.remove$(id);
+              }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["concatMapTo"])(Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["defer"])(function () {
+                return _this3.router.navigate(['..']);
+              })), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_1__["untilDestroyed"])(this)).subscribe();
+            }
           }]);
 
           return PhotoPage;
@@ -740,7 +751,7 @@
           },
           decls: 10,
           vars: 0,
-          consts: [[1, "ion-no-border"], ["slot", "start"], ["color", "light"], ["slot", "end"], ["slot", "primary", "color", "light"], ["name", "trash-outline", "slot", "icon-only"], ["slot", "secondary", "color", "light"], ["name", "share-social-outline", "slot", "icon-only"], ["fullscreen", "", 4, "transloco"], ["fullscreen", ""], [3, "options", "ionSlideDidChange", 4, "ngrxLet"], [3, "options", "ionSlideDidChange"], ["slides", ""], [4, "ngFor", "ngForOf", "ngForTrackBy"], ["ionImgViewer", "", 3, "src", 4, "ngrxLet"], ["lines", "none"], [4, "ngIf"], ["name", "code-outline", "slot", "start"], ["name", "document-outline", "slot", "start"], ["ionImgViewer", "", 3, "src"], ["frameborder", "0", "loading", "lazy", 3, "src", 4, "ngrxLet"], ["name", "location-outline", "slot", "start"], ["name", "home-outline", "slot", "start"], ["frameborder", "0", "loading", "lazy", 3, "src"]],
+          consts: [[1, "ion-no-border"], ["slot", "start"], ["color", "light"], ["slot", "end"], ["slot", "primary", "color", "light", 3, "click"], ["name", "trash-outline", "slot", "icon-only"], ["slot", "secondary", "color", "light"], ["name", "share-social-outline", "slot", "icon-only"], ["fullscreen", "", 4, "transloco"], ["fullscreen", ""], [3, "options", "ionSlideDidChange", 4, "ngrxLet"], [3, "options", "ionSlideDidChange"], ["slides", ""], [4, "ngFor", "ngForOf", "ngForTrackBy"], ["ionImgViewer", "", 3, "src", 4, "ngrxLet"], ["lines", "none"], [4, "ngIf"], ["name", "code-outline", "slot", "start"], ["name", "document-outline", "slot", "start"], ["ionImgViewer", "", 3, "src"], ["frameborder", "0", "loading", "lazy", 3, "src", 4, "ngrxLet"], ["name", "location-outline", "slot", "start"], ["name", "home-outline", "slot", "start"], ["frameborder", "0", "loading", "lazy", 3, "src"]],
           template: function PhotoPage_Template(rf, ctx) {
             if (rf & 1) {
               _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "ion-header", 0);
@@ -756,6 +767,10 @@
               _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](4, "ion-buttons", 3);
 
               _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](5, "ion-button", 4);
+
+              _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵlistener"]("click", function PhotoPage_Template_ion_button_click_5_listener() {
+                return ctx.remove();
+              });
 
               _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](6, "ion-icon", 5);
 
@@ -788,4 +803,4 @@
     }
   }]);
 })();
-//# sourceMappingURL=4-es5.8a43048b53d6a37ed645.js.map
+//# sourceMappingURL=4-es5.6e0faac9b402d4f1fff7.js.map
