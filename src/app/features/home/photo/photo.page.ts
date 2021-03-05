@@ -5,8 +5,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IonSlides } from '@ionic/angular';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { FeatureCollection } from 'geojson';
-import { BehaviorSubject, combineLatest } from 'rxjs';
-import { distinctUntilChanged, map, switchMap } from 'rxjs/operators';
+import { BehaviorSubject, combineLatest, defer } from 'rxjs';
+import {
+  concatMap,
+  concatMapTo,
+  distinctUntilChanged,
+  map,
+  switchMap,
+} from 'rxjs/operators';
 import { LanguagesService } from '../../../shared/languages/languages.service';
 import { Moment } from '../../../shared/moment/moment';
 import { MomentRepository } from '../../../shared/moment/moment-repository.service';
@@ -125,6 +131,16 @@ export class PhotoPage {
             replaceUrl: true,
           })
         ),
+        untilDestroyed(this)
+      )
+      .subscribe();
+  }
+
+  remove() {
+    return this.currentMemontId$
+      .pipe(
+        concatMap(id => this.momentRepository.remove$(id)),
+        concatMapTo(defer(() => this.router.navigate(['..']))),
         untilDestroyed(this)
       )
       .subscribe();
