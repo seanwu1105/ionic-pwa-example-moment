@@ -22,7 +22,7 @@
     "@angular/forms": "~11.2.3",
     "@angular/platform-browser": "~11.2.3",
     "@angular/platform-browser-dynamic": "~11.2.3",
-    "@angular/router": "~11.2.3",
+    "@angular/router": "~11.2.4",
     "@angular/service-worker": "~11.2.3",
     "@ionic-native/core": "^5.0.0",
     "@ionic/angular": "^5.5.5",
