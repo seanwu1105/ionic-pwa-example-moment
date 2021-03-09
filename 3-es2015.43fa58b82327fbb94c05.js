@@ -79,7 +79,7 @@ let CameraPage = /*@__PURE__*/ (() => {
         }
         capture() {
             this.imageCapture$
-                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["switchMap"])(imageCapture => imageCapture.takePhoto()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(imageBlob => {
+                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["switchMap"])(imageCapture => imageCapture.takePhoto()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(imageBlob => {
                 this._capturedImageUrl$.next(URL.createObjectURL(imageBlob));
             }), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_4__["concatTap"])(imageBlob => this.momentRepository.add$(imageBlob)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])((err) => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
                 yield this.presentErrorDialog(err);
@@ -101,7 +101,7 @@ let CameraPage = /*@__PURE__*/ (() => {
         }
         ngOnDestroy() {
             this.mediaStream$
-                .pipe(Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_4__["isNonNullable"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(mediaStream => mediaStream.getTracks().forEach(track => track.stop())))
+                .pipe(Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_4__["isNonNullable"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(mediaStream => mediaStream.getTracks().forEach(track => track.stop())))
                 .subscribe();
         }
     };
@@ -210,4 +210,4 @@ let CameraPageRoutingModule = /*@__PURE__*/ (() => {
 /***/ })
 
 }]);
-//# sourceMappingURL=3-es2015.4759219c367dc11ce150.js.map
+//# sourceMappingURL=3-es2015.43fa58b82327fbb94c05.js.map

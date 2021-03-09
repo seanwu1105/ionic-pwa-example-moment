@@ -707,8 +707,7 @@ function HomePage_ion_col_3_Template(rf, ctx) {
 }
 let HomePage = /*@__PURE__*/ (() => {
     class HomePage {
-        constructor(modalController, momentRepository) {
-            this.modalController = modalController;
+        constructor(momentRepository) {
             this.momentRepository = momentRepository;
             this.moments$ = this.momentRepository.all$;
             this._ionContent$ = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](undefined);
@@ -737,7 +736,7 @@ let HomePage = /*@__PURE__*/ (() => {
             return item.id;
         }
     }
-    HomePage.ɵfac = function HomePage_Factory(t) { return new (t || HomePage)(_angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdirectiveInject"](_ionic_angular__WEBPACK_IMPORTED_MODULE_1__["ModalController"]), _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdirectiveInject"](_shared_moment_moment_repository_service__WEBPACK_IMPORTED_MODULE_6__["MomentRepository"])); };
+    HomePage.ɵfac = function HomePage_Factory(t) { return new (t || HomePage)(_angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdirectiveInject"](_shared_moment_moment_repository_service__WEBPACK_IMPORTED_MODULE_6__["MomentRepository"])); };
     HomePage.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdefineComponent"]({ type: HomePage, selectors: [["app-home"]], viewQuery: function HomePage_Query(rf, ctx) {
             if (rf & 1) {
                 _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵviewQuery"](_ionic_angular__WEBPACK_IMPORTED_MODULE_1__["IonContent"], 1);
@@ -4540,6 +4539,72 @@ const COLLECTION_NAME = 'moments';
 
 /***/ }),
 
+/***/ "GREk":
+/*!*******************************************************************!*\
+  !*** ./src/app/shared/copy-clipboard/copy-clipboard.component.ts ***!
+  \*******************************************************************/
+/*! exports provided: CopyClipboardComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CopyClipboardComponent", function() { return CopyClipboardComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "mrSG");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "TEn/");
+/* harmony import */ var _ngneat_transloco__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ngneat/transloco */ "QPBi");
+
+
+
+
+let CopyClipboardComponent = /*@__PURE__*/ (() => {
+    class CopyClipboardComponent {
+        constructor(toastController, translocoService) {
+            this.toastController = toastController;
+            this.translocoService = translocoService;
+        }
+        copy() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+                if (!this.text)
+                    return;
+                const payload = this.text;
+                const listener = (e) => {
+                    const clipboard = e.clipboardData;
+                    clipboard === null || clipboard === void 0 ? void 0 : clipboard.setData('text', payload.toString());
+                    e.preventDefault();
+                };
+                document.addEventListener('copy', listener, false);
+                document.execCommand('copy');
+                document.removeEventListener('copy', listener, false);
+                return this.presentToast();
+            });
+        }
+        presentToast() {
+            return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
+                const toast = yield this.toastController.create({
+                    message: this.translocoService.translate('message.copiedToClipboard'),
+                    duration: 2000,
+                });
+                return toast.present();
+            });
+        }
+    }
+    CopyClipboardComponent.ɵfac = function CopyClipboardComponent_Factory(t) { return new (t || CopyClipboardComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_ngneat_transloco__WEBPACK_IMPORTED_MODULE_3__["TranslocoService"])); };
+    CopyClipboardComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: CopyClipboardComponent, selectors: [["app-copy-clipboard"]], inputs: { text: "text" }, decls: 2, vars: 0, consts: [["fill", "clear", 3, "click"], ["name", "copy-outline", "slot", "icon-only"]], template: function CopyClipboardComponent_Template(rf, ctx) {
+            if (rf & 1) {
+                _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "ion-button", 0);
+                _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function CopyClipboardComponent_Template_ion_button_click_0_listener() { return ctx.copy(); });
+                _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](1, "ion-icon", 1);
+                _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+            }
+        }, directives: [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["IonButton"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["IonIcon"]], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJjb3B5LWNsaXBib2FyZC5jb21wb25lbnQuc2NzcyJ9 */"] });
+    return CopyClipboardComponent;
+})();
+
+
+
+/***/ }),
+
 /***/ "PCNd":
 /*!*****************************************!*\
   !*** ./src/app/shared/shared.module.ts ***!
@@ -4557,8 +4622,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ngneat_transloco__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ngneat/transloco */ "QPBi");
 /* harmony import */ var _ngneat_transloco_locale__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ngneat/transloco-locale */ "pNjf");
 /* harmony import */ var _ngrx_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ngrx/component */ "9A8T");
-/* harmony import */ var _image_image_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./image/image.component */ "/T4s");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var _copy_clipboard_copy_clipboard_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./copy-clipboard/copy-clipboard.component */ "GREk");
+/* harmony import */ var _image_image_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./image/image.component */ "/T4s");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ "fXoL");
+
 
 
 
@@ -4571,8 +4638,8 @@ __webpack_require__.r(__webpack_exports__);
 let SharedModule = /*@__PURE__*/ (() => {
     class SharedModule {
     }
-    SharedModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵdefineNgModule"]({ type: SharedModule });
-    SharedModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵdefineInjector"]({ factory: function SharedModule_Factory(t) { return new (t || SharedModule)(); }, imports: [[
+    SharedModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdefineNgModule"]({ type: SharedModule });
+    SharedModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdefineInjector"]({ factory: function SharedModule_Factory(t) { return new (t || SharedModule)(); }, imports: [[
                 _angular_common__WEBPACK_IMPORTED_MODULE_0__["CommonModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"],
@@ -4591,7 +4658,7 @@ let SharedModule = /*@__PURE__*/ (() => {
     return SharedModule;
 })();
 (function () {
-    (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵsetNgModuleScope"](SharedModule, { declarations: [_image_image_component__WEBPACK_IMPORTED_MODULE_7__["ImageComponent"]], imports: [_angular_common__WEBPACK_IMPORTED_MODULE_0__["CommonModule"],
+    (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵsetNgModuleScope"](SharedModule, { declarations: [_image_image_component__WEBPACK_IMPORTED_MODULE_8__["ImageComponent"], _copy_clipboard_copy_clipboard_component__WEBPACK_IMPORTED_MODULE_7__["CopyClipboardComponent"]], imports: [_angular_common__WEBPACK_IMPORTED_MODULE_0__["CommonModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["IonicModule"],
@@ -4605,7 +4672,8 @@ let SharedModule = /*@__PURE__*/ (() => {
             _ngrx_component__WEBPACK_IMPORTED_MODULE_6__["ReactiveComponentModule"],
             _ngneat_transloco__WEBPACK_IMPORTED_MODULE_4__["TranslocoModule"],
             _ngneat_transloco_locale__WEBPACK_IMPORTED_MODULE_5__["TranslocoLocaleModule"],
-            _image_image_component__WEBPACK_IMPORTED_MODULE_7__["ImageComponent"]] });
+            _image_image_component__WEBPACK_IMPORTED_MODULE_8__["ImageComponent"],
+            _copy_clipboard_copy_clipboard_component__WEBPACK_IMPORTED_MODULE_7__["CopyClipboardComponent"]] });
 })();
 
 
@@ -4924,4 +4992,4 @@ let Moment = /*@__PURE__*/ (() => {
 /***/ })
 
 }]);
-//# sourceMappingURL=1-es2015.734b2d9ccbae7c41192b.js.map
+//# sourceMappingURL=1-es2015.23037530b0d97cf57a0d.js.map

@@ -15,5 +15,8 @@
     "system": "System Default",
     "light": "Light",
     "dark": "Dark"
+  },
+  "message": {
+    "copiedToClipboard": "Have copied to clipboard."
   }
 }

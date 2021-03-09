@@ -1440,12 +1440,11 @@
 
       var HomePage = /*@__PURE__*/function () {
         var HomePage = /*#__PURE__*/function () {
-          function HomePage(modalController, momentRepository) {
+          function HomePage(momentRepository) {
             var _this6 = this;
 
             _classCallCheck(this, HomePage);
 
-            this.modalController = modalController;
             this.momentRepository = momentRepository;
             this.moments$ = this.momentRepository.all$;
             this._ionContent$ = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"](undefined);
@@ -1505,7 +1504,7 @@
         }();
 
         HomePage.ɵfac = function HomePage_Factory(t) {
-          return new (t || HomePage)(_angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdirectiveInject"](_ionic_angular__WEBPACK_IMPORTED_MODULE_1__["ModalController"]), _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdirectiveInject"](_shared_moment_moment_repository_service__WEBPACK_IMPORTED_MODULE_6__["MomentRepository"]));
+          return new (t || HomePage)(_angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdirectiveInject"](_shared_moment_moment_repository_service__WEBPACK_IMPORTED_MODULE_6__["MomentRepository"]));
         };
 
         HomePage.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵdefineComponent"]({
@@ -5551,6 +5550,164 @@
     },
 
     /***/
+    "GREk":
+    /*!*******************************************************************!*\
+      !*** ./src/app/shared/copy-clipboard/copy-clipboard.component.ts ***!
+      \*******************************************************************/
+
+    /*! exports provided: CopyClipboardComponent */
+
+    /***/
+    function GREk(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "CopyClipboardComponent", function () {
+        return CopyClipboardComponent;
+      });
+      /* harmony import */
+
+
+      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! tslib */
+      "mrSG");
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! @angular/core */
+      "fXoL");
+      /* harmony import */
+
+
+      var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! @ionic/angular */
+      "TEn/");
+      /* harmony import */
+
+
+      var _ngneat_transloco__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! @ngneat/transloco */
+      "QPBi");
+
+      var CopyClipboardComponent = /*@__PURE__*/function () {
+        var CopyClipboardComponent = /*#__PURE__*/function () {
+          function CopyClipboardComponent(toastController, translocoService) {
+            _classCallCheck(this, CopyClipboardComponent);
+
+            this.toastController = toastController;
+            this.translocoService = translocoService;
+          }
+
+          _createClass(CopyClipboardComponent, [{
+            key: "copy",
+            value: function copy() {
+              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee9() {
+                var payload, listener;
+                return regeneratorRuntime.wrap(function _callee9$(_context9) {
+                  while (1) {
+                    switch (_context9.prev = _context9.next) {
+                      case 0:
+                        if (this.text) {
+                          _context9.next = 2;
+                          break;
+                        }
+
+                        return _context9.abrupt("return");
+
+                      case 2:
+                        payload = this.text;
+
+                        listener = function listener(e) {
+                          var clipboard = e.clipboardData;
+                          clipboard === null || clipboard === void 0 ? void 0 : clipboard.setData('text', payload.toString());
+                          e.preventDefault();
+                        };
+
+                        document.addEventListener('copy', listener, false);
+                        document.execCommand('copy');
+                        document.removeEventListener('copy', listener, false);
+                        return _context9.abrupt("return", this.presentToast());
+
+                      case 8:
+                      case "end":
+                        return _context9.stop();
+                    }
+                  }
+                }, _callee9, this);
+              }));
+            }
+          }, {
+            key: "presentToast",
+            value: function presentToast() {
+              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee10() {
+                var toast;
+                return regeneratorRuntime.wrap(function _callee10$(_context10) {
+                  while (1) {
+                    switch (_context10.prev = _context10.next) {
+                      case 0:
+                        _context10.next = 2;
+                        return this.toastController.create({
+                          message: this.translocoService.translate('message.copiedToClipboard'),
+                          duration: 2000
+                        });
+
+                      case 2:
+                        toast = _context10.sent;
+                        return _context10.abrupt("return", toast.present());
+
+                      case 4:
+                      case "end":
+                        return _context10.stop();
+                    }
+                  }
+                }, _callee10, this);
+              }));
+            }
+          }]);
+
+          return CopyClipboardComponent;
+        }();
+
+        CopyClipboardComponent.ɵfac = function CopyClipboardComponent_Factory(t) {
+          return new (t || CopyClipboardComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_ngneat_transloco__WEBPACK_IMPORTED_MODULE_3__["TranslocoService"]));
+        };
+
+        CopyClipboardComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({
+          type: CopyClipboardComponent,
+          selectors: [["app-copy-clipboard"]],
+          inputs: {
+            text: "text"
+          },
+          decls: 2,
+          vars: 0,
+          consts: [["fill", "clear", 3, "click"], ["name", "copy-outline", "slot", "icon-only"]],
+          template: function CopyClipboardComponent_Template(rf, ctx) {
+            if (rf & 1) {
+              _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "ion-button", 0);
+
+              _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function CopyClipboardComponent_Template_ion_button_click_0_listener() {
+                return ctx.copy();
+              });
+
+              _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](1, "ion-icon", 1);
+
+              _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+            }
+          },
+          directives: [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["IonButton"], _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["IonIcon"]],
+          styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJjb3B5LWNsaXBib2FyZC5jb21wb25lbnQuc2NzcyJ9 */"]
+        });
+        return CopyClipboardComponent;
+      }();
+      /***/
+
+    },
+
+    /***/
     "PCNd":
     /*!*****************************************!*\
       !*** ./src/app/shared/shared.module.ts ***!
@@ -5614,13 +5771,19 @@
       /* harmony import */
 
 
-      var _image_image_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      var _copy_clipboard_copy_clipboard_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! ./copy-clipboard/copy-clipboard.component */
+      "GREk");
+      /* harmony import */
+
+
+      var _image_image_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
       /*! ./image/image.component */
       "/T4s");
       /* harmony import */
 
 
-      var _angular_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+      var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
       /*! @angular/core */
       "fXoL");
 
@@ -5629,10 +5792,10 @@
           _classCallCheck(this, SharedModule);
         };
 
-        SharedModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵdefineNgModule"]({
+        SharedModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdefineNgModule"]({
           type: SharedModule
         });
-        SharedModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵdefineInjector"]({
+        SharedModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdefineInjector"]({
           factory: function SharedModule_Factory(t) {
             return new (t || SharedModule)();
           },
@@ -5642,10 +5805,10 @@
       }();
 
       (function () {
-        (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵsetNgModuleScope"](SharedModule, {
-          declarations: [_image_image_component__WEBPACK_IMPORTED_MODULE_7__["ImageComponent"]],
+        (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵsetNgModuleScope"](SharedModule, {
+          declarations: [_image_image_component__WEBPACK_IMPORTED_MODULE_8__["ImageComponent"], _copy_clipboard_copy_clipboard_component__WEBPACK_IMPORTED_MODULE_7__["CopyClipboardComponent"]],
           imports: [_angular_common__WEBPACK_IMPORTED_MODULE_0__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["IonicModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClientModule"], _ngrx_component__WEBPACK_IMPORTED_MODULE_6__["ReactiveComponentModule"], _ngneat_transloco__WEBPACK_IMPORTED_MODULE_4__["TranslocoModule"], _ngneat_transloco_locale__WEBPACK_IMPORTED_MODULE_5__["TranslocoLocaleModule"]],
-          exports: [_angular_common__WEBPACK_IMPORTED_MODULE_0__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["IonicModule"], _ngrx_component__WEBPACK_IMPORTED_MODULE_6__["ReactiveComponentModule"], _ngneat_transloco__WEBPACK_IMPORTED_MODULE_4__["TranslocoModule"], _ngneat_transloco_locale__WEBPACK_IMPORTED_MODULE_5__["TranslocoLocaleModule"], _image_image_component__WEBPACK_IMPORTED_MODULE_7__["ImageComponent"]]
+          exports: [_angular_common__WEBPACK_IMPORTED_MODULE_0__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ReactiveFormsModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["IonicModule"], _ngrx_component__WEBPACK_IMPORTED_MODULE_6__["ReactiveComponentModule"], _ngneat_transloco__WEBPACK_IMPORTED_MODULE_4__["TranslocoModule"], _ngneat_transloco_locale__WEBPACK_IMPORTED_MODULE_5__["TranslocoLocaleModule"], _image_image_component__WEBPACK_IMPORTED_MODULE_8__["ImageComponent"], _copy_clipboard_copy_clipboard_component__WEBPACK_IMPORTED_MODULE_7__["CopyClipboardComponent"]]
         });
       })();
       /***/
@@ -5821,21 +5984,21 @@
       function makeThumbnail(_ref7) {
         var image = _ref7.image,
             maxSize = _ref7.maxSize;
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee9() {
-          return regeneratorRuntime.wrap(function _callee9$(_context9) {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee11() {
+          return regeneratorRuntime.wrap(function _callee11$(_context11) {
             while (1) {
-              switch (_context9.prev = _context9.next) {
+              switch (_context11.prev = _context11.next) {
                 case 0:
-                  return _context9.abrupt("return", imageBlobReduce.toBlob(image, {
+                  return _context11.abrupt("return", imageBlobReduce.toBlob(image, {
                     max: maxSize
                   }));
 
                 case 1:
                 case "end":
-                  return _context9.stop();
+                  return _context11.stop();
               }
             }
-          }, _callee9);
+          }, _callee11);
         }));
       }
       /***/
@@ -6238,36 +6401,36 @@
             this.thumbnailUrl$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(function () {
               return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(_this11.document.getAttachment(Moment.THUMBNAIL_ATTACHMENT_ID));
             }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMap"])(function (attachment) {
-              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this11, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee10() {
+              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this11, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee12() {
                 var thumbnail;
-                return regeneratorRuntime.wrap(function _callee10$(_context10) {
+                return regeneratorRuntime.wrap(function _callee12$(_context12) {
                   while (1) {
-                    switch (_context10.prev = _context10.next) {
+                    switch (_context12.prev = _context12.next) {
                       case 0:
                         if (!attachment) {
-                          _context10.next = 2;
+                          _context12.next = 2;
                           break;
                         }
 
-                        return _context10.abrupt("return", attachment.getData());
+                        return _context12.abrupt("return", attachment.getData());
 
                       case 2:
-                        _context10.t0 = Object(_utils_thumbnail__WEBPACK_IMPORTED_MODULE_4__["makeThumbnail"]);
-                        _context10.next = 5;
+                        _context12.t0 = Object(_utils_thumbnail__WEBPACK_IMPORTED_MODULE_4__["makeThumbnail"]);
+                        _context12.next = 5;
                         return this.getAttachment(Moment.PHOTO_ATTACHMENT_ID).getData();
 
                       case 5:
-                        _context10.t1 = _context10.sent;
-                        _context10.t2 = {
-                          image: _context10.t1,
+                        _context12.t1 = _context12.sent;
+                        _context12.t2 = {
+                          image: _context12.t1,
                           maxSize: 300
                         };
-                        _context10.next = 9;
-                        return (0, _context10.t0)(_context10.t2);
+                        _context12.next = 9;
+                        return (0, _context12.t0)(_context12.t2);
 
                       case 9:
-                        thumbnail = _context10.sent;
-                        _context10.next = 12;
+                        thumbnail = _context12.sent;
+                        _context12.next = 12;
                         return this.document.putAttachment({
                           id: Moment.THUMBNAIL_ATTACHMENT_ID,
                           data: thumbnail,
@@ -6275,14 +6438,14 @@
                         }, true);
 
                       case 12:
-                        return _context10.abrupt("return", thumbnail);
+                        return _context12.abrupt("return", thumbnail);
 
                       case 13:
                       case "end":
-                        return _context10.stop();
+                        return _context12.stop();
                     }
                   }
-                }, _callee10, this);
+                }, _callee12, this);
               }));
             }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (blob) {
               return URL.createObjectURL(blob);
@@ -6313,4 +6476,4 @@
     }
   }]);
 })();
-//# sourceMappingURL=1-es5.734b2d9ccbae7c41192b.js.map
+//# sourceMappingURL=1-es5.23037530b0d97cf57a0d.js.map

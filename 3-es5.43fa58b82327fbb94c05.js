@@ -199,7 +199,7 @@
             value: function capture() {
               var _this2 = this;
 
-              this.imageCapture$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["switchMap"])(function (imageCapture) {
+              this.imageCapture$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["switchMap"])(function (imageCapture) {
                 return imageCapture.takePhoto();
               }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function (imageBlob) {
                 _this2._capturedImageUrl$.next(URL.createObjectURL(imageBlob));
@@ -262,7 +262,7 @@
           }, {
             key: "ngOnDestroy",
             value: function ngOnDestroy() {
-              this.mediaStream$.pipe(Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_4__["isNonNullable"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function (mediaStream) {
+              this.mediaStream$.pipe(Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_4__["isNonNullable"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["tap"])(function (mediaStream) {
                 return mediaStream.getTracks().forEach(function (track) {
                   return track.stop();
                 });
@@ -475,4 +475,4 @@
     }
   }]);
 })();
-//# sourceMappingURL=3-es5.4759219c367dc11ce150.js.map
+//# sourceMappingURL=3-es5.43fa58b82327fbb94c05.js.map

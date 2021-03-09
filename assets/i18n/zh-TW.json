@@ -15,5 +15,8 @@
     "system": "系統預設",
     "light": "淺色",
     "dark": "深色"
+  },
+  "message": {
+    "copiedToClipboard": "已經複製至剪貼簿。"
   }
 }
