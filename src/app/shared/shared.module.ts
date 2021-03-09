@@ -6,10 +6,11 @@ import { IonicModule } from '@ionic/angular';
 import { TranslocoModule } from '@ngneat/transloco';
 import { TranslocoLocaleModule } from '@ngneat/transloco-locale';
 import { ReactiveComponentModule } from '@ngrx/component';
+import { CopyClipboardDirective } from './copy-clipboard/copy-clipboard.directive';
 import { ImageComponent } from './image/image.component';
 
 @NgModule({
-  declarations: [ImageComponent],
+  declarations: [ImageComponent, CopyClipboardDirective],
   imports: [
     CommonModule,
     FormsModule,
@@ -29,6 +30,7 @@ import { ImageComponent } from './image/image.component';
     TranslocoModule,
     TranslocoLocaleModule,
     ImageComponent,
+    CopyClipboardDirective,
   ],
 })
 export class SharedModule {}

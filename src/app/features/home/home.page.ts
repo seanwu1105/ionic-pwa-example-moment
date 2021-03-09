@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonContent, ModalController } from '@ionic/angular';
+import { IonContent } from '@ionic/angular';
 import { BehaviorSubject, combineLatest, Subject } from 'rxjs';
 import { distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { Moment } from '../../shared/moment/moment';
@@ -39,10 +39,7 @@ export class HomePage {
     this.scrollEvent$,
   ]).pipe(switchMap(([ionContent]) => this.detectBottom(ionContent)));
 
-  constructor(
-    private readonly modalController: ModalController,
-    private readonly momentRepository: MomentRepository
-  ) {}
+  constructor(private readonly momentRepository: MomentRepository) {}
 
   onScroll(event: Event) {
     this._scrollEvent$.next(event);

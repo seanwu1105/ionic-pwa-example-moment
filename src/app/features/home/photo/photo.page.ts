@@ -1,17 +1,18 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IonSlides } from '@ionic/angular';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { FeatureCollection } from 'geojson';
-import { BehaviorSubject, combineLatest, defer } from 'rxjs';
+import { combineLatest, defer, iif } from 'rxjs';
 import {
   concatMap,
   concatMapTo,
   distinctUntilChanged,
+  first,
   map,
   switchMap,
+  tap,
 } from 'rxjs/operators';
 import { LanguagesService } from '../../../shared/languages/languages.service';
 import { Moment } from '../../../shared/moment/moment';
@@ -25,18 +26,7 @@ import { isNonNullable } from '../../../utils/rx-operators';
   styleUrls: ['./photo.page.scss'],
 })
 export class PhotoPage {
-  private readonly _ionSlides$ = new BehaviorSubject<undefined | IonSlides>(
-    undefined
-  );
-
-  @ViewChild('slides') set ionSlides(value: IonSlides) {
-    this._ionSlides$.next(value);
-  }
-
-  private readonly ionSlides$ = this._ionSlides$.pipe(
-    isNonNullable(),
-    distinctUntilChanged()
-  );
+  private willBeDestroyed = false;
 
   private readonly currentMemontId$ = this.route.queryParamMap.pipe(
     map(params => params.get('id')),
@@ -97,11 +87,6 @@ export class PhotoPage {
     }))
   );
 
-  private readonly slideToMoment$ = combineLatest([
-    this.ionSlides$,
-    this.currentMomentIndex$,
-  ]).pipe(switchMap(([slides, index]) => slides.slideTo(index)));
-
   constructor(
     private readonly momentRepository: MomentRepository,
     private readonly route: ActivatedRoute,
@@ -109,9 +94,7 @@ export class PhotoPage {
     private readonly sanitizer: DomSanitizer,
     private readonly httpClient: HttpClient,
     private readonly languagesService: LanguagesService
-  ) {
-    this.slideToMoment$.pipe(untilDestroyed(this)).subscribe();
-  }
+  ) {}
 
   trackMoment(_: number, item: Moment) {
     return item.id;
@@ -121,15 +104,18 @@ export class PhotoPage {
     const ionSlides = event.target as HTMLIonSlidesElement;
     return this.moments$
       .pipe(
-        switchMap(
-          async moments => moments[await ionSlides.getActiveIndex()].id
-        ),
-        switchMap(id =>
-          this.router.navigate([], {
-            queryParams: { id },
-            relativeTo: this.route,
-            replaceUrl: true,
-          })
+        first(),
+        switchMap(async moments => moments[await ionSlides.getActiveIndex()]),
+        isNonNullable(),
+        switchMap(moment =>
+          iif(
+            () => !this.willBeDestroyed,
+            this.router.navigate([], {
+              queryParams: { id: moment.id },
+              relativeTo: this.route,
+              replaceUrl: true,
+            })
+          )
         ),
         untilDestroyed(this)
       )
@@ -139,6 +125,8 @@ export class PhotoPage {
   remove() {
     return this.currentMemontId$
       .pipe(
+        first(),
+        tap(() => (this.willBeDestroyed = true)),
         concatMap(id => this.momentRepository.remove$(id)),
         concatMapTo(defer(() => this.router.navigate(['..']))),
         untilDestroyed(this)

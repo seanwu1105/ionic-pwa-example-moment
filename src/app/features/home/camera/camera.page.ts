@@ -5,6 +5,7 @@ import { BehaviorSubject, combineLatest, defer } from 'rxjs';
 import {
   catchError,
   distinctUntilChanged,
+  first,
   map,
   pairwise,
   shareReplay,
@@ -89,6 +90,7 @@ export class CameraPage implements OnDestroy {
   capture() {
     this.imageCapture$
       .pipe(
+        first(),
         switchMap(imageCapture => imageCapture.takePhoto()),
         tap(imageBlob => {
           this._capturedImageUrl$.next(URL.createObjectURL(imageBlob));
@@ -118,6 +120,7 @@ export class CameraPage implements OnDestroy {
     this.mediaStream$
       .pipe(
         isNonNullable(),
+        first(),
         tap(mediaStream =>
           mediaStream.getTracks().forEach(track => track.stop())
         )
