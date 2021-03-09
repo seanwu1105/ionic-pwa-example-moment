@@ -34,6 +34,12 @@ ion-list {
   overflow: scroll;
   margin-top: calc(-1 * var(--photo-radius));
   padding-top: var(--photo-radius);
+
+  ion-item {
+    ion-label {
+      white-space: initial;
+    }
+  }
 }
 
 iframe {
