@@ -1238,3 +1238,6 @@ ion-note {
 ion-popover {
   --width: 90% !important;
 }
+:focus {
+  outline: 0;
+}

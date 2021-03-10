@@ -4223,15 +4223,15 @@ const routes = [
     },
     {
         path: 'photo',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ./photo/photo.module */ "MTLF")).then(m => m.PhotoPageModule),
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(3)]).then(__webpack_require__.bind(null, /*! ./photo/photo.module */ "MTLF")).then(m => m.PhotoPageModule),
     },
     {
         path: 'settings',
-        loadChildren: () => __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./settings/settings.module */ "VJEY")).then(m => m.SettingsPageModule),
+        loadChildren: () => __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./settings/settings.module */ "VJEY")).then(m => m.SettingsPageModule),
     },
     {
         path: 'camera',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(4)]).then(__webpack_require__.bind(null, /*! ./camera/camera.module */ "QDOj")).then(m => m.CameraPageModule),
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e(1), __webpack_require__.e(5)]).then(__webpack_require__.bind(null, /*! ./camera/camera.module */ "QDOj")).then(m => m.CameraPageModule),
     },
 ];
 let HomePageRoutingModule = /*@__PURE__*/ (() => {
@@ -4456,7 +4456,8 @@ let Moment = /*@__PURE__*/ (() => {
             this.mimeType = this.getAttachment(Moment.PHOTO_ATTACHMENT_ID).type;
             this.timestamp = this.document.timestamp;
             this.geolocationPosition = this.document.geolocationPosition;
-            this.photoUrl$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(() => this.getAttachment(Moment.PHOTO_ATTACHMENT_ID).getData()).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(blob => URL.createObjectURL(blob)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["shareReplay"])({ bufferSize: 1, refCount: true }));
+            this.photo$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(() => this.getAttachment(Moment.PHOTO_ATTACHMENT_ID).getData());
+            this.photoUrl$ = this.photo$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(blob => URL.createObjectURL(blob)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["shareReplay"])({ bufferSize: 1, refCount: true }));
             this.thumbnailUrl$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(() => Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["of"])(this.document.getAttachment(Moment.THUMBNAIL_ATTACHMENT_ID))).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMap"])((attachment) => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
                 if (attachment)
                     return attachment.getData();
@@ -4489,4 +4490,4 @@ let Moment = /*@__PURE__*/ (() => {
 /***/ })
 
 }]);
-//# sourceMappingURL=2-es2015.95ed20f75e9b6c8c2092.js.map
+//# sourceMappingURL=2-es2015.3621c2a22922f10199b5.js.map

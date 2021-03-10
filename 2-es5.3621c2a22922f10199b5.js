@@ -4963,7 +4963,7 @@
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() */
-          [__webpack_require__.e(1), __webpack_require__.e(5)]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e(1), __webpack_require__.e(3)]).then(__webpack_require__.bind(null,
           /*! ./photo/photo.module */
           "MTLF")).then(function (m) {
             return m.PhotoPageModule;
@@ -4974,7 +4974,7 @@
         loadChildren: function loadChildren() {
           return __webpack_require__.e(
           /*! import() */
-          3).then(__webpack_require__.bind(null,
+          4).then(__webpack_require__.bind(null,
           /*! ./settings/settings.module */
           "VJEY")).then(function (m) {
             return m.SettingsPageModule;
@@ -4985,7 +4985,7 @@
         loadChildren: function loadChildren() {
           return Promise.all(
           /*! import() */
-          [__webpack_require__.e(1), __webpack_require__.e(4)]).then(__webpack_require__.bind(null,
+          [__webpack_require__.e(1), __webpack_require__.e(5)]).then(__webpack_require__.bind(null,
           /*! ./camera/camera.module */
           "QDOj")).then(function (m) {
             return m.CameraPageModule;
@@ -5457,9 +5457,10 @@
             this.mimeType = this.getAttachment(Moment.PHOTO_ATTACHMENT_ID).type;
             this.timestamp = this.document.timestamp;
             this.geolocationPosition = this.document.geolocationPosition;
-            this.photoUrl$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(function () {
+            this.photo$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(function () {
               return _this10.getAttachment(Moment.PHOTO_ATTACHMENT_ID).getData();
-            }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (blob) {
+            });
+            this.photoUrl$ = this.photo$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (blob) {
               return URL.createObjectURL(blob);
             }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["shareReplay"])({
               bufferSize: 1,
@@ -5543,4 +5544,4 @@
     }
   }]);
 })();
-//# sourceMappingURL=2-es5.95ed20f75e9b6c8c2092.js.map
+//# sourceMappingURL=2-es5.3621c2a22922f10199b5.js.map
