@@ -50,7 +50,9 @@ export class CameraPage implements OnDestroy {
 
   private readonly imageCapture$ = this.mediaStream$.pipe(
     isNonNullable(),
-    map(mediaStream => new ImageCapture(mediaStream.getVideoTracks()[0])),
+    map(mediaStream => mediaStream.getVideoTracks()[0]),
+    isNonNullable(),
+    map(track => new ImageCapture(track)),
     shareReplay({ bufferSize: 1, refCount: true })
   );
 
@@ -97,8 +99,13 @@ export class CameraPage implements OnDestroy {
         }),
         concatTap(imageBlob => this.momentRepository.add$(imageBlob)),
         catchError(async (err: unknown) => {
-          await this.presentErrorDialog(err);
-          return undefined;
+          if (
+            err instanceof DOMException &&
+            (err.name === 'InvalidStateError' || err.name === 'UnknownError')
+          ) {
+            return undefined;
+          }
+          return this.presentErrorDialog(err);
         }),
         untilDestroyed(this)
       )

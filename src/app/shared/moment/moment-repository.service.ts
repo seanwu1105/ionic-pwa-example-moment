@@ -39,7 +39,7 @@ export class MomentRepository {
       ])
     ).pipe(
       concatMap(([collection, id, geolocationPosition]) =>
-        collection.insert({
+        collection.atomicUpsert({
           id,
           timestamp: Date.now(),
           geolocationPosition: geolocationPosition
