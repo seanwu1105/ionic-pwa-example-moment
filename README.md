@@ -13,7 +13,7 @@
 - [x] I18n
 - [x] Date i18n
 - [x] Stable camera/polyfill
-- [ ] Share image
+- [x] Share image
 - [ ] NgRx/data
 - [ ] Extract stored data
 - [ ] App shell

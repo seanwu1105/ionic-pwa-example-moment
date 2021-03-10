@@ -7,7 +7,12 @@
       <ion-button (click)="remove()" slot="primary" color="light">
         <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
       </ion-button>
-      <ion-button slot="secondary" color="light">
+      <ion-button
+        *ngIf="supportShare"
+        (click)="share()"
+        slot="secondary"
+        color="light"
+      >
         <ion-icon name="share-social-outline" slot="icon-only"></ion-icon>
       </ion-button>
     </ion-buttons>

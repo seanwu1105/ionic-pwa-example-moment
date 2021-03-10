@@ -51,9 +51,11 @@ export class Moment {
 
   readonly geolocationPosition = this.document.geolocationPosition;
 
-  readonly photoUrl$ = defer(() =>
+  readonly photo$ = defer(() =>
     this.getAttachment(Moment.PHOTO_ATTACHMENT_ID).getData()
-  ).pipe(
+  );
+
+  readonly photoUrl$ = this.photo$.pipe(
     map(blob => URL.createObjectURL(blob)),
     shareReplay({ bufferSize: 1, refCount: true })
   );

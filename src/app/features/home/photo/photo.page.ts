@@ -4,6 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { FeatureCollection } from 'geojson';
+import mime from 'mime/lite';
 import { combineLatest, defer, iif } from 'rxjs';
 import {
   concatMap,
@@ -87,6 +88,8 @@ export class PhotoPage {
     }))
   );
 
+  readonly supportShare = !!navigator['share'];
+
   constructor(
     private readonly momentRepository: MomentRepository,
     private readonly route: ActivatedRoute,
@@ -132,5 +135,34 @@ export class PhotoPage {
         untilDestroyed(this)
       )
       .subscribe();
+  }
+
+  share() {
+    return this.currentMoment$
+      .pipe(
+        first(),
+        switchMap(moment => this._share$(moment)),
+        untilDestroyed(this)
+      )
+      .subscribe();
+  }
+
+  private _share$(moment: Moment) {
+    return moment.photo$.pipe(
+      map(
+        photo =>
+          new File([photo], `${moment.id}.${mime.extension(moment.mimeType)}`, {
+            type: moment.mimeType,
+            lastModified: moment.timestamp,
+          })
+      ),
+      switchMap(file =>
+        navigator.share({
+          text: JSON.stringify(moment.geolocationPosition),
+          // @ts-expect-error: share API level 2
+          files: [file],
+        })
+      )
+    );
   }
 }
