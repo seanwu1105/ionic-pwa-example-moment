@@ -1,19 +1,21 @@
 - [x] PWA
 - [x] CD PWA on GitHub pages
-- [x] language optimize
+- [x] Language optimize
   - [x] AOT
   - [x] Strict template check
-  - [x] production build
+  - [x] Production build
 - [x] UI mock
-  - [x] home page
+  - [x] Home page
   - [x] Camera view
   - [x] details view
 - [x] RxDB
 - [x] GPS collection
-- [x] i18n
-- [x] date i18n
+- [x] I18n
+- [x] Date i18n
 - [x] Stable camera/polyfill
+- [ ] Share image
 - [ ] NgRx/data
+- [ ] Extract stored data
 - [ ] App shell
 - [ ] Error handling/report
 - [ ] Push notification

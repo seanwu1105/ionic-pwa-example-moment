@@ -101,7 +101,9 @@ export class CameraPage implements OnDestroy {
         catchError(async (err: unknown) => {
           if (
             err instanceof DOMException &&
-            (err.name === 'InvalidStateError' || err.name === 'UnknownError')
+            (err.name === 'InvalidStateError' ||
+              err.name === 'UnknownError' ||
+              err.name === 'OperationError')
           ) {
             return undefined;
           }
