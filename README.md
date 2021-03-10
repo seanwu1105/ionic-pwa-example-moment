@@ -14,6 +14,8 @@
 - [x] date i18n
 - [ ] NgRx/data
 - [ ] App shell
+- [ ] Error handling/report
+- [ ] Push notification
 
 ### Live-reload PWA
 
