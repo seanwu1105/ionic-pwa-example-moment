@@ -69,3 +69,6 @@ import './zone-flags';
 global.Buffer = global.Buffer ?? require('buffer').Buffer;
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 global.process = global.process ?? require('process');
+
+// ImageCapture
+import 'image-capture';

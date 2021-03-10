@@ -12,7 +12,7 @@
 - [x] GPS collection
 - [x] i18n
 - [x] date i18n
-- [ ] Stable camera/polyfill
+- [x] Stable camera/polyfill
 - [ ] NgRx/data
 - [ ] App shell
 - [ ] Error handling/report
