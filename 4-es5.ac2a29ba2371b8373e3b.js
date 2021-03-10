@@ -219,7 +219,7 @@
                     while (1) {
                       switch (_context2.prev = _context2.next) {
                         case 0:
-                          if (!(err instanceof DOMException && (err.name === 'InvalidStateError' || err.name === 'UnknownError'))) {
+                          if (!(err instanceof DOMException && (err.name === 'InvalidStateError' || err.name === 'UnknownError' || err.name === 'OperationError'))) {
                             _context2.next = 2;
                             break;
                           }
@@ -493,4 +493,4 @@
     }
   }]);
 })();
-//# sourceMappingURL=4-es5.d1c0a6a35ca9aabebdb3.js.map
+//# sourceMappingURL=4-es5.ac2a29ba2371b8373e3b.js.map

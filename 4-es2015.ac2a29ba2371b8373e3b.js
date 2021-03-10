@@ -85,7 +85,9 @@ let CameraPage = /*@__PURE__*/ (() => {
                 this._capturedImageUrl$.next(URL.createObjectURL(imageBlob));
             }), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_4__["concatTap"])(imageBlob => this.momentRepository.add$(imageBlob)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])((err) => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
                 if (err instanceof DOMException &&
-                    (err.name === 'InvalidStateError' || err.name === 'UnknownError')) {
+                    (err.name === 'InvalidStateError' ||
+                        err.name === 'UnknownError' ||
+                        err.name === 'OperationError')) {
                     return undefined;
                 }
                 return this.presentErrorDialog(err);
@@ -217,4 +219,4 @@ let CameraPageRoutingModule = /*@__PURE__*/ (() => {
 /***/ })
 
 }]);
-//# sourceMappingURL=4-es2015.d1c0a6a35ca9aabebdb3.js.map
+//# sourceMappingURL=4-es2015.ac2a29ba2371b8373e3b.js.map

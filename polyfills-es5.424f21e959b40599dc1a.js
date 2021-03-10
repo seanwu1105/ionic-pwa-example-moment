@@ -9487,6 +9487,215 @@
     },
 
     /***/
+    "biPl":
+    /*!********************************************************!*\
+      !*** ./node_modules/image-capture/src/imagecapture.js ***!
+      \********************************************************/
+
+    /*! exports provided: ImageCapture */
+
+    /***/
+    function biPl(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "ImageCapture", function () {
+        return ImageCapture;
+      });
+      /**
+       * MediaStream ImageCapture polyfill
+       *
+       * @license
+       * Copyright 2018 Google Inc.
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *      http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       */
+
+
+      var ImageCapture = window.ImageCapture;
+
+      if (typeof ImageCapture === 'undefined') {
+        ImageCapture = /*#__PURE__*/function () {
+          /**
+           * TODO https://www.w3.org/TR/image-capture/#constructors
+           *
+           * @param {MediaStreamTrack} videoStreamTrack - A MediaStreamTrack of the 'video' kind
+           */
+          function ImageCapture(videoStreamTrack) {
+            var _this = this;
+
+            _classCallCheck(this, ImageCapture);
+
+            if (videoStreamTrack.kind !== 'video') throw new DOMException('NotSupportedError');
+            this._videoStreamTrack = videoStreamTrack;
+
+            if (!('readyState' in this._videoStreamTrack)) {
+              // Polyfill for Firefox
+              this._videoStreamTrack.readyState = 'live';
+            } // MediaStream constructor not available until Chrome 55 - https://www.chromestatus.com/feature/5912172546752512
+
+
+            this._previewStream = new MediaStream([videoStreamTrack]);
+            this.videoElement = document.createElement('video');
+            this.videoElementPlaying = new Promise(function (resolve) {
+              _this.videoElement.addEventListener('playing', resolve);
+            });
+
+            if (HTMLMediaElement) {
+              this.videoElement.srcObject = this._previewStream; // Safari 11 doesn't allow use of createObjectURL for MediaStream
+            } else {
+              this.videoElement.src = URL.createObjectURL(this._previewStream);
+            }
+
+            this.videoElement.muted = true;
+            this.videoElement.setAttribute('playsinline', ''); // Required by Safari on iOS 11. See https://webkit.org/blog/6784
+
+            this.videoElement.play();
+            this.canvasElement = document.createElement('canvas'); // TODO Firefox has https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas
+
+            this.canvas2dContext = this.canvasElement.getContext('2d');
+          }
+          /**
+           * https://w3c.github.io/mediacapture-image/index.html#dom-imagecapture-videostreamtrack
+           * @return {MediaStreamTrack} The MediaStreamTrack passed into the constructor
+           */
+
+
+          _createClass(ImageCapture, [{
+            key: "videoStreamTrack",
+            get: function get() {
+              return this._videoStreamTrack;
+            }
+            /**
+             * Implements https://www.w3.org/TR/image-capture/#dom-imagecapture-getphotocapabilities
+             * @return {Promise<PhotoCapabilities>} Fulfilled promise with
+             * [PhotoCapabilities](https://www.w3.org/TR/image-capture/#idl-def-photocapabilities)
+             * object on success, rejected promise on failure
+             */
+
+          }, {
+            key: "getPhotoCapabilities",
+            value: function getPhotoCapabilities() {
+              return new Promise(function executorGPC(resolve, reject) {
+                // TODO see https://github.com/w3c/mediacapture-image/issues/97
+                var MediaSettingsRange = {
+                  current: 0,
+                  min: 0,
+                  max: 0
+                };
+                resolve({
+                  exposureCompensation: MediaSettingsRange,
+                  exposureMode: 'none',
+                  fillLightMode: 'none',
+                  focusMode: 'none',
+                  imageHeight: MediaSettingsRange,
+                  imageWidth: MediaSettingsRange,
+                  iso: MediaSettingsRange,
+                  redEyeReduction: false,
+                  whiteBalanceMode: 'none',
+                  zoom: MediaSettingsRange
+                });
+                reject(new DOMException('OperationError'));
+              });
+            }
+            /**
+             * Implements https://www.w3.org/TR/image-capture/#dom-imagecapture-setoptions
+             * @param {Object} photoSettings - Photo settings dictionary, https://www.w3.org/TR/image-capture/#idl-def-photosettings
+             * @return {Promise<void>} Fulfilled promise on success, rejected promise on failure
+             */
+
+          }, {
+            key: "setOptions",
+            value: function setOptions() {
+              var photoSettings = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+              return new Promise(function executorSO(resolve, reject) {// TODO
+              });
+            }
+            /**
+             * TODO
+             * Implements https://www.w3.org/TR/image-capture/#dom-imagecapture-takephoto
+             * @return {Promise<Blob>} Fulfilled promise with [Blob](https://www.w3.org/TR/FileAPI/#blob)
+             * argument on success; rejected promise on failure
+             */
+
+          }, {
+            key: "takePhoto",
+            value: function takePhoto() {
+              var self = this;
+              return new Promise(function executorTP(resolve, reject) {
+                // `If the readyState of the MediaStreamTrack provided in the constructor is not live,
+                // return a promise rejected with a new DOMException whose name is "InvalidStateError".`
+                if (self._videoStreamTrack.readyState !== 'live') {
+                  return reject(new DOMException('InvalidStateError'));
+                }
+
+                self.videoElementPlaying.then(function () {
+                  try {
+                    self.canvasElement.width = self.videoElement.videoWidth;
+                    self.canvasElement.height = self.videoElement.videoHeight;
+                    self.canvas2dContext.drawImage(self.videoElement, 0, 0);
+                    self.canvasElement.toBlob(resolve);
+                  } catch (error) {
+                    reject(new DOMException('UnknownError'));
+                  }
+                });
+              });
+            }
+            /**
+             * Implements https://www.w3.org/TR/image-capture/#dom-imagecapture-grabframe
+             * @return {Promise<ImageBitmap>} Fulfilled promise with
+             * [ImageBitmap](https://www.w3.org/TR/html51/webappapis.html#webappapis-images)
+             * argument on success; rejected promise on failure
+             */
+
+          }, {
+            key: "grabFrame",
+            value: function grabFrame() {
+              var self = this;
+              return new Promise(function executorGF(resolve, reject) {
+                // `If the readyState of the MediaStreamTrack provided in the constructor is not live,
+                // return a promise rejected with a new DOMException whose name is "InvalidStateError".`
+                if (self._videoStreamTrack.readyState !== 'live') {
+                  return reject(new DOMException('InvalidStateError'));
+                }
+
+                self.videoElementPlaying.then(function () {
+                  try {
+                    self.canvasElement.width = self.videoElement.videoWidth;
+                    self.canvasElement.height = self.videoElement.videoHeight;
+                    self.canvas2dContext.drawImage(self.videoElement, 0, 0); // TODO polyfill https://developer.mozilla.org/en-US/docs/Web/API/ImageBitmapFactories/createImageBitmap for IE
+
+                    resolve(window.createImageBitmap(self.canvasElement));
+                  } catch (error) {
+                    reject(new DOMException('UnknownError'));
+                  }
+                });
+              });
+            }
+          }]);
+
+          return ImageCapture;
+        }();
+      }
+
+      window.ImageCapture = ImageCapture;
+      /***/
+    },
+
+    /***/
     "brp2":
     /*!*****************************************************!*\
       !*** ./node_modules/core-js/modules/es.date.now.js ***!
@@ -10554,6 +10763,12 @@
 
 
       var _zone_flags__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_zone_flags__WEBPACK_IMPORTED_MODULE_1__);
+      /* harmony import */
+
+
+      var image_capture__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! image-capture */
+      "biPl");
       /* eslint-disable @typescript-eslint/no-var-requires */
 
       /* eslint-disable max-len */
@@ -10633,7 +10848,8 @@
 
       global.process = (_b = global.process) !== null && _b !== void 0 ? _b : __webpack_require__(
       /*! process */
-      "8oxB");
+      "8oxB"); // ImageCapture
+
       /***/
     },
 
@@ -14405,7 +14621,7 @@
           }, {
             key: "allWithCallback",
             value: function allWithCallback(values, callback) {
-              var _this = this;
+              var _this2 = this;
 
               var resolve;
               var reject;
@@ -14426,7 +14642,7 @@
                   var value = _step2.value;
 
                   if (!isThenable(value)) {
-                    value = _this.resolve(value);
+                    value = _this2.resolve(value);
                   }
 
                   var curValueIndex = valueIndex;
@@ -14508,10 +14724,10 @@
           proto[symbolThen] = originalThen;
 
           Ctor.prototype.then = function (onResolve, onReject) {
-            var _this2 = this;
+            var _this3 = this;
 
             var wrapped = new ZoneAwarePromise(function (resolve, reject) {
-              originalThen.call(_this2, resolve, reject);
+              originalThen.call(_this3, resolve, reject);
             });
             return wrapped.then(onResolve, onReject);
           };
@@ -19584,25 +19800,25 @@
           var _super = _createSuper(NodeError);
 
           function NodeError() {
-            var _this3;
+            var _this4;
 
             _classCallCheck(this, NodeError);
 
-            _this3 = _super.call(this);
-            Object.defineProperty(_assertThisInitialized(_this3), 'message', {
-              value: getMessage.apply(_assertThisInitialized(_this3), arguments),
+            _this4 = _super.call(this);
+            Object.defineProperty(_assertThisInitialized(_this4), 'message', {
+              value: getMessage.apply(_assertThisInitialized(_this4), arguments),
               writable: true,
               configurable: true
             }); // Add the error code to the name to include it in the stack trace.
 
-            _this3.name = "".concat(_this3.name, " [").concat(sym, "]"); // Access the stack to generate the error message including the error code
+            _this4.name = "".concat(_this4.name, " [").concat(sym, "]"); // Access the stack to generate the error message including the error code
             // from the name.
 
-            _this3.stack; // eslint-disable-line no-unused-expressions
+            _this4.stack; // eslint-disable-line no-unused-expressions
             // Reset the name to the actual name.
 
-            delete _this3.name;
-            return _this3;
+            delete _this4.name;
+            return _this4;
           }
 
           _createClass(NodeError, [{
@@ -22251,4 +22467,4 @@
     }
   }, [[8, "runtime"]]]);
 })();
-//# sourceMappingURL=polyfills-es5.794de80017cd4fb72521.js.map
+//# sourceMappingURL=polyfills-es5.424f21e959b40599dc1a.js.map
