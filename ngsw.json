@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1615275005144,
+  "timestamp": 1615368785354,
   "index": "/moment-pwa/index.html",
   "assetGroups": [
     {
@@ -305,7 +305,7 @@
     "/moment-pwa/assets/icons/icon-96x96.png": "f35453da540181724153b4de5717f5fe476218f6",
     "/moment-pwa/common-es2015.4d929b5c24781a9673d1.js": "b77517f72aa2766fc938127ab2d8a5e2b503667d",
     "/moment-pwa/common-es5.4d929b5c24781a9673d1.js": "4edd197c203175b3cca9c14453b0545ec5e6b52c",
-    "/moment-pwa/index.html": "74c75a151ff21941025350ce4142e08d6c761cbc",
+    "/moment-pwa/index.html": "c24f8321367efb77473ef9f75870bea367f92151",
     "/moment-pwa/main-es2015.4f07be93d58fe491bbc4.js": "99b307069c57347af05a3a69d7e498d01d427620",
     "/moment-pwa/main-es5.4f07be93d58fe491bbc4.js": "2f2d80a1ec5350c9b1dd612e33a8c0e11dd5c146",
     "/moment-pwa/manifest.webmanifest": "e4a71176b86e90ca68dca497dee514a6028d234c",
