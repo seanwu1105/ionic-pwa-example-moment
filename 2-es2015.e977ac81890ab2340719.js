@@ -284,7 +284,7 @@ let HomePage = /*@__PURE__*/ (() => {
                 let _t;
                 _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵloadQuery"]()) && (ctx.ionContent = _t.first);
             }
-        }, decls: 7, vars: 4, consts: [["scrollEvents", "", 3, "ionScroll", 4, "transloco"], ["slot", "primary"], ["routerLink", "settings", "slot", "secondary"], ["slot", "icon-only", "name", "settings-outline"], ["scrollEvents", "", 3, "ionScroll"], ["size", "6", "size-sm", "4", "size-md", "3", "size-lg", "2", 4, "ngFor", "ngForOf", "ngForTrackBy"], [1, "empty-illustration"], ["src", "/assets/icons/undraw-blank-canvas.svg"], ["vertical", "bottom", "horizontal", "center", "slot", "fixed", "edge", ""], ["routerLink", "camera"], ["name", "camera-outline"], ["size", "6", "size-sm", "4", "size-md", "3", "size-lg", "2"], ["col", ""], [3, "moment"]], template: function HomePage_Template(rf, ctx) {
+        }, decls: 7, vars: 4, consts: [["scrollEvents", "", 3, "ionScroll", 4, "transloco"], ["slot", "primary"], ["routerLink", "settings", "slot", "secondary"], ["slot", "icon-only", "name", "settings-outline"], ["scrollEvents", "", 3, "ionScroll"], ["size", "6", "size-sm", "4", "size-md", "3", "size-lg", "2", 4, "ngFor", "ngForOf", "ngForTrackBy"], [1, "empty-illustration"], ["src", "./assets/icons/undraw-blank-canvas.svg"], ["vertical", "bottom", "horizontal", "center", "slot", "fixed", "edge", ""], ["routerLink", "camera"], ["name", "camera-outline"], ["size", "6", "size-sm", "4", "size-md", "3", "size-lg", "2"], ["col", ""], [3, "moment"]], template: function HomePage_Template(rf, ctx) {
             if (rf & 1) {
                 _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](0, HomePage_ion_content_0_Template, 14, 6, "ion-content", 0);
                 _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](1, "ion-footer");
@@ -4685,4 +4685,4 @@ let Moment = /*@__PURE__*/ (() => {
 /***/ })
 
 }]);
-//# sourceMappingURL=2-es2015.c49bfff538392d35754e.js.map
+//# sourceMappingURL=2-es2015.e977ac81890ab2340719.js.map
