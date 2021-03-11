@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1615439448380,
+  "timestamp": 1615448715887,
   "index": "/moment-pwa/index.html",
   "assetGroups": [
     {
@@ -35,8 +35,8 @@
         "/moment-pwa/18-es5.333f8aaf227e71a18b08.js",
         "/moment-pwa/19-es2015.634f5686343a84957687.js",
         "/moment-pwa/19-es5.634f5686343a84957687.js",
-        "/moment-pwa/2-es2015.054221c7c7b47c85f96c.js",
-        "/moment-pwa/2-es5.054221c7c7b47c85f96c.js",
+        "/moment-pwa/2-es2015.c49bfff538392d35754e.js",
+        "/moment-pwa/2-es5.c49bfff538392d35754e.js",
         "/moment-pwa/20-es2015.cbf2f31faa4d9a83aebe.js",
         "/moment-pwa/20-es5.cbf2f31faa4d9a83aebe.js",
         "/moment-pwa/21-es2015.86eb42c2b2615dc665b6.js",
@@ -137,8 +137,8 @@
         "/moment-pwa/polyfills-dom-es5.7d25808952944aec6b00.js",
         "/moment-pwa/polyfills-es2015.ddde480bfc059d6221c0.js",
         "/moment-pwa/polyfills-es5.424f21e959b40599dc1a.js",
-        "/moment-pwa/runtime-es2015.fd7ce03bbd594117360f.js",
-        "/moment-pwa/runtime-es5.fd7ce03bbd594117360f.js",
+        "/moment-pwa/runtime-es2015.e55ee5e3eb7c1d4c636c.js",
+        "/moment-pwa/runtime-es5.e55ee5e3eb7c1d4c636c.js",
         "/moment-pwa/styles.d59b7d4418c9b586f92e.css"
       ],
       "patterns": []
@@ -162,7 +162,8 @@
         "/moment-pwa/assets/icons/icon-384x384.png",
         "/moment-pwa/assets/icons/icon-512x512.png",
         "/moment-pwa/assets/icons/icon-72x72.png",
-        "/moment-pwa/assets/icons/icon-96x96.png"
+        "/moment-pwa/assets/icons/icon-96x96.png",
+        "/moment-pwa/assets/icons/undraw-blank-canvas.svg"
       ],
       "patterns": []
     }
@@ -207,8 +208,8 @@
     "/moment-pwa/18-es5.333f8aaf227e71a18b08.js": "df20c39fa3d2fd8d53d7bc51920e944859953f36",
     "/moment-pwa/19-es2015.634f5686343a84957687.js": "385f209a1d40309f3ab83e6380c2d1e6cad15be1",
     "/moment-pwa/19-es5.634f5686343a84957687.js": "9845cb98899be68e6437d831686c2b074f113815",
-    "/moment-pwa/2-es2015.054221c7c7b47c85f96c.js": "5e4acedf13a1b0d7fa575ea3ab489d9ab4f72763",
-    "/moment-pwa/2-es5.054221c7c7b47c85f96c.js": "bba867a601980159b715045a18191a7de0c5abc0",
+    "/moment-pwa/2-es2015.c49bfff538392d35754e.js": "03507db71c2f3b5437037793e588e02476d5cc86",
+    "/moment-pwa/2-es5.c49bfff538392d35754e.js": "3023b940fcde9a17bd405db57a39370a3c436a50",
     "/moment-pwa/20-es2015.cbf2f31faa4d9a83aebe.js": "d63436c8200b592b6ad24f3f4fab0a11aa24a8d1",
     "/moment-pwa/20-es5.cbf2f31faa4d9a83aebe.js": "05ac447e531b66e2587ec70bd5d7463f979f78e1",
     "/moment-pwa/21-es2015.86eb42c2b2615dc665b6.js": "2b2f12a406d39c81f74f972f2edc67180da8535a",
@@ -295,8 +296,8 @@
     "/moment-pwa/8-es5.396ee6694ca9cba7fcfe.js": "db04761c4d859330251b5d0e7f171395e5347c0d",
     "/moment-pwa/9-es2015.901a15cfff46d3c47d5d.js": "90c69e219af37971df5399fbdea9cb4f7e2ae451",
     "/moment-pwa/9-es5.901a15cfff46d3c47d5d.js": "994ac156204475a36a58e05ac204d24ca2f72a21",
-    "/moment-pwa/assets/i18n/en-US.json": "9ebaa3b8ee9e7fb189bdc5d050d64b27042001c4",
-    "/moment-pwa/assets/i18n/zh-TW.json": "1f61743221e0319cdb3c1c41d5b66bce98f3a693",
+    "/moment-pwa/assets/i18n/en-US.json": "54bc563be6ac0ef880449b33ae2483575b63bdc3",
+    "/moment-pwa/assets/i18n/zh-TW.json": "24497b562c6005efdae907ff92b4b8f2832a6656",
     "/moment-pwa/assets/icons/broken-image.svg": "e643ead2061bf350567c9ed31979ecbe0e67abd7",
     "/moment-pwa/assets/icons/favicon.svg": "5ecf6af63e68852585dac842cd6ebeabed778126",
     "/moment-pwa/assets/icons/icon-1024x1024.png": "adcaf181f309815dff2503b0cb3a621763e38da0",
@@ -307,9 +308,10 @@
     "/moment-pwa/assets/icons/icon-512x512.png": "49f4893f6022e5ec6cc12fdbb3e7d4ab5f5f489b",
     "/moment-pwa/assets/icons/icon-72x72.png": "688e522bc277dbf40480c7741f164fe6437f5636",
     "/moment-pwa/assets/icons/icon-96x96.png": "f35453da540181724153b4de5717f5fe476218f6",
+    "/moment-pwa/assets/icons/undraw-blank-canvas.svg": "bd894028938917a673583f9a8cfccbe834472dc2",
     "/moment-pwa/common-es2015.4d929b5c24781a9673d1.js": "b77517f72aa2766fc938127ab2d8a5e2b503667d",
     "/moment-pwa/common-es5.4d929b5c24781a9673d1.js": "4edd197c203175b3cca9c14453b0545ec5e6b52c",
-    "/moment-pwa/index.html": "91525eab85431f55be3ff1634cfa141d2d7893d6",
+    "/moment-pwa/index.html": "a048ab456f05353543436c29401e158006f1aa37",
     "/moment-pwa/main-es2015.fd83f88807136e683a22.js": "689c26df06f02022a5fc91cdb835f527c155e2eb",
     "/moment-pwa/main-es5.fd83f88807136e683a22.js": "093042185fd875695433392ad8425f2c27dfb918",
     "/moment-pwa/manifest.webmanifest": "e4a71176b86e90ca68dca497dee514a6028d234c",
@@ -321,8 +323,8 @@
     "/moment-pwa/polyfills-dom-es5.7d25808952944aec6b00.js": "756ef7d74b52059d4296d80f00daf62e082e779e",
     "/moment-pwa/polyfills-es2015.ddde480bfc059d6221c0.js": "354bfcf62af637c38f5effa5a31392ef38a05b7b",
     "/moment-pwa/polyfills-es5.424f21e959b40599dc1a.js": "9a3312ca7300c8340b4f950e9e9e34bcb8b89f9a",
-    "/moment-pwa/runtime-es2015.fd7ce03bbd594117360f.js": "e1f895e0ca94aaef2cd1f424f647357ee25165cb",
-    "/moment-pwa/runtime-es5.fd7ce03bbd594117360f.js": "4ae2ce765b5ae377d8fe6b8bd797c42a690ac79a",
+    "/moment-pwa/runtime-es2015.e55ee5e3eb7c1d4c636c.js": "62eed50687eb067d4d3c51197373040d10eb00f6",
+    "/moment-pwa/runtime-es5.e55ee5e3eb7c1d4c636c.js": "296c07a520a4b536f86e6afeb7df27604118c7da",
     "/moment-pwa/styles.d59b7d4418c9b586f92e.css": "3aec91991bc0e4da515152160ceba946a011c067"
   },
   "navigationUrls": [

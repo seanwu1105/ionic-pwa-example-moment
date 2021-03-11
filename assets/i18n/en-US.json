@@ -10,6 +10,7 @@
   "settings": "Settings",
   "help": "Help",
   "issueReport": "Issue Report",
+  "nothingInAlbum": "Nothing in Album",
   ".theme": "Theme",
   "theme": {
     "system": "System Default",
@@ -17,6 +18,7 @@
     "dark": "Dark"
   },
   "message": {
-    "copiedToClipboard": "Copied to clipboard."
+    "copiedToClipboard": "Copied to clipboard.",
+    "emptyAlbum": "Start capturing your moments."
   }
 }
