@@ -10,6 +10,7 @@
   "settings": "設定",
   "help": "尋求幫助",
   "issueReport": "回報問題",
+  "nothingInAlbum": "相簿中沒有資料",
   ".theme": "配色主題",
   "theme": {
     "system": "系統預設",
@@ -17,6 +18,7 @@
     "dark": "深色"
   },
   "message": {
-    "copiedToClipboard": "已經複製至剪貼簿。"
+    "copiedToClipboard": "已經複製至剪貼簿。",
+    "emptyAlbum": "開始捕捉您的每一瞬間吧！"
   }
 }

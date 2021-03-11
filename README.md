@@ -14,9 +14,10 @@
 - [x] Date i18n
 - [x] Stable camera/polyfill
 - [x] Share image
-- [ ] Empty placeholder
+- [x] Empty placeholder
 - [x] Extract stored data
 - [ ] NgRx/data
+- [ ] EXIF
 - [ ] App shell
 - [ ] Error handling/report
 - [ ] Push notification
