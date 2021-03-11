@@ -7,10 +7,11 @@ import { TranslocoModule } from '@ngneat/transloco';
 import { TranslocoLocaleModule } from '@ngneat/transloco-locale';
 import { ReactiveComponentModule } from '@ngrx/component';
 import { CopyClipboardComponent } from './copy-clipboard/copy-clipboard.component';
+import { ExtensionPipe } from './extension/extension.pipe';
 import { ImageComponent } from './image/image.component';
 
 @NgModule({
-  declarations: [ImageComponent, CopyClipboardComponent],
+  declarations: [ImageComponent, CopyClipboardComponent, ExtensionPipe],
   imports: [
     CommonModule,
     FormsModule,
@@ -31,6 +32,7 @@ import { ImageComponent } from './image/image.component';
     TranslocoLocaleModule,
     ImageComponent,
     CopyClipboardComponent,
+    ExtensionPipe,
   ],
 })
 export class SharedModule {}

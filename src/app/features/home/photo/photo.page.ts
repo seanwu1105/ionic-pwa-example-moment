@@ -151,10 +151,15 @@ export class PhotoPage {
     return moment.photo$.pipe(
       map(
         photo =>
-          new File([photo], `${moment.id}.${mime.extension(moment.mimeType)}`, {
-            type: moment.mimeType,
-            lastModified: moment.timestamp,
-          })
+          new File(
+            [photo],
+            //@ts-expect-error: https://github.com/broofa/mime/issues/255
+            `${moment.id}.${mime.getExtension(moment.mimeType)}`,
+            {
+              type: moment.mimeType,
+              lastModified: moment.timestamp,
+            }
+          )
       ),
       switchMap(file =>
         navigator.share({

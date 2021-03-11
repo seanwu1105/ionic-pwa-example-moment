@@ -8,6 +8,18 @@
         <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
       </ion-button>
       <ion-button
+        *ngrxLet="currentMoment$ as currentMoment"
+        [href]="currentMoment.photoUrl$ | ngrxPush"
+        target="_blank"
+        [download]="
+          currentMoment.id + '.' + (currentMoment.mimeType | extension)
+        "
+        slot="secondary"
+        color="light"
+      >
+        <ion-icon name="download-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+      <ion-button
         *ngIf="supportShare"
         (click)="share()"
         slot="secondary"
