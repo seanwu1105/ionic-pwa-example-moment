@@ -2534,7 +2534,7 @@
     /***/
     function _(module, exports, __webpack_require__) {
       __webpack_require__(
-      /*! /home/runner/work/moment-pwa/moment-pwa/node_modules/@angular-devkit/build-angular/src/webpack/es5-polyfills.js */
+      /*! /home/runner/work/ionic-pwa-example/ionic-pwa-example/node_modules/@angular-devkit/build-angular/src/webpack/es5-polyfills.js */
       "voQr");
 
       __webpack_require__(
@@ -2542,7 +2542,7 @@
       "R0gw");
 
       module.exports = __webpack_require__(
-      /*! /home/runner/work/moment-pwa/moment-pwa/src/polyfills.ts */
+      /*! /home/runner/work/ionic-pwa-example/ionic-pwa-example/src/polyfills.ts */
       "hN/g");
       /***/
     },
