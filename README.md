@@ -16,11 +16,11 @@
 - [x] Share image
 - [x] Empty placeholder
 - [x] Extract stored data
-- [ ] NgRx/data
 - [ ] EXIF
 - [ ] App shell
 - [ ] Error handling/report
 - [ ] Push notification
+- [ ] ~~NgRx~~ (Requires serializable/immutable object type, which may not apply to `Moment` class and most of the scenario)
 
 ### Live-reload PWA
 

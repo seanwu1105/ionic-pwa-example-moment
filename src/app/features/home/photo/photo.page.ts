@@ -41,7 +41,7 @@ export class PhotoPage {
     this.moments$,
     this.currentMemontId$,
   ]).pipe(
-    map(([moments, id]) => moments.findIndex(j => j.id === id)),
+    map(([moments, id]) => moments.findIndex(moment => moment.id === id)),
     distinctUntilChanged()
   );
 
@@ -117,6 +117,7 @@ export class PhotoPage {
               queryParams: { id: moment.id },
               relativeTo: this.route,
               replaceUrl: true,
+              skipLocationChange: true,
             })
           )
         ),
