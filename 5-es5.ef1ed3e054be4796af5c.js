@@ -709,8 +709,8 @@
                   moments = _ref2[0],
                   id = _ref2[1];
 
-              return moments.findIndex(function (j) {
-                return j.id === id;
+              return moments.findIndex(function (moment) {
+                return moment.id === id;
               });
             }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["distinctUntilChanged"])());
             this.currentMoment$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["combineLatest"])([this.moments$, this.currentMomentIndex$]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (_ref3) {
@@ -786,7 +786,8 @@
                     id: moment.id
                   },
                   relativeTo: _this2.route,
-                  replaceUrl: true
+                  replaceUrl: true,
+                  skipLocationChange: true
                 }));
               }), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_1__["untilDestroyed"])(this)).subscribe();
             }
@@ -903,4 +904,4 @@
     }
   }]);
 })();
-//# sourceMappingURL=5-es5.ecee07db5ec03f758d5f.js.map
+//# sourceMappingURL=5-es5.ef1ed3e054be4796af5c.js.map

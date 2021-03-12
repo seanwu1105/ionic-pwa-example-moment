@@ -337,7 +337,7 @@ let PhotoPage = /*@__PURE__*/ (() => {
             this.currentMomentIndex$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["combineLatest"])([
                 this.moments$,
                 this.currentMemontId$,
-            ]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(([moments, id]) => moments.findIndex(j => j.id === id)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["distinctUntilChanged"])());
+            ]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(([moments, id]) => moments.findIndex(moment => moment.id === id)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["distinctUntilChanged"])());
             this.currentMoment$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["combineLatest"])([
                 this.moments$,
                 this.currentMomentIndex$,
@@ -371,6 +371,7 @@ let PhotoPage = /*@__PURE__*/ (() => {
                 queryParams: { id: moment.id },
                 relativeTo: this.route,
                 replaceUrl: true,
+                skipLocationChange: true,
             }))), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_1__["untilDestroyed"])(this))
                 .subscribe();
         }
@@ -436,4 +437,4 @@ let PhotoPage = /*@__PURE__*/ (() => {
 /***/ })
 
 }]);
-//# sourceMappingURL=5-es2015.ecee07db5ec03f758d5f.js.map
+//# sourceMappingURL=5-es2015.ef1ed3e054be4796af5c.js.map
