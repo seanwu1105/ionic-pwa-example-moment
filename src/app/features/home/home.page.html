@@ -1,4 +1,4 @@
-<ion-content *transloco="let t" scrollEvents (ionScroll)="onScroll($event)">
+<ion-content scrollEvents (ionScroll)="onScroll($event)">
   <ion-grid>
     <ion-row>
       <ion-col
@@ -15,8 +15,8 @@
   </ion-grid>
   <div *ngIf="(moments$ | ngrxPush)?.length === 0" class="empty-illustration">
     <ion-img src="./assets/icons/undraw-blank-canvas.svg"></ion-img>
-    <h3>{{ t('nothingInAlbum') }}</h3>
-    <p>{{ t('message.emptyAlbum') }}</p>
+    <h3 *transloco="let t">{{ t('nothingInAlbum') }}</h3>
+    <p *transloco="let t">{{ t('message.emptyAlbum') }}</p>
   </div>
   <ion-fab vertical="bottom" horizontal="center" slot="fixed" edge>
     <ion-fab-button routerLink="camera">
