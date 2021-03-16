@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1615877592553,
+  "timestamp": 1615879645955,
   "index": "/ionic-pwa-example/index.html",
   "assetGroups": [
     {
@@ -314,7 +314,7 @@
     "/ionic-pwa-example/index.html": "50a23f4ce970c8ebccd88f9edce2b548097abc5b",
     "/ionic-pwa-example/main-es2015.c97b8b2fd9245d0ac88e.js": "e7de89703d1eb28a877da0e7241f987f643e1c5a",
     "/ionic-pwa-example/main-es5.c97b8b2fd9245d0ac88e.js": "ac3df90e1ad74acbccf37fd02bce3e658f2ed008",
-    "/ionic-pwa-example/manifest.webmanifest": "e4a71176b86e90ca68dca497dee514a6028d234c",
+    "/ionic-pwa-example/manifest.webmanifest": "375a7042fb3ebfdabe847306468bb651d3fab847",
     "/ionic-pwa-example/polyfills-core-js-es2015.c3fbb0eaa8e56c74252c.js": "02d357011bbe7e852ae9cd428044895f01ca28d1",
     "/ionic-pwa-example/polyfills-core-js-es5.c3fbb0eaa8e56c74252c.js": "bb963df6e7214c64d50efdc93ce65c78f0bd1179",
     "/ionic-pwa-example/polyfills-css-shim-es2015.937044f2ae68a45f1205.js": "5ed086869182a9ba95d3cc1bd82a74837dda1c8e",
