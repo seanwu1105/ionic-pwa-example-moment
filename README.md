@@ -24,5 +24,5 @@
 
 ### Live-reload PWA
 
-- `npx ng build --prod --watch`
+- `npm run build.watch.pwa`
 - `lite-server --baseDir="www"`

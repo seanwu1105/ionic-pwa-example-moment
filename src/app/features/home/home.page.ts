@@ -39,7 +39,12 @@ export class HomePage {
     this.scrollEvent$,
   ]).pipe(switchMap(([ionContent]) => this.detectBottom(ionContent)));
 
-  constructor(private readonly momentRepository: MomentRepository) {}
+  constructor(private readonly momentRepository: MomentRepository) {
+    addEventListener('beforeinstallprompt', event => {
+      // eslint-disable-next-line no-console
+      console.log(event);
+    });
+  }
 
   onScroll(event: Event) {
     this._scrollEvent$.next(event);
