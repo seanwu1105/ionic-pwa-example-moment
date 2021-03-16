@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { FeatureCollection } from 'geojson';
 import mime from 'mime/lite';
-import { combineLatest, defer, iif } from 'rxjs';
+import { BehaviorSubject, combineLatest, defer, iif } from 'rxjs';
 import {
   concatMap,
   concatMapTo,
@@ -15,10 +15,13 @@ import {
   switchMap,
   tap,
 } from 'rxjs/operators';
+import SwiperCore, { Swiper, Virtual } from 'swiper/core';
 import { LanguagesService } from '../../../shared/languages/languages.service';
 import { Moment } from '../../../shared/moment/moment';
 import { MomentRepository } from '../../../shared/moment/moment-repository.service';
 import { isNonNullable } from '../../../utils/rx-operators';
+
+SwiperCore.use([Virtual]);
 
 @UntilDestroy()
 @Component({
@@ -81,12 +84,16 @@ export class PhotoPage {
     isNonNullable()
   );
 
-  readonly photoSlidesOptions$ = this.currentMomentIndex$.pipe(
-    map(initialIndex => ({
-      resistanceRatio: 0,
-      initialSlide: initialIndex,
-    }))
+  private readonly _swiper$ = new BehaviorSubject<Swiper | undefined>(
+    undefined
   );
+
+  readonly swiper$ = this._swiper$.pipe(
+    isNonNullable(),
+    distinctUntilChanged()
+  );
+
+  readonly initialSlide$ = this.currentMomentIndex$.pipe(first());
 
   readonly supportShare = !!navigator['share'];
 
@@ -96,34 +103,40 @@ export class PhotoPage {
     private readonly router: Router,
     private readonly sanitizer: DomSanitizer,
     private readonly httpClient: HttpClient,
-    private readonly languagesService: LanguagesService
+    private readonly languagesService: LanguagesService,
+    private readonly zone: NgZone
   ) {}
 
   trackMoment(_: number, item: Moment) {
     return item.id;
   }
 
-  onPhotoSlidesChanged(event: Event) {
-    const ionSlides = event.target as HTMLIonSlidesElement;
-    return this.moments$
-      .pipe(
-        first(),
-        switchMap(async moments => moments[await ionSlides.getActiveIndex()]),
-        isNonNullable(),
-        switchMap(moment =>
-          iif(
-            () => !this.willBeDestroyed,
-            this.router.navigate([], {
-              queryParams: { id: moment.id },
-              relativeTo: this.route,
-              replaceUrl: true,
-              skipLocationChange: true,
-            })
-          )
-        ),
-        untilDestroyed(this)
-      )
-      .subscribe();
+  onSwiperCreated(swiper: Swiper) {
+    this._swiper$.next(swiper);
+  }
+
+  onPhotoSlidesChanged() {
+    return this.zone.run(() =>
+      combineLatest([this.swiper$, this.moments$])
+        .pipe(
+          first(),
+          map(([swiper, moments]) => moments[swiper.activeIndex]),
+          isNonNullable(),
+          switchMap(moment =>
+            iif(
+              () => !this.willBeDestroyed,
+              this.router.navigate([], {
+                queryParams: { id: moment.id },
+                relativeTo: this.route,
+                replaceUrl: true,
+                skipLocationChange: true,
+              })
+            )
+          ),
+          untilDestroyed(this)
+        )
+        .subscribe()
+    );
   }
 
   remove() {

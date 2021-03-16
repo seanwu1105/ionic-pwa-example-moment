@@ -30,98 +30,106 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-content fullscreen *transloco="let t">
-  <ion-slides
-    *ngrxLet="photoSlidesOptions$ as options"
-    [options]="options"
-    (ionSlideDidChange)="onPhotoSlidesChanged($event)"
+<ion-content fullscreen *ngrxLet="moments$ as moments">
+  <swiper
+    *ngrxLet="initialSlide$ as initialSlide"
+    [virtual]="true"
+    [resistanceRatio]="0"
+    [initialSlide]="initialSlide"
+    (swiper)="onSwiperCreated($event)"
+    (slideChange)="onPhotoSlidesChanged()"
+    class="swiper"
   >
-    <ion-slide *ngFor="let moment of moments$ | ngrxPush; trackBy: trackMoment">
-      <app-image
-        *ngrxLet="moment.photoUrl$ as photoUrl"
-        ionImgViewer
-        [src]="photoUrl"
-      ></app-image>
+    <ng-template
+      swiperSlide
+      *ngFor="let moment of moments; trackBy: trackMoment"
+    >
+      <div class="slide" *transloco="let t">
+        <app-image
+          *ngrxLet="moment.photoUrl$ as photoUrl"
+          [src]="photoUrl"
+        ></app-image>
 
-      <ion-list lines="none">
-        <ion-item>
-          <ion-label>
-            {{
-              moment.timestamp
-                | translocoDate: { dateStyle: 'full', timeStyle: 'full' }
-            }}
-          </ion-label>
-        </ion-item>
-        <ion-item-group *ngIf="moment.geolocationPosition">
-          <ion-item-divider>
-            <ion-label>{{ t('location') }}</ion-label>
-          </ion-item-divider>
-          <iframe
-            *ngrxLet="mapUrl$ as mapUrl"
-            [src]="mapUrl"
-            frameborder="0"
-            loading="lazy"
-          ></iframe>
+        <ion-list lines="none">
           <ion-item>
-            <ion-icon name="location-outline" slot="start"></ion-icon>
             <ion-label>
-              <h3>{{ t('coordinates') }}</h3>
-              <p>
-                {{ moment.geolocationPosition?.latitude }}
-                ,
-                {{ moment.geolocationPosition?.longitude }}
-              </p>
+              {{
+                moment.timestamp
+                  | translocoDate: { dateStyle: 'full', timeStyle: 'full' }
+              }}
             </ion-label>
-            <app-copy-clipboard
-              [text]="
-                moment.geolocationPosition?.latitude +
-                ',' +
-                moment.geolocationPosition?.longitude
-              "
-              slot="end"
-            ></app-copy-clipboard>
           </ion-item>
-          <ion-item>
-            <ion-icon name="home-outline" slot="start"></ion-icon>
-            <ion-label>
-              <h3>{{ t('address') }}</h3>
-              <p>{{ address$ | ngrxPush }}</p>
-            </ion-label>
-            <app-copy-clipboard
-              [text]="address$ | ngrxPush"
-              slot="end"
-            ></app-copy-clipboard>
-          </ion-item>
-        </ion-item-group>
+          <ion-item-group *ngIf="moment.geolocationPosition">
+            <ion-item-divider>
+              <ion-label>{{ t('location') }}</ion-label>
+            </ion-item-divider>
+            <iframe
+              *ngrxLet="mapUrl$ as mapUrl"
+              [src]="mapUrl"
+              frameborder="0"
+              loading="lazy"
+            ></iframe>
+            <ion-item>
+              <ion-icon name="location-outline" slot="start"></ion-icon>
+              <ion-label>
+                <h3>{{ t('coordinates') }}</h3>
+                <p>
+                  {{ moment.geolocationPosition?.latitude }}
+                  ,
+                  {{ moment.geolocationPosition?.longitude }}
+                </p>
+              </ion-label>
+              <app-copy-clipboard
+                [text]="
+                  moment.geolocationPosition?.latitude +
+                  ',' +
+                  moment.geolocationPosition?.longitude
+                "
+                slot="end"
+              ></app-copy-clipboard>
+            </ion-item>
+            <ion-item>
+              <ion-icon name="home-outline" slot="start"></ion-icon>
+              <ion-label>
+                <h3>{{ t('address') }}</h3>
+                <p>{{ address$ | ngrxPush }}</p>
+              </ion-label>
+              <app-copy-clipboard
+                [text]="address$ | ngrxPush"
+                slot="end"
+              ></app-copy-clipboard>
+            </ion-item>
+          </ion-item-group>
 
-        <ion-item-group>
-          <ion-item-divider>
-            <ion-label>{{ t('details') }}</ion-label>
-          </ion-item-divider>
-          <ion-item>
-            <ion-icon name="code-outline" slot="start"></ion-icon>
-            <ion-label>
-              <h3>{{ t('hash') }}</h3>
-              <p>{{ moment.id }}</p>
-            </ion-label>
-            <app-copy-clipboard
-              [text]="moment.id"
-              slot="end"
-            ></app-copy-clipboard>
-          </ion-item>
-          <ion-item>
-            <ion-icon name="document-outline" slot="start"></ion-icon>
-            <ion-label>
-              <h3>{{ t('mimeType') }}</h3>
-              <p>{{ moment.mimeType }}</p>
-            </ion-label>
-            <app-copy-clipboard
-              [text]="moment.mimeType"
-              slot="end"
-            ></app-copy-clipboard>
-          </ion-item>
-        </ion-item-group>
-      </ion-list>
-    </ion-slide>
-  </ion-slides>
+          <ion-item-group>
+            <ion-item-divider>
+              <ion-label>{{ t('details') }}</ion-label>
+            </ion-item-divider>
+            <ion-item>
+              <ion-icon name="code-outline" slot="start"></ion-icon>
+              <ion-label>
+                <h3>{{ t('hash') }}</h3>
+                <p>{{ moment.id }}</p>
+              </ion-label>
+              <app-copy-clipboard
+                [text]="moment.id"
+                slot="end"
+              ></app-copy-clipboard>
+            </ion-item>
+            <ion-item>
+              <ion-icon name="document-outline" slot="start"></ion-icon>
+              <ion-label>
+                <h3>{{ t('mimeType') }}</h3>
+                <p>{{ moment.mimeType }}</p>
+              </ion-label>
+              <app-copy-clipboard
+                [text]="moment.mimeType"
+                slot="end"
+              ></app-copy-clipboard>
+            </ion-item>
+          </ion-item-group>
+        </ion-list>
+      </div>
+    </ng-template>
+  </swiper>
 </ion-content>

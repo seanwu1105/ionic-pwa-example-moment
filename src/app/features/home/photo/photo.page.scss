@@ -8,14 +8,16 @@ ion-toolbar {
   --background: #00000025;
 }
 
-ion-slides {
+.swiper {
   height: 100%;
+  width: 100%;
 }
 
-ion-slide {
+.slide {
+  display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  height: auto;
+  height: 100%;
 }
 
 app-image {
@@ -31,7 +33,7 @@ app-image {
 
 ion-list {
   width: 100%;
-  overflow: scroll;
+  overflow: auto;
   margin-top: calc(-1 * var(--photo-radius));
   padding-top: var(--photo-radius);
 
