@@ -586,6 +586,10 @@
 
               return _this5.detectBottom(ionContent);
             }));
+            addEventListener('beforeinstallprompt', function (event) {
+              // eslint-disable-next-line no-console
+              console.log(event);
+            });
           }
 
           _createClass(HomePage, [{
@@ -6128,4 +6132,4 @@
     }
   }]);
 })();
-//# sourceMappingURL=3-es5.2ee40509b9d6349f28c4.js.map
+//# sourceMappingURL=3-es5.756bec1f54463a466918.js.map

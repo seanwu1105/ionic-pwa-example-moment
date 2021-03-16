@@ -252,6 +252,10 @@ let HomePage = /*@__PURE__*/ (() => {
                 this.ionContent$,
                 this.scrollEvent$,
             ]).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["switchMap"])(([ionContent]) => this.detectBottom(ionContent)));
+            addEventListener('beforeinstallprompt', event => {
+                // eslint-disable-next-line no-console
+                console.log(event);
+            });
         }
         set ionContent(value) {
             this._ionContent$.next(value);
@@ -4704,4 +4708,4 @@ let Moment = /*@__PURE__*/ (() => {
 /***/ })
 
 }]);
-//# sourceMappingURL=3-es2015.2ee40509b9d6349f28c4.js.map
+//# sourceMappingURL=3-es2015.756bec1f54463a466918.js.map
