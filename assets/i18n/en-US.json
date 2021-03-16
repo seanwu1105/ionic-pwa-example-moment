@@ -19,6 +19,6 @@
   },
   "message": {
     "copiedToClipboard": "Copied to clipboard.",
-    "emptyAlbum": "Start capturing your moments."
+    "emptyAlbum": "Start capturing your moments. All data is locally stored only."
   }
 }
