@@ -19,6 +19,7 @@
   },
   "message": {
     "copiedToClipboard": "已經複製至剪貼簿。",
-    "emptyAlbum": "開始捕捉您的每一瞬間吧！所有資料皆只會儲存於本地。"
+    "emptyAlbum": "開始捕捉您的每一瞬間吧！",
+    "storedLocally": "所有資料皆只會儲存於本地。"
   }
 }
