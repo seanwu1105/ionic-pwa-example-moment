@@ -122,11 +122,19 @@
                 <h3>{{ t('mimeType') }}</h3>
                 <p>{{ moment.mimeType }}</p>
               </ion-label>
-              <app-copy-clipboard
-                [text]="moment.mimeType"
-                slot="end"
-              ></app-copy-clipboard>
             </ion-item>
+            <ng-container *ngrxLet="photoTags$ as photoTags">
+              <ion-item *ngFor="let tag of photoTags | keyvalue">
+                <ion-icon
+                  name="information-circle-outline"
+                  slot="start"
+                ></ion-icon>
+                <ion-label>
+                  <h3>{{ tag.key }}</h3>
+                  <p>{{ tag.value.description }} ({{ tag.value.value }})</p>
+                </ion-label>
+              </ion-item>
+            </ng-container>
           </ion-item-group>
         </ion-list>
       </div>

@@ -3,7 +3,9 @@ import { Component, NgZone } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import ExifReader from 'exifreader';
 import { FeatureCollection } from 'geojson';
+import { omitBy } from 'lodash-es';
 import mime from 'mime/lite';
 import { BehaviorSubject, combineLatest, defer, iif } from 'rxjs';
 import {
@@ -82,6 +84,15 @@ export class PhotoPage {
       )
     ),
     isNonNullable()
+  );
+
+  readonly photoTags$ = this.currentMoment$.pipe(
+    switchMap(moment => moment.photo$),
+    switchMap(photo => photo.arrayBuffer()),
+    map(arrayBuffer => ExifReader.load(arrayBuffer)),
+    map(tags =>
+      omitBy(tags, value => !Object.keys(value).includes('description'))
+    )
   );
 
   private readonly _swiper$ = new BehaviorSubject<Swiper | undefined>(

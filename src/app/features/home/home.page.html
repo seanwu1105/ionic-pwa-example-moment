@@ -16,7 +16,9 @@
   <div *ngIf="(moments$ | ngrxPush)?.length === 0" class="empty-illustration">
     <ion-img src="./assets/icons/undraw-blank-canvas.svg"></ion-img>
     <h3 *transloco="let t">{{ t('nothingInAlbum') }}</h3>
-    <p *transloco="let t">{{ t('message.emptyAlbum') }}</p>
+    <p *transloco="let t">
+      {{ t('message.emptyAlbum') + '\n' + t('message.storedLocally') }}
+    </p>
   </div>
   <ion-fab vertical="bottom" horizontal="center" slot="fixed" edge>
     <ion-fab-button routerLink="camera">
