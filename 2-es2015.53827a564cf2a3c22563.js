@@ -18092,7 +18092,7 @@ function PhotoPage_ion_content_9_Template(rf, ctx) {
 swiper_core__WEBPACK_IMPORTED_MODULE_7__["default"].use([swiper_core__WEBPACK_IMPORTED_MODULE_7__["Virtual"]]);
 let PhotoPage = /*@__PURE__*/ (() => {
     let PhotoPage = class PhotoPage {
-        constructor(momentRepository, route, router, sanitizer, httpClient, languagesService, zone) {
+        constructor(momentRepository, route, router, sanitizer, httpClient, languagesService, zone, changeDetector) {
             this.momentRepository = momentRepository;
             this.route = route;
             this.router = router;
@@ -18100,6 +18100,7 @@ let PhotoPage = /*@__PURE__*/ (() => {
             this.httpClient = httpClient;
             this.languagesService = languagesService;
             this.zone = zone;
+            this.changeDetector = changeDetector;
             this.willBeDestroyed = false;
             this.currentMemontId$ = this.route.queryParamMap.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(params => params.get('id')), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_8__["isNonNullable"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["distinctUntilChanged"])());
             this.moments$ = this.momentRepository.all$;
@@ -18122,7 +18123,10 @@ let PhotoPage = /*@__PURE__*/ (() => {
                 if (!properties)
                     return undefined;
                 return properties['display_name'];
-            }));
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["shareReplay"])({ bufferSize: 1, refCount: true }), 
+            // Manually detect change due to the pipe is outside of NgZone on Swiper
+            // virtual scroll component.
+            Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["tap"])(() => this.changeDetector.detectChanges()));
             this.mapUrl$ = this.geolocationPosition$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(position => this.sanitizer.bypassSecurityTrustResourceUrl(`https://maps.google.com/maps?q=${position.latitude},${position.longitude}&z=15&output=embed`)), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_8__["isNonNullable"])());
             this.photoTags$ = this.currentMoment$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(moment => moment.photo$), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["switchMap"])(photo => photo.arrayBuffer()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(arrayBuffer => exifreader__WEBPACK_IMPORTED_MODULE_2__["default"].load(arrayBuffer)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(tags => {
                 delete tags['MakerNote'];
@@ -18172,7 +18176,7 @@ let PhotoPage = /*@__PURE__*/ (() => {
             })));
         }
     };
-    PhotoPage.ɵfac = function PhotoPage_Factory(t) { return new (t || PhotoPage)(_angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdirectiveInject"](_shared_moment_moment_repository_service__WEBPACK_IMPORTED_MODULE_10__["MomentRepository"]), _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_11__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_11__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdirectiveInject"](_angular_platform_browser__WEBPACK_IMPORTED_MODULE_12__["DomSanitizer"]), _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdirectiveInject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_13__["HttpClient"]), _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdirectiveInject"](_shared_languages_languages_service__WEBPACK_IMPORTED_MODULE_14__["LanguagesService"]), _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_9__["NgZone"])); };
+    PhotoPage.ɵfac = function PhotoPage_Factory(t) { return new (t || PhotoPage)(_angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdirectiveInject"](_shared_moment_moment_repository_service__WEBPACK_IMPORTED_MODULE_10__["MomentRepository"]), _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_11__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_11__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdirectiveInject"](_angular_platform_browser__WEBPACK_IMPORTED_MODULE_12__["DomSanitizer"]), _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdirectiveInject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_13__["HttpClient"]), _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdirectiveInject"](_shared_languages_languages_service__WEBPACK_IMPORTED_MODULE_14__["LanguagesService"]), _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_9__["NgZone"]), _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_9__["ChangeDetectorRef"])); };
     PhotoPage.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdefineComponent"]({ type: PhotoPage, selectors: [["app-photo"]], decls: 10, vars: 3, consts: [[1, "ion-no-border"], ["slot", "start"], ["color", "light"], ["slot", "end"], ["slot", "primary", "color", "light", 3, "click"], ["name", "trash-outline", "slot", "icon-only"], ["target", "_blank", "slot", "secondary", "color", "light", 3, "href", "download", 4, "ngrxLet"], ["slot", "secondary", "color", "light", 3, "click", 4, "ngIf"], ["fullscreen", "", 4, "ngrxLet"], ["target", "_blank", "slot", "secondary", "color", "light", 3, "href", "download"], ["name", "download-outline", "slot", "icon-only"], ["slot", "secondary", "color", "light", 3, "click"], ["name", "share-social-outline", "slot", "icon-only"], ["fullscreen", ""], ["class", "swiper", 3, "virtual", "resistanceRatio", "initialSlide", "swiper", "slideChange", 4, "ngrxLet"], [1, "swiper", 3, "virtual", "resistanceRatio", "initialSlide", "swiper", "slideChange"], [4, "ngFor", "ngForOf", "ngForTrackBy"], ["swiperSlide", ""], ["class", "slide", 4, "transloco"], [1, "slide"], [3, "src", 4, "ngrxLet"], ["lines", "none"], [4, "ngIf"], ["name", "code-outline", "slot", "start"], ["slot", "end", 3, "text"], ["name", "document-outline", "slot", "start"], [4, "ngrxLet"], [3, "src"], ["frameborder", "0", "loading", "lazy", 3, "src", 4, "ngrxLet"], ["name", "location-outline", "slot", "start"], ["name", "home-outline", "slot", "start"], ["frameborder", "0", "loading", "lazy", 3, "src"], ["name", "browsers-outline", "slot", "start"], ["name", "phone-portrait-outline", "slot", "start"], ["name", "flame-outline", "slot", "start"], ["name", "laptop-outline", "slot", "start"], ["name", "hardware-chip-outline", "slot", "start"], [4, "ngFor", "ngForOf"], ["name", "information-circle-outline", "slot", "start"]], template: function PhotoPage_Template(rf, ctx) {
             if (rf & 1) {
                 _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelementStart"](0, "ion-header", 0);
@@ -51658,4 +51662,4 @@ function arrayAggregator(array, setter, iteratee, accumulator) {
 /***/ })
 
 }]);
-//# sourceMappingURL=2-es2015.c301efe0595c7d997c62.js.map
+//# sourceMappingURL=2-es2015.53827a564cf2a3c22563.js.map

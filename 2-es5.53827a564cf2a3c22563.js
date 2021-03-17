@@ -23959,7 +23959,7 @@
 
       var PhotoPage = /*@__PURE__*/function () {
         var PhotoPage = /*#__PURE__*/function () {
-          function PhotoPage(momentRepository, route, router, sanitizer, httpClient, languagesService, zone) {
+          function PhotoPage(momentRepository, route, router, sanitizer, httpClient, languagesService, zone, changeDetector) {
             var _this2 = this;
 
             _classCallCheck(this, PhotoPage);
@@ -23971,6 +23971,7 @@
             this.httpClient = httpClient;
             this.languagesService = languagesService;
             this.zone = zone;
+            this.changeDetector = changeDetector;
             this.willBeDestroyed = false;
             this.currentMemontId$ = this.route.queryParamMap.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (params) {
               return params.get('id');
@@ -24006,6 +24007,13 @@
               var properties = json.features[0].properties;
               if (!properties) return undefined;
               return properties['display_name'];
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["shareReplay"])({
+              bufferSize: 1,
+              refCount: true
+            }), // Manually detect change due to the pipe is outside of NgZone on Swiper
+            // virtual scroll component.
+            Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["tap"])(function () {
+              return _this2.changeDetector.detectChanges();
             }));
             this.mapUrl$ = this.geolocationPosition$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (position) {
               return _this2.sanitizer.bypassSecurityTrustResourceUrl("https://maps.google.com/maps?q=".concat(position.latitude, ",").concat(position.longitude, "&z=15&output=embed"));
@@ -24111,7 +24119,7 @@
         }();
 
         PhotoPage.ɵfac = function PhotoPage_Factory(t) {
-          return new (t || PhotoPage)(_angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdirectiveInject"](_shared_moment_moment_repository_service__WEBPACK_IMPORTED_MODULE_10__["MomentRepository"]), _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_11__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_11__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdirectiveInject"](_angular_platform_browser__WEBPACK_IMPORTED_MODULE_12__["DomSanitizer"]), _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdirectiveInject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_13__["HttpClient"]), _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdirectiveInject"](_shared_languages_languages_service__WEBPACK_IMPORTED_MODULE_14__["LanguagesService"]), _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_9__["NgZone"]));
+          return new (t || PhotoPage)(_angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdirectiveInject"](_shared_moment_moment_repository_service__WEBPACK_IMPORTED_MODULE_10__["MomentRepository"]), _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_11__["ActivatedRoute"]), _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_11__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdirectiveInject"](_angular_platform_browser__WEBPACK_IMPORTED_MODULE_12__["DomSanitizer"]), _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdirectiveInject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_13__["HttpClient"]), _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdirectiveInject"](_shared_languages_languages_service__WEBPACK_IMPORTED_MODULE_14__["LanguagesService"]), _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_9__["NgZone"]), _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_9__["ChangeDetectorRef"]));
         };
 
         PhotoPage.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdefineComponent"]({
@@ -72709,4 +72717,4 @@
     }
   }]);
 })();
-//# sourceMappingURL=2-es5.c301efe0595c7d997c62.js.map
+//# sourceMappingURL=2-es5.53827a564cf2a3c22563.js.map
