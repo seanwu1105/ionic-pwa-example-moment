@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, NgZone } from '@angular/core';
+import { ChangeDetectorRef, Component, NgZone } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -14,6 +14,7 @@ import {
   distinctUntilChanged,
   first,
   map,
+  shareReplay,
   switchMap,
   tap,
 } from 'rxjs/operators';
@@ -74,7 +75,11 @@ export class PhotoPage {
       const properties = json.features[0].properties;
       if (!properties) return undefined;
       return properties['display_name'] as string | undefined;
-    })
+    }),
+    shareReplay({ bufferSize: 1, refCount: true }),
+    // Manually detect change due to the pipe is outside of NgZone on Swiper
+    // virtual scroll component.
+    tap(() => this.changeDetector.detectChanges())
   );
 
   readonly mapUrl$ = this.geolocationPosition$.pipe(
@@ -119,7 +124,8 @@ export class PhotoPage {
     private readonly sanitizer: DomSanitizer,
     private readonly httpClient: HttpClient,
     private readonly languagesService: LanguagesService,
-    private readonly zone: NgZone
+    private readonly zone: NgZone,
+    private readonly changeDetector: ChangeDetectorRef
   ) {}
 
   trackMoment(_: number, item: Moment) {

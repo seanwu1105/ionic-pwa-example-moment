@@ -88,14 +88,14 @@
                 slot="end"
               ></app-copy-clipboard>
             </ion-item>
-            <ion-item>
+            <ion-item *ngrxLet="address$ as address">
               <ion-icon name="home-outline" slot="start"></ion-icon>
               <ion-label>
                 <h3>{{ t('address') }}</h3>
-                <p>{{ address$ | ngrxPush }}</p>
+                <p>{{ address }}</p>
               </ion-label>
               <app-copy-clipboard
-                [text]="address$ | ngrxPush"
+                [text]="address"
                 slot="end"
               ></app-copy-clipboard>
             </ion-item>
