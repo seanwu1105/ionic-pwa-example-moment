@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1615966581601,
+  "timestamp": 1615968777444,
   "index": "/ionic-pwa-example/index.html",
   "assetGroups": [
     {
@@ -126,8 +126,8 @@
         "/ionic-pwa-example/common-es2015.805543f1b3b2b80a2184.js",
         "/ionic-pwa-example/common-es5.805543f1b3b2b80a2184.js",
         "/ionic-pwa-example/index.html",
-        "/ionic-pwa-example/main-es2015.c97b8b2fd9245d0ac88e.js",
-        "/ionic-pwa-example/main-es5.c97b8b2fd9245d0ac88e.js",
+        "/ionic-pwa-example/main-es2015.5e745d3defdeb3375000.js",
+        "/ionic-pwa-example/main-es5.5e745d3defdeb3375000.js",
         "/ionic-pwa-example/manifest.webmanifest",
         "/ionic-pwa-example/polyfills-core-js-es2015.c3fbb0eaa8e56c74252c.js",
         "/ionic-pwa-example/polyfills-core-js-es5.c3fbb0eaa8e56c74252c.js",
@@ -319,9 +319,9 @@
     "/ionic-pwa-example/assets/icons/undraw-blank-canvas.svg": "bd894028938917a673583f9a8cfccbe834472dc2",
     "/ionic-pwa-example/common-es2015.805543f1b3b2b80a2184.js": "d34e534f2c797f66f649ed95923af30422c5865c",
     "/ionic-pwa-example/common-es5.805543f1b3b2b80a2184.js": "7cbb22a699b49e63996edf5dd7a44a12ef4fd005",
-    "/ionic-pwa-example/index.html": "6670048fe774545318c129f62362bc5d53a6f97c",
-    "/ionic-pwa-example/main-es2015.c97b8b2fd9245d0ac88e.js": "e7de89703d1eb28a877da0e7241f987f643e1c5a",
-    "/ionic-pwa-example/main-es5.c97b8b2fd9245d0ac88e.js": "ac3df90e1ad74acbccf37fd02bce3e658f2ed008",
+    "/ionic-pwa-example/index.html": "daa5795e3f0416f786c159b691c19e47ad277254",
+    "/ionic-pwa-example/main-es2015.5e745d3defdeb3375000.js": "a0fdd0cdb75fd4dbd69733e94d1dca640207a23f",
+    "/ionic-pwa-example/main-es5.5e745d3defdeb3375000.js": "38e4c2fe39b9d686e1ff55627e498748486b876f",
     "/ionic-pwa-example/manifest.webmanifest": "d72850d1ef3842541ce4db89de08c669a3ba66ce",
     "/ionic-pwa-example/polyfills-core-js-es2015.c3fbb0eaa8e56c74252c.js": "02d357011bbe7e852ae9cd428044895f01ca28d1",
     "/ionic-pwa-example/polyfills-core-js-es5.c3fbb0eaa8e56c74252c.js": "bb963df6e7214c64d50efdc93ce65c78f0bd1179",
