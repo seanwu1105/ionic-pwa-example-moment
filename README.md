@@ -16,7 +16,9 @@
 - [x] Share image
 - [x] Empty placeholder
 - [x] Extract stored data
-- [ ] EXIF
+- [x] EXIF
+- [x] User agent information
+- [ ] Custom PWA installation
 - [ ] App shell
 - [ ] Error handling/report
 - [ ] Push notification

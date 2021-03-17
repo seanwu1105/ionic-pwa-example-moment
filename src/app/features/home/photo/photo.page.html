@@ -103,7 +103,7 @@
 
           <ion-item-group>
             <ion-item-divider>
-              <ion-label>{{ t('details') }}</ion-label>
+              <ion-label>{{ t('file') }}</ion-label>
             </ion-item-divider>
             <ion-item>
               <ion-icon name="code-outline" slot="start"></ion-icon>
@@ -123,6 +123,66 @@
                 <p>{{ moment.mimeType }}</p>
               </ion-label>
             </ion-item>
+          </ion-item-group>
+          <ion-item-group>
+            <ion-item-divider>
+              <ion-label>{{ t('userAgent') }}</ion-label>
+            </ion-item-divider>
+            <ion-item *ngIf="moment.userAgent.browser.name">
+              <ion-icon name="browsers-outline" slot="start"></ion-icon>
+              <ion-label>
+                <h3>{{ t('browser') }}</h3>
+                <p>
+                  {{ moment.userAgent.browser.name }}
+                  {{ moment.userAgent.browser.version }}
+                </p>
+              </ion-label>
+            </ion-item>
+            <ion-item *ngIf="moment.userAgent.device.vendor">
+              <ion-icon name="phone-portrait-outline" slot="start"></ion-icon>
+              <ion-label>
+                <h3>{{ t('device') }}</h3>
+                <p>
+                  {{ moment.userAgent.device.vendor }}
+                  {{ moment.userAgent.device.model }}
+                  {{ moment.userAgent.device.type }}
+                </p>
+              </ion-label>
+            </ion-item>
+            <ion-item *ngIf="moment.userAgent.engine.name">
+              <ion-icon name="flame-outline" slot="start"></ion-icon>
+              <ion-label>
+                <h3>{{ t('engine') }}</h3>
+                <p>
+                  {{ moment.userAgent.engine.name }}
+                  {{ moment.userAgent.engine.version }}
+                </p>
+              </ion-label>
+            </ion-item>
+            <ion-item *ngIf="moment.userAgent.os.name">
+              <ion-icon name="laptop-outline" slot="start"></ion-icon>
+              <ion-label>
+                <h3>{{ t('os') }}</h3>
+                <p>
+                  {{ moment.userAgent.os.name }}
+                  {{ moment.userAgent.os.version }}
+                </p>
+              </ion-label>
+            </ion-item>
+            <ion-item *ngIf="moment.userAgent.cpu.architecture">
+              <ion-icon name="hardware-chip-outline" slot="start"></ion-icon>
+              <ion-label>
+                <h3>{{ t('cpu') }}</h3>
+                <p>
+                  {{ moment.userAgent.cpu.architecture }}
+                </p>
+              </ion-label>
+            </ion-item>
+          </ion-item-group>
+          <ion-item-group>
+            <ion-item-divider>
+              <ion-label>{{ t('imageMetadata') }}</ion-label>
+            </ion-item-divider>
             <ng-container *ngrxLet="photoTags$ as photoTags">
               <ion-item *ngFor="let tag of photoTags | keyvalue">
                 <ion-icon

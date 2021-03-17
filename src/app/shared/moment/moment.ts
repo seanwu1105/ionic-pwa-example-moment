@@ -1,6 +1,7 @@
 import { RxDocument, RxJsonSchema } from 'rxdb';
 import { defer, of } from 'rxjs';
 import { concatMap, map, shareReplay } from 'rxjs/operators';
+import UAParser from 'ua-parser-js';
 import { DataNotFoundError } from '../../utils/errors';
 import { makeThumbnail } from '../../utils/thumbnail';
 
@@ -11,6 +12,7 @@ export interface MemontIndex {
     readonly latitude: number;
     readonly longitude: number;
   };
+  readonly userAgent: string;
 }
 
 export const schema: RxJsonSchema<MemontIndex> = {
@@ -30,9 +32,12 @@ export const schema: RxJsonSchema<MemontIndex> = {
       },
       required: ['latitude', 'longitude'],
     },
+    userAgent: {
+      type: 'string',
+    },
   },
   indexes: ['timestamp'],
-  required: ['timestamp'],
+  required: ['timestamp', 'userAgent'],
   attachments: {
     encrypted: false,
   },
@@ -60,8 +65,8 @@ export class Moment {
     shareReplay({ bufferSize: 1, refCount: true })
   );
 
-  readonly thumbnailUrl$ = defer(() =>
-    of(this.document.getAttachment(Moment.THUMBNAIL_ATTACHMENT_ID))
+  readonly thumbnailUrl$ = of(
+    this.document.getAttachment(Moment.THUMBNAIL_ATTACHMENT_ID)
   ).pipe(
     concatMap(async attachment => {
       if (attachment) return attachment.getData();
@@ -82,6 +87,10 @@ export class Moment {
     map(blob => URL.createObjectURL(blob)),
     shareReplay({ bufferSize: 1, refCount: true })
   );
+
+  readonly userAgent = new UAParser(this.document.userAgent).getResult();
+
+  readonly metaJson = JSON.stringify(this.document.toJSON());
 
   constructor(private readonly document: RxDocument<MemontIndex>) {}
 

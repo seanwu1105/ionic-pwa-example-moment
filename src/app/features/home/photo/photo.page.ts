@@ -90,6 +90,10 @@ export class PhotoPage {
     switchMap(moment => moment.photo$),
     switchMap(photo => photo.arrayBuffer()),
     map(arrayBuffer => ExifReader.load(arrayBuffer)),
+    map(tags => {
+      delete tags['MakerNote'];
+      return tags;
+    }),
     map(tags =>
       omitBy(tags, value => !Object.keys(value).includes('description'))
     )
@@ -188,7 +192,7 @@ export class PhotoPage {
       ),
       switchMap(file =>
         navigator.share({
-          text: JSON.stringify(moment.geolocationPosition),
+          text: moment.metaJson,
           // @ts-expect-error: share API level 2
           files: [file],
         })

@@ -48,6 +48,7 @@ export class MomentRepository {
                 longitude: geolocationPosition.coords.longitude,
               }
             : undefined,
+          userAgent: navigator.userAgent,
         })
       ),
       concatMap(document =>
