@@ -23294,13 +23294,59 @@
 
       function PhotoPage_ion_content_9_swiper_1_1_ng_template_0_div_0_ion_item_group_7_iframe_4_Template(rf, ctx) {
         if (rf & 1) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelement"](0, "iframe", 31);
+          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelement"](0, "iframe", 30);
         }
 
         if (rf & 2) {
-          var mapUrl_r24 = ctx.ngrxLet;
+          var mapUrl_r25 = ctx.ngrxLet;
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵproperty"]("src", mapUrl_r24, _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵsanitizeResourceUrl"]);
+          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵproperty"]("src", mapUrl_r25, _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵsanitizeResourceUrl"]);
+        }
+      }
+
+      function PhotoPage_ion_content_9_swiper_1_1_ng_template_0_div_0_ion_item_group_7_ion_item_13_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelementStart"](0, "ion-item");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelement"](1, "ion-icon", 31);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelementStart"](2, "ion-label");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelementStart"](3, "h3");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵtext"](4);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelementStart"](5, "p");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵtext"](6);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelement"](7, "app-copy-clipboard", 24);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelementEnd"]();
+        }
+
+        if (rf & 2) {
+          var address_r26 = ctx.ngrxLet;
+
+          var t_r13 = _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵnextContext"](2).$implicit;
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵadvance"](4);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵtextInterpolate"](t_r13("address"));
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵadvance"](2);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵtextInterpolate"](address_r26);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵadvance"](1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵproperty"]("text", address_r26);
         }
       }
 
@@ -23344,33 +23390,7 @@
 
           _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelementStart"](13, "ion-item");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelement"](14, "ion-icon", 30);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelementStart"](15, "ion-label");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelementStart"](16, "h3");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵtext"](17);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelementStart"](18, "p");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵtext"](19);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵpipe"](20, "ngrxPush");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelement"](21, "app-copy-clipboard", 24);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵpipe"](22, "ngrxPush");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵtemplate"](13, PhotoPage_ion_content_9_swiper_1_1_ng_template_0_div_0_ion_item_group_7_ion_item_13_Template, 8, 3, "ion-item", 26);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelementEnd"]();
         }
@@ -23402,17 +23422,9 @@
 
           _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵproperty"]("text", (moment_r10.geolocationPosition == null ? null : moment_r10.geolocationPosition.latitude) + "," + (moment_r10.geolocationPosition == null ? null : moment_r10.geolocationPosition.longitude));
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵadvance"](5);
+          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵadvance"](1);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵtextInterpolate"](t_r13("address"));
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵadvance"](2);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵpipeBind1"](20, 9, ctx_r15.address$));
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵadvance"](2);
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵproperty"]("text", _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵpipeBind1"](22, 11, ctx_r15.address$));
+          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵproperty"]("ngrxLet", ctx_r15.address$);
         }
       }
 
@@ -23642,15 +23654,15 @@
         }
 
         if (rf & 2) {
-          var tag_r39 = ctx.$implicit;
+          var tag_r42 = ctx.$implicit;
 
           _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵadvance"](4);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵtextInterpolate"](tag_r39.key);
+          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵtextInterpolate"](tag_r42.key);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵadvance"](2);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵtextInterpolate2"]("", tag_r39.value.description, " (", tag_r39.value.value, ")");
+          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵtextInterpolate2"]("", tag_r42.value.description, " (", tag_r42.value.value, ")");
         }
       }
 
@@ -23666,11 +23678,11 @@
         }
 
         if (rf & 2) {
-          var photoTags_r37 = ctx.ngrxLet;
+          var photoTags_r40 = ctx.ngrxLet;
 
           _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵadvance"](1);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵproperty"]("ngForOf", _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵpipeBind1"](2, 1, photoTags_r37));
+          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵproperty"]("ngForOf", _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵpipeBind1"](2, 1, photoTags_r40));
         }
       }
 
@@ -23701,7 +23713,7 @@
 
           _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵtemplate"](7, PhotoPage_ion_content_9_swiper_1_1_ng_template_0_div_0_ion_item_group_7_Template, 23, 13, "ion-item-group", 22);
+          _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵtemplate"](7, PhotoPage_ion_content_9_swiper_1_1_ng_template_0_div_0_ion_item_group_7_Template, 14, 7, "ion-item-group", 22);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelementStart"](8, "ion-item-group");
 
@@ -23899,22 +23911,22 @@
 
       function PhotoPage_ion_content_9_swiper_1_Template(rf, ctx) {
         if (rf & 1) {
-          var _r42 = _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵgetCurrentView"]();
+          var _r45 = _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵgetCurrentView"]();
 
           _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelementStart"](0, "swiper", 15);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵlistener"]("swiper", function PhotoPage_ion_content_9_swiper_1_Template_swiper_swiper_0_listener($event) {
-            _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵrestoreView"](_r42);
+            _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵrestoreView"](_r45);
 
-            var ctx_r41 = _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵnextContext"](2);
+            var ctx_r44 = _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵnextContext"](2);
 
-            return ctx_r41.onSwiperCreated($event);
+            return ctx_r44.onSwiperCreated($event);
           })("slideChange", function PhotoPage_ion_content_9_swiper_1_Template_swiper_slideChange_0_listener() {
-            _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵrestoreView"](_r42);
+            _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵrestoreView"](_r45);
 
-            var ctx_r43 = _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵnextContext"](2);
+            var ctx_r46 = _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵnextContext"](2);
 
-            return ctx_r43.onPhotoSlidesChanged();
+            return ctx_r46.onPhotoSlidesChanged();
           });
 
           _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵtemplate"](1, PhotoPage_ion_content_9_swiper_1_1_Template, 1, 0, undefined, 16);
@@ -24127,7 +24139,7 @@
           selectors: [["app-photo"]],
           decls: 10,
           vars: 3,
-          consts: [[1, "ion-no-border"], ["slot", "start"], ["color", "light"], ["slot", "end"], ["slot", "primary", "color", "light", 3, "click"], ["name", "trash-outline", "slot", "icon-only"], ["target", "_blank", "slot", "secondary", "color", "light", 3, "href", "download", 4, "ngrxLet"], ["slot", "secondary", "color", "light", 3, "click", 4, "ngIf"], ["fullscreen", "", 4, "ngrxLet"], ["target", "_blank", "slot", "secondary", "color", "light", 3, "href", "download"], ["name", "download-outline", "slot", "icon-only"], ["slot", "secondary", "color", "light", 3, "click"], ["name", "share-social-outline", "slot", "icon-only"], ["fullscreen", ""], ["class", "swiper", 3, "virtual", "resistanceRatio", "initialSlide", "swiper", "slideChange", 4, "ngrxLet"], [1, "swiper", 3, "virtual", "resistanceRatio", "initialSlide", "swiper", "slideChange"], [4, "ngFor", "ngForOf", "ngForTrackBy"], ["swiperSlide", ""], ["class", "slide", 4, "transloco"], [1, "slide"], [3, "src", 4, "ngrxLet"], ["lines", "none"], [4, "ngIf"], ["name", "code-outline", "slot", "start"], ["slot", "end", 3, "text"], ["name", "document-outline", "slot", "start"], [4, "ngrxLet"], [3, "src"], ["frameborder", "0", "loading", "lazy", 3, "src", 4, "ngrxLet"], ["name", "location-outline", "slot", "start"], ["name", "home-outline", "slot", "start"], ["frameborder", "0", "loading", "lazy", 3, "src"], ["name", "browsers-outline", "slot", "start"], ["name", "phone-portrait-outline", "slot", "start"], ["name", "flame-outline", "slot", "start"], ["name", "laptop-outline", "slot", "start"], ["name", "hardware-chip-outline", "slot", "start"], [4, "ngFor", "ngForOf"], ["name", "information-circle-outline", "slot", "start"]],
+          consts: [[1, "ion-no-border"], ["slot", "start"], ["color", "light"], ["slot", "end"], ["slot", "primary", "color", "light", 3, "click"], ["name", "trash-outline", "slot", "icon-only"], ["target", "_blank", "slot", "secondary", "color", "light", 3, "href", "download", 4, "ngrxLet"], ["slot", "secondary", "color", "light", 3, "click", 4, "ngIf"], ["fullscreen", "", 4, "ngrxLet"], ["target", "_blank", "slot", "secondary", "color", "light", 3, "href", "download"], ["name", "download-outline", "slot", "icon-only"], ["slot", "secondary", "color", "light", 3, "click"], ["name", "share-social-outline", "slot", "icon-only"], ["fullscreen", ""], ["class", "swiper", 3, "virtual", "resistanceRatio", "initialSlide", "swiper", "slideChange", 4, "ngrxLet"], [1, "swiper", 3, "virtual", "resistanceRatio", "initialSlide", "swiper", "slideChange"], [4, "ngFor", "ngForOf", "ngForTrackBy"], ["swiperSlide", ""], ["class", "slide", 4, "transloco"], [1, "slide"], [3, "src", 4, "ngrxLet"], ["lines", "none"], [4, "ngIf"], ["name", "code-outline", "slot", "start"], ["slot", "end", 3, "text"], ["name", "document-outline", "slot", "start"], [4, "ngrxLet"], [3, "src"], ["frameborder", "0", "loading", "lazy", 3, "src", 4, "ngrxLet"], ["name", "location-outline", "slot", "start"], ["frameborder", "0", "loading", "lazy", 3, "src"], ["name", "home-outline", "slot", "start"], ["name", "browsers-outline", "slot", "start"], ["name", "phone-portrait-outline", "slot", "start"], ["name", "flame-outline", "slot", "start"], ["name", "laptop-outline", "slot", "start"], ["name", "hardware-chip-outline", "slot", "start"], [4, "ngFor", "ngForOf"], ["name", "information-circle-outline", "slot", "start"]],
           template: function PhotoPage_Template(rf, ctx) {
             if (rf & 1) {
               _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵelementStart"](0, "ion-header", 0);
@@ -72717,4 +72729,4 @@
     }
   }]);
 })();
-//# sourceMappingURL=2-es5.53827a564cf2a3c22563.js.map
+//# sourceMappingURL=2-es5.03b342833c0c8ba5555d.js.map
