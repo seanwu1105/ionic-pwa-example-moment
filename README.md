@@ -18,11 +18,11 @@
 - [x] Extract stored data
 - [x] EXIF
 - [x] User agent information
-- [ ] Custom PWA installation
+- [ ] Choose camera
+- [ ] Subjectize
 - [ ] App shell
 - [ ] Error handling/report
 - [ ] Push notification
-- [ ] ~~NgRx~~ (Requires serializable/immutable object type, which may not apply to `Moment` class and most of the scenario)
 
 ### Live-reload PWA
 
