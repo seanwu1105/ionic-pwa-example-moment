@@ -18,6 +18,7 @@
   "engine": "Engine",
   "os": "OS",
   "cpu": "CPU",
+  "noCameraFound": "No Camera Found",
   ".theme": "Theme",
   "theme": {
     "system": "System Default",
@@ -27,6 +28,7 @@
   "message": {
     "copiedToClipboard": "Copied to clipboard.",
     "emptyAlbum": "Start capturing your moments.",
-    "storedLocally": "All data is locally stored only."
+    "storedLocally": "All data is locally stored only.",
+    "noCameraFound": "No camera can be found on your devices."
   }
 }
