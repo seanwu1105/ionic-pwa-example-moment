@@ -207,7 +207,7 @@ let CameraService = /*@__PURE__*/ (() => {
             this.videoDevices$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(() => navigator.mediaDevices.enumerateDevices()).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(devices => devices.filter(d => d.kind === 'videoinput')), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["shareReplay"])({ bufferSize: 1, refCount: true }));
             this._mediaStream$ = new rxjs__WEBPACK_IMPORTED_MODULE_1__["ReplaySubject"](1);
             this.mediaStream$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(() => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-                const mediaStream = yield getEnvironmentCamera();
+                const mediaStream = yield getUserCamera();
                 this._mediaStream$.next(mediaStream);
                 return this._mediaStream$;
             })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatAll"])(), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["isNonNullable"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["distinctUntilChanged"])(), stopPreviousMediaStream(), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["finalizeLast"])(mediaStream => {
@@ -392,4 +392,4 @@ let CameraPageRoutingModule = /*@__PURE__*/ (() => {
 /***/ })
 
 }]);
-//# sourceMappingURL=4-es2015.2a7f47ee2a651bd5805e.js.map
+//# sourceMappingURL=4-es2015.f4edb8e84a16235b32b6.js.map

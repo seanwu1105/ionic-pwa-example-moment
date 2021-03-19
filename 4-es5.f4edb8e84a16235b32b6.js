@@ -473,7 +473,7 @@
                     switch (_context3.prev = _context3.next) {
                       case 0:
                         _context3.next = 2;
-                        return getEnvironmentCamera();
+                        return getUserCamera();
 
                       case 2:
                         mediaStream = _context3.sent;
@@ -947,4 +947,4 @@
     }
   }]);
 })();
-//# sourceMappingURL=4-es5.2a7f47ee2a651bd5805e.js.map
+//# sourceMappingURL=4-es5.f4edb8e84a16235b32b6.js.map
