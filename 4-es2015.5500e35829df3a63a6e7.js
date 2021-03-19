@@ -80,7 +80,7 @@ function CameraPage_ng_container_2_Template(rf, ctx) {
         const ctx_r0 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵnextContext"]();
         let tmp_0_0 = null;
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", ((tmp_0_0 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵpipeBind1"](4, 2, ctx_r0.videoDevices$)) == null ? null : tmp_0_0.length) > 1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", ((tmp_0_0 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵpipeBind1"](4, 2, ctx_r0.videoDevices$)) == null ? null : tmp_0_0.length) <= 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](2);
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngrxLet", ctx_r0.capturedImageUrl$);
     }
@@ -206,11 +206,15 @@ let CameraService = /*@__PURE__*/ (() => {
         constructor() {
             this.videoDevices$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(() => navigator.mediaDevices.enumerateDevices()).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(devices => devices.filter(d => d.kind === 'videoinput')), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["shareReplay"])({ bufferSize: 1, refCount: true }));
             this._mediaStream$ = new rxjs__WEBPACK_IMPORTED_MODULE_1__["ReplaySubject"](1);
+            this.t = this._mediaStream$
+                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(v => console.log('next', v)))
+                .subscribe();
             this.mediaStream$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(() => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-                const mediaStream = yield getUserCamera();
+                const mediaStream = yield getEnvironmentCamera();
+                console.log('init', mediaStream);
                 this._mediaStream$.next(mediaStream);
                 return this._mediaStream$;
-            })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatAll"])(), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["isNonNullable"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["distinctUntilChanged"])(), stopPreviousMediaStream(), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["finalizeLast"])(mediaStream => {
+            })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["shareReplay"])({ bufferSize: 1, refCount: true }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatAll"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(v => console.log('here', v)), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["isNonNullable"])(), stopPreviousMediaStream(), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["finalizeLast"])(mediaStream => {
                 if (mediaStream)
                     stopMediaStream(mediaStream);
             }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["shareReplay"])({ bufferSize: 1, refCount: true }));
@@ -219,7 +223,7 @@ let CameraService = /*@__PURE__*/ (() => {
             this.capturedImageUrl$ = this._capturedImageUrl$.pipe(Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["isNonNullable"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["distinctUntilChanged"])(), revokePreviousImageUrl());
         }
         connectPreview$(videoElement) {
-            return this.mediaStream$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(mediaStream => (videoElement.srcObject = mediaStream)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["mapTo"])(videoElement));
+            return this.mediaStream$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(v => console.log('preview', v)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(mediaStream => (videoElement.srcObject = mediaStream)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["mapTo"])(videoElement));
         }
         capture$() {
             return this.imageCapture$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMap"])(imageCapture => imageCapture.takePhoto()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(imageBlob => {
@@ -392,4 +396,4 @@ let CameraPageRoutingModule = /*@__PURE__*/ (() => {
 /***/ })
 
 }]);
-//# sourceMappingURL=4-es2015.f4edb8e84a16235b32b6.js.map
+//# sourceMappingURL=4-es2015.5500e35829df3a63a6e7.js.map

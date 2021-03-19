@@ -206,7 +206,7 @@
 
           _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](3);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", ((tmp_0_0 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵpipeBind1"](4, 2, ctx_r0.videoDevices$)) == null ? null : tmp_0_0.length) > 1);
+          _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", ((tmp_0_0 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵpipeBind1"](4, 2, ctx_r0.videoDevices$)) == null ? null : tmp_0_0.length) <= 1);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](2);
 
@@ -465,6 +465,9 @@
               refCount: true
             }));
             this._mediaStream$ = new rxjs__WEBPACK_IMPORTED_MODULE_1__["ReplaySubject"](1);
+            this.t = this._mediaStream$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(function (v) {
+              return console.log('next', v);
+            })).subscribe();
             this.mediaStream$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(function () {
               return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this4, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
                 var mediaStream;
@@ -473,23 +476,29 @@
                     switch (_context3.prev = _context3.next) {
                       case 0:
                         _context3.next = 2;
-                        return getUserCamera();
+                        return getEnvironmentCamera();
 
                       case 2:
                         mediaStream = _context3.sent;
+                        console.log('init', mediaStream);
 
                         this._mediaStream$.next(mediaStream);
 
                         return _context3.abrupt("return", this._mediaStream$);
 
-                      case 5:
+                      case 6:
                       case "end":
                         return _context3.stop();
                     }
                   }
                 }, _callee3, this);
               }));
-            }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatAll"])(), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["isNonNullable"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["distinctUntilChanged"])(), stopPreviousMediaStream(), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["finalizeLast"])(function (mediaStream) {
+            }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["shareReplay"])({
+              bufferSize: 1,
+              refCount: true
+            }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatAll"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(function (v) {
+              return console.log('here', v);
+            }), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["isNonNullable"])(), stopPreviousMediaStream(), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["finalizeLast"])(function (mediaStream) {
               if (mediaStream) stopMediaStream(mediaStream);
             }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["shareReplay"])({
               bufferSize: 1,
@@ -510,7 +519,9 @@
           _createClass(CameraService, [{
             key: "connectPreview$",
             value: function connectPreview$(videoElement) {
-              return this.mediaStream$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(function (mediaStream) {
+              return this.mediaStream$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(function (v) {
+                return console.log('preview', v);
+              }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(function (mediaStream) {
                 return videoElement.srcObject = mediaStream;
               }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["mapTo"])(videoElement));
             }
@@ -947,4 +958,4 @@
     }
   }]);
 })();
-//# sourceMappingURL=4-es5.f4edb8e84a16235b32b6.js.map
+//# sourceMappingURL=4-es5.5500e35829df3a63a6e7.js.map
