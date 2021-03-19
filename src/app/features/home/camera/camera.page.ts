@@ -70,9 +70,7 @@ export class CameraPage {
   reverseCamera() {
     return this.videoElement$
       .pipe(
-        concatMap(videoElement =>
-          this.cameraService.reverseCamera$(videoElement)
-        ),
+        concatMap(videoElement => this.cameraService.nextCamera$(videoElement)),
         untilDestroyed(this)
       )
       .subscribe();

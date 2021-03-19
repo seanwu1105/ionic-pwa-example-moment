@@ -18,7 +18,7 @@
 - [x] Extract stored data
 - [x] EXIF
 - [x] User agent information
-- [ ] Choose camera
+- [x] Choose camera
 - [ ] Subjectize
 - [ ] App shell
 - [ ] Error handling/report

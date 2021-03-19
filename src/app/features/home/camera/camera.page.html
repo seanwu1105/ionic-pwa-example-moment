@@ -10,7 +10,7 @@
     ></ion-icon>
   </ion-button>
   <ion-button
-    *ngIf="true"
+    *ngIf="(videoDevices$ | ngrxPush)?.length > 1"
     (click)="reverseCamera()"
     class="capture"
     class="reverse-camera"

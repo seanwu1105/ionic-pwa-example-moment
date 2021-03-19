@@ -20,13 +20,15 @@ export function concatTap<T>(
     source$.pipe(concatMap(value => from(func(value)).pipe(mapTo(value))));
 }
 
-export function finalizeLast<T>(callback: (value: T | undefined) => void) {
+export function finalizeLast<T>(callback: (value: T) => void) {
   return (source$: Observable<T>) =>
     defer(() => {
-      let lastValue: T;
+      let lastValue: T | undefined;
       return source$.pipe(
         tap(value => (lastValue = value)),
-        finalize(() => callback(lastValue))
+        finalize(() => {
+          if (lastValue) callback(lastValue);
+        })
       );
     });
 }

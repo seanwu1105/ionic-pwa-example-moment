@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, defer, iif, Observable, ReplaySubject } from 'rxjs';
 import {
   catchError,
+  concatMap,
   concatMapTo,
   distinctUntilChanged,
   first,
@@ -13,35 +14,17 @@ import {
   switchMap,
   tap,
 } from 'rxjs/operators';
-import {
-  concatTap,
-  finalizeLast,
-  isNonNullable,
-} from '../../utils/rx-operators';
+import { finalizeLast, isNonNullable } from '../../utils/rx-operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CameraService {
-  readonly videoDevices$ = defer(() =>
-    navigator.mediaDevices.enumerateDevices()
-  ).pipe(
-    map(devices => devices.filter(d => d.kind === 'videoinput')),
-    shareReplay({ bufferSize: 1, refCount: true })
-  );
+  private readonly videoStreamSelector = new VideoStreamSelector();
 
-  private readonly _mediaStream$ = new ReplaySubject<MediaStream>(1);
+  readonly videoDevices$ = this.videoStreamSelector.devices$;
 
-  private readonly mediaStream$ = defer(() => getEnvironmentCamera()).pipe(
-    tap(mediaStream => this._mediaStream$.next(mediaStream)),
-    concatMapTo(this._mediaStream$),
-    shareReplay({ bufferSize: 1, refCount: true }),
-    isNonNullable(),
-    finalizeLast(mediaStream => {
-      if (mediaStream) stopMediaStream(mediaStream);
-    }),
-    shareReplay({ bufferSize: 1, refCount: true })
-  );
+  private readonly mediaStream$ = this.videoStreamSelector.stream$;
 
   private readonly imageCapture$ = this.mediaStream$.pipe(
     map(mediaStream => mediaStream.getVideoTracks()[0]),
@@ -89,37 +72,62 @@ export class CameraService {
     );
   }
 
-  reverseCamera$(videoElement: HTMLVideoElement) {
-    return this.mediaStream$.pipe(
+  nextCamera$(videoElement: HTMLVideoElement) {
+    return this.videoDevices$.pipe(
       first(),
-      map(mediaStream => {
-        const tracks = mediaStream.getVideoTracks();
-        if (tracks.length === 0) return;
-        const facingMode = tracks[0].getConstraints().facingMode;
-        if (facingMode === undefined) return;
-
-        /**
-         * Stop media stream BEFORE getting new media stream to avoid
-         * NotReadableError on mobile devices.
-         */
-        videoElement.srcObject = null;
-        stopMediaStream(mediaStream);
-
-        return facingMode;
-      }),
-      isNonNullable(),
-      concatTap(facingMode =>
+      concatMap(devices =>
         iif(
-          () => facingMode === 'environment',
-          defer(async () => {
-            this._mediaStream$.next(await getUserCamera());
-          }),
-          defer(async () => {
-            this._mediaStream$.next(await getEnvironmentCamera());
-          })
+          () => devices.length > 1,
+          defer(async () => (videoElement.srcObject = null)).pipe(
+            concatMapTo(this.videoStreamSelector.next$())
+          )
         )
       )
     );
+  }
+}
+
+class VideoStreamSelector {
+  readonly devices$ = defer(() =>
+    navigator.mediaDevices.enumerateDevices()
+  ).pipe(
+    map(devices => devices.filter(d => d.kind === 'videoinput')),
+    shareReplay({ bufferSize: 1, refCount: true })
+  );
+
+  private currentVideoDeviceIndex = 0;
+
+  private readonly _stream$ = new ReplaySubject<MediaStream>(1);
+
+  readonly stream$ = this.devices$.pipe(
+    first(),
+    concatMap(devices => this.getCurrentVideoMedia(devices)),
+    tap(mediaStream => this._stream$.next(mediaStream)),
+    concatMapTo(this._stream$),
+    shareReplay({ bufferSize: 1, refCount: true }),
+    isNonNullable(),
+    finalizeLast(mediaStream => stopMediaStream(mediaStream)),
+    shareReplay({ bufferSize: 1, refCount: true })
+  );
+
+  next$() {
+    return this.stream$.pipe(
+      first(),
+      tap(mediaStream => mediaStream.getVideoTracks().forEach(t => t.stop())),
+      concatMapTo(this.devices$),
+      tap(() => this.currentVideoDeviceIndex++),
+      concatMap(devices => this.getCurrentVideoMedia(devices)),
+      tap(mediaStream => this._stream$.next(mediaStream))
+    );
+  }
+
+  private async getCurrentVideoMedia(devices: MediaDeviceInfo[]) {
+    return navigator.mediaDevices.getUserMedia({
+      video: {
+        deviceId:
+          devices[this.currentVideoDeviceIndex % devices.length].deviceId,
+      },
+    });
   }
 }
 
@@ -138,16 +146,4 @@ function revokePreviousImageUrl() {
 function stopMediaStream(mediaStream: MediaStream) {
   mediaStream.getVideoTracks().forEach(t => t.stop());
   return mediaStream;
-}
-
-async function getEnvironmentCamera() {
-  return navigator.mediaDevices.getUserMedia({
-    video: { facingMode: 'environment' },
-  });
-}
-
-async function getUserCamera() {
-  return navigator.mediaDevices.getUserMedia({
-    video: { facingMode: 'user' },
-  });
 }
