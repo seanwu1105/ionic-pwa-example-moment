@@ -209,12 +209,7 @@ let CameraService = /*@__PURE__*/ (() => {
             this.t = this._mediaStream$
                 .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(v => console.log('next', v)))
                 .subscribe();
-            this.mediaStream$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(() => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-                const mediaStream = yield getEnvironmentCamera();
-                console.log('init', mediaStream);
-                this._mediaStream$.next(mediaStream);
-                return this._mediaStream$;
-            })).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["shareReplay"])({ bufferSize: 1, refCount: true }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatAll"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(v => console.log('here', v)), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["isNonNullable"])(), stopPreviousMediaStream(), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["finalizeLast"])(mediaStream => {
+            this.mediaStream$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(() => getEnvironmentCamera()).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(v => console.log('init', v)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(mediaStream => this._mediaStream$.next(mediaStream)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMapTo"])(this._mediaStream$), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["shareReplay"])({ bufferSize: 1, refCount: true }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(v => console.log('here', v)), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["isNonNullable"])(), stopPreviousMediaStream(), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["finalizeLast"])(mediaStream => {
                 if (mediaStream)
                     stopMediaStream(mediaStream);
             }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["shareReplay"])({ bufferSize: 1, refCount: true }));
@@ -396,4 +391,4 @@ let CameraPageRoutingModule = /*@__PURE__*/ (() => {
 /***/ })
 
 }]);
-//# sourceMappingURL=4-es2015.5500e35829df3a63a6e7.js.map
+//# sourceMappingURL=4-es2015.31e1fbfb29151a2670f5.js.map
