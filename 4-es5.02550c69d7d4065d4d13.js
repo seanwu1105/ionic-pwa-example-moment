@@ -546,7 +546,11 @@
               }), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["isNonNullable"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (videoTrack) {
                 return videoTrack.getConstraints().facingMode;
               }), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["isNonNullable"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(function () {
+                return console.log('before', videoElement);
+              }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(function () {
                 return videoElement.srcObject = null;
+              }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(function () {
+                return console.log('after', videoElement);
               }), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["concatTap"])(function (facingMode) {
                 return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["iif"])(function () {
                   return facingMode === 'environment';
@@ -935,4 +939,4 @@
     }
   }]);
 })();
-//# sourceMappingURL=4-es5.d77e324b03e105437a75.js.map
+//# sourceMappingURL=4-es5.02550c69d7d4065d4d13.js.map
