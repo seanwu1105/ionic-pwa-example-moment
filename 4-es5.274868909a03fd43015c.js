@@ -475,7 +475,7 @@
               refCount: true
             }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(function (v) {
               return console.log('here', v);
-            }), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["isNonNullable"])(), stopPreviousMediaStream(), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["finalizeLast"])(function (mediaStream) {
+            }), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["isNonNullable"])(), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["finalizeLast"])(function (mediaStream) {
               if (mediaStream) stopMediaStream(mediaStream);
             }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["shareReplay"])({
               bufferSize: 1,
@@ -498,8 +498,9 @@
             value: function connectPreview$(videoElement) {
               return this.mediaStream$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(function (v) {
                 return console.log('preview', v);
-              }), // tap(mediaStream => (videoElement.srcObject = mediaStream)),
-              Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["mapTo"])(videoElement));
+              }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(function (mediaStream) {
+                return videoElement.srcObject = mediaStream;
+              }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["mapTo"])(videoElement));
             }
           }, {
             key: "capture$",
@@ -541,11 +542,14 @@
               var _this6 = this;
 
               return this.mediaStream$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (mediaStream) {
-                return mediaStream.getVideoTracks()[0];
-              }), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["isNonNullable"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (videoTrack) {
-                return videoTrack.getConstraints().facingMode;
-              }), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["isNonNullable"])(), // tap(() => (videoElement.srcObject = null)),
-              Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["concatTap"])(function (facingMode) {
+                var tracks = mediaStream.getVideoTracks();
+                if (tracks.length === 0) return;
+                var facingMode = tracks[0].getConstraints().facingMode;
+                if (facingMode === undefined) return;
+                videoElement.srcObject = null;
+                stopMediaStream(mediaStream);
+                return facingMode;
+              }), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["isNonNullable"])(), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["concatTap"])(function (facingMode) {
                 return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["iif"])(function () {
                   return facingMode === 'environment';
                 }, Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(function () {
@@ -644,17 +648,6 @@
                 previous = _ref2[0];
 
             if (previous) URL.revokeObjectURL(previous);
-          }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMapTo"])(source$));
-        };
-      }
-
-      function stopPreviousMediaStream() {
-        return function (source$) {
-          return source$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["startWith"])(undefined), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["pairwise"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(function (_ref3) {
-            var _ref4 = _slicedToArray(_ref3, 1),
-                previous = _ref4[0];
-
-            if (previous) stopMediaStream(previous);
           }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMapTo"])(source$));
         };
       }
@@ -960,4 +953,4 @@
     }
   }]);
 })();
-//# sourceMappingURL=4-es5.da5fe469d0e301e2aabb.js.map
+//# sourceMappingURL=4-es5.274868909a03fd43015c.js.map
