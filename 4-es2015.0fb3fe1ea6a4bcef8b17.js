@@ -204,10 +204,7 @@ let CameraService = /*@__PURE__*/ (() => {
         constructor() {
             this.videoDevices$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(() => navigator.mediaDevices.enumerateDevices()).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(devices => devices.filter(d => d.kind === 'videoinput')), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["shareReplay"])({ bufferSize: 1, refCount: true }));
             this._mediaStream$ = new rxjs__WEBPACK_IMPORTED_MODULE_1__["ReplaySubject"](1);
-            this.t = this._mediaStream$
-                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(v => console.log('next', v)))
-                .subscribe();
-            this.mediaStream$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(() => getEnvironmentCamera()).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(v => console.log('init', v)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(mediaStream => this._mediaStream$.next(mediaStream)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMapTo"])(this._mediaStream$), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["shareReplay"])({ bufferSize: 1, refCount: true }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(v => console.log('here', v)), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["isNonNullable"])(), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["finalizeLast"])(mediaStream => {
+            this.mediaStream$ = Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(() => getEnvironmentCamera()).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(mediaStream => this._mediaStream$.next(mediaStream)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["concatMapTo"])(this._mediaStream$), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["shareReplay"])({ bufferSize: 1, refCount: true }), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["isNonNullable"])(), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["finalizeLast"])(mediaStream => {
                 if (mediaStream)
                     stopMediaStream(mediaStream);
             }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["shareReplay"])({ bufferSize: 1, refCount: true }));
@@ -216,7 +213,7 @@ let CameraService = /*@__PURE__*/ (() => {
             this.capturedImageUrl$ = this._capturedImageUrl$.pipe(Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["isNonNullable"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["distinctUntilChanged"])(), revokePreviousImageUrl());
         }
         connectPreview$(videoElement) {
-            return this.mediaStream$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(v => console.log('preview', v)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(mediaStream => (videoElement.srcObject = mediaStream)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["mapTo"])(videoElement));
+            return this.mediaStream$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(mediaStream => (videoElement.srcObject = mediaStream)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["mapTo"])(videoElement));
         }
         capture$() {
             return this.imageCapture$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMap"])(imageCapture => imageCapture.takePhoto()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(imageBlob => {
@@ -239,21 +236,18 @@ let CameraService = /*@__PURE__*/ (() => {
                 const facingMode = tracks[0].getConstraints().facingMode;
                 if (facingMode === undefined)
                     return;
+                /**
+                 * Stop media stream BEFORE getting new media stream to avoid
+                 * NotReadableError on mobile devices.
+                 */
                 videoElement.srcObject = null;
                 stopMediaStream(mediaStream);
                 return facingMode;
             }), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["isNonNullable"])(), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["concatTap"])(facingMode => Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["iif"])(() => facingMode === 'environment', Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(() => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-                console.log('b', facingMode);
                 this._mediaStream$.next(yield getUserCamera());
-                console.log('a', facingMode);
             })), Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(() => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-                console.log('b', facingMode);
                 this._mediaStream$.next(yield getEnvironmentCamera());
-                console.log('a', facingMode);
-            })))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(() => console.log('afterPushNext', videoElement)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["catchError"])((err) => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
-                const e = err;
-                console.error(e.name, e);
-            })));
+            })))));
         }
     }
     CameraService.ɵfac = function CameraService_Factory(t) { return new (t || CameraService)(); };
@@ -404,4 +398,4 @@ let CameraPageRoutingModule = /*@__PURE__*/ (() => {
 /***/ })
 
 }]);
-//# sourceMappingURL=4-es2015.274868909a03fd43015c.js.map
+//# sourceMappingURL=4-es2015.0fb3fe1ea6a4bcef8b17.js.map
