@@ -67,7 +67,7 @@ let CameraPage = /*@__PURE__*/ (() => {
         }
         startPreview() {
             return this.videoElement$
-                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["concatMap"])(videoElement => this.cameraService.connectPreview$(videoElement)), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_1__["untilDestroyed"])(this))
+                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["concatMap"])(videoElement => this.cameraService.connectPreview$(videoElement)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])((err) => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () { return this.dialogsService.presentError(err); })), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_1__["untilDestroyed"])(this))
                 .subscribe();
         }
         capture() {
@@ -290,4 +290,4 @@ let CameraPageRoutingModule = /*@__PURE__*/ (() => {
 /***/ })
 
 }]);
-//# sourceMappingURL=4-es2015.f175bf7745dd6639c97d.js.map
+//# sourceMappingURL=4-es2015.fed822ac2a99a3b44a8a.js.map

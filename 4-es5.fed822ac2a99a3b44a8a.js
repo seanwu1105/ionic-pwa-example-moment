@@ -168,17 +168,8 @@
 
               return this.videoElement$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["concatMap"])(function (videoElement) {
                 return _this.cameraService.connectPreview$(videoElement);
-              }), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_1__["untilDestroyed"])(this)).subscribe();
-            }
-          }, {
-            key: "capture",
-            value: function capture() {
-              var _this2 = this;
-
-              this.cameraService.capture$().pipe(Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_4__["concatTap"])(function (imageBlob) {
-                return _this2.momentRepository.add$(imageBlob);
               }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(function (err) {
-                return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this2, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+                return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
                   return regeneratorRuntime.wrap(function _callee$(_context) {
                     while (1) {
                       switch (_context.prev = _context.next) {
@@ -191,6 +182,30 @@
                       }
                     }
                   }, _callee, this);
+                }));
+              }), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_1__["untilDestroyed"])(this)).subscribe();
+            }
+          }, {
+            key: "capture",
+            value: function capture() {
+              var _this2 = this;
+
+              this.cameraService.capture$().pipe(Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_4__["concatTap"])(function (imageBlob) {
+                return _this2.momentRepository.add$(imageBlob);
+              }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["catchError"])(function (err) {
+                return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this2, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+                  return regeneratorRuntime.wrap(function _callee2$(_context2) {
+                    while (1) {
+                      switch (_context2.prev = _context2.next) {
+                        case 0:
+                          return _context2.abrupt("return", this.dialogsService.presentError(err));
+
+                        case 1:
+                        case "end":
+                          return _context2.stop();
+                      }
+                    }
+                  }, _callee2, this);
                 }));
               }), Object(_ngneat_until_destroy__WEBPACK_IMPORTED_MODULE_1__["untilDestroyed"])(this)).subscribe();
             }
@@ -357,27 +372,27 @@
               }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(function (imageBlob) {
                 _this3._capturedImageUrl$.next(URL.createObjectURL(imageBlob));
               }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["catchError"])(function (err) {
-                return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this3, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
-                  return regeneratorRuntime.wrap(function _callee2$(_context2) {
+                return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this3, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+                  return regeneratorRuntime.wrap(function _callee3$(_context3) {
                     while (1) {
-                      switch (_context2.prev = _context2.next) {
+                      switch (_context3.prev = _context3.next) {
                         case 0:
                           if (!(err instanceof DOMException && (err.name === 'InvalidStateError' || err.name === 'UnknownError' || err.name === 'OperationError'))) {
-                            _context2.next = 2;
+                            _context3.next = 2;
                             break;
                           }
 
-                          return _context2.abrupt("return", undefined);
+                          return _context3.abrupt("return", undefined);
 
                         case 2:
                           throw err;
 
                         case 3:
                         case "end":
-                          return _context2.stop();
+                          return _context3.stop();
                       }
                     }
-                  }, _callee2);
+                  }, _callee3);
                 }));
               }), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["isNonNullable"])());
             }
@@ -461,15 +476,15 @@
           _createClass(DialogsService, [{
             key: "presentError",
             value: function presentError(error) {
-              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
                 var alert;
-                return regeneratorRuntime.wrap(function _callee3$(_context3) {
+                return regeneratorRuntime.wrap(function _callee4$(_context4) {
                   while (1) {
-                    switch (_context3.prev = _context3.next) {
+                    switch (_context4.prev = _context4.next) {
                       case 0:
                         // eslint-disable-next-line no-console
                         console.error(error);
-                        _context3.next = 3;
+                        _context4.next = 3;
                         return this.alertController.create({
                           header: error instanceof Error ? error.name : 'Unknown Error',
                           message: error instanceof Error ? error.message : JSON.stringify(error),
@@ -479,16 +494,16 @@
                         });
 
                       case 3:
-                        alert = _context3.sent;
-                        _context3.next = 6;
+                        alert = _context4.sent;
+                        _context4.next = 6;
                         return alert.present();
 
                       case 6:
                       case "end":
-                        return _context3.stop();
+                        return _context4.stop();
                     }
                   }
-                }, _callee3, this);
+                }, _callee4, this);
               }));
             }
           }]);
@@ -661,4 +676,4 @@
     }
   }]);
 })();
-//# sourceMappingURL=4-es5.f175bf7745dd6639c97d.js.map
+//# sourceMappingURL=4-es5.fed822ac2a99a3b44a8a.js.map
