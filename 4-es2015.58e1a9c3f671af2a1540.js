@@ -216,7 +216,9 @@ let CameraService = /*@__PURE__*/ (() => {
             this.capturedImageUrl$ = this._capturedImageUrl$.pipe(Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["isNonNullable"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["distinctUntilChanged"])(), revokePreviousImageUrl());
         }
         connectPreview$(videoElement) {
-            return this.mediaStream$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(v => console.log('preview', v)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(mediaStream => (videoElement.srcObject = mediaStream)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["mapTo"])(videoElement));
+            return this.mediaStream$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(v => console.log('preview', v)), 
+            // tap(mediaStream => (videoElement.srcObject = mediaStream)),
+            Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["mapTo"])(videoElement));
         }
         capture$() {
             return this.imageCapture$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["switchMap"])(imageCapture => imageCapture.takePhoto()), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(imageBlob => {
@@ -232,7 +234,7 @@ let CameraService = /*@__PURE__*/ (() => {
             })), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["isNonNullable"])());
         }
         reverseCamera$(videoElement) {
-            return this.mediaStream$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(mediaStream => mediaStream.getVideoTracks()[0]), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["isNonNullable"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(videoTrack => videoTrack.getConstraints().facingMode), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["isNonNullable"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(() => console.log('before', videoElement)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(() => (videoElement.srcObject = null)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(() => console.log('after', videoElement)), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["concatTap"])(facingMode => Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["iif"])(() => facingMode === 'environment', Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(() => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () { return this._mediaStream$.next(yield getUserCamera()); })), Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(() => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () { return this._mediaStream$.next(yield getEnvironmentCamera()); })))));
+            return this.mediaStream$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["first"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(mediaStream => mediaStream.getVideoTracks()[0]), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["isNonNullable"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(videoTrack => videoTrack.getConstraints().facingMode), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["isNonNullable"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(v => console.log('before', v, videoElement)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(() => (videoElement.srcObject = null)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(v => console.log('after', v, videoElement)), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["concatTap"])(facingMode => Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["iif"])(() => facingMode === 'environment', Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(() => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () { return this._mediaStream$.next(yield getUserCamera()); })), Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(() => Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () { return this._mediaStream$.next(yield getEnvironmentCamera()); })))), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(() => console.log('afterPushNext', videoElement)));
         }
     }
     CameraService.ɵfac = function CameraService_Factory(t) { return new (t || CameraService)(); };
@@ -389,4 +391,4 @@ let CameraPageRoutingModule = /*@__PURE__*/ (() => {
 /***/ })
 
 }]);
-//# sourceMappingURL=4-es2015.02550c69d7d4065d4d13.js.map
+//# sourceMappingURL=4-es2015.58e1a9c3f671af2a1540.js.map
