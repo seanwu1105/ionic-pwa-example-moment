@@ -1,4 +1,4 @@
-import { defer, from, Observable, ReplaySubject } from 'rxjs';
+import { defer, from, Observable } from 'rxjs';
 import { concatMap, filter, finalize, mapTo, tap } from 'rxjs/operators';
 
 export function isNonNullable<T>() {
@@ -20,7 +20,7 @@ export function concatTap<T>(
     source$.pipe(concatMap(value => from(func(value)).pipe(mapTo(value))));
 }
 
-export function finalizeLast<T>(callback: (value: T) => void) {
+export function finalizeLast<T>(callback: (value: T | undefined) => void) {
   return (source$: Observable<T>) =>
     defer(() => {
       let lastValue: T;
@@ -28,17 +28,5 @@ export function finalizeLast<T>(callback: (value: T) => void) {
         tap(value => (lastValue = value)),
         finalize(() => callback(lastValue))
       );
-    });
-}
-
-export function ignoreComplete<T>() {
-  return (source$: Observable<T>) =>
-    defer(() => {
-      const behaviorSubject$ = new ReplaySubject<T>(1);
-      source$.subscribe({
-        next: v => behaviorSubject$.next(v),
-        error: (err: unknown) => behaviorSubject$.error(err),
-      });
-      return behaviorSubject$;
     });
 }

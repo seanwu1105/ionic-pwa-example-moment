@@ -14,6 +14,8 @@ import { concatTap, isNonNullable } from '../../../utils/rx-operators';
   styleUrls: ['./camera.page.scss'],
 })
 export class CameraPage {
+  readonly videoDevices$ = this.cameraService.videoDevices$;
+
   private readonly _videoElement$ = new BehaviorSubject<
     HTMLVideoElement | undefined
   >(undefined);
@@ -24,8 +26,8 @@ export class CameraPage {
   );
 
   @ViewChild('video')
-  set videoElement(value: ElementRef<HTMLVideoElement>) {
-    this._videoElement$.next(value.nativeElement);
+  set videoElement(value: ElementRef<HTMLVideoElement> | undefined) {
+    if (value) this._videoElement$.next(value.nativeElement);
   }
 
   readonly capturedImageUrl$ = this.cameraService.capturedImageUrl$;
@@ -59,6 +61,17 @@ export class CameraPage {
         concatTap(imageBlob => this.momentRepository.add$(imageBlob)),
         catchError(async (err: unknown) =>
           this.dialogsService.presentError(err)
+        ),
+        untilDestroyed(this)
+      )
+      .subscribe();
+  }
+
+  reverseCamera() {
+    return this.videoElement$
+      .pipe(
+        concatMap(videoElement =>
+          this.cameraService.reverseCamera$(videoElement)
         ),
         untilDestroyed(this)
       )
