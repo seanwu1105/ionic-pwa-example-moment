@@ -544,13 +544,8 @@
                 return mediaStream.getVideoTracks()[0];
               }), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["isNonNullable"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(function (videoTrack) {
                 return videoTrack.getConstraints().facingMode;
-              }), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["isNonNullable"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(function (v) {
-                return console.log('before', v, videoElement);
-              }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(function () {
-                return videoElement.srcObject = null;
-              }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(function (v) {
-                return console.log('after', v, videoElement);
-              }), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["concatTap"])(function (facingMode) {
+              }), Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["isNonNullable"])(), // tap(() => (videoElement.srcObject = null)),
+              Object(_utils_rx_operators__WEBPACK_IMPORTED_MODULE_3__["concatTap"])(function (facingMode) {
                 return Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["iif"])(function () {
                   return facingMode === 'environment';
                 }, Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["defer"])(function () {
@@ -559,15 +554,19 @@
                       while (1) {
                         switch (_context4.prev = _context4.next) {
                           case 0:
+                            console.log('b', facingMode);
                             _context4.t0 = this._mediaStream$;
-                            _context4.next = 3;
+                            _context4.next = 4;
                             return getUserCamera();
 
-                          case 3:
+                          case 4:
                             _context4.t1 = _context4.sent;
-                            return _context4.abrupt("return", _context4.t0.next.call(_context4.t0, _context4.t1));
 
-                          case 5:
+                            _context4.t0.next.call(_context4.t0, _context4.t1);
+
+                            console.log('a', facingMode);
+
+                          case 7:
                           case "end":
                             return _context4.stop();
                         }
@@ -580,15 +579,19 @@
                       while (1) {
                         switch (_context5.prev = _context5.next) {
                           case 0:
+                            console.log('b', facingMode);
                             _context5.t0 = this._mediaStream$;
-                            _context5.next = 3;
+                            _context5.next = 4;
                             return getEnvironmentCamera();
 
-                          case 3:
+                          case 4:
                             _context5.t1 = _context5.sent;
-                            return _context5.abrupt("return", _context5.t0.next.call(_context5.t0, _context5.t1));
 
-                          case 5:
+                            _context5.t0.next.call(_context5.t0, _context5.t1);
+
+                            console.log('a', facingMode);
+
+                          case 7:
                           case "end":
                             return _context5.stop();
                         }
@@ -598,6 +601,23 @@
                 }));
               }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["tap"])(function () {
                 return console.log('afterPushNext', videoElement);
+              }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["catchError"])(function (err) {
+                return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(_this6, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
+                  var e;
+                  return regeneratorRuntime.wrap(function _callee6$(_context6) {
+                    while (1) {
+                      switch (_context6.prev = _context6.next) {
+                        case 0:
+                          e = err;
+                          console.error(e.name, e);
+
+                        case 2:
+                        case "end":
+                          return _context6.stop();
+                      }
+                    }
+                  }, _callee6);
+                }));
               }));
             }
           }]);
@@ -647,27 +667,6 @@
       }
 
       function getEnvironmentCamera() {
-        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
-          return regeneratorRuntime.wrap(function _callee6$(_context6) {
-            while (1) {
-              switch (_context6.prev = _context6.next) {
-                case 0:
-                  return _context6.abrupt("return", navigator.mediaDevices.getUserMedia({
-                    video: {
-                      facingMode: 'environment'
-                    }
-                  }));
-
-                case 1:
-                case "end":
-                  return _context6.stop();
-              }
-            }
-          }, _callee6);
-        }));
-      }
-
-      function getUserCamera() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
           return regeneratorRuntime.wrap(function _callee7$(_context7) {
             while (1) {
@@ -675,7 +674,7 @@
                 case 0:
                   return _context7.abrupt("return", navigator.mediaDevices.getUserMedia({
                     video: {
-                      facingMode: 'user'
+                      facingMode: 'environment'
                     }
                   }));
 
@@ -685,6 +684,27 @@
               }
             }
           }, _callee7);
+        }));
+      }
+
+      function getUserCamera() {
+        return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
+          return regeneratorRuntime.wrap(function _callee8$(_context8) {
+            while (1) {
+              switch (_context8.prev = _context8.next) {
+                case 0:
+                  return _context8.abrupt("return", navigator.mediaDevices.getUserMedia({
+                    video: {
+                      facingMode: 'user'
+                    }
+                  }));
+
+                case 1:
+                case "end":
+                  return _context8.stop();
+              }
+            }
+          }, _callee8);
         }));
       }
       /***/
@@ -740,15 +760,15 @@
           _createClass(DialogsService, [{
             key: "presentError",
             value: function presentError(error) {
-              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
+              return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee9() {
                 var alert;
-                return regeneratorRuntime.wrap(function _callee8$(_context8) {
+                return regeneratorRuntime.wrap(function _callee9$(_context9) {
                   while (1) {
-                    switch (_context8.prev = _context8.next) {
+                    switch (_context9.prev = _context9.next) {
                       case 0:
                         // eslint-disable-next-line no-console
                         console.error(error);
-                        _context8.next = 3;
+                        _context9.next = 3;
                         return this.alertController.create({
                           header: error instanceof Error ? error.name : 'Unknown Error',
                           message: error instanceof Error ? error.message : JSON.stringify(error),
@@ -758,16 +778,16 @@
                         });
 
                       case 3:
-                        alert = _context8.sent;
-                        _context8.next = 6;
+                        alert = _context9.sent;
+                        _context9.next = 6;
                         return alert.present();
 
                       case 6:
                       case "end":
-                        return _context8.stop();
+                        return _context9.stop();
                     }
                   }
-                }, _callee8, this);
+                }, _callee9, this);
               }));
             }
           }]);
@@ -940,4 +960,4 @@
     }
   }]);
 })();
-//# sourceMappingURL=4-es5.58e1a9c3f671af2a1540.js.map
+//# sourceMappingURL=4-es5.da5fe469d0e301e2aabb.js.map
