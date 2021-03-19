@@ -50,7 +50,7 @@ function CameraPage_ng_container_2_ion_button_3_Template(rf, ctx) {
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
     }
 }
-function CameraPage_ng_container_2_div_5_Template(rf, ctx) {
+function CameraPage_ng_container_2_div_4_Template(rf, ctx) {
     if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "div", 12);
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](1, "app-image", 13);
@@ -71,17 +71,15 @@ function CameraPage_ng_container_2_Template(rf, ctx) {
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](2, "ion-icon", 5);
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](3, CameraPage_ng_container_2_ion_button_3_Template, 2, 0, "ion-button", 6);
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵpipe"](4, "ngrxPush");
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](5, CameraPage_ng_container_2_div_5_Template, 2, 1, "div", 7);
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](6, "video", 8, 9);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](4, CameraPage_ng_container_2_div_4_Template, 2, 1, "div", 7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](5, "video", 8, 9);
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementContainerEnd"]();
     }
     if (rf & 2) {
         const ctx_r0 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵnextContext"]();
-        let tmp_0_0 = null;
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", ((tmp_0_0 = _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵpipeBind1"](4, 2, ctx_r0.videoDevices$)) == null ? null : tmp_0_0.length) <= 1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngIf", true);
+        _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵproperty"]("ngrxLet", ctx_r0.capturedImageUrl$);
     }
 }
@@ -159,7 +157,7 @@ let CameraPage = /*@__PURE__*/ (() => {
                 _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "ion-button", 0);
                 _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelement"](1, "ion-icon", 1);
                 _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
-                _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](2, CameraPage_ng_container_2_Template, 8, 4, "ng-container", 2);
+                _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](2, CameraPage_ng_container_2_Template, 7, 2, "ng-container", 2);
                 _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵpipe"](3, "ngrxPush");
                 _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplate"](4, CameraPage_ng_template_4_Template, 2, 0, "ng-template", null, 3, _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtemplateRefExtractor"]);
             }
@@ -391,4 +389,4 @@ let CameraPageRoutingModule = /*@__PURE__*/ (() => {
 /***/ })
 
 }]);
-//# sourceMappingURL=4-es2015.31e1fbfb29151a2670f5.js.map
+//# sourceMappingURL=4-es2015.d77e324b03e105437a75.js.map
