@@ -73,3 +73,6 @@ global.process = global.process ?? require('process');
 
 // ImageCapture
 import 'image-capture';
+
+// WebRTC
+import 'webrtc-adapter';
