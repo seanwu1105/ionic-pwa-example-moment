@@ -149,7 +149,6 @@ export class PhotoPage {
               this.router.navigate([], {
                 queryParams: { id: moment.id },
                 relativeTo: this.route,
-                replaceUrl: true,
                 skipLocationChange: true,
               })
             )
@@ -158,6 +157,10 @@ export class PhotoPage {
         )
         .subscribe()
     );
+  }
+
+  async viewImage(url: string) {
+    return this.zone.run(() => this.router.navigate(['/image-viewer', url]));
   }
 
   remove() {

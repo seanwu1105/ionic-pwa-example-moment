@@ -19,7 +19,7 @@
 - [x] EXIF
 - [x] User agent information
 - [x] Choose camera
-- [ ] Subjectize
+- [x] Standalone image viewer page
 - [ ] App shell
 - [ ] Error handling/report
 - [ ] Push notification

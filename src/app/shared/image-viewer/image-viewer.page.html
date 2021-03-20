@@ -1,0 +1,7 @@
+<ion-button (click)="dismiss()" class="dismiss" fill="clear">
+  <ion-icon slot="icon-only" name="arrow-back-outline" color="light"></ion-icon>
+</ion-button>
+
+<pinch-zoom *ngrxLet="src$ as src">
+  <img [src]="src" />
+</pinch-zoom>

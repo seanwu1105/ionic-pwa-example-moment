@@ -8,6 +8,13 @@ const routes: Routes = [
       import('./features/home/home.module').then(m => m.HomePageModule),
   },
   {
+    path: 'image-viewer/:src',
+    loadChildren: () =>
+      import('./shared/image-viewer/image-viewer.module').then(
+        m => m.ImageViewerPageModule
+      ),
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',

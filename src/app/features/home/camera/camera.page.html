@@ -1,5 +1,5 @@
 <ion-button routerLink=".." routerDirection="back" class="dismiss" fill="clear">
-  <ion-icon slot="icon-only" name="close-outline" color="light"></ion-icon>
+  <ion-icon slot="icon-only" name="arrow-back-outline" color="light"></ion-icon>
 </ion-button>
 <ng-container *ngIf="(videoDevices$ | ngrxPush)?.length !== 0; else noCamera">
   <ion-button (click)="capture()" class="capture" fill="clear">
@@ -26,7 +26,10 @@
     *ngrxLet="capturedImageUrl$ as capturedImageUrl"
     class="captured ion-margin"
   >
-    <app-image [src]="capturedImageUrl"></app-image>
+    <app-image
+      [routerLink]="['/image-viewer', capturedImageUrl]"
+      [src]="capturedImageUrl"
+    ></app-image>
   </div>
   <video #video playsinline autoplay></video>
 </ng-container>

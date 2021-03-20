@@ -1,7 +1,15 @@
 <ion-header *transloco="let t" class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-button
+        routerLink=".."
+        routerDirection="back"
+        [replaceUrl]="true"
+        fill="clear"
+        slot="primary"
+      >
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
     </ion-buttons>
     <ion-title>{{ t('settings') }}</ion-title>
   </ion-toolbar>

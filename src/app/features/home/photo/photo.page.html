@@ -47,6 +47,7 @@
       <div class="slide" *transloco="let t">
         <app-image
           *ngrxLet="moment.photoUrl$ as photoUrl"
+          (click)="viewImage(photoUrl)"
           [src]="photoUrl"
         ></app-image>
 
