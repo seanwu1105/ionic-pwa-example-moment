@@ -6,33 +6,32 @@ import { IonicModule } from '@ionic/angular';
 import { TranslocoModule } from '@ngneat/transloco';
 import { TranslocoLocaleModule } from '@ngneat/transloco-locale';
 import { ReactiveComponentModule } from '@ngrx/component';
+import { BackButtonComponent } from './back-button/back-button.component';
 import { CopyClipboardComponent } from './copy-clipboard/copy-clipboard.component';
 import { ExtensionPipe } from './extension/extension.pipe';
 import { ImageComponent } from './image/image.component';
 
+const declarations = [
+  ImageComponent,
+  BackButtonComponent,
+  CopyClipboardComponent,
+  ExtensionPipe,
+];
+
+const imports = [
+  CommonModule,
+  FormsModule,
+  ReactiveFormsModule,
+  IonicModule,
+  HttpClientModule,
+  ReactiveComponentModule,
+  TranslocoModule,
+  TranslocoLocaleModule,
+];
+
 @NgModule({
-  declarations: [ImageComponent, CopyClipboardComponent, ExtensionPipe],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    IonicModule,
-    HttpClientModule,
-    ReactiveComponentModule,
-    TranslocoModule,
-    TranslocoLocaleModule,
-  ],
-  exports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    IonicModule,
-    ReactiveComponentModule,
-    TranslocoModule,
-    TranslocoLocaleModule,
-    ImageComponent,
-    CopyClipboardComponent,
-    ExtensionPipe,
-  ],
+  declarations,
+  imports,
+  exports: [...imports, ...declarations],
 })
 export class SharedModule {}

@@ -20,7 +20,6 @@
 - [x] User agent information
 - [x] Choose camera
 - [x] Standalone image viewer page
-- [ ] App shell
 - [ ] Error handling/report
 - [ ] Push notification
 
