@@ -72,7 +72,7 @@ export class Moment {
       if (attachment) return attachment.getData();
       const thumbnail = await makeThumbnail({
         image: await this.getAttachment(Moment.PHOTO_ATTACHMENT_ID).getData(),
-        maxSize: 300,
+        width: 300,
       });
       await this.document.putAttachment(
         {

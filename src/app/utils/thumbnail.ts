@@ -1,13 +1,22 @@
-import ImageBlobReduce from 'image-blob-reduce';
-
-const imageBlobReduce = new ImageBlobReduce();
+import Compressor from 'compressorjs';
 
 export async function makeThumbnail({
   image,
-  maxSize,
+  width,
 }: {
   image: Blob;
-  maxSize: number;
+  width: number;
 }) {
-  return imageBlobReduce.toBlob(image, { max: maxSize });
+  return new Promise<Blob>((resolve, reject) => {
+    new Compressor(image, {
+      quality: 0.6,
+      width,
+      success(result) {
+        resolve(result);
+      },
+      error(err) {
+        reject(err);
+      },
+    });
+  });
 }
