@@ -3124,6 +3124,9 @@ ISC
 ngx-ionic-image-viewer
 MIT
 
+ngx-pinch-zoom
+MIT
+
 object-assign
 MIT
 The MIT License (MIT)
