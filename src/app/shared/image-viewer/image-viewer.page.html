@@ -1,4 +1,8 @@
-<app-back-button [standalone]="true" color="light"></app-back-button>
+<app-back-button
+  [standalone]="true"
+  color="light"
+  class="dismiss"
+></app-back-button>
 
 <pinch-zoom *ngrxLet="src$ as src">
   <img [src]="src" />

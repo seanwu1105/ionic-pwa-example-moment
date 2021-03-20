@@ -77,18 +77,31 @@ export class PhotoPage {
       return properties['display_name'] as string | undefined;
     }),
     shareReplay({ bufferSize: 1, refCount: true }),
-    // Manually detect change due to the pipe is outside of NgZone on Swiper
-    // virtual scroll component.
+
+    /**
+     * Manually detect change due to the pipe is outside of NgZone on Swiper
+     * virtual scroll component.
+     */
+    tap(() => this.changeDetector.detectChanges())
+  );
+
+  /**
+   * Recreate iframe to avoid updating src and pushing history entry into stack.
+   */
+  private readonly _showMapIframe$ = new BehaviorSubject(false);
+
+  readonly showMapIframe$ = this._showMapIframe$.pipe(
     tap(() => this.changeDetector.detectChanges())
   );
 
   readonly mapUrl$ = this.geolocationPosition$.pipe(
+    tap(() => this._showMapIframe$.next(false)),
     map(position =>
       this.sanitizer.bypassSecurityTrustResourceUrl(
         `https://maps.google.com/maps?q=${position.latitude},${position.longitude}&z=15&output=embed`
       )
     ),
-    isNonNullable()
+    tap(() => this._showMapIframe$.next(true))
   );
 
   readonly photoTags$ = this.currentMoment$.pipe(

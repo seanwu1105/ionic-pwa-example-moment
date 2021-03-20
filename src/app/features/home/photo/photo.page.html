@@ -64,12 +64,14 @@
             <ion-item-divider>
               <ion-label>{{ t('location') }}</ion-label>
             </ion-item-divider>
-            <iframe
-              *ngrxLet="mapUrl$ as mapUrl"
-              [src]="mapUrl"
-              frameborder="0"
-              loading="lazy"
-            ></iframe>
+            <ng-container *ngrxLet="mapUrl$ as mapUrl">
+              <iframe
+                *ngIf="showMapIframe$ | ngrxPush"
+                [src]="mapUrl"
+                frameborder="0"
+                loading="lazy"
+              ></iframe>
+            </ng-container>
             <ion-item>
               <ion-icon name="location-outline" slot="start"></ion-icon>
               <ion-label>
