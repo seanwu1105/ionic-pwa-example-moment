@@ -25,7 +25,7 @@ export class DialogsService {
     const alert = await this.alertController.create({
       header,
       message,
-      buttons: [{ text: 'ok' }],
+      buttons: [{ text: this.translocoService.translate('ok') }],
     });
     await alert.present();
   }
@@ -37,7 +37,7 @@ export class DialogsService {
         `error.${error instanceof Error ? error.name : 'UnknownError'}`
       ),
       message: error instanceof Error ? error.message : JSON.stringify(error),
-      buttons: [{ text: 'ok' }],
+      buttons: [{ text: this.translocoService.translate('ok') }],
     });
     await alert.present();
   }

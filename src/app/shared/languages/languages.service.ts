@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { TranslocoService } from '@ngneat/transloco';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { PreferenceManager } from '../preference/preference-manager.service';
 import { PreferenceServiceBase } from '../preference/preference-service-base';
+import { RxDbPreferenceManager } from '../preference/rxdb-preference-manager.service';
 import { languages } from '../transloco/transloco-root.module';
 
 @Injectable({
@@ -16,7 +16,7 @@ export class LanguagesService extends PreferenceServiceBase<PreferenceKey> {
   ) as Observable<LanguageValue>;
 
   constructor(
-    preferenceManager: PreferenceManager,
+    preferenceManager: RxDbPreferenceManager,
     private readonly translocoService: TranslocoService
   ) {
     super(preferenceManager, LanguagesService.name);

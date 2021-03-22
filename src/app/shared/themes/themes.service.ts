@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { combineLatest, fromEvent, Observable } from 'rxjs';
 import { pluck, startWith, tap } from 'rxjs/operators';
-import { PreferenceManager } from '../preference/preference-manager.service';
 import { PreferenceServiceBase } from '../preference/preference-service-base';
+import { RxDbPreferenceManager } from '../preference/rxdb-preference-manager.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +15,7 @@ export class ThemesService extends PreferenceServiceBase<PreferenceKey> {
     ThemesService.THEMES[0]
   ) as Observable<ThemeValue>;
 
-  constructor(preferenceManager: PreferenceManager) {
+  constructor(preferenceManager: RxDbPreferenceManager) {
     super(preferenceManager, ThemesService.name);
   }
 

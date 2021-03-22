@@ -30,6 +30,8 @@
     "@ngneat/transloco-locale": "^1.4.0",
     "@ngneat/until-destroy": "^8.0.4",
     "@ngrx/component": "^11.0.1",
+    "@sentry/angular": "^6.2.3",
+    "@sentry/tracing": "^6.2.3",
     "buffer": "^6.0.3",
     "compressorjs": "^1.0.7",
     "exifreader": "^3.14.1",

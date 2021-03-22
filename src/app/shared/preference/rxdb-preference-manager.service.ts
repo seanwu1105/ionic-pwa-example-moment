@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import { RxCollection, RxJsonSchema } from 'rxdb';
 import { combineLatest, defer, Observable, of } from 'rxjs';
 import {
@@ -9,9 +10,13 @@ import {
 } from 'rxjs/operators';
 import { isNonNullable } from '../../utils/rx-operators';
 import { Database } from '../database/database.service';
+import { PreferenceManager } from './preference-manager';
 import { Preferences } from './preferences';
 
-export class RxdbPreferences implements Preferences {
+@Injectable({
+  providedIn: 'root',
+})
+export class RxDbPreferenceManager implements PreferenceManager {
   private readonly collection$: Observable<
     RxCollection<Preference>
   > = this.database.main$.pipe(
@@ -22,7 +27,30 @@ export class RxdbPreferences implements Preferences {
     shareReplay({ bufferSize: 1, refCount: true })
   );
 
-  constructor(readonly id: string, private readonly database: Database) {}
+  private readonly preferencesMap = new Map<string, Preferences>();
+
+  constructor(private readonly database: Database) {}
+
+  getPreferences(id: string) {
+    if (this.preferencesMap.has(id)) {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      return this.preferencesMap.get(id)!;
+    }
+    return this.createPreferences(id);
+  }
+
+  private createPreferences(id: string) {
+    const created = new RxDbPreferences(id, this.collection$);
+    this.preferencesMap.set(id, created);
+    return created;
+  }
+}
+
+class RxDbPreferences implements Preferences {
+  constructor(
+    readonly id: string,
+    private readonly collection$: Observable<RxCollection<Preference>>
+  ) {}
 
   getBoolean$(key: string, defaultValue = false): Observable<boolean> {
     return this.get$(key, defaultValue);
