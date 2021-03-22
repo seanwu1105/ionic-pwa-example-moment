@@ -46,9 +46,7 @@ export class CameraPage {
         concatMap(videoElement =>
           this.cameraService.connectPreview$(videoElement)
         ),
-        catchError(async (err: unknown) =>
-          this.dialogsService.presentError(err)
-        ),
+        catchError(async (err: unknown) => this.presentError(err)),
         untilDestroyed(this)
       )
       .subscribe();
@@ -59,9 +57,7 @@ export class CameraPage {
       .capture$()
       .pipe(
         concatTap(imageBlob => this.momentRepository.add$(imageBlob)),
-        catchError(async (err: unknown) =>
-          this.dialogsService.presentError(err)
-        ),
+        catchError(async (err: unknown) => this.presentError(err)),
         untilDestroyed(this)
       )
       .subscribe();
@@ -71,8 +67,19 @@ export class CameraPage {
     return this.videoElement$
       .pipe(
         concatMap(videoElement => this.cameraService.nextCamera$(videoElement)),
+        catchError(async (err: unknown) => this.presentError(err)),
         untilDestroyed(this)
       )
       .subscribe();
+  }
+
+  async presentError(error: unknown) {
+    if (error instanceof DOMException && error.name === 'NotAllowedError') {
+      return this.dialogsService.presentAlert({
+        headerKey: `error.${error.name}`,
+        messageKey: 'message.cameraPermissionDenied',
+      });
+    }
+    return this.dialogsService.presentError(error);
   }
 }
