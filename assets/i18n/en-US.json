@@ -29,6 +29,11 @@
     "copiedToClipboard": "Copied to clipboard.",
     "emptyAlbum": "Start capturing your moments.",
     "storedLocally": "All data is locally stored only.",
-    "noCameraFound": "No camera can be found on your devices."
+    "noCameraFound": "No camera can be found on your devices.",
+    "cameraPermissionDenied": "Camera permission is blocked by user. Please allow it to use this feature."
+  },
+  "error": {
+    "UnknownError": "Unknown Error",
+    "NotAllowedError": "Permission Denied"
   }
 }

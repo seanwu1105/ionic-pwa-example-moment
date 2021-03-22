@@ -29,6 +29,11 @@
     "copiedToClipboard": "已經複製至剪貼簿。",
     "emptyAlbum": "開始捕捉您的每一瞬間吧！",
     "storedLocally": "所有資料皆只會儲存於本地。",
-    "noCameraFound": "無法偵測到相機在您的裝置。"
+    "noCameraFound": "無法偵測到相機在您的裝置。",
+    "cameraPermissionDenied": "相機權限請求被使用者拒絕，請允許該權限以繼續使用此功能。"
+  },
+  "error": {
+    "UnknownError": "未知的錯誤",
+    "NotAllowedError": "沒有權限"
   }
 }
