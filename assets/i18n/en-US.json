@@ -19,6 +19,9 @@
   "os": "OS",
   "cpu": "CPU",
   "noCameraFound": "No Camera Found",
+  "ok": "OK",
+  "helpUsToImproveMoment": "Help Us to Improve Moment",
+  "sendAnonymousErrorReport": "Send Anonymous Error Report",
   ".theme": "Theme",
   "theme": {
     "system": "System Default",
@@ -30,7 +33,9 @@
     "emptyAlbum": "Start capturing your moments.",
     "storedLocally": "All data is locally stored only.",
     "noCameraFound": "No camera can be found on your devices.",
-    "cameraPermissionDenied": "Camera permission is blocked by user. Please allow it to use this feature."
+    "cameraPermissionDenied": "Camera permission is blocked by user. Please allow it to use this feature.",
+    "helpUsToImproveMoment": "We need your help to debug and make Moment more stable. By sending anonymous crash report automatically, we can greatly improve Moment.",
+    "iAgree": "I agree"
   },
   "error": {
     "UnknownError": "Unknown Error",
