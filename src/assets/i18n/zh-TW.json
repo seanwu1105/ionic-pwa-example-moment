@@ -19,6 +19,9 @@
   "os": "作業系統",
   "cpu": "中央處理器",
   "noCameraFound": "沒有偵測到相機",
+  "ok": "OK",
+  "helpUsToImproveMoment": "幫助我們改善 Moment",
+  "sendAnonymousErrorReport": "傳送匿名錯誤統計資料",
   ".theme": "配色主題",
   "theme": {
     "system": "系統預設",
@@ -30,7 +33,9 @@
     "emptyAlbum": "開始捕捉您的每一瞬間吧！",
     "storedLocally": "所有資料皆只會儲存於本地。",
     "noCameraFound": "無法偵測到相機在您的裝置。",
-    "cameraPermissionDenied": "相機權限請求被使用者拒絕，請允許該權限以繼續使用此功能。"
+    "cameraPermissionDenied": "相機權限請求被使用者拒絕，請允許該權限以繼續使用此功能。",
+    "helpUsToImproveMoment": "為了讓 Moment 更加穩定，我們需要您的協助。藉由發送匿名的錯誤統計資料，您可以大幅幫助我們改善 Moment 的穩定性。",
+    "iAgree": "我同意"
   },
   "error": {
     "UnknownError": "未知的錯誤",

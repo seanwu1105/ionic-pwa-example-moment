@@ -15,17 +15,15 @@ export class LanguagesService extends PreferenceServiceBase<PreferenceKey> {
     Object.keys(languages)[0]
   ) as Observable<LanguageValue>;
 
+  readonly initialize$ = this.language$.pipe(
+    tap(language => this.translocoService.setActiveLang(language))
+  );
+
   constructor(
     preferenceManager: RxDbPreferenceManager,
     private readonly translocoService: TranslocoService
   ) {
     super(preferenceManager, LanguagesService.name);
-  }
-
-  initialize$() {
-    return this.language$.pipe(
-      tap(language => this.translocoService.setActiveLang(language))
-    );
   }
 
   setLanguage$(value: LanguageValue) {

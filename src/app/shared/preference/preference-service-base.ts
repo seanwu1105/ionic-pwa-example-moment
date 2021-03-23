@@ -1,6 +1,6 @@
 import { PreferenceManager } from './preference-manager';
 
-export class PreferenceServiceBase<T extends string> {
+export abstract class PreferenceServiceBase<T extends string> {
   private readonly preferences = this.preferenceManager.getPreferences(this.id);
 
   constructor(

@@ -1,13 +1,13 @@
 import { HttpClientModule } from '@angular/common/http';
-import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { Router, RouteReuseStrategy } from '@angular/router';
+import { RouteReuseStrategy } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-import * as Sentry from '@sentry/angular';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ErrorReportModule } from './shared/error-report/error-report.module';
 import { TranslocoRootModule } from './shared/transloco/transloco-root.module';
 
 @NgModule({
@@ -22,26 +22,12 @@ import { TranslocoRootModule } from './shared/transloco/transloco-root.module';
     }),
     HttpClientModule,
     TranslocoRootModule,
+    ErrorReportModule.forRoot(),
   ],
   providers: [
     {
       provide: RouteReuseStrategy,
       useClass: IonicRouteStrategy,
-    },
-    {
-      provide: ErrorHandler,
-      useValue: Sentry.createErrorHandler(),
-    },
-    {
-      provide: Sentry.TraceService,
-      deps: [Router],
-    },
-    {
-      provide: APP_INITIALIZER,
-      // eslint-disable-next-line @typescript-eslint/no-empty-function
-      useFactory: () => () => {},
-      deps: [Sentry.TraceService],
-      multi: true,
     },
   ],
   bootstrap: [AppComponent],

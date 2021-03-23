@@ -15,27 +15,28 @@ export class ThemesService extends PreferenceServiceBase<PreferenceKey> {
     ThemesService.THEMES[0]
   ) as Observable<ThemeValue>;
 
+  private readonly systemDarkScheme$ = fromEvent<MediaQueryListEvent>(
+    matchMedia('(prefers-color-scheme: dark)'),
+    'change'
+  ).pipe(
+    pluck('matches'),
+    startWith(matchMedia('(prefers-color-scheme: dark)').matches)
+  );
+
+  readonly initialize$ = combineLatest([
+    this.theme$,
+    this.systemDarkScheme$,
+  ]).pipe(
+    tap(([theme, systemDarkScheme]) => {
+      if (theme === 'system')
+        document.body.classList.toggle('dark', systemDarkScheme);
+      else if (theme === 'dark') document.body.classList.toggle('dark', true);
+      else document.body.classList.toggle('dark', false);
+    })
+  );
+
   constructor(preferenceManager: RxDbPreferenceManager) {
     super(preferenceManager, ThemesService.name);
-  }
-
-  initialize$() {
-    const systemDarkScheme$ = fromEvent<MediaQueryListEvent>(
-      matchMedia('(prefers-color-scheme: dark)'),
-      'change'
-    ).pipe(
-      pluck('matches'),
-      startWith(matchMedia('(prefers-color-scheme: dark)').matches)
-    );
-
-    return combineLatest([this.theme$, systemDarkScheme$]).pipe(
-      tap(([theme, systemDarkScheme]) => {
-        if (theme === 'system')
-          document.body.classList.toggle('dark', systemDarkScheme);
-        else if (theme === 'dark') document.body.classList.toggle('dark', true);
-        else document.body.classList.toggle('dark', false);
-      })
-    );
   }
 
   setTheme$(value: ThemeValue) {

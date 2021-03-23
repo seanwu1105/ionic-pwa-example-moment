@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonSelect } from '@ionic/angular';
+import { IonSelect, IonToggle } from '@ionic/angular';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { version } from '../../../../../package.json';
+import { ErrorReportService } from '../../../shared/error-report/error-report.service';
 import { LanguagesService } from '../../../shared/languages/languages.service';
 import { ThemesService } from '../../../shared/themes/themes.service';
 import { languages } from '../../../shared/transloco/transloco-root.module';
@@ -21,11 +22,14 @@ export class SettingsPage {
 
   readonly language$ = this.languagesService.language$;
 
+  readonly errorReportEnabled$ = this.errorReportService.enabled$;
+
   readonly version = version;
 
   constructor(
     private readonly themesService: ThemesService,
-    private readonly languagesService: LanguagesService
+    private readonly languagesService: LanguagesService,
+    private readonly errorReportService: ErrorReportService
   ) {}
 
   onChangeTheme(event: Event) {
@@ -38,6 +42,13 @@ export class SettingsPage {
   onChangeLanguage(event: Event) {
     return this.languagesService
       .setLanguage$((event as CustomEvent<IonSelect>).detail.value)
+      .pipe(untilDestroyed(this))
+      .subscribe();
+  }
+
+  onChangeErrorReportEnabled(event: Event) {
+    return this.errorReportService
+      .setEnabled$((event as CustomEvent<IonToggle>).detail.checked)
       .pipe(untilDestroyed(this))
       .subscribe();
   }

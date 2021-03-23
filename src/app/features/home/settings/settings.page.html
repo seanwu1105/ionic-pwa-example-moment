@@ -35,9 +35,19 @@
             <ion-select-option
               *ngFor="let language of languages | keyvalue"
               [value]="language.key"
-              >{{ language.value }}</ion-select-option
             >
+              {{ language.value }}
+            </ion-select-option>
           </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="warning-outline" slot="start"></ion-icon>
+          <ion-label>{{ t('sendAnonymousErrorReport') }}</ion-label>
+          <ion-toggle
+            [checked]="errorReportEnabled$ | ngrxPush"
+            (ionChange)="onChangeErrorReportEnabled($event)"
+            slot="end"
+          ></ion-toggle>
         </ion-item>
         <ion-item>
           <ion-icon name="information-outline" slot="start"></ion-icon>

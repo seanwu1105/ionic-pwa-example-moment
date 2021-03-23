@@ -20,7 +20,7 @@
 - [x] User agent information
 - [x] Choose camera
 - [x] Standalone image viewer page
-- [ ] Error handling/report
+- [x] Error handling/report
 - [ ] Push notification
 
 ### Live-reload PWA
