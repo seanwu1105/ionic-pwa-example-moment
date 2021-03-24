@@ -57,6 +57,10 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+  // loading animation
+  --loading-background-start: var(--ion-color-light-shade);
+  --loading-background-end: var(--ion-color-light);
 }
 
 /*
@@ -119,6 +123,10 @@ body.dark {
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+  // loading animation
+  --loading-background-start: var(--ion-color-step-150);
+  --loading-background-end: var(--ion-color-step-100);
 }
 
 /*

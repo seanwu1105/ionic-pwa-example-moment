@@ -43,7 +43,12 @@ ion-list {
   }
 }
 
+.map {
+  height: 100px;
+  animation: loading 2.5s ease-in-out alternate infinite;
+}
+
 iframe {
   width: 100%;
-  height: 100px;
+  height: 100%;
 }

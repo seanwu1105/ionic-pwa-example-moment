@@ -21,7 +21,6 @@
 - [x] Choose camera
 - [x] Standalone image viewer page
 - [x] Error handling/report
-- [ ] Push notification
 
 ### Live-reload PWA
 
