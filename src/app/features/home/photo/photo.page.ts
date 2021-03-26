@@ -202,15 +202,16 @@ export class PhotoPage {
   }
 
   private _share$(moment: Moment) {
-    return moment.photo$.pipe(
+    return combineLatest([moment.photo$, moment.mimeType$]).pipe(
+      first(),
       map(
-        photo =>
+        ([photo, mimeType]) =>
           new File(
             [photo],
             //@ts-expect-error: https://github.com/broofa/mime/issues/255
-            `${moment.id}.${mime.getExtension(moment.mimeType)}`,
+            `${moment.id}.${mime.getExtension(mimeType)}`,
             {
-              type: moment.mimeType,
+              type: mimeType,
               lastModified: moment.timestamp,
             }
           )

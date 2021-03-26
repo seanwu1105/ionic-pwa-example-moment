@@ -1,8 +1,9 @@
 import { RxDocument, RxJsonSchema } from 'rxdb';
-import { defer, of } from 'rxjs';
-import { concatMap, map, shareReplay } from 'rxjs/operators';
+import { defer } from 'rxjs';
+import { concatMap, map, pluck, shareReplay } from 'rxjs/operators';
 import UAParser from 'ua-parser-js';
 import { DataNotFoundError } from '../../utils/errors';
+import { ignoreError } from '../../utils/rx-operators';
 import { makeThumbnail } from '../../utils/thumbnail';
 
 export interface MemontIndex {
@@ -50,7 +51,9 @@ export class Moment {
 
   readonly id = this.document.id;
 
-  readonly mimeType = this.getAttachment(Moment.PHOTO_ATTACHMENT_ID).type;
+  readonly mimeType$ = defer(async () =>
+    this.getAttachment(Moment.PHOTO_ATTACHMENT_ID)
+  ).pipe(ignoreError(DataNotFoundError), pluck('type'));
 
   readonly timestamp = this.document.timestamp;
 
@@ -58,17 +61,18 @@ export class Moment {
 
   readonly photo$ = defer(() =>
     this.getAttachment(Moment.PHOTO_ATTACHMENT_ID).getData()
-  );
+  ).pipe(ignoreError(DataNotFoundError));
 
   readonly photoUrl$ = this.photo$.pipe(
     map(blob => URL.createObjectURL(blob)),
     shareReplay({ bufferSize: 1, refCount: true })
   );
 
-  readonly thumbnailUrl$ = of(
-    this.document.getAttachment(Moment.THUMBNAIL_ATTACHMENT_ID)
-  ).pipe(
-    concatMap(async attachment => {
+  readonly thumbnailUrl$ = this.mimeType$.pipe(
+    concatMap(async mimeType => {
+      const attachment = this.document.getAttachment(
+        Moment.THUMBNAIL_ATTACHMENT_ID
+      );
       if (attachment) return attachment.getData();
       const thumbnail = await makeThumbnail({
         image: await this.getAttachment(Moment.PHOTO_ATTACHMENT_ID).getData(),
@@ -78,13 +82,14 @@ export class Moment {
         {
           id: Moment.THUMBNAIL_ATTACHMENT_ID,
           data: thumbnail,
-          type: this.mimeType,
+          type: mimeType,
         },
         true
       );
       return thumbnail;
     }),
     map(blob => URL.createObjectURL(blob)),
+    ignoreError(DataNotFoundError),
     shareReplay({ bufferSize: 1, refCount: true })
   );
 

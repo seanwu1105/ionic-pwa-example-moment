@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import * as PouchdbAdapterMemory from 'pouchdb-adapter-memory';
+import * as PouchdbAdapterIdb from 'pouchdb-adapter-idb';
 import { addRxPlugin, createRxDatabase } from 'rxdb';
 import { defer } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
@@ -9,10 +9,10 @@ import { shareReplay } from 'rxjs/operators';
 })
 export class Database {
   readonly main$ = defer(() => {
-    addRxPlugin(PouchdbAdapterMemory);
+    addRxPlugin(PouchdbAdapterIdb);
     return createRxDatabase({
       name: 'main',
-      adapter: 'memory',
+      adapter: 'idb',
     });
   }).pipe(shareReplay({ bufferSize: 1, refCount: true }));
 }

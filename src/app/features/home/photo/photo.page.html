@@ -12,7 +12,9 @@
         [href]="currentMoment.photoUrl$ | ngrxPush"
         target="_blank"
         [download]="
-          currentMoment.id + '.' + (currentMoment.mimeType | extension)
+          currentMoment.id +
+          '.' +
+          (currentMoment.mimeType$ | ngrxPush | extension)
         "
         slot="secondary"
         color="light"
@@ -123,7 +125,7 @@
               <ion-icon name="document-outline" slot="start"></ion-icon>
               <ion-label>
                 <h3>{{ t('mimeType') }}</h3>
-                <p>{{ moment.mimeType }}</p>
+                <p>{{ moment.mimeType$ | ngrxPush }}</p>
               </ion-label>
             </ion-item>
           </ion-item-group>
