@@ -54,7 +54,10 @@ export class PhotoPage {
   readonly currentMoment$ = combineLatest([
     this.moments$,
     this.currentMomentIndex$,
-  ]).pipe(map(([moments, currentIndex]) => moments[currentIndex]));
+  ]).pipe(
+    map(([moments, currentIndex]) => moments[currentIndex]),
+    isNonNullable()
+  );
 
   private readonly geolocationPosition$ = this.currentMoment$.pipe(
     map(moment => moment.geolocationPosition),

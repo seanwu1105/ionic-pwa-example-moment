@@ -10,9 +10,9 @@ import { OnboardingService } from '../../shared/onboarding/onboarding.service';
 
 @UntilDestroy()
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  selector: './app-home',
+  templateUrl: './home.page.html',
+  styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements AfterViewInit {
   readonly moments$ = this.momentRepository.all$;
