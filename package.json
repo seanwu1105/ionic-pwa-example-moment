@@ -38,7 +38,6 @@
     "image-capture": "^0.4.0",
     "lodash-es": "^4.17.21",
     "mime": "^2.5.2",
-    "ngx-ionic-image-viewer": "^0.7.4",
     "ngx-pinch-zoom": "^2.5.5",
     "pouchdb-adapter-idb": "^7.2.2",
     "pouchdb-adapter-memory": "^7.2.2",
