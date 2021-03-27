@@ -83,7 +83,7 @@ export class Moment {
             width: 300,
           });
           await this.document.putAttachment({
-            id: Moment.PHOTO_ATTACHMENT_ID,
+            id: Moment.THUMBNAIL_ATTACHMENT_ID,
             data: thumbnail,
             type: photo.type,
           });
