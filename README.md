@@ -1,10 +1,22 @@
-# Moment
+# [Moment](https://seanwu1105.github.io/ionic-pwa-example)
 
-A camera app built with PWA native features.
+An offline camera app built with PWA without any native framework.
+
+| Onboarding                                                                                                 | Installation                                                                                               | Capturing                                                                                                  |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| ![](https://user-images.githubusercontent.com/14951000/112729593-f0d7a580-8f67-11eb-8bbb-b15aac1cdf63.gif) | ![](https://user-images.githubusercontent.com/14951000/112729595-f208d280-8f67-11eb-861d-550ade2b8c28.gif) | ![](https://user-images.githubusercontent.com/14951000/112729596-f46b2c80-8f67-11eb-8e84-b53ad3052a6f.gif) |
+
+| Photo Details                                                                                              | Dark Theme                                                                                                 | Internationalization                                                                                       |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| ![](https://user-images.githubusercontent.com/14951000/112729598-f7feb380-8f67-11eb-9801-e567f89ca066.gif) | ![](https://user-images.githubusercontent.com/14951000/112729601-f92fe080-8f67-11eb-97ba-a7723bdfd302.gif) | ![](https://user-images.githubusercontent.com/14951000/112729602-f92fe080-8f67-11eb-8b03-834735ae802f.gif) |
+
+## Online Demo
+
+https://seanwu1105.github.io/ionic-pwa-example
 
 ## Design
 
-- Organize the structure by features
+- Organize the project structure by features
 - Emulate native behavior on clicking Android hardware back button by
   - using undocumented `NavController` in Ionic
   - removing and re-adding the `iframe` element on its `src` is changed
@@ -15,7 +27,9 @@ A camera app built with PWA native features.
 
 ## Features
 
-- Take photos in app (without using external Camera App)
+- Support offline mode after installed
+- Store data locally
+- Take photos in app (without using external camera app)
 - Switch ALL different cameras on devices
 - Collect GPS on taking photos
 - Support i18n dynamically for English and Tranditional Chinese
@@ -74,5 +88,7 @@ npm run lint
 
 ### Live-Reload PWA
 
-1. `npm run build.watch.pwa`
-1. `lite-server --baseDir="www"`
+```bash
+npm run build.watch.pwa
+lite-server --baseDir="www"
+```
