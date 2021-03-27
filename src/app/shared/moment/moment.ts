@@ -1,9 +1,8 @@
 import { RxDocument, RxJsonSchema } from 'rxdb';
-import { defer } from 'rxjs';
+import { defer, iif } from 'rxjs';
 import { concatMap, map, pluck, shareReplay } from 'rxjs/operators';
 import UAParser from 'ua-parser-js';
-import { DataNotFoundError } from '../../utils/errors';
-import { ignoreError } from '../../utils/rx-operators';
+import { isNonNullable } from '../../utils/rx-operators';
 import { makeThumbnail } from '../../utils/thumbnail';
 
 export interface MemontIndex {
@@ -51,45 +50,49 @@ export class Moment {
 
   readonly id = this.document.id;
 
-  readonly mimeType$ = defer(async () =>
-    this.getAttachment(Moment.PHOTO_ATTACHMENT_ID)
-  ).pipe(ignoreError(DataNotFoundError), pluck('type'));
+  readonly mimeType$ = defer(async () => this.getAttachment('original')).pipe(
+    isNonNullable(),
+    pluck('type')
+  );
 
   readonly timestamp = this.document.timestamp;
 
   readonly geolocationPosition = this.document.geolocationPosition;
 
-  readonly photo$ = defer(() =>
-    this.getAttachment(Moment.PHOTO_ATTACHMENT_ID).getData()
-  ).pipe(ignoreError(DataNotFoundError));
+  readonly photo$ = defer(() => this.getAttachment('original')?.getData()).pipe(
+    isNonNullable()
+  );
 
   readonly photoUrl$ = this.photo$.pipe(
     map(blob => URL.createObjectURL(blob)),
     shareReplay({ bufferSize: 1, refCount: true })
   );
 
-  readonly thumbnailUrl$ = this.mimeType$.pipe(
-    concatMap(async mimeType => {
-      const attachment = this.document.getAttachment(
-        Moment.THUMBNAIL_ATTACHMENT_ID
-      );
-      if (attachment) return attachment.getData();
-      const thumbnail = await makeThumbnail({
-        image: await this.getAttachment(Moment.PHOTO_ATTACHMENT_ID).getData(),
-        width: 300,
-      });
-      await this.document.putAttachment(
-        {
-          id: Moment.THUMBNAIL_ATTACHMENT_ID,
-          data: thumbnail,
-          type: mimeType,
-        },
-        true
-      );
-      return thumbnail;
-    }),
+  readonly thumbnailUrl$ = defer(async () =>
+    this.getAttachment('thumbnail')
+  ).pipe(
+    concatMap(attachment =>
+      iif(
+        () => !!attachment,
+        defer(() => attachment?.getData()),
+        defer(async () => {
+          const photo = this.getAttachment('original');
+          if (!photo) return undefined;
+          const thumbnail = await makeThumbnail({
+            image: await photo.getData(),
+            width: 300,
+          });
+          await this.document.putAttachment({
+            id: Moment.PHOTO_ATTACHMENT_ID,
+            data: thumbnail,
+            type: photo.type,
+          });
+          return thumbnail;
+        })
+      )
+    ),
+    isNonNullable(),
     map(blob => URL.createObjectURL(blob)),
-    ignoreError(DataNotFoundError),
     shareReplay({ bufferSize: 1, refCount: true })
   );
 
@@ -104,8 +107,6 @@ export class Moment {
       | typeof Moment.PHOTO_ATTACHMENT_ID
       | typeof Moment.THUMBNAIL_ATTACHMENT_ID
   ) {
-    const attachment = this.document.getAttachment(id);
-    if (attachment) return attachment;
-    throw new DataNotFoundError(`Cannot get the attachment with ID: ${id}`);
+    return this.document.getAttachment(id);
   }
 }

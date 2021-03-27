@@ -1,12 +1,5 @@
-import { defer, from, Observable, of } from 'rxjs';
-import {
-  catchError,
-  concatMap,
-  filter,
-  finalize,
-  mapTo,
-  tap,
-} from 'rxjs/operators';
+import { defer, from, Observable } from 'rxjs';
+import { concatMap, filter, finalize, mapTo, tap } from 'rxjs/operators';
 
 export function isNonNullable<T>() {
   return (source$: Observable<null | undefined | T>) =>
@@ -38,15 +31,4 @@ export function finalizeLast<T>(callback: (value: T) => void) {
         })
       );
     });
-}
-
-export function ignoreError<T>(cls: any) {
-  return (source$: Observable<T>) =>
-    source$.pipe(
-      catchError((err: unknown) => {
-        if (err instanceof cls) return of(undefined);
-        throw err;
-      }),
-      isNonNullable()
-    );
 }
