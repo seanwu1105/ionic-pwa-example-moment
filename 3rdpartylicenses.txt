@@ -3015,9 +3015,6 @@ THE SOFTWARE.
 modifyjs
 ISC
 
-ngx-ionic-image-viewer
-MIT
-
 ngx-pinch-zoom
 MIT
 
