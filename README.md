@@ -12,9 +12,9 @@ An offline camera app built with PWA without any native framework.
 | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | ![](https://user-images.githubusercontent.com/14951000/112729598-f7feb380-8f67-11eb-9801-e567f89ca066.gif) | ![](https://user-images.githubusercontent.com/14951000/112729601-f92fe080-8f67-11eb-97ba-a7723bdfd302.gif) | ![](https://user-images.githubusercontent.com/14951000/112729602-f92fe080-8f67-11eb-8b03-834735ae802f.gif) |
 
-## Online Demo
+## Installation
 
-https://seanwu1105.github.io/ionic-pwa-example
+[![launch now](https://user-images.githubusercontent.com/14951000/112782686-2f608380-9080-11eb-970e-b1ba58cfd509.png)](https://seanwu1105.github.io/ionic-pwa-example)
 
 ## Design
 
