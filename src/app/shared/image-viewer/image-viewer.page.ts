@@ -1,4 +1,3 @@
-import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
@@ -19,12 +18,7 @@ export class ImageViewerPage {
   );
 
   constructor(
-    private readonly location: Location,
     private readonly route: ActivatedRoute,
     private readonly sanitizer: DomSanitizer
   ) {}
-
-  dismiss() {
-    this.location.back();
-  }
 }
