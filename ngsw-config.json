@@ -35,6 +35,17 @@
         "maxSize": 10000,
         "maxAge": "100d"
       }
+    },
+    {
+      "name": "maps",
+      "urls": [
+        "^https://maps.google.com/maps",
+        "^https://maps.googleapis.com/maps/api"
+      ],
+      "cacheConfig": {
+        "maxSize": 10000,
+        "maxAge": "100d"
+      }
     }
   ]
 }
