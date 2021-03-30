@@ -5,6 +5,7 @@ import mime from 'mime/lite';
   name: 'extension',
 })
 export class ExtensionPipe implements PipeTransform {
+  // eslint-disable-next-line class-methods-use-this
   transform(mimeType: string) {
     //@ts-expect-error: https://github.com/broofa/mime/issues/255
     return mime.getExtension(mimeType);

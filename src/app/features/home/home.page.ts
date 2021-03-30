@@ -24,7 +24,14 @@ export class HomePage implements AfterViewInit {
   );
 
   readonly noFooterBorder$ = this.scrollEvent$.pipe(
-    switchMap(event => this.detectBottom(event))
+    switchMap(async scrollEvent => {
+      const ionContent = scrollEvent.target as HTMLIonContentElement;
+      const scrollElement = await ionContent.getScrollElement();
+      return (
+        scrollElement.scrollTop ===
+        scrollElement.scrollHeight - scrollElement.clientHeight
+      );
+    })
   );
 
   private readonly onboardIfNecessary$ = this.onboardingService.hasOnboarded$.pipe(
@@ -54,15 +61,7 @@ export class HomePage implements AfterViewInit {
     this._scrollEvent$.next(event);
   }
 
-  private async detectBottom(scrollEvent: Event) {
-    const ionContent = scrollEvent.target as HTMLIonContentElement;
-    const scrollElement = await ionContent.getScrollElement();
-    return (
-      scrollElement.scrollTop ===
-      scrollElement.scrollHeight - scrollElement.clientHeight
-    );
-  }
-
+  // eslint-disable-next-line class-methods-use-this
   trackMoment(_: number, item: Moment) {
     return item.id;
   }

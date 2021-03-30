@@ -26,6 +26,7 @@ export class ImageComponent {
 
   isImageError = false;
 
+  // eslint-disable-next-line class-methods-use-this
   async onImageLoaded(event: Event) {
     const imgElement = event.target as HTMLIonImgElement;
     return fadeInAnimation().addElement(imgElement).play();

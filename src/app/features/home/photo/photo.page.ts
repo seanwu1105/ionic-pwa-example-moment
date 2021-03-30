@@ -144,6 +144,7 @@ export class PhotoPage {
     private readonly changeDetector: ChangeDetectorRef
   ) {}
 
+  // eslint-disable-next-line class-methods-use-this
   trackMoment(_: number, item: Moment) {
     return item.id;
   }
@@ -195,34 +196,34 @@ export class PhotoPage {
     return this.currentMoment$
       .pipe(
         first(),
-        switchMap(moment => this._share$(moment)),
+        switchMap(moment => share$(moment)),
         untilDestroyed(this)
       )
       .subscribe();
   }
+}
 
-  private _share$(moment: Moment) {
-    return combineLatest([moment.photo$, moment.mimeType$]).pipe(
-      first(),
-      map(
-        ([photo, mimeType]) =>
-          new File(
-            [photo],
-            //@ts-expect-error: https://github.com/broofa/mime/issues/255
-            `${moment.id}.${mime.getExtension(mimeType)}`,
-            {
-              type: mimeType,
-              lastModified: moment.timestamp,
-            }
-          )
-      ),
-      switchMap(file =>
-        navigator.share({
-          text: moment.metaJson,
-          // @ts-expect-error: share API level 2
-          files: [file],
-        })
-      )
-    );
-  }
+function share$(moment: Moment) {
+  return combineLatest([moment.photo$, moment.mimeType$]).pipe(
+    first(),
+    map(
+      ([photo, mimeType]) =>
+        new File(
+          [photo],
+          //@ts-expect-error: https://github.com/broofa/mime/issues/255
+          `${moment.id}.${mime.getExtension(mimeType)}`,
+          {
+            type: mimeType,
+            lastModified: moment.timestamp,
+          }
+        )
+    ),
+    switchMap(file =>
+      navigator.share({
+        text: moment.metaJson,
+        // @ts-expect-error: share API level 2
+        files: [file],
+      })
+    )
+  );
 }
