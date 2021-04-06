@@ -1,5 +1,13 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, defer, iif, Observable, ReplaySubject } from 'rxjs';
+import {
+  BehaviorSubject,
+  defer,
+  iif,
+  Observable,
+  of,
+  ReplaySubject,
+  throwError,
+} from 'rxjs';
 import {
   catchError,
   concatMap,
@@ -57,16 +65,16 @@ export class CameraService {
       tap(imageBlob => {
         this._capturedImageUrl$.next(URL.createObjectURL(imageBlob));
       }),
-      catchError(async (err: unknown) => {
+      catchError((err: unknown) => {
         if (
           err instanceof DOMException &&
           (err.name === 'InvalidStateError' ||
             err.name === 'UnknownError' ||
             err.name === 'OperationError')
         ) {
-          return undefined;
+          return of(undefined);
         }
-        throw err;
+        return throwError(err);
       }),
       isNonNullable()
     );

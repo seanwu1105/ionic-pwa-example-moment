@@ -7,8 +7,9 @@ import ExifReader from 'exifreader';
 import { FeatureCollection } from 'geojson';
 import { omitBy } from 'lodash-es';
 import mime from 'mime/lite';
-import { BehaviorSubject, combineLatest, defer, iif } from 'rxjs';
+import { BehaviorSubject, combineLatest, defer, iif, of } from 'rxjs';
 import {
+  catchError,
   concatMap,
   concatMapTo,
   distinctUntilChanged,
@@ -19,6 +20,7 @@ import {
   tap,
 } from 'rxjs/operators';
 import SwiperCore, { Swiper, Virtual } from 'swiper/core';
+import { DialogsService } from '../../../shared/dialogs/dialogs.service';
 import { LanguagesService } from '../../../shared/languages/languages.service';
 import { Moment } from '../../../shared/moment/moment';
 import { MomentRepository } from '../../../shared/moment/moment-repository.service';
@@ -141,7 +143,8 @@ export class PhotoPage {
     private readonly httpClient: HttpClient,
     private readonly languagesService: LanguagesService,
     private readonly zone: NgZone,
-    private readonly changeDetector: ChangeDetectorRef
+    private readonly changeDetector: ChangeDetectorRef,
+    private readonly dialogsService: DialogsService
   ) {}
 
   // eslint-disable-next-line class-methods-use-this
@@ -197,6 +200,11 @@ export class PhotoPage {
       .pipe(
         first(),
         switchMap(moment => share$(moment)),
+        catchError((err: unknown) => {
+          if (err instanceof DOMException && err.name === 'AbortError')
+            return of(undefined);
+          return this.dialogsService.presentError(err);
+        }),
         untilDestroyed(this)
       )
       .subscribe();
