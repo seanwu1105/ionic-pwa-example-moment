@@ -36,7 +36,7 @@ export class ThemesService extends PreferenceServiceBase<PreferenceKey> {
   );
 
   constructor(preferenceManager: RxDbPreferenceManager) {
-    super(preferenceManager, ThemesService.name);
+    super(preferenceManager, 'ThemesService');
   }
 
   setTheme$(value: ThemeValue) {

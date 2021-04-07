@@ -11,7 +11,7 @@ export class OnboardingService extends PreferenceServiceBase<PreferenceKey> {
   readonly onboard$ = this.setBoolean$('hasOnboarded', true);
 
   constructor(preferenceManager: RxDbPreferenceManager) {
-    super(preferenceManager, OnboardingService.name);
+    super(preferenceManager, 'OnboardingService');
   }
 }
 

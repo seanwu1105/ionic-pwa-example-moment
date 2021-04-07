@@ -23,7 +23,7 @@ export class LanguagesService extends PreferenceServiceBase<PreferenceKey> {
     preferenceManager: RxDbPreferenceManager,
     private readonly translocoService: TranslocoService
   ) {
-    super(preferenceManager, LanguagesService.name);
+    super(preferenceManager, 'LanguagesService');
   }
 
   setLanguage$(value: LanguageValue) {

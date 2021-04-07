@@ -57,7 +57,7 @@ export class ErrorReportService extends PreferenceServiceBase<PreferenceKey> {
     private readonly alertController: AlertController,
     private readonly translocoService: TranslocoService
   ) {
-    super(preferenceManager, ErrorReportService.name);
+    super(preferenceManager, 'ErrorReportService');
   }
 
   setEnabled$(value: boolean) {
