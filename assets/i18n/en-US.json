@@ -20,8 +20,10 @@
   "cpu": "CPU",
   "noCameraFound": "No Camera Found",
   "ok": "OK",
+  "cancel": "Cancel",
   "helpUsToImproveMoment": "Help Us to Improve Moment",
   "sendAnonymousErrorReport": "Send Anonymous Error Report",
+  "deleteMoment": "Delete Moment",
   ".theme": "Theme",
   "theme": {
     "system": "System Default",
@@ -35,7 +37,8 @@
     "noCameraFound": "No camera can be found on your devices.",
     "cameraPermissionDenied": "Camera permission is blocked by user. Please allow it to use this feature.",
     "helpUsToImproveMoment": "We need your help to debug and make Moment more stable. By sending anonymous crash report automatically, we can greatly improve Moment.",
-    "iAgree": "I agree"
+    "iAgree": "I agree",
+    "deleteMoment": "Are you sure to delete this moment? This action cannot be undone."
   },
   "error": {
     "UnknownError": "Unknown Error",

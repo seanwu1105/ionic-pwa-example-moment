@@ -20,6 +20,7 @@
   "cpu": "中央處理器",
   "noCameraFound": "沒有偵測到相機",
   "ok": "OK",
+  "cancel": "取消",
   "helpUsToImproveMoment": "幫助我們改善 Moment",
   "sendAnonymousErrorReport": "傳送匿名錯誤統計資料",
   ".theme": "配色主題",
