@@ -184,12 +184,21 @@ export class PhotoPage {
   }
 
   remove() {
-    return this.currentMemontId$
+    const action$ = this.currentMemontId$.pipe(
+      first(),
+      tap(() => (this.willBeDestroyed = true)),
+      concatMap(id => this.momentRepository.remove$(id)),
+      concatMapTo(defer(() => this.router.navigate(['..'])))
+    );
+
+    return this.dialogsService
+      .presentConfirmation$({
+        headerKey: 'deleteMoment',
+        messageKey: 'message.deleteMoment',
+      })
       .pipe(
         first(),
-        tap(() => (this.willBeDestroyed = true)),
-        concatMap(id => this.momentRepository.remove$(id)),
-        concatMapTo(defer(() => this.router.navigate(['..']))),
+        concatMap(result => iif(() => result, action$)),
         untilDestroyed(this)
       )
       .subscribe();
@@ -203,7 +212,7 @@ export class PhotoPage {
         catchError((err: unknown) => {
           if (err instanceof DOMException && err.name === 'AbortError')
             return of(undefined);
-          return this.dialogsService.presentError(err);
+          return this.dialogsService.presentError$(err);
         }),
         untilDestroyed(this)
       )

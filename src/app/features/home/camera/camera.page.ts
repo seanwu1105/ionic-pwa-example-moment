@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, iif } from 'rxjs';
 import { catchError, concatMap, distinctUntilChanged } from 'rxjs/operators';
 import { CameraService } from '../../../shared/camera/camera.service';
 import { DialogsService } from '../../../shared/dialogs/dialogs.service';
@@ -46,7 +46,7 @@ export class CameraPage {
         concatMap(videoElement =>
           this.cameraService.connectPreview$(videoElement)
         ),
-        catchError(async (err: unknown) => this.presentError(err)),
+        catchError((err: unknown) => this.presentError$(err)),
         untilDestroyed(this)
       )
       .subscribe();
@@ -57,7 +57,7 @@ export class CameraPage {
       .capture$()
       .pipe(
         concatTap(imageBlob => this.momentRepository.add$(imageBlob)),
-        catchError(async (err: unknown) => this.presentError(err)),
+        catchError((err: unknown) => this.presentError$(err)),
         untilDestroyed(this)
       )
       .subscribe();
@@ -67,19 +67,20 @@ export class CameraPage {
     return this.videoElement$
       .pipe(
         concatMap(videoElement => this.cameraService.nextCamera$(videoElement)),
-        catchError(async (err: unknown) => this.presentError(err)),
+        catchError((err: unknown) => this.presentError$(err)),
         untilDestroyed(this)
       )
       .subscribe();
   }
 
-  async presentError(error: unknown) {
-    if (error instanceof DOMException && error.name === 'NotAllowedError') {
-      return this.dialogsService.presentAlert({
-        headerKey: `error.${error.name}`,
+  presentError$(error: unknown) {
+    return iif(
+      () => error instanceof DOMException && error.name === 'NotAllowedError',
+      this.dialogsService.presentAlert$({
+        headerKey: `error.${(error as DOMException).name}`,
         messageKey: 'message.cameraPermissionDenied',
-      });
-    }
-    return this.dialogsService.presentError(error);
+      }),
+      this.dialogsService.presentError$(error)
+    );
   }
 }

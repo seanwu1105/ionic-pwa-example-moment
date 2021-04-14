@@ -48,9 +48,45 @@ export class ErrorReportService extends PreferenceServiceBase<PreferenceKey> {
     )
   );
 
-  readonly showUserAgreeDialog$ = defer(() =>
-    this.showErrorReportOptInDialog()
-  ).pipe(concatMap(agree => this.setEnabled$(agree)));
+  readonly showUserAgreeDialog$ = this.translocoService
+    .selectTranslateObject({
+      helpUsToImproveMoment: null,
+      'message.helpUsToImproveMoment': null,
+      'message.iAgree': null,
+      ok: null,
+    })
+    .pipe(
+      first(),
+      concatMap(
+        ([header, message, agree, ok]) =>
+          new Promise<boolean>(resolve => {
+            this.alertController
+              .create({
+                header,
+                message,
+                inputs: [
+                  {
+                    type: 'checkbox',
+                    value: 'agree',
+                    checked: true,
+                    label: agree,
+                  },
+                ],
+                buttons: [
+                  {
+                    text: ok,
+                    handler: (data: any[]) => {
+                      resolve(data.length > 0 && data[0] === 'agree');
+                    },
+                  },
+                ],
+                backdropDismiss: false,
+              })
+              .then(alert => alert.present());
+          })
+      ),
+      concatMap(agree => this.setEnabled$(agree))
+    );
 
   constructor(
     preferenceManager: RxDbPreferenceManager,
@@ -62,36 +98,6 @@ export class ErrorReportService extends PreferenceServiceBase<PreferenceKey> {
 
   setEnabled$(value: boolean) {
     return this.setBoolean$('enabled', value);
-  }
-
-  private async showErrorReportOptInDialog() {
-    return new Promise<boolean>(resolve => {
-      this.alertController
-        .create({
-          header: this.translocoService.translate('helpUsToImproveMoment'),
-          message: this.translocoService.translate(
-            'message.helpUsToImproveMoment'
-          ),
-          inputs: [
-            {
-              type: 'checkbox',
-              value: 'agree',
-              checked: true,
-              label: this.translocoService.translate('message.iAgree'),
-            },
-          ],
-          buttons: [
-            {
-              text: this.translocoService.translate('ok'),
-              handler: (data: any[]) => {
-                resolve(data.length > 0 && data[0] === 'agree');
-              },
-            },
-          ],
-          backdropDismiss: false,
-        })
-        .then(alert => alert.present());
-    });
   }
 }
 
