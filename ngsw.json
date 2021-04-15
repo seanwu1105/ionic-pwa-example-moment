@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1618389550813,
+  "timestamp": 1618454742982,
   "index": "/ionic-pwa-example/index.html",
   "assetGroups": [
     {
@@ -15,8 +15,8 @@
         "/ionic-pwa-example/11-es5.17dfecf708efb9e714df.js",
         "/ionic-pwa-example/12-es2015.f8ef84367c3ce1ec2a18.js",
         "/ionic-pwa-example/12-es5.f8ef84367c3ce1ec2a18.js",
-        "/ionic-pwa-example/13-es2015.b5d0159249355894d081.js",
-        "/ionic-pwa-example/13-es5.b5d0159249355894d081.js",
+        "/ionic-pwa-example/13-es2015.eca168cd6175854113c3.js",
+        "/ionic-pwa-example/13-es5.eca168cd6175854113c3.js",
         "/ionic-pwa-example/14-es2015.e844cbb9b9f34ff41be3.js",
         "/ionic-pwa-example/14-es5.e844cbb9b9f34ff41be3.js",
         "/ionic-pwa-example/15-es2015.7fbbe3359c190034f94d.js",
@@ -139,8 +139,8 @@
         "/ionic-pwa-example/polyfills-dom-es5.c22d06df917b10dfea16.js",
         "/ionic-pwa-example/polyfills-es2015.ce195ac6aa19d436e46c.js",
         "/ionic-pwa-example/polyfills-es5.2139f73c2b183f5f580d.js",
-        "/ionic-pwa-example/runtime-es2015.ce3f99381c28455063c7.js",
-        "/ionic-pwa-example/runtime-es5.ce3f99381c28455063c7.js",
+        "/ionic-pwa-example/runtime-es2015.8cec9e75cebdeb4b4596.js",
+        "/ionic-pwa-example/runtime-es5.8cec9e75cebdeb4b4596.js",
         "/ionic-pwa-example/styles.d8b909ad9a63043775a2.css"
       ],
       "patterns": []
@@ -209,8 +209,8 @@
     "/ionic-pwa-example/11-es5.17dfecf708efb9e714df.js": "224eb6b947320bded9f485aab303e0e821a02e9d",
     "/ionic-pwa-example/12-es2015.f8ef84367c3ce1ec2a18.js": "2e2c0a33679acf01a9e8e1963afc1cc77927b4f4",
     "/ionic-pwa-example/12-es5.f8ef84367c3ce1ec2a18.js": "2a3f9a1ba7e203797d92e2297e2e370f35b2860b",
-    "/ionic-pwa-example/13-es2015.b5d0159249355894d081.js": "852ea05eb54c513a1ed72d18c9366505ce0891f7",
-    "/ionic-pwa-example/13-es5.b5d0159249355894d081.js": "7fc6ca7059def777962dcaa0406cd05a30d11198",
+    "/ionic-pwa-example/13-es2015.eca168cd6175854113c3.js": "852ea05eb54c513a1ed72d18c9366505ce0891f7",
+    "/ionic-pwa-example/13-es5.eca168cd6175854113c3.js": "7fc6ca7059def777962dcaa0406cd05a30d11198",
     "/ionic-pwa-example/14-es2015.e844cbb9b9f34ff41be3.js": "4493ff793bba41ffde0eef8509012269ee6a77b7",
     "/ionic-pwa-example/14-es5.e844cbb9b9f34ff41be3.js": "aacbcbf8015f4c90aea9d16d490fd2a6fb5fec47",
     "/ionic-pwa-example/15-es2015.7fbbe3359c190034f94d.js": "3c03c0c1e752bd859a36286b0bb30579e9908eaa",
@@ -339,7 +339,7 @@
     "/ionic-pwa-example/assets/icons/undraw-void.svg": "9418566038cbe779bd33752ec39f367d5269908e",
     "/ionic-pwa-example/common-es2015.f7aa7aeaca75a7dcc308.js": "1a765b2dd88de685eae38fba60ccf7b0e79f828d",
     "/ionic-pwa-example/common-es5.f7aa7aeaca75a7dcc308.js": "326a7082f79ca8032081834356db7855a84fd73e",
-    "/ionic-pwa-example/index.html": "5fa2d1fd4cd6db409841ea5d4344aaa6c388dd18",
+    "/ionic-pwa-example/index.html": "51b4334bbf40856f2fda9b4e7ae254f44c6d9776",
     "/ionic-pwa-example/main-es2015.32ae671c8b2e081fb459.js": "ec9a8e2b9ae0f40a6112d154c1dc257927139e4e",
     "/ionic-pwa-example/main-es5.32ae671c8b2e081fb459.js": "6cfd2cba86e3d6e103412a8f58934a2cc620ae8a",
     "/ionic-pwa-example/manifest.webmanifest": "d72850d1ef3842541ce4db89de08c669a3ba66ce",
@@ -351,8 +351,8 @@
     "/ionic-pwa-example/polyfills-dom-es5.c22d06df917b10dfea16.js": "3455849cad83b87b1a14b708e9b057e7d60ca34e",
     "/ionic-pwa-example/polyfills-es2015.ce195ac6aa19d436e46c.js": "df2c32074197be56324a8aaba0ceb3b522eaa589",
     "/ionic-pwa-example/polyfills-es5.2139f73c2b183f5f580d.js": "f87f40f96e54b1c0eb67ace847404e6b6bfaded9",
-    "/ionic-pwa-example/runtime-es2015.ce3f99381c28455063c7.js": "8503a0d9aec8eb9e81c3c4ab38254021150be18c",
-    "/ionic-pwa-example/runtime-es5.ce3f99381c28455063c7.js": "b9da9e8a91f182e84aef7f16180ee758b6c68f1b",
+    "/ionic-pwa-example/runtime-es2015.8cec9e75cebdeb4b4596.js": "fe8e73ddf5020943f2c51d628799e3327500dbf7",
+    "/ionic-pwa-example/runtime-es5.8cec9e75cebdeb4b4596.js": "9d589c78cd8d51efc41b8d79ddebb96f253a513e",
     "/ionic-pwa-example/styles.d8b909ad9a63043775a2.css": "0646810534b2b97ecb603704dd77b9671b1cfa5a"
   },
   "navigationUrls": [
