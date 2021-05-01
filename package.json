@@ -29,7 +29,7 @@
     "@ngneat/transloco": "^2.20.1",
     "@ngneat/transloco-locale": "^1.4.0",
     "@ngneat/until-destroy": "^8.0.4",
-    "@ngrx/component": "^11.1.0",
+    "@ngrx/component": "^11.1.1",
     "@sentry/angular": "^6.2.5",
     "@sentry/tracing": "^6.2.5",
     "buffer": "^6.0.3",
