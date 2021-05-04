@@ -24,6 +24,7 @@ import { DialogsService } from '../../../shared/dialogs/dialogs.service';
 import { LanguagesService } from '../../../shared/languages/languages.service';
 import { Moment } from '../../../shared/moment/moment';
 import { MomentRepository } from '../../../shared/moment/moment-repository.service';
+import { blobBufferToBlob } from '../../../utils/encoding';
 import { isNonNullable } from '../../../utils/rx-operators';
 
 SwiperCore.use([Virtual]);
@@ -111,6 +112,7 @@ export class PhotoPage {
 
   readonly photoTags$ = this.currentMoment$.pipe(
     switchMap(moment => moment.photo$),
+    map(photo => blobBufferToBlob(photo)),
     switchMap(photo => photo.arrayBuffer()),
     map(arrayBuffer => ExifReader.load(arrayBuffer)),
     map(tags => {

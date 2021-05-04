@@ -1,3 +1,5 @@
+import { BlobBuffer } from 'rxdb/dist/types/types';
+
 export function arrayBufferToHex(arrayBuffer: ArrayBuffer) {
   return (
     [...new Uint8Array(arrayBuffer)]
@@ -5,4 +7,9 @@ export function arrayBufferToHex(arrayBuffer: ArrayBuffer) {
       .map(b => b.toString(16).padStart(2, '0'))
       .join('')
   );
+}
+
+export function blobBufferToBlob(blobBuffer: BlobBuffer) {
+  if (blobBuffer instanceof Blob) return blobBuffer;
+  return new Blob([blobBuffer.buffer]);
 }

@@ -2,6 +2,7 @@ import { RxDocument, RxJsonSchema } from 'rxdb';
 import { defer, iif } from 'rxjs';
 import { concatMap, map, pluck, shareReplay } from 'rxjs/operators';
 import UAParser from 'ua-parser-js';
+import { blobBufferToBlob } from '../../utils/encoding';
 import { isNonNullable } from '../../utils/rx-operators';
 import { makeThumbnail } from '../../utils/thumbnail';
 
@@ -79,7 +80,7 @@ export class Moment {
           const photo = this.getAttachment('original');
           if (!photo) return undefined;
           const thumbnail = await makeThumbnail({
-            image: await photo.getData(),
+            image: blobBufferToBlob(await photo.getData()),
             width: 300,
           });
           await this.document.putAttachment({
