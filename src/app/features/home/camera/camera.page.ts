@@ -53,7 +53,7 @@ export class CameraPage {
   }
 
   capture() {
-    this.cameraService
+    return this.cameraService
       .capture$()
       .pipe(
         concatTap(imageBlob => this.momentRepository.add$(imageBlob)),
