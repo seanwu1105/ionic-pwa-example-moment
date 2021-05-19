@@ -36,6 +36,9 @@
   <swiper
     *ngrxLet="initialSlide$ as initialSlide"
     [virtual]="true"
+    [resizeObserver]="true"
+    [observeParents]="true"
+    [observeSlideChildren]="true"
     [resistanceRatio]="0"
     [initialSlide]="initialSlide"
     (swiper)="onSwiperCreated($event)"
@@ -49,7 +52,7 @@
       <div class="slide" *transloco="let t">
         <app-image
           *ngrxLet="moment.photoUrl$ as photoUrl"
-          (click)="viewImage(photoUrl)"
+          [routerLink]="['/image-viewer', photoUrl]"
           [src]="photoUrl"
         ></app-image>
 
@@ -66,9 +69,9 @@
             <ion-item-divider>
               <ion-label>{{ t('location') }}</ion-label>
             </ion-item-divider>
-            <div *ngrxLet="mapUrl$ as mapUrl" class="map">
+            <div class="map">
               <iframe
-                *ngIf="showMapIframe$ | ngrxPush"
+                *ngIf="mapUrl$ | ngrxPush as mapUrl"
                 [src]="mapUrl"
                 frameborder="0"
                 loading="lazy"

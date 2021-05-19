@@ -1,5 +1,5 @@
-import { defer, from, Observable } from 'rxjs';
-import { concatMap, filter, finalize, mapTo, tap } from 'rxjs/operators';
+import { defer, from, Observable, of, ReplaySubject } from 'rxjs';
+import { concatMap, delay, filter, finalize, mapTo, tap } from 'rxjs/operators';
 
 export function isNonNullable<T>() {
   return (source$: Observable<null | undefined | T>) =>
@@ -29,6 +29,30 @@ export function finalizeLast<T>(callback: (value: T) => void) {
         finalize(() => {
           if (lastValue) callback(lastValue);
         })
+      );
+    });
+}
+
+export function beforeEach<T, V>(valueBefore: V) {
+  return (source$: Observable<T>) =>
+    defer(() => {
+      const subject$ = new ReplaySubject<V | T>(1);
+      source$
+        .pipe(
+          // Force the source values emitted asynchronizingly.
+          delay(0)
+        )
+        .subscribe({
+          next: v => {
+            subject$.next(valueBefore);
+            subject$.next(v);
+          },
+          error: (err: unknown) => subject$.error(err),
+          complete: () => subject$.complete(),
+        });
+      return subject$.pipe(
+        // Make sure the values emitted asynchronizingly.
+        concatMap(v => of(v).pipe(delay(0)))
       );
     });
 }

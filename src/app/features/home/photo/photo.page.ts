@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectorRef, Component, NgZone } from '@angular/core';
+import { Component } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -7,7 +7,7 @@ import ExifReader from 'exifreader';
 import { FeatureCollection } from 'geojson';
 import { omitBy } from 'lodash-es';
 import mime from 'mime/lite';
-import { BehaviorSubject, combineLatest, defer, iif, of } from 'rxjs';
+import { combineLatest, defer, iif, of, ReplaySubject } from 'rxjs';
 import {
   catchError,
   concatMap,
@@ -25,7 +25,7 @@ import { LanguagesService } from '../../../shared/languages/languages.service';
 import { Moment } from '../../../shared/moment/moment';
 import { MomentRepository } from '../../../shared/moment/moment-repository.service';
 import { blobBufferToBlob } from '../../../utils/encoding';
-import { isNonNullable } from '../../../utils/rx-operators';
+import { beforeEach, isNonNullable } from '../../../utils/rx-operators';
 
 SwiperCore.use([Virtual]);
 
@@ -82,38 +82,26 @@ export class PhotoPage {
       if (!properties) return undefined;
       return properties['display_name'] as string | undefined;
     }),
-    shareReplay({ bufferSize: 1, refCount: true }),
-
-    /**
-     * Manually detect change due to the pipe is outside of NgZone on Swiper
-     * virtual scroll component.
-     */
-    tap(() => this.changeDetector.detectChanges())
+    shareReplay({ bufferSize: 1, refCount: true })
   );
 
   /**
-   * Recreate iframe to avoid updating src and pushing history entry into stack.
+   * Recreate iframe by setting mapUrl$ to undefined to avoid updating src and
+   * pushing history entry into stack.
    */
-  private readonly _showMapIframe$ = new BehaviorSubject(false);
-
-  readonly showMapIframe$ = this._showMapIframe$.pipe(
-    tap(() => this.changeDetector.detectChanges())
-  );
-
   readonly mapUrl$ = this.geolocationPosition$.pipe(
-    tap(() => this._showMapIframe$.next(false)),
     map(position =>
       this.sanitizer.bypassSecurityTrustResourceUrl(
         `https://maps.google.com/maps?q=${position.latitude},${position.longitude}&z=15&output=embed`
       )
     ),
-    tap(() => this._showMapIframe$.next(true))
+    beforeEach(undefined),
+    shareReplay({ refCount: true, bufferSize: 1 })
   );
 
   readonly photoTags$ = this.currentMoment$.pipe(
     switchMap(moment => moment.photo$),
-    map(photo => blobBufferToBlob(photo)),
-    switchMap(photo => photo.arrayBuffer()),
+    switchMap(photo => blobBufferToBlob(photo).arrayBuffer()),
     map(arrayBuffer => ExifReader.load(arrayBuffer)),
     map(tags => {
       delete tags['MakerNote'];
@@ -124,14 +112,7 @@ export class PhotoPage {
     )
   );
 
-  private readonly _swiper$ = new BehaviorSubject<Swiper | undefined>(
-    undefined
-  );
-
-  readonly swiper$ = this._swiper$.pipe(
-    isNonNullable(),
-    distinctUntilChanged()
-  );
+  private readonly swiper$ = new ReplaySubject<Swiper>(1);
 
   readonly initialSlide$ = this.currentMomentIndex$.pipe(first());
 
@@ -144,8 +125,6 @@ export class PhotoPage {
     private readonly sanitizer: DomSanitizer,
     private readonly httpClient: HttpClient,
     private readonly languagesService: LanguagesService,
-    private readonly zone: NgZone,
-    private readonly changeDetector: ChangeDetectorRef,
     private readonly dialogsService: DialogsService
   ) {}
 
@@ -155,34 +134,28 @@ export class PhotoPage {
   }
 
   onSwiperCreated(swiper: Swiper) {
-    this._swiper$.next(swiper);
+    this.swiper$.next(swiper);
   }
 
   onPhotoSlidesChanged() {
-    return this.zone.run(() =>
-      combineLatest([this.swiper$, this.moments$])
-        .pipe(
-          first(),
-          map(([swiper, moments]) => moments[swiper.activeIndex]),
-          isNonNullable(),
-          switchMap(moment =>
-            iif(
-              () => !this.willBeDestroyed,
-              this.router.navigate([], {
-                queryParams: { id: moment.id },
-                relativeTo: this.route,
-                skipLocationChange: true,
-              })
-            )
-          ),
-          untilDestroyed(this)
-        )
-        .subscribe()
-    );
-  }
-
-  async viewImage(url: string) {
-    return this.zone.run(() => this.router.navigate(['/image-viewer', url]));
+    return combineLatest([this.swiper$, this.moments$])
+      .pipe(
+        first(),
+        map(([swiper, moments]) => moments[swiper.activeIndex]),
+        isNonNullable(),
+        switchMap(moment =>
+          iif(
+            () => !this.willBeDestroyed,
+            this.router.navigate([], {
+              queryParams: { id: moment.id },
+              relativeTo: this.route,
+              skipLocationChange: true,
+            })
+          )
+        ),
+        untilDestroyed(this)
+      )
+      .subscribe();
   }
 
   remove() {

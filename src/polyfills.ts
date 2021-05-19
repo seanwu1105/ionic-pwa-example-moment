@@ -64,6 +64,10 @@ import 'zone.js/dist/zone'; // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+
+// RxJS
+import 'zone.js/dist/zone-patch-rxjs';
+
 // RxDB
 (window as any).global = window;
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
