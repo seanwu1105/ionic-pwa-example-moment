@@ -5,5 +5,5 @@
 ></app-back-button>
 
 <pinch-zoom *ngrxLet="src$ as src">
-  <img [src]="src" />
+  <img decoding="async" loading="lazy" [src]="src" />
 </pinch-zoom>
