@@ -1,8 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { ReplaySubject } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
 import { Moment } from '../../../shared/moment/moment';
-import { isNonNullable } from '../../../utils/rx-operators';
 
 @Component({
   selector: 'app-moment-thumbnail',
@@ -10,12 +9,9 @@ import { isNonNullable } from '../../../utils/rx-operators';
   styleUrls: ['./moment-thumbnail.component.scss'],
 })
 export class MomentThumbnailComponent {
-  private readonly _moment$ = new BehaviorSubject<undefined | Moment>(
-    undefined
-  );
+  private readonly _moment$ = new ReplaySubject<Moment>(1);
 
   readonly moment$ = this._moment$.pipe(
-    isNonNullable(),
     distinctUntilChanged((x, y) => x.id === y.id)
   );
 

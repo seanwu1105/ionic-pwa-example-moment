@@ -1,8 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { ReplaySubject } from 'rxjs';
 import { distinctUntilChanged, startWith, tap } from 'rxjs/operators';
 import { fadeInAnimation } from '../../utils/animations';
-import { isNonNullable } from '../../utils/rx-operators';
 
 @Component({
   selector: 'app-image',
@@ -10,11 +9,10 @@ import { isNonNullable } from '../../utils/rx-operators';
   styleUrls: ['./image.component.scss'],
 })
 export class ImageComponent {
-  private readonly _src$ = new BehaviorSubject<string | undefined>(undefined);
+  private readonly _src$ = new ReplaySubject<string>(1);
 
   readonly src$ = this._src$.pipe(
     startWith(TINIEST_GIF),
-    isNonNullable(),
     distinctUntilChanged(),
     tap(() => (this.isImageError = false))
   );

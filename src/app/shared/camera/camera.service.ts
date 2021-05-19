@@ -1,13 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  BehaviorSubject,
-  defer,
-  iif,
-  Observable,
-  of,
-  ReplaySubject,
-  throwError,
-} from 'rxjs';
+import { defer, iif, Observable, of, ReplaySubject, throwError } from 'rxjs';
 import {
   catchError,
   concatMap,
@@ -41,12 +33,9 @@ export class CameraService {
     shareReplay({ bufferSize: 1, refCount: true })
   );
 
-  private readonly _capturedImageUrl$ = new BehaviorSubject<string | undefined>(
-    undefined
-  );
+  private readonly _capturedImageUrl$ = new ReplaySubject<string>(1);
 
   readonly capturedImageUrl$ = this._capturedImageUrl$.pipe(
-    isNonNullable(),
     distinctUntilChanged(),
     revokePreviousImageUrl()
   );

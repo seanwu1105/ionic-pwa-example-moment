@@ -1,11 +1,11 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { BehaviorSubject, iif } from 'rxjs';
-import { catchError, concatMap, distinctUntilChanged } from 'rxjs/operators';
+import { iif, ReplaySubject } from 'rxjs';
+import { catchError, concatMap } from 'rxjs/operators';
 import { CameraService } from '../../../shared/camera/camera.service';
 import { DialogsService } from '../../../shared/dialogs/dialogs.service';
 import { MomentRepository } from '../../../shared/moment/moment-repository.service';
-import { concatTap, isNonNullable } from '../../../utils/rx-operators';
+import { concatTap } from '../../../utils/rx-operators';
 
 @UntilDestroy()
 @Component({
@@ -16,18 +16,11 @@ import { concatTap, isNonNullable } from '../../../utils/rx-operators';
 export class CameraPage {
   readonly videoDevices$ = this.cameraService.videoDevices$;
 
-  private readonly _videoElement$ = new BehaviorSubject<
-    HTMLVideoElement | undefined
-  >(undefined);
-
-  private readonly videoElement$ = this._videoElement$.pipe(
-    isNonNullable(),
-    distinctUntilChanged()
-  );
+  private readonly videoElement$ = new ReplaySubject<HTMLVideoElement>(1);
 
   @ViewChild('video')
   set videoElement(value: ElementRef<HTMLVideoElement> | undefined) {
-    if (value) this._videoElement$.next(value.nativeElement);
+    if (value) this.videoElement$.next(value.nativeElement);
   }
 
   readonly capturedImageUrl$ = this.cameraService.capturedImageUrl$;
