@@ -42,6 +42,7 @@
   },
   "error": {
     "UnknownError": "Unknown Error",
-    "NotAllowedError": "Permission Denied"
+    "NotAllowedError": "Permission Denied",
+    "NotReadableError": "Video Source Not Readable"
   }
 }

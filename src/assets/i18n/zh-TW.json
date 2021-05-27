@@ -40,6 +40,7 @@
   },
   "error": {
     "UnknownError": "未知的錯誤",
-    "NotAllowedError": "沒有權限"
+    "NotAllowedError": "沒有權限",
+    "NotReadableError": "無法擷取影像來源"
   }
 }
