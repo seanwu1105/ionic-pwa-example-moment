@@ -8,10 +8,10 @@ import { NavController } from '@ionic/angular';
 })
 export class BackButtonComponent {
   @Input()
-  readonly color: string | undefined;
+  color: string | undefined;
 
   @Input()
-  readonly standalone: boolean | undefined;
+  standalone: boolean | undefined;
 
   constructor(private readonly navController: NavController) {}
 

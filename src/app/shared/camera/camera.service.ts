@@ -122,7 +122,7 @@ class VideoStreamSelector {
     return navigator.mediaDevices.getUserMedia({
       video: {
         deviceId:
-          devices[this.currentVideoDeviceIndex % devices.length].deviceId,
+          devices[this.currentVideoDeviceIndex % devices.length]?.deviceId,
       },
     });
   }

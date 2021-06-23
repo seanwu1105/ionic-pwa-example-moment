@@ -77,7 +77,7 @@ export class PhotoPage {
       )
     ),
     map(json => {
-      if (json.features.length === 0) return undefined;
+      if (!json.features[0]) return undefined;
       const properties = json.features[0].properties;
       if (!properties) return undefined;
       return properties['display_name'] as string | undefined;
