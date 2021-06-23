@@ -7,6 +7,8 @@ import enUs from '../../assets/i18n/en-US.json';
 import zhTw from '../../assets/i18n/zh-TW.json';
 import { TestingDatabase } from './database/database-testing.service';
 import { Database } from './database/database.service';
+import { PREFERENCE_MANAGER } from './preference/preference-manager';
+import { RxDbPreferenceManager } from './preference/rxdb-preference-manager.service';
 import { SharedModule } from './shared.module';
 import { languages } from './transloco/transloco-root.module';
 @NgModule({
@@ -28,6 +30,10 @@ import { languages } from './transloco/transloco-root.module';
     {
       provide: Database,
       useClass: TestingDatabase,
+    },
+    {
+      provide: PREFERENCE_MANAGER,
+      useClass: RxDbPreferenceManager,
     },
   ],
   exports: [

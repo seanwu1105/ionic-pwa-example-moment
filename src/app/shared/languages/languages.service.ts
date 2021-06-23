@@ -1,16 +1,22 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { TranslocoService } from '@ngneat/transloco';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { PreferenceServiceBase } from '../preference/preference-service-base';
-import { RxDbPreferenceManager } from '../preference/rxdb-preference-manager.service';
+import {
+  PreferenceManager,
+  PREFERENCE_MANAGER,
+} from '../preference/preference-manager';
 import { languages } from '../transloco/transloco-root.module';
 
 @Injectable({
   providedIn: 'root',
 })
-export class LanguagesService extends PreferenceServiceBase<PreferenceKey> {
-  readonly language$ = this.getString$(
+export class LanguagesService {
+  private readonly preferences = this.preferenceManager.getPreferences<PreferenceKey>(
+    'LanguagesService'
+  );
+
+  readonly language$ = this.preferences.getString$(
     'language',
     Object.keys(languages)[0]
   ) as Observable<LanguageValue>;
@@ -20,14 +26,13 @@ export class LanguagesService extends PreferenceServiceBase<PreferenceKey> {
   );
 
   constructor(
-    preferenceManager: RxDbPreferenceManager,
+    @Inject(PREFERENCE_MANAGER)
+    private readonly preferenceManager: PreferenceManager,
     private readonly translocoService: TranslocoService
-  ) {
-    super(preferenceManager, 'LanguagesService');
-  }
+  ) {}
 
   setLanguage$(value: LanguageValue) {
-    return this.setString$('language', value);
+    return this.preferences.setString$('language', value);
   }
 }
 

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { TranslocoService } from '@ngneat/transloco';
 import * as Sentry from '@sentry/angular';
@@ -6,14 +6,20 @@ import { Integrations } from '@sentry/tracing';
 import { defer, iif } from 'rxjs';
 import { concatMap, first } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
-import { PreferenceServiceBase } from '../preference/preference-service-base';
-import { RxDbPreferenceManager } from '../preference/rxdb-preference-manager.service';
+import {
+  PreferenceManager,
+  PREFERENCE_MANAGER,
+} from '../preference/preference-manager';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ErrorReportService extends PreferenceServiceBase<PreferenceKey> {
-  readonly enabled$ = this.getBoolean$('enabled');
+export class ErrorReportService {
+  private readonly preferences = this.preferenceManager.getPreferences<PreferenceKey>(
+    'ErrorReportService'
+  );
+
+  readonly enabled$ = this.preferences.getBoolean$('enabled');
 
   private hasInitialized = false;
 
@@ -89,15 +95,14 @@ export class ErrorReportService extends PreferenceServiceBase<PreferenceKey> {
     );
 
   constructor(
-    preferenceManager: RxDbPreferenceManager,
+    @Inject(PREFERENCE_MANAGER)
+    private readonly preferenceManager: PreferenceManager,
     private readonly alertController: AlertController,
     private readonly translocoService: TranslocoService
-  ) {
-    super(preferenceManager, 'ErrorReportService');
-  }
+  ) {}
 
   setEnabled$(value: boolean) {
-    return this.setBoolean$('enabled', value);
+    return this.preferences.setBoolean$('enabled', value);
   }
 }
 

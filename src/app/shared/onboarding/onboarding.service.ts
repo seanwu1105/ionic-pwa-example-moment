@@ -1,18 +1,25 @@
-import { Injectable } from '@angular/core';
-import { PreferenceServiceBase } from '../preference/preference-service-base';
-import { RxDbPreferenceManager } from '../preference/rxdb-preference-manager.service';
+import { Inject, Injectable } from '@angular/core';
+import {
+  PreferenceManager,
+  PREFERENCE_MANAGER,
+} from '../preference/preference-manager';
 
 @Injectable({
   providedIn: 'root',
 })
-export class OnboardingService extends PreferenceServiceBase<PreferenceKey> {
-  readonly hasOnboarded$ = this.getBoolean$('hasOnboarded', false);
+export class OnboardingService {
+  private readonly preferences = this.preferenceManager.getPreferences<PreferenceKey>(
+    'OnboardingService'
+  );
 
-  readonly onboard$ = this.setBoolean$('hasOnboarded', true);
+  readonly hasOnboarded$ = this.preferences.getBoolean$('hasOnboarded', false);
 
-  constructor(preferenceManager: RxDbPreferenceManager) {
-    super(preferenceManager, 'OnboardingService');
-  }
+  readonly onboard$ = this.preferences.setBoolean$('hasOnboarded', true);
+
+  constructor(
+    @Inject(PREFERENCE_MANAGER)
+    private readonly preferenceManager: PreferenceManager
+  ) {}
 }
 
 type PreferenceKey = 'hasOnboarded';

@@ -5,6 +5,8 @@ import { TranslocoTestingModule } from '@ngneat/transloco';
 import { AppComponent } from './app.component';
 import { TestingDatabase } from './shared/database/database-testing.service';
 import { Database } from './shared/database/database.service';
+import { PREFERENCE_MANAGER } from './shared/preference/preference-manager';
+import { RxDbPreferenceManager } from './shared/preference/rxdb-preference-manager.service';
 
 describe('AppComponent', () => {
   let platformReadySpy: Promise<void>;
@@ -29,6 +31,10 @@ describe('AppComponent', () => {
           {
             provide: Database,
             useClass: TestingDatabase,
+          },
+          {
+            provide: PREFERENCE_MANAGER,
+            useClass: RxDbPreferenceManager,
           },
         ],
       }).compileComponents();

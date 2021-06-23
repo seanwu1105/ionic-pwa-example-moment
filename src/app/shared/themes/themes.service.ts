@@ -1,16 +1,22 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { combineLatest, fromEvent, Observable } from 'rxjs';
 import { pluck, startWith, tap } from 'rxjs/operators';
-import { PreferenceServiceBase } from '../preference/preference-service-base';
-import { RxDbPreferenceManager } from '../preference/rxdb-preference-manager.service';
+import {
+  PreferenceManager,
+  PREFERENCE_MANAGER,
+} from '../preference/preference-manager';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ThemesService extends PreferenceServiceBase<PreferenceKey> {
+export class ThemesService {
   static readonly THEMES = ['system', 'light', 'dark'] as const;
 
-  readonly theme$ = this.getString$(
+  private readonly preferences = this.preferenceManager.getPreferences<PreferenceKey>(
+    'ThemesService'
+  );
+
+  readonly theme$ = this.preferences.getString$(
     'theme',
     ThemesService.THEMES[0]
   ) as Observable<ThemeValue>;
@@ -35,12 +41,13 @@ export class ThemesService extends PreferenceServiceBase<PreferenceKey> {
     })
   );
 
-  constructor(preferenceManager: RxDbPreferenceManager) {
-    super(preferenceManager, 'ThemesService');
-  }
+  constructor(
+    @Inject(PREFERENCE_MANAGER)
+    private readonly preferenceManager: PreferenceManager
+  ) {}
 
   setTheme$(value: ThemeValue) {
-    return this.setString$('theme', value);
+    return this.preferences.setString$('theme', value);
   }
 }
 

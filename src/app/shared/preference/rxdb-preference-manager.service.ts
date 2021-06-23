@@ -27,7 +27,7 @@ export class RxDbPreferenceManager implements PreferenceManager {
     shareReplay({ bufferSize: 1, refCount: true })
   );
 
-  private readonly preferencesMap = new Map<string, Preferences>();
+  private readonly preferencesMap = new Map<string, Preferences<string>>();
 
   constructor(private readonly database: Database) {}
 
@@ -46,7 +46,7 @@ export class RxDbPreferenceManager implements PreferenceManager {
   }
 }
 
-class RxDbPreferences implements Preferences {
+class RxDbPreferences<T extends string> implements Preferences<T> {
   constructor(
     readonly id: string,
     private readonly collection$: Observable<RxCollection<Preference>>

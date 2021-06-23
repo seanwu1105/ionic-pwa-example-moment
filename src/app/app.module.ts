@@ -8,6 +8,8 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ErrorReportModule } from './shared/error-report/error-report.module';
+import { PREFERENCE_MANAGER } from './shared/preference/preference-manager';
+import { RxDbPreferenceManager } from './shared/preference/rxdb-preference-manager.service';
 import { TranslocoRootModule } from './shared/transloco/transloco-root.module';
 
 @NgModule({
@@ -28,6 +30,10 @@ import { TranslocoRootModule } from './shared/transloco/transloco-root.module';
     {
       provide: RouteReuseStrategy,
       useClass: IonicRouteStrategy,
+    },
+    {
+      provide: PREFERENCE_MANAGER,
+      useClass: RxDbPreferenceManager,
     },
   ],
   bootstrap: [AppComponent],
