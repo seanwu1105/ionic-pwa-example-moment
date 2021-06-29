@@ -47,5 +47,5 @@ jobs:
         with:
           name: ${{ steps.version_check.outputs.version }}
           tag_name: ${{ steps.version_check.outputs.version }}
-          body: Thanks for following along! For more information check out the [CHANGELOG](https://github.com/seanwu1105/ionic-pwa-example/blob/master/CHANGELOG.md).
+          body: Thanks for following along! For more information check out the [CHANGELOG](https://github.com/seanwu1105/ionic-pwa-example-moment/blob/master/CHANGELOG.md).
           files: build.zip

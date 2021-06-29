@@ -27,7 +27,7 @@ jobs:
         run: npm install
 
       - name: Build Ionic
-        run: ionic build --prod -- --base-href=/ionic-pwa-example/
+        run: ionic build --prod -- --base-href=/ionic-pwa-example-moment/
 
       - name: Deploy on GitHub pages
         uses: JamesIves/github-pages-deploy-action@3.7.1

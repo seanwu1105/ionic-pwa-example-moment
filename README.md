@@ -1,6 +1,6 @@
-# Ionic PWA Example - [Moment](https://seanwu1105.github.io/ionic-pwa-example)
+# Ionic PWA Example - [Moment](https://seanwu1105.github.io/ionic-pwa-example-moment)
 
-[![build](https://github.com/seanwu1105/ionic-pwa-example/actions/workflows/build.yml/badge.svg)](https://github.com/seanwu1105/ionic-pwa-example/actions/workflows/build.yml)
+[![build](https://github.com/seanwu1105/ionic-pwa-example-moment/actions/workflows/build.yml/badge.svg)](https://github.com/seanwu1105/ionic-pwa-example-moment/actions/workflows/build.yml)
 
 An offline camera app built with PWA without any native framework.
 
@@ -14,7 +14,7 @@ An offline camera app built with PWA without any native framework.
 
 ## Installation
 
-[![launch now](https://user-images.githubusercontent.com/14951000/112782686-2f608380-9080-11eb-970e-b1ba58cfd509.png)](https://seanwu1105.github.io/ionic-pwa-example)
+[![launch now](https://user-images.githubusercontent.com/14951000/112782686-2f608380-9080-11eb-970e-b1ba58cfd509.png)](https://seanwu1105.github.io/ionic-pwa-example-moment)
 
 ## Design
 
