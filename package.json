@@ -99,6 +99,8 @@
     }
   },
   "lint-staged": {
+    "*.{js,ts}": "eslint --cache --fix",
+    "*.{css,scss}": "stylelint --fix",
     "*.{js,ts,scss,css,html,md,yml,json}": "prettier --write"
   }
 }
