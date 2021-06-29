@@ -12,7 +12,6 @@
     "test": "ng test",
     "test.ci": "ng test --no-watch --no-progress --browsers=ChromeHeadlessCI",
     "lint": "prettier --check . && stylelint \"**/*.{css,scss,sass}\" && ng lint",
-    "e2e": "ng e2e",
     "prepare": "husky install"
   },
   "private": true,
