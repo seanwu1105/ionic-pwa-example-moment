@@ -63,7 +63,7 @@
     "@ionic/angular-toolkit": "^3.1.1",
     "@types/geojson": "^7946.0.7",
     "@types/jasmine": "^3.6.10",
-    "@types/jasminewd2": "~2.0.3",
+    "@types/jasminewd2": "~2.0.10",
     "@types/lodash-es": "^4.17.4",
     "@types/node": "^15.0.1",
     "@types/pouchdb-adapter-idb": "^6.1.3",
