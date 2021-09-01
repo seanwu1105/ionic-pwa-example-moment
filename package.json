@@ -74,7 +74,7 @@
     "@typescript-eslint/parser": "^4.22.1",
     "eslint": "^7.25.0",
     "eslint-plugin-import": "2.22.1",
-    "eslint-plugin-rxjs": "^3.3.0",
+    "eslint-plugin-rxjs": "^3.3.7",
     "husky": "^6.0.0",
     "jasmine-core": "^3.7.1",
     "jasmine-spec-reporter": "^7.0.0",
