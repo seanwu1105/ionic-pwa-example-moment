@@ -28,7 +28,7 @@
     "@ngneat/transloco-locale": "^1.4.0",
     "@ngneat/until-destroy": "^8.0.4",
     "@ngrx/component": "^11.1.1",
-    "@sentry/angular": "^6.2.5",
+    "@sentry/angular": "^6.13.2",
     "@sentry/tracing": "^6.2.5",
     "buffer": "^6.0.3",
     "compressorjs": "^1.0.7",
