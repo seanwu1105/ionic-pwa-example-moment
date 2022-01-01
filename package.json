@@ -43,7 +43,7 @@
     "rxdb": "~9.18.0",
     "rxjs": "^6.6.7",
     "stream-browserify": "^3.0.0",
-    "swiper": "^6.5.9",
+    "swiper": "^7.4.1",
     "tslib": "^2.0.0",
     "ua-parser-js": "^0.7.28",
     "webrtc-adapter": "^7.7.1",
