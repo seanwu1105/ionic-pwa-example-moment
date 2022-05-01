@@ -37,7 +37,7 @@
     "lodash-es": "^4.17.21",
     "mime": "^2.5.2",
     "ngx-pinch-zoom": "^2.5.5",
-    "pouchdb-adapter-idb": "^7.2.2",
+    "pouchdb-adapter-idb": "^7.3.0",
     "pouchdb-adapter-memory": "^7.2.2",
     "process": "^0.11.10",
     "rxdb": "~9.18.0",
